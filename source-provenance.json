@@ -2,13 +2,13 @@
   "schema": "gooo/decision-runtime-source-provenance/v1",
   "module": "github.com/kimjooyoon/gooo-decision-runtime",
   "origin_repository": "github.com/kimjooyoon/gooo-neural-decision-experiments",
-  "origin_revision": "e18908b88eecaacbb0b80df4feb8cc7b9b4380bb",
+  "origin_revision": "fd8e83614b0d8194bfdf148e5706efff804f20cd",
   "files": [
     {
       "origin_path": "internal/decision/model.go",
       "copied_path": "model.go",
-      "sha256": "5444e9a649a1cd2bd84f6b157b22e7fc912bc912ce046f5bda1f63cb6c6c5a02",
-      "bytes": 22717
+      "sha256": "21c4a3c7e6148129726d309585fc54c538a8a098dde17ab2284c387bac958b48",
+      "bytes": 23083
     },
     {
       "origin_path": "internal/decision/bridge.go",

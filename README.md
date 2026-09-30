@@ -44,6 +44,11 @@ For typed IR, use `Model.Decide` with a `DecisionRequest` whose schema is
 The bridge validates the operation against the operand types and only emits a
 closed `TypedBinaryIR` value.
 
+`Model.MetadataSHA256()` identifies the exact metadata bytes read by `Load`,
+including their formatting. `Model.WeightsSHA256()` identifies the validated
+packed weight bytes. Together they let a caller record the model configuration
+and weight artifact used for a loaded model.
+
 ## Memory ownership
 
 `Load` reads and verifies the model bundle, then keeps decoded weights for the

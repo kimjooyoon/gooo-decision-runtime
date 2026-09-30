@@ -138,6 +138,35 @@ func TestRejectDuplicateJSONKeysIsPublicAndNested(t *testing.T) {
 	}
 }
 
+func TestPublicMetadataSHA256BindsExactLoadedSnapshot(t *testing.T) {
+	metadataPath := writeSyntheticBundle(t, "fp32")
+	raw, err := os.ReadFile(metadataPath)
+	if err != nil {
+		t.Fatal(err)
+	}
+	raw = append(raw, '\n', ' ', '\n')
+	if err := os.WriteFile(metadataPath, raw, 0o600); err != nil {
+		t.Fatal(err)
+	}
+
+	model, err := decision.Load(metadataPath)
+	if err != nil {
+		t.Fatalf("Load: %v", err)
+	}
+	digest := sha256.Sum256(raw)
+	want := hex.EncodeToString(digest[:])
+	if got := model.MetadataSHA256(); got != want {
+		t.Fatalf("MetadataSHA256() = %q, want exact loaded-byte digest %q", got, want)
+	}
+
+	if err := os.WriteFile(metadataPath, append(raw, ' '), 0o600); err != nil {
+		t.Fatal(err)
+	}
+	if got := model.MetadataSHA256(); got != want {
+		t.Fatalf("loaded metadata digest changed after file rewrite: got %q, want %q", got, want)
+	}
+}
+
 var errUnexpectedLabel = errors.New("expected deterministic add label")
 
 func writeSyntheticBundle(t *testing.T, variant string) string {

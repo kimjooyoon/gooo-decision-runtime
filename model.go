@@ -61,6 +61,7 @@ type Metadata struct {
 
 type Model struct {
 	metadata        Metadata
+	metadataSHA256  string
 	floatWeights    []float32
 	ternaryWeights  []int8
 	biases          []float32
@@ -232,6 +233,19 @@ func (m *Model) WeightsSHA256() string {
 	return m.metadata.WeightsSHA256
 }
 
+// MetadataSHA256 reports the digest of the exact metadata bytes read by Load.
+func (m *Model) MetadataSHA256() string {
+	if m == nil {
+		return ""
+	}
+	return m.metadataSHA256
+}
+
+func metadataDigestHex(raw []byte) string {
+	digest := sha256.Sum256(raw)
+	return hex.EncodeToString(digest[:])
+}
+
 // Load reads strict JSON metadata and a sibling packed tensor file, verifies
 // the file digest and every tensor extent, then decodes weights once. FP32
 // bundles use one flat float32 tensor slice; ternary bundles use one flat int8
@@ -369,7 +383,7 @@ func Load(metadataPath string) (*Model, error) {
 		threshold = float32(*metadata.ConfidenceThreshold)
 	}
 	model := &Model{
-		metadata: metadata, floatWeights: floatWeights, ternaryWeights: ternaryWeights,
+		metadata: metadata, metadataSHA256: metadataDigestHex(metadataRaw), floatWeights: floatWeights, ternaryWeights: ternaryWeights,
 		biases: biases, temperature: float32(metadata.Temperature), threshold: threshold,
 		weightFileBytes: len(weightsRaw),
 	}
