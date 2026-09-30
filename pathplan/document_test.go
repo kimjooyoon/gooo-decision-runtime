@@ -27,4 +27,16 @@ func TestExplicitFiniteCaseContract(t *testing.T) {
 	if _, err := DecodeDocument(append(raw, raw...)); err == nil {
 		t.Fatal("trailing document accepted")
 	}
+	prepared, err := document.Prepare()
+	if err != nil || prepared.ActivityName() != document.Plan.Base.Name {
+		t.Fatalf("document preparation: %v", err)
+	}
+	document.Plan.Base.Expressions[1].Int = 999
+	if value, err := prepared.Fallback().Evaluate(3); err != nil || value.Int != 16 {
+		t.Fatal("document input mutation changed the prepared fallback")
+	}
+	document.MaxAttempts = 65
+	if _, err := document.Prepare(); err == nil {
+		t.Fatal("preparation bypassed document budgets")
+	}
 }

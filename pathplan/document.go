@@ -58,12 +58,18 @@ func DecodeDocument(raw []byte) (Document, error) {
 }
 
 func (document Document) Validate() error {
+	_, err := document.Prepare()
+	return err
+}
+
+// Prepare checks the finite envelope and owns one validated plan snapshot.
+// The caller must bind its cached fallback to authoritative source.
+func (document Document) Prepare() (*PreparedPlan, error) {
 	if document.Schema != DocumentSchema || len(document.TestCases) == 0 || len(document.TestCases) > 128 || document.MaxAttempts < 1 || document.MaxAttempts > 64 || len(document.Seed) > 512 || !utf8.ValidString(document.Seed) {
-		return errors.New("typed path document schema or finite budgets are invalid")
+		return nil, errors.New("typed path document schema or finite budgets are invalid")
 	}
 	if document.Plan.Base.ResultType != decision.TypeInt {
-		return errors.New("integer tests require an integer body result")
+		return nil, errors.New("integer tests require an integer body result")
 	}
-	_, err := Validate(document.Plan)
-	return err
+	return Prepare(document.Plan)
 }

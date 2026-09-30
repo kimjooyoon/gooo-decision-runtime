@@ -227,23 +227,29 @@ func assemble(plan Plan, choices map[string]string) (*bodyplan.Program, error) {
 // Validate rejects every individually ill-typed option before any model call.
 // Interacting choices are checked again on the complete selected program.
 func Validate(plan Plan) (map[string]string, error) {
+	choices, _, err := validatePlan(plan)
+	return choices, err
+}
+
+func validatePlan(plan Plan) (map[string]string, *bodyplan.Program, error) {
 	choices, err := validateShape(plan)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
-	if _, err := assemble(plan, choices); err != nil {
-		return nil, fmt.Errorf("fallback path: %w", err)
+	fallback, err := assemble(plan, choices)
+	if err != nil {
+		return nil, nil, fmt.Errorf("fallback path: %w", err)
 	}
 	for _, choice := range plan.Decisions {
 		for _, option := range choice.Options {
 			trial := cloneChoices(choices)
 			trial[choice.ID] = option.Label
 			if _, err := assemble(plan, trial); err != nil {
-				return nil, fmt.Errorf("path %s option %s: %w", choice.ID, option.Label, err)
+				return nil, nil, fmt.Errorf("path %s option %s: %w", choice.ID, option.Label, err)
 			}
 		}
 	}
-	return choices, nil
+	return choices, fallback, nil
 }
 
 func Compile(plan Plan, choices map[string]string) (*bodyplan.Program, error) {

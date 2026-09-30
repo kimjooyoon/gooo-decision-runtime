@@ -3,7 +3,6 @@ package pathplan
 import (
 	"container/heap"
 	"context"
-	"encoding/json"
 	"errors"
 	"math"
 	"math/bits"
@@ -75,19 +74,40 @@ func (h *searchHeap) Pop() any {
 // experiment. Every offered/combined path remains subject to type checking.
 // Holdout cases are deliberately absent from this API.
 func Search(ctx context.Context, plan Plan, model *decision.Model, cases []TestCase, maxAttempts int, seed string) (SearchResult, *bodyplan.Program, error) {
-	if ctx == nil {
-		return SearchResult{}, nil, errors.New("search context is required")
+	if err := searchBounds(ctx, cases, maxAttempts); err != nil {
+		return SearchResult{}, nil, err
 	}
-	if _, ok := ctx.Deadline(); !ok {
-		return SearchResult{}, nil, errors.New("search context must have a deadline")
-	}
-	if len(cases) == 0 || len(cases) > 128 || maxAttempts < 1 || maxAttempts > 64 {
-		return SearchResult{}, nil, errors.New("finite search budget is invalid")
-	}
-	defaults, err := Validate(plan)
+	prepared, err := Prepare(plan)
 	if err != nil {
 		return SearchResult{}, nil, err
 	}
+	return prepared.Search(ctx, model, cases, maxAttempts, seed)
+}
+
+func searchBounds(ctx context.Context, cases []TestCase, maxAttempts int) error {
+	if ctx == nil {
+		return errors.New("search context is required")
+	}
+	if _, ok := ctx.Deadline(); !ok {
+		return errors.New("search context must have a deadline")
+	}
+	if len(cases) == 0 || len(cases) > 128 || maxAttempts < 1 || maxAttempts > 64 {
+		return errors.New("finite search budget is invalid")
+	}
+	return ctx.Err()
+}
+
+// Search reuses a prepared snapshot, with per-call choices, workspace and heap.
+// Every combined candidate still passes the existing arena compiler.
+func (prepared *PreparedPlan) Search(ctx context.Context, model *decision.Model, cases []TestCase, maxAttempts int, seed string) (SearchResult, *bodyplan.Program, error) {
+	if err := searchBounds(ctx, cases, maxAttempts); err != nil {
+		return SearchResult{}, nil, err
+	}
+	if prepared == nil || prepared.fallback == nil {
+		return SearchResult{}, nil, errors.New("prepared path plan is required")
+	}
+	plan := prepared.plan
+	defaults := prepared.Defaults()
 	if plan.Base.ResultType != decision.TypeInt {
 		return SearchResult{}, nil, errors.New("integer test cases require an integer result")
 	}
@@ -97,11 +117,7 @@ func Search(ctx context.Context, plan Plan, model *decision.Model, cases []TestC
 	if seed != "" && (model == nil || len(seed) > 512 || !utf8.ValidString(seed)) {
 		return SearchResult{}, nil, errors.New("seeded search requires a model and a bounded seed")
 	}
-	raw, err := json.Marshal(plan)
-	if err != nil || len(raw) > 128<<10 {
-		return SearchResult{}, nil, errors.New("serialized path budget exceeded")
-	}
-	result := SearchResult{Schema: "gooo/typed-path-tdd-search/v1", Status: "PARTIAL", DeclaredCombinations: 1 << len(plan.Decisions), TrainingTotal: len(cases), Selection: Selection{Schema: "gooo/typed-body-path-selection/v1", PlanSHA256: hash(raw), Choices: defaults, ExternalCallsKnown: true}}
+	result := SearchResult{Schema: "gooo/typed-path-tdd-search/v1", Status: "PARTIAL", DeclaredCombinations: 1 << len(plan.Decisions), TrainingTotal: len(cases), Selection: Selection{Schema: "gooo/typed-body-path-selection/v1", PlanSHA256: prepared.sha, Choices: defaults, ExternalCallsKnown: true}}
 	result.Unattempted = result.DeclaredCombinations
 	result.InitialProposals = cloneChoices(defaults)
 	if model != nil {

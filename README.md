@@ -107,3 +107,21 @@ cases and unattempted combinations. Model confidence is recorded separately from
 TDD acceptance. Omitting the model uses deterministic declared order, zero
 prediction calls and no network. Validation/rendering allocate separately from
 the fixed-array prediction kernel.
+
+## Reuse validated paths
+
+`pathplan.Prepare(plan)` or `document.Prepare()` returns an owned immutable
+snapshot with `Fallback()`, `Defaults()`, `ActivityName()` and `PlanSHA256()`.
+Bind its cached fallback to the original source, then call `prepared.Search`
+with a deadline, model and finite cases. Each complete candidate still passes
+the arena compiler's combined type/scope checks. `prepared.Compile` validates
+explicit complete selections without repeating individual-option preparation.
+
+Preparing requires synchronized input; later input mutation cannot change the
+snapshot. Concurrent searches share only read-only prepared state, each owning
+its workspace, choices and heap. The snapshot caches no model or test outcomes;
+returned default maps and receipts are independent. There is no global cache.
+The existing `Search` signature remains available and prepares internally.
+
+The previous 16-file extraction is retained as `source-provenance-v2.json`;
+the current fixed extraction pins 18 original/relocated source and test files.
