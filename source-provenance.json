@@ -1,0 +1,32 @@
+{
+  "schema": "gooo/decision-runtime-source-provenance/v1",
+  "module": "github.com/kimjooyoon/gooo-decision-runtime",
+  "origin_repository": "github.com/kimjooyoon/gooo-neural-decision-experiments",
+  "origin_revision": "e18908b88eecaacbb0b80df4feb8cc7b9b4380bb",
+  "files": [
+    {
+      "origin_path": "internal/decision/model.go",
+      "copied_path": "model.go",
+      "sha256": "5444e9a649a1cd2bd84f6b157b22e7fc912bc912ce046f5bda1f63cb6c6c5a02",
+      "bytes": 22717
+    },
+    {
+      "origin_path": "internal/decision/bridge.go",
+      "copied_path": "bridge.go",
+      "sha256": "08227b64151ee8296c743e409d5a7dbb61f65d4d841d4dc0e0ab3a6119607236",
+      "bytes": 3745
+    },
+    {
+      "origin_path": "internal/decision/ir.go",
+      "copied_path": "ir.go",
+      "sha256": "14b259d00a581fe8924f973befa0149052f1f8dacb1f2f5fa03eef1eea24312d",
+      "bytes": 3625
+    },
+    {
+      "origin_path": "LICENSE",
+      "copied_path": "LICENSE",
+      "sha256": "3ad2cd8fe84a937a0005a2934e377432f2f86fe10ff86c4242cc48f49ebf4947",
+      "bytes": 1074
+    }
+  ]
+}
