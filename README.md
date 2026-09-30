@@ -1,8 +1,10 @@
 # Gooo Decision Runtime
 
-This module is a small Go-only inference and typed-operation runtime. It exposes
-the closed eight-operation classifier and the typed binary IR builder from the
-production implementation pinned in [source-provenance.json](source-provenance.json).
+This module is a small Go-only inference and typed body runtime. It exposes
+the operation classifier, a separate structural model contract, typed binary IR
+and bounded body/path assembly. Source/tests are pinned in
+[source-provenance.json](source-provenance.json), with original and relocated
+byte digests. The earlier extraction manifest is preserved.
 It has no third-party module dependencies and does not include model weights,
 training data, Python tooling, or cached runtime files.
 
@@ -81,3 +83,27 @@ copied into this SDK are byte-pinned in `source-provenance.json`.
 
 This repository is experimental. The classifier is a closed eight-label
 decision component, not a general-purpose natural-language-to-code compiler.
+
+## Structural paths
+
+`LoadPath` accepts the distinct structural model ABI and versioned positioned
+intent features. Operation `Load`/`Decide` cannot reinterpret it. The
+[typed-path models](https://huggingface.co/asketeddy/gooo-typed-path-tiny-v1)
+are supplied separately; no weights are bundled in this module.
+
+`bodyplan` exposes typed expression/statement arenas. `pathplan` supports local
+references, assignment targets, operand order, branch layout and execution order,
+including interacting choices. Offered alternatives and complete combinations
+are type/scope checked. Identifiers and body fragments are compiler-owned.
+
+`pathplan.DecodeDocument` reads strict bounded JSON with explicit integer cases.
+The caller must bind the fallback base to authoritative source before accepting
+body edits. `Program.GoooBody()` returns only the selected body so existing
+packages, declarations and stable activity identity can be retained.
+
+`pathplan.Search` requires a deadline and candidate budget. One prediction per
+decision ranks eligible paths before finite tests. Partial results retain passing
+cases and unattempted combinations. Model confidence is recorded separately from
+TDD acceptance. Omitting the model uses deterministic declared order, zero
+prediction calls and no network. Validation/rendering allocate separately from
+the fixed-array prediction kernel.

@@ -49,6 +49,9 @@ func (m *Model) Decide(request DecisionRequest, workspace *Workspace) (DecisionR
 	if m == nil {
 		return DecisionResponse{}, errors.New("model is nil")
 	}
+	if m.Schema() != MetadataSchema {
+		return DecisionResponse{}, errors.New("binary decisions require the operation model ABI")
+	}
 	if request.Schema != DecisionRequestSchema {
 		return DecisionResponse{}, fmt.Errorf("request schema must be %q", DecisionRequestSchema)
 	}

@@ -9,57 +9,39 @@ import (
 )
 
 func TestProductionSourceMatchesPinnedOrigin(t *testing.T) {
-	data, err := os.ReadFile("source-provenance.json")
+	raw, err := os.ReadFile("source-provenance.json")
 	if err != nil {
 		t.Fatal(err)
 	}
+	hash := func(data []byte) string { sum := sha256.Sum256(data); return hex.EncodeToString(sum[:]) }
+	if hash(raw) != "03cc7f2116dce620d530388e44e509219a2c160200f77098329ed369405ecf8c" {
+		t.Fatal("fixed source extraction manifest changed")
+	}
 	var manifest struct {
-		Schema           string `json:"schema"`
-		Module           string `json:"module"`
-		OriginRepository string `json:"origin_repository"`
-		OriginRevision   string `json:"origin_revision"`
-		Files            []struct {
-			Origin string `json:"origin_path"`
-			Copied string `json:"copied_path"`
-			SHA256 string `json:"sha256"`
-			Bytes  int    `json:"bytes"`
+		Schema string `json:"schema"`
+		Module string `json:"module"`
+		Origin string `json:"origin_revision"`
+		Files  []struct {
+			Path  string `json:"copied_path"`
+			SHA   string `json:"sha256"`
+			Bytes int    `json:"bytes"`
 		} `json:"files"`
 	}
-	if err := json.Unmarshal(data, &manifest); err != nil {
-		t.Fatal(err)
+	if json.Unmarshal(raw, &manifest) != nil || manifest.Schema != "gooo/decision-runtime-source-provenance/v2" || manifest.Module != "github.com/kimjooyoon/gooo-decision-runtime" || manifest.Origin != "809f98266d87a2608bc335588625b760fbcc6c96" || len(manifest.Files) != 16 {
+		t.Fatal("source extraction identity mismatch")
 	}
-	if manifest.Schema != "gooo/decision-runtime-source-provenance/v1" ||
-		manifest.Module != "github.com/kimjooyoon/gooo-decision-runtime" ||
-		manifest.OriginRepository != "github.com/kimjooyoon/gooo-neural-decision-experiments" ||
-		manifest.OriginRevision != "fd8e83614b0d8194bfdf148e5706efff804f20cd" {
-		t.Fatal("source manifest identity changed")
-	}
-	want := map[string]struct {
-		origin string
-		sha256 string
-		bytes  int
-	}{
-		"model.go":  {"internal/decision/model.go", "21c4a3c7e6148129726d309585fc54c538a8a098dde17ab2284c387bac958b48", 23083},
-		"bridge.go": {"internal/decision/bridge.go", "08227b64151ee8296c743e409d5a7dbb61f65d4d841d4dc0e0ab3a6119607236", 3745},
-		"ir.go":     {"internal/decision/ir.go", "14b259d00a581fe8924f973befa0149052f1f8dacb1f2f5fa03eef1eea24312d", 3625},
-		"LICENSE":   {"LICENSE", "3ad2cd8fe84a937a0005a2934e377432f2f86fe10ff86c4242cc48f49ebf4947", 1074},
-	}
-	if len(manifest.Files) != len(want) {
-		t.Fatal("source manifest count changed")
-	}
-	for _, entry := range manifest.Files {
-		pinned, ok := want[entry.Copied]
-		if !ok || entry.Origin != pinned.origin || entry.SHA256 != pinned.sha256 || entry.Bytes != pinned.bytes {
-			t.Fatalf("unexpected or repeated source entry %q", entry.Copied)
+	seen := map[string]bool{}
+	for _, file := range manifest.Files {
+		if seen[file.Path] {
+			t.Fatal("duplicate source entry")
 		}
-		delete(want, entry.Copied)
-		copied, err := os.ReadFile(entry.Copied)
+		seen[file.Path] = true
+		data, err := os.ReadFile(file.Path)
 		if err != nil {
 			t.Fatal(err)
 		}
-		digest := sha256.Sum256(copied)
-		if len(copied) != entry.Bytes || hex.EncodeToString(digest[:]) != entry.SHA256 {
-			t.Fatalf("copied source %s no longer matches recorded origin bytes", entry.Copied)
+		if len(data) != file.Bytes || hash(data) != file.SHA {
+			t.Fatalf("copied bytes changed: %s", file.Path)
 		}
 	}
 }
