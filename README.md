@@ -159,6 +159,19 @@ These are contract fixtures, not trained-model benchmark results.
 
 ## Optional observed feedback
 
+`v0.2.7-experimental` adds `prepared.SearchFeedbackBatchesUnfixed` with the same
+arguments and bounded progress/receipt ownership as `SearchFeedbackBatches`.
+Both APIs share one adapter, including interrupted prediction accounting,
+representation declines, budgets and finite continuation. Only the explicit
+opt-in API selects `ReconsiderUnfixed`. A synthetic fixture checks the same
+four-mask sequence and partial body with six versus five predictions; it is an
+API contract check, not a new trained-model or native timing experiment.
+The 24-file source extraction is pinned to research
+`6cc7d2c42a3526542c7d45a68b7d6a220e658c55`, manifest SHA256
+`9a1b59e46865695912355fe87e9c0d86c02725afb6c76f2e59241dc53d5e2620`.
+The SDK 2.6 manifest is retained in `source-provenance-v8.json`. Earlier models,
+reports and release tags remain unchanged. Native adoption is checked separately.
+
 `v0.2.6-experimental` adds opt-in `Session.ReconsiderUnfixed(ctx, model, ci)`.
 It calls the frozen model only for coordinates varying among all unattempted
 declared masks. Fixed coordinates are derived from committed attempts using

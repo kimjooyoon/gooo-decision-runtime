@@ -13,6 +13,18 @@ import (
 // Feedback is a frozen-model ranking hint and cannot replace source binding.
 func (prepared *PreparedPlan) SearchFeedbackBatches(ctx context.Context, model *decision.Model, cases []TestCase,
 	total, step int, seed string, rounds int, ci *CIHint) (SearchResult, *bodyplan.Program, []SessionProgress, []FeedbackReceipt, error) {
+	return prepared.searchFeedbackBatches(ctx, model, cases, total, step, seed, rounds, ci, false)
+}
+
+// SearchFeedbackBatchesUnfixed shares the bounded adapter and cancellation
+// accounting, while explicitly skipping already constant decision coordinates.
+func (prepared *PreparedPlan) SearchFeedbackBatchesUnfixed(ctx context.Context, model *decision.Model, cases []TestCase,
+	total, step int, seed string, rounds int, ci *CIHint) (SearchResult, *bodyplan.Program, []SessionProgress, []FeedbackReceipt, error) {
+	return prepared.searchFeedbackBatches(ctx, model, cases, total, step, seed, rounds, ci, true)
+}
+
+func (prepared *PreparedPlan) searchFeedbackBatches(ctx context.Context, model *decision.Model, cases []TestCase,
+	total, step int, seed string, rounds int, ci *CIHint, unfixed bool) (SearchResult, *bodyplan.Program, []SessionProgress, []FeedbackReceipt, error) {
 	if rounds == 0 && ci == nil {
 		result, body, progress, err := prepared.SearchBatches(ctx, model, cases, total, step, seed)
 		return result, body, progress, nil, err
@@ -59,7 +71,11 @@ func (prepared *PreparedPlan) SearchFeedbackBatches(ctx context.Context, model *
 			return result, body, records, feedback, errors.New("feedback batch made no candidate progress")
 		}
 		if len(feedback) < rounds {
-			receipt, failure := session.Reconsider(ctx, model, ci)
+			reconsider := session.Reconsider
+			if unfixed {
+				reconsider = session.ReconsiderUnfixed
+			}
+			receipt, failure := reconsider(ctx, model, ci)
 			if receipt.Schema != "" {
 				feedback = append(feedback, receipt)
 			}

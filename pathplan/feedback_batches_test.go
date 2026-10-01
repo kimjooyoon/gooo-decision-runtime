@@ -8,6 +8,31 @@ import (
 	"testing"
 )
 
+func TestUnfixedBatchAdapterPreservesFiniteBodyAndAccountsSkippedCalls(t *testing.T) {
+	ctx := sessionContext(t)
+	prepared, err := Prepare(interactingPlan())
+	if err != nil {
+		t.Fatal(err)
+	}
+	model := zeroPathModel(t)
+	cases := []TestCase{{Input: 3, Expected: 999}}
+	old, before, _, _, err := prepared.SearchFeedbackBatches(ctx, model, cases, 4, 1, "", 3, nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	result, body, progress, feedback, err := prepared.SearchFeedbackBatchesUnfixed(ctx, model, cases, 4, 1, "", 3, nil)
+	if err != nil || before.GoSource() != body.GoSource() || result.Status != old.Status || result.SelectedTrainingPassed != old.SelectedTrainingPassed || !reflect.DeepEqual(old.Attempts, result.Attempts) {
+		t.Fatalf("finite body or sequence differs: %+v %v", result, err)
+	}
+	if old.Selection.ModelCalls != 6 || result.Selection.ModelCalls != 5 || len(feedback) != 3 || feedback[0].ModelCalls != 2 || feedback[1].ModelCalls != 1 || len(feedback[1].FixedCoordinates) != 1 || !feedback[2].RankingUnnecessary {
+		t.Fatal("batch adapter lost constant-coordinate or sole-path accounting")
+	}
+	last := progress[len(progress)-1]
+	if last.Interrupted || !last.Exhausted || last.FeedbackPredictions != 3 || last.Selection.ModelCalls != 5 || last.FeedbackRounds != 3 || last.LatestFeedbackSHA != feedback[2].SHA {
+		t.Fatal("final observed batch state differs")
+	}
+}
+
 func TestFeedbackBatchesRetainBodyAfterBoundedContextDeclines(t *testing.T) {
 	ctx := sessionContext(t)
 	plan := interactingPlan()
