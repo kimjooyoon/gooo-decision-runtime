@@ -22,26 +22,31 @@ var ErrNoTypedCandidate = errors.New("no typed candidate has been evaluated in t
 // Session keeps one immutable plan/test snapshot and a bounded finite frontier.
 // It retains the best body and one bit per scheduled mask, not old attempt logs.
 // The caller owns returned progress and may append it to its own evidence store.
-// Models are used only while starting the session and are never retained here.
+// Default sessions rank only at initialization. Explicit Reconsider calls require
+// the original frozen model again; model pointers are never retained here.
 type Session struct {
-	lock         sync.Mutex
-	prepared     *PreparedPlan
-	cases        []TestCase
-	result       SearchResult
-	logWeights   [16][2]float64
-	fallbackMask uint16
-	ranked       bool
-	queue        searchHeap
-	scheduled    []uint64
-	attempted    int
-	best         *bodyplan.Program
-	bestPassed   int
-	bestCases    []TestResult
-	caseSHA      string
-	previous     string
-	sequence     int
-	initialized  bool
-	initialError error
+	lock           sync.Mutex
+	prepared       *PreparedPlan
+	cases          []TestCase
+	result         SearchResult
+	logWeights     [16][2]float64
+	fallbackMask   uint16
+	ranked         bool
+	queue          searchHeap
+	scheduled      []uint64
+	attempted      int
+	best           *bodyplan.Program
+	bestPassed     int
+	bestCases      []TestResult
+	caseSHA        string
+	previous       string
+	sequence       int
+	initialized    bool
+	initialError   error
+	feedbackRounds int
+	feedbackCalls  int
+	feedbackAt     int
+	feedbackSHA    string
 }
 
 type SessionProgress struct {
@@ -73,6 +78,9 @@ type SessionProgress struct {
 	ScheduledBytes         int               `json:"scheduled_bitset_bytes"`
 	FrontierNodes          int               `json:"frontier_nodes"`
 	FrontierStorage        int               `json:"frontier_capacity_bytes"`
+	FeedbackRounds         int               `json:"feedback_rounds,omitempty"`
+	FeedbackPredictions    int               `json:"feedback_local_model_predictions,omitempty"`
+	LatestFeedbackSHA      string            `json:"latest_feedback_sha256,omitempty"`
 }
 
 // NewSession ranks once, before any candidate tests. Each Advance has its own
@@ -177,6 +185,10 @@ func (prepared *PreparedPlan) NewSession(ctx context.Context, model *decision.Mo
 // execution. It is also available after a failed initialization so calls made
 // before cancellation or a numerical prediction error remain accountable.
 func (session *Session) Observe() (SessionProgress, error) {
+	return session.observe(false)
+}
+
+func (session *Session) observe(interrupted bool) (SessionProgress, error) {
 	if session == nil {
 		return SessionProgress{}, errors.New("path session is required")
 	}
@@ -184,7 +196,7 @@ func (session *Session) Observe() (SessionProgress, error) {
 		return SessionProgress{}, ErrSessionBusy
 	}
 	defer session.lock.Unlock()
-	return session.progress(nil, session.initialError != nil)
+	return session.progress(nil, interrupted || session.initialError != nil)
 }
 func (session *Session) score(mask uint16) float64 {
 	if !session.ranked {
@@ -312,6 +324,7 @@ func ownedSelection(selection Selection) Selection {
 func (session *Session) progress(attempts []SearchAttempt, interrupted bool) (SessionProgress, error) {
 	progress := SessionProgress{Schema: "gooo/typed-path-session-progress/v1", Sequence: session.sequence + 1, PreviousSHA: session.previous, CaseSHA: session.caseSHA, Status: session.result.Status, Selection: ownedSelection(session.result.Selection), Declared: session.result.DeclaredCombinations, Attempted: session.attempted, Unattempted: session.result.DeclaredCombinations - session.attempted, Evaluated: session.result.Evaluated, TypeRejected: session.result.TypeRejected, SelectedPassed: session.result.SelectedTrainingPassed, Cases: len(session.cases), BestCases: append([]TestResult(nil), session.bestCases...), NewAttempts: attempts, InitialProposals: cloneChoices(session.result.InitialProposals), EligibleProbabilities: append([][2]float64(nil), session.result.EligibleProbabilities...), ModelAbstentions: session.result.ModelAbstentionsObserved, Exhausted: session.attempted == session.result.DeclaredCombinations, Interrupted: interrupted, ScheduledBytes: len(session.scheduled) * 8, FrontierNodes: session.queue.Len(), FrontierStorage: cap(session.queue) * int(unsafe.Sizeof(searchNode{})), Scope: "Fixed finite cases and declared typed paths; not general language accuracy or all-input correctness. Digests link observations, not authorization to mutate source."}
 	progress.Initialized = session.initialized
+	progress.FeedbackRounds, progress.FeedbackPredictions, progress.LatestFeedbackSHA = session.feedbackRounds, session.feedbackCalls, session.feedbackSHA
 	if session.initialError != nil {
 		progress.InitializationError = session.initialError.Error()
 	}

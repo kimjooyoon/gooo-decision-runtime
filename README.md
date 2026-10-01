@@ -149,10 +149,38 @@ prepared fallback and verify final native emission. No serialized session state
 is accepted as executable authority. Input/case/model changes start a new
 session. The existing `Search` API and eight-label model ABI are unchanged.
 
-This revision extracts exactly 20 files from public research source
+The `v0.2.2-experimental` revision extracted exactly 20 files from public research source
 `733d67857ce2c7569db54d9b42255184186a90e2`; the previous 18-file manifest remains
 in `source-provenance-v3.json`. All import transformations and byte digests are
 recorded. Source-level/race tests cover legacy-equivalent ordering and bodies,
 call/input/output ownership, cancellation, initialization call accounting,
 nonblocking concurrency, 128 unique masks over two calls and the maximum mask.
 These are contract fixtures, not trained-model benchmark results.
+
+## Optional observed feedback
+
+`v0.2.3-experimental` adds `Session.Reconsider(ctx, originalModel, ciHint)` and
+`prepared.SearchFeedbackBatches(ctx, model, cases, total, step, seed, rounds, ciHint)`.
+The same frozen model receives a bounded summary of prior finite failures. It
+can re-rank unattempted paths; source, cases, model identity and the best observed
+body remain fixed. This is explicit reconsideration, not training or acceptance
+of unstated intent. Zero rounds with no CI hint uses unchanged `SearchBatches`.
+
+The compatibility helper retains at most 64 attempts and 16 feedback receipts.
+It emits an additional progress snapshot after feedback, including actual call
+counts when cancellation prevents committing a new ranking. No automatic retry
+occurs. Original intent is not truncated to fit context; all inputs must fit the
+512-byte ABI before prediction. Default and disconnected execution are unchanged.
+
+`CIHint` accepts a source SHA and PASS/FAIL/UNKNOWN status. It is caller context;
+the SDK does not verify GitHub or grant authority to edit source. Each feedback
+receipt links actual failures, contexts, predictions and previous observations.
+The session retains only counters and the latest digest, with caller-owned logs.
+
+This extraction pins 24 source/test files to research source
+`5ee0ce493adaa56f0f1f9b8f9811d265ff5601d9`. The previous 20-file manifest is retained
+as `source-provenance-v4.json`; older manifests and release tags remain intact.
+No model weights, private environments, raw studies or Python are included.
+The [actual frozen-model pilot](https://github.com/kimjooyoon/gooo-neural-decision-experiments/blob/main/docs/feedback-path-pilot-results.md)
+found no aggregate functional gain and 102 additional predictions; it informs
+the optional default rather than a claim of improved general language accuracy.
