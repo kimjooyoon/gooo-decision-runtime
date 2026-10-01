@@ -4,8 +4,46 @@ import (
 	"context"
 	"errors"
 	"reflect"
+	"strings"
 	"testing"
 )
+
+func TestFeedbackBatchesRetainBodyAfterBoundedContextDeclines(t *testing.T) {
+	ctx := sessionContext(t)
+	plan := interactingPlan()
+	plan.Decisions[0].Intent = strings.Repeat("a", 480)
+	prepared, err := Prepare(plan)
+	if err != nil {
+		t.Fatal(err)
+	}
+	model := zeroPathModel(t)
+	cases := []TestCase{{Input: 3, Expected: 999}}
+	baseline, before, _, err := prepared.SearchBatches(ctx, model, cases, 4, 1, "")
+	if err != nil {
+		t.Fatal(err)
+	}
+	result, body, progress, declines, err := prepared.SearchFeedbackBatches(ctx, model, cases, 4, 1, "", 2, nil)
+	if err != nil || body == nil || body.GoSource() != before.GoSource() || result.SelectedTrainingPassed != baseline.SelectedTrainingPassed ||
+		len(result.Attempts) != 4 || result.Selection.ModelCalls != 2 || len(declines) != 2 || len(progress) != 7 {
+		t.Fatal("recoverable representation bound prevented continued finite construction", err)
+	}
+	seen := map[uint16]bool{}
+	for _, attempt := range result.Attempts {
+		if seen[attempt.Mask] {
+			t.Fatal("decline repeated candidate")
+		}
+		seen[attempt.Mask] = true
+	}
+	for i, decline := range declines {
+		if !decline.ContextDeclined || decline.ModelCalls != 0 || decline.Applied || decline.SHA == "" || decline.Round != i+1 || decline.CumulativeCalls != 2 || decline.DeclinedInputSHA == "" {
+			t.Fatal("decline lost bound, call or receipt accounting")
+		}
+	}
+	last := progress[len(progress)-1]
+	if last.Interrupted || last.FeedbackPredictions != 0 || last.FeedbackRounds != 2 || last.LatestFeedbackSHA != declines[1].SHA {
+		t.Fatal("decline interrupted owned progress")
+	}
+}
 
 func TestFeedbackBatchesPreserveZeroRoundContractAndBoundNewPredictions(t *testing.T) {
 	ctx := sessionContext(t)

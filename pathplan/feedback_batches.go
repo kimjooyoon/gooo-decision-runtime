@@ -63,6 +63,9 @@ func (prepared *PreparedPlan) SearchFeedbackBatches(ctx context.Context, model *
 			if receipt.Schema != "" {
 				feedback = append(feedback, receipt)
 			}
+			if errors.Is(failure, ErrFeedbackContextBound) && receipt.ContextDeclined && receipt.ModelCalls == 0 && receipt.SHA != "" {
+				failure = nil
+			}
 			// Publish actual call totals even when a reconsideration was canceled.
 			observed, observeErr := session.observe(failure != nil)
 			if observeErr != nil {

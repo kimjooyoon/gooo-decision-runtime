@@ -151,8 +151,13 @@ func TestFeedbackBoundsRejectBeforeCallingModel(t *testing.T) {
 	if _, _, err = session.Advance(ctx, 1); err != nil {
 		t.Fatal(err)
 	}
-	if _, err = session.Reconsider(ctx, model, nil); err == nil || session.feedbackCalls != 0 {
+	decline, err := session.Reconsider(ctx, model, nil)
+	if !errors.Is(err, ErrFeedbackContextBound) || session.feedbackCalls != 0 || !decline.ContextDeclined || decline.ModelCalls != 0 ||
+		decline.SHA == "" || decline.DeclinedBytes <= 512 || decline.DeclinedIntentSHA != hash([]byte(plan.Decisions[0].Intent)) || decline.Applied {
 		t.Fatal("oversized feedback truncated intent or called the model")
+	}
+	if _, err := session.Reconsider(ctx, model, nil); err == nil || session.feedbackRounds != 1 {
+		t.Fatal("representation decline retried the same committed batch")
 	}
 }
 

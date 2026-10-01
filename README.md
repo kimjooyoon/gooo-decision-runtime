@@ -159,6 +159,29 @@ These are contract fixtures, not trained-model benchmark results.
 
 ## Optional observed feedback
 
+`v0.2.4-experimental` records a recoverable representation decline when formatted
+feedback exceeds the 512-byte model bound while the original intention is valid.
+`Reconsider` returns `ErrFeedbackContextBound` plus a hashed `context_declined`
+receipt with zero new predictions, input/intent hashes and the attempted byte
+count. It leaves the frontier and best body unchanged, consumes one bounded
+round, and rejects a same-batch retry. `SearchFeedbackBatches` continues evaluating
+unattempted candidates with the existing ranking after this specific decline.
+Cancellation, invalid model/ABI and other failures still stop the operation.
+Default/successful receipts omit the added fields and keep their old bytes.
+
+This 24-file extraction is pinned to research
+`a8840b8a6ecd079503b7764aef96356e852a5d88`, manifest SHA256
+`8a1a7a07d54cc9427848bc39abcb7068112604a0143ffed65c3b6c2e551066c6`.
+The earlier 24-file v0.2.3 manifest is preserved in `source-provenance-v5.json`.
+Actual native v0.2.3 probes with 475-byte English and 478-byte Korean intentions
+are recorded in the research repository and
+[issue 1](https://github.com/kimjooyoon/gooo-decision-runtime/issues/1).
+The compiler must pin this SDK in a separate checked integration before native
+execution can be claimed to include the decline repair. No weights or training
+are added by this source release.
+
+### Earlier v0.2.3 API
+
 `v0.2.3-experimental` adds `Session.Reconsider(ctx, originalModel, ciHint)` and
 `prepared.SearchFeedbackBatches(ctx, model, cases, total, step, seed, rounds, ciHint)`.
 The same frozen model receives a bounded summary of prior finite failures. It

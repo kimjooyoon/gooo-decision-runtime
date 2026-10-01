@@ -13,6 +13,8 @@ import (
 	"github.com/kimjooyoon/gooo-decision-runtime"
 )
 
+var ErrFeedbackContextBound = errors.New("feedback context exceeds the model input bound")
+
 // CIHint is caller-supplied context, never permission to edit semantic state.
 // SourceSHA records what the caller claims was checked; this API does not verify CI.
 type CIHint struct {
@@ -41,29 +43,34 @@ type FeedbackJudgment struct {
 }
 
 type FeedbackReceipt struct {
-	Schema          string             `json:"schema"`
-	Round           int                `json:"round"`
-	PreviousSHA     string             `json:"previous_feedback_sha256,omitempty"`
-	SHA             string             `json:"feedback_sha256,omitempty"`
-	FromProgressSHA string             `json:"from_progress_sha256,omitempty"`
-	PlanSHA         string             `json:"plan_sha256"`
-	CaseSHA         string             `json:"finite_cases_sha256"`
-	MetadataSHA     string             `json:"model_metadata_sha256"`
-	WeightsSHA      string             `json:"model_weights_sha256"`
-	Attempted       int                `json:"prior_attempts"`
-	Passed          int                `json:"prior_selected_passed"`
-	Cases           int                `json:"finite_cases"`
-	TypeRejected    int                `json:"prior_type_rejections"`
-	FirstFailure    *TestResult        `json:"first_selected_failure,omitempty"`
-	CI              *CIHint            `json:"caller_ci_hint,omitempty"`
-	CIIsAuthority   bool               `json:"ci_hint_is_authority"`
-	Judgments       []FeedbackJudgment `json:"judgments,omitempty"`
-	ModelCalls      int                `json:"new_local_model_predictions"`
-	CumulativeCalls int                `json:"cumulative_local_model_predictions"`
-	Applied         bool               `json:"frontier_ranking_applied"`
-	AddedMask       bool               `json:"new_proposal_scheduled"`
-	Error           string             `json:"error,omitempty"`
-	Scope           string             `json:"scope"`
+	Schema            string             `json:"schema"`
+	Round             int                `json:"round"`
+	PreviousSHA       string             `json:"previous_feedback_sha256,omitempty"`
+	SHA               string             `json:"feedback_sha256,omitempty"`
+	FromProgressSHA   string             `json:"from_progress_sha256,omitempty"`
+	PlanSHA           string             `json:"plan_sha256"`
+	CaseSHA           string             `json:"finite_cases_sha256"`
+	MetadataSHA       string             `json:"model_metadata_sha256"`
+	WeightsSHA        string             `json:"model_weights_sha256"`
+	Attempted         int                `json:"prior_attempts"`
+	Passed            int                `json:"prior_selected_passed"`
+	Cases             int                `json:"finite_cases"`
+	TypeRejected      int                `json:"prior_type_rejections"`
+	FirstFailure      *TestResult        `json:"first_selected_failure,omitempty"`
+	CI                *CIHint            `json:"caller_ci_hint,omitempty"`
+	CIIsAuthority     bool               `json:"ci_hint_is_authority"`
+	Judgments         []FeedbackJudgment `json:"judgments,omitempty"`
+	ModelCalls        int                `json:"new_local_model_predictions"`
+	CumulativeCalls   int                `json:"cumulative_local_model_predictions"`
+	Applied           bool               `json:"frontier_ranking_applied"`
+	AddedMask         bool               `json:"new_proposal_scheduled"`
+	Error             string             `json:"error,omitempty"`
+	ContextDeclined   bool               `json:"context_declined,omitempty"`
+	DeclinedDecision  string             `json:"declined_decision_id,omitempty"`
+	DeclinedBytes     int                `json:"declined_input_bytes,omitempty"`
+	DeclinedInputSHA  string             `json:"declined_input_sha256,omitempty"`
+	DeclinedIntentSHA string             `json:"declined_intent_sha256,omitempty"`
+	Scope             string             `json:"scope"`
 }
 
 // Reconsider re-ranks only unattempted paths with the original frozen model.
@@ -116,20 +123,12 @@ func (session *Session) Reconsider(ctx context.Context, model *decision.Model, c
 	if ci != nil {
 		prefix += " ci=" + ci.Status
 	}
-	// Validate the full batch before any call; never truncate the original intent.
-	var inputs [16]string
-	for i, choice := range session.prepared.plan.Decisions {
-		inputs[i] = prefix + " selected=" + session.result.Selection.Choices[choice.ID] + "\nintent: " + choice.Intent
-		if len(inputs[i]) > decision.InputMaxBytes {
-			return FeedbackReceipt{}, errors.New("feedback context exceeds the model input bound; original intent was not truncated")
-		}
-	}
 	finish := func(failure error) (FeedbackReceipt, error) {
 		if failure != nil {
 			receipt.Error = failure.Error()
 		}
 		receipt.CumulativeCalls = session.result.Selection.ModelCalls
-		if receipt.ModelCalls == 0 {
+		if receipt.ModelCalls == 0 && !receipt.ContextDeclined {
 			return receipt, failure
 		}
 		raw, err := json.Marshal(receipt)
@@ -139,6 +138,17 @@ func (session *Session) Reconsider(ctx context.Context, model *decision.Model, c
 		receipt.SHA = hash(raw)
 		session.feedbackRounds, session.feedbackAt, session.feedbackSHA = receipt.Round, session.attempted, receipt.SHA
 		return receipt, failure
+	}
+	// A representation decline is observed once per new partial batch. It leaves
+	// the frontier untouched and counts toward the round budget without inference.
+	var inputs [16]string
+	for i, choice := range session.prepared.plan.Decisions {
+		inputs[i] = prefix + " selected=" + session.result.Selection.Choices[choice.ID] + "\nintent: " + choice.Intent
+		if len(inputs[i]) > decision.InputMaxBytes {
+			receipt.ContextDeclined, receipt.DeclinedDecision, receipt.DeclinedBytes = true, choice.ID, len(inputs[i])
+			receipt.DeclinedInputSHA, receipt.DeclinedIntentSHA = hash([]byte(inputs[i])), hash([]byte(choice.Intent))
+			return finish(fmt.Errorf("%w; original intent was not truncated", ErrFeedbackContextBound))
+		}
 	}
 	var workspace decision.Workspace
 	var weights [16][2]float64
