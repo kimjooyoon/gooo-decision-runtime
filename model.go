@@ -436,7 +436,7 @@ func validateMetadataContract(metadata Metadata, schema string, labels [LabelCou
 		return errors.New("model metadata schema or fixed dimensions do not match the supported contract")
 	}
 	if metadata.FeatureVersion != "" && (schema != PathMetadataSchema ||
-		(metadata.FeatureVersion != PositionedIntentFeatureVersion && metadata.FeatureVersion != SplitContextIntentFeatureVersion)) {
+		(metadata.FeatureVersion != PositionedIntentFeatureVersion && metadata.FeatureVersion != SplitContextIntentFeatureVersion && metadata.FeatureVersion != SemanticContextIntentFeatureVersion)) {
 		return errors.New("feature version is outside the closed model contract")
 	}
 	if metadata.Variant != "fp32" && metadata.Variant != "ptq_ternary" && metadata.Variant != "qat_ternary" {
@@ -705,6 +705,8 @@ func (m *Model) FeaturesInto(text string, output *[FeatureDim]float32) error {
 		buildPositionedIntentFeatures(text, output)
 	case SplitContextIntentFeatureVersion:
 		buildSplitContextIntentFeatures(text, output)
+	case SemanticContextIntentFeatureVersion:
+		return buildSemanticContextIntentFeatures(text, output)
 	default:
 		buildFeatures(text, output)
 	}

@@ -197,6 +197,13 @@ func (session *Session) reconsider(ctx context.Context, model *decision.Model, c
 			continue
 		}
 		inputs[i] = prefix + " selected=" + session.result.Selection.Choices[choice.ID] + "\nintent: " + choice.Intent
+		if model.FeatureVersion() == decision.SemanticContextIntentFeatureVersion {
+			var err error
+			inputs[i], err = decision.SemanticContextFeedbackInput(choice.Intent, prefix+" selected="+session.result.Selection.Choices[choice.ID])
+			if err != nil {
+				return finish(err)
+			}
+		}
 		if len(inputs[i]) > decision.InputMaxBytes {
 			receipt.ContextDeclined, receipt.DeclinedDecision, receipt.DeclinedBytes = true, choice.ID, len(inputs[i])
 			receipt.DeclinedInputSHA, receipt.DeclinedIntentSHA = hash([]byte(inputs[i])), hash([]byte(choice.Intent))

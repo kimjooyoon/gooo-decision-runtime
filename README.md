@@ -18,7 +18,34 @@ The published [tiny model bundles](https://huggingface.co/asketeddy/gooo-ir-oper
 were independently initialized and are not fine-tuned from Laya. This repository
 contains runtime code only; callers choose and supply a compatible model bundle.
 
-## Experimental Gooo context and bilingual intent codec
+## Direct typed source features (v0.2.10-experimental)
+
+Explicit `semantic_context_intent_v3` path models read 64 structural values plus
+192 positioned Korean/English byte features. `PreparedPlan.SourceFeatures(id)`
+projects a private, validated, fallback-normalized typed plan into a fixed array.
+It describes variable references, assignments, operands, branches and root order.
+It excludes literal magnitudes, name spellings, intention text and test outcomes.
+Unique-local renaming and integer changes preserve the structural array. Ambiguous
+duplicate declarations or input shadowing decline this optional representation.
+
+`decision.EncodeSemanticContextInput(fields, intent)` serializes the complete
+canonical header and natural intent within 512 UTF-8 bytes. Source projection and
+valid feature encoding allocate no heap objects in the contract tests. The feature
+array, 1,248-byte workspace and eight-label model dimensions remain unchanged.
+Feedback preserves the source header and appends only subsequent observations;
+oversized feedback leaves the frontier unchanged and makes zero new predictions.
+
+The SDK does not bind an original Gooo file. Native source binding must precede
+this projection. No new trained weights or accuracy improvement is claimed by
+this ABI release; previous feature versions retain their semantics. See the
+[frozen source feature protocol](https://github.com/kimjooyoon/gooo-neural-decision-experiments/blob/7741b41/docs/semantic-context-v3-protocol-20261002.md).
+
+All 33 extracted files are pinned to research revision
+`c1bbd4847c120dbabe4d898944a2fd2565842547`, manifest SHA256
+`3c3890430bdf2f1a5fd340cd1ce473a857483c794b89f03a04c5a69c215ff935`.
+The earlier 29-file manifest remains in `source-provenance-v11.json`.
+
+## Previous Gooo context and bilingual intent codec
 
 `v0.2.9-experimental` adds the exact `split_context_intent_ngrams_v2` feature
 contract for explicit structural `LoadPath` models. It preserves the 256-value

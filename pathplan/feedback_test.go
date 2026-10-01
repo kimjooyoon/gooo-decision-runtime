@@ -8,7 +8,70 @@ import (
 	"strings"
 	"testing"
 	"unsafe"
+
+	"github.com/kimjooyoon/gooo-decision-runtime"
 )
+
+func TestSemanticFeedbackKeepsSourceChannelsAndAtomicBoundDecline(t *testing.T) {
+	for _, long := range []bool{false, true} {
+		plan := interactingPlan()
+		original, err := Prepare(plan)
+		if err != nil {
+			t.Fatal(err)
+		}
+		for i := range plan.Decisions {
+			fields, err := original.SourceFeatures(plan.Decisions[i].ID)
+			if err != nil {
+				t.Fatal(err)
+			}
+			intent := plan.Decisions[i].Intent
+			if long {
+				intent = strings.Repeat("x", 364)
+			}
+			plan.Decisions[i].Intent, err = decision.EncodeSemanticContextInput(fields, intent)
+			if err != nil {
+				t.Fatal(err)
+			}
+		}
+		prepared, err := Prepare(plan)
+		if err != nil {
+			t.Fatal(err)
+		}
+		model := zeroPathModelVersion(t, decision.SemanticContextIntentFeatureVersion)
+		ctx := sessionContext(t)
+		session, err := prepared.NewSession(ctx, model, []TestCase{{Input: 3, Expected: 999}}, "")
+		if err != nil {
+			t.Fatal(err)
+		}
+		_, _, err = session.Advance(ctx, 1)
+		if err != nil {
+			t.Fatal(err)
+		}
+		queue, weights := append(searchHeap(nil), session.queue...), session.logWeights
+		receipt, err := session.Reconsider(ctx, model, nil)
+		if long {
+			if !errors.Is(err, ErrFeedbackContextBound) || !receipt.ContextDeclined || receipt.ModelCalls != 0 || receipt.DeclinedBytes <= 512 || receipt.DeclinedInputSHA == "" || !reflect.DeepEqual(queue, session.queue) || weights != session.logWeights {
+				t.Fatal("oversized feedback was partial/truncated/mutated", receipt, err)
+			}
+			continue
+		}
+		if err != nil || receipt.ModelCalls != 2 || !receipt.Applied {
+			t.Fatal(receipt, err)
+		}
+		for i, judgment := range receipt.Judgments {
+			if !strings.HasPrefix(judgment.Input, plan.Decisions[i].Intent+"\nfeedback: ") {
+				t.Fatal("source/header replaced", judgment.Input)
+			}
+			var initial, feedback [decision.FeatureDim]float32
+			if err = model.FeaturesInto(plan.Decisions[i].Intent, &initial); err != nil {
+				t.Fatal(err)
+			}
+			if err = model.FeaturesInto(judgment.Input, &feedback); err != nil || !reflect.DeepEqual(initial[:64], feedback[:64]) {
+				t.Fatal("feedback changed source channel", err)
+			}
+		}
+	}
+}
 
 func TestUnfixedFeedbackSkipsOnlyCommittedConstantCoordinates(t *testing.T) {
 	ctx := sessionContext(t)

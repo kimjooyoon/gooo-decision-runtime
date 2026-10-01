@@ -22,12 +22,15 @@ func sessionContext(t *testing.T) context.Context {
 	return ctx
 }
 func zeroPathModel(t *testing.T) *decision.Model {
+	return zeroPathModelVersion(t, "")
+}
+func zeroPathModelVersion(t *testing.T, version string) *decision.Model {
 	t.Helper()
 	dir := t.TempDir()
 	raw := make([]byte, (decision.FeatureDim*decision.HiddenDim+decision.HiddenDim+decision.HiddenDim*decision.LabelCount+decision.LabelCount)*4)
 	threshold := 1.0
 	labels := decision.PathLabels()
-	metadata := decision.Metadata{Schema: decision.PathMetadataSchema, Variant: "fp32", FeatureDim: decision.FeatureDim, HiddenDim: decision.HiddenDim, MaxBytes: decision.InputMaxBytes, Labels: labels[:], Temperature: 1, ConfidenceThreshold: &threshold, WeightsFile: "weights.bin", WeightsSHA256: hash(raw)}
+	metadata := decision.Metadata{Schema: decision.PathMetadataSchema, FeatureVersion: version, Variant: "fp32", FeatureDim: decision.FeatureDim, HiddenDim: decision.HiddenDim, MaxBytes: decision.InputMaxBytes, Labels: labels[:], Temperature: 1, ConfidenceThreshold: &threshold, WeightsFile: "weights.bin", WeightsSHA256: hash(raw)}
 	offset := int64(0)
 	for _, tensor := range []struct {
 		name       string
