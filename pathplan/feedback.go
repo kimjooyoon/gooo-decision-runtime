@@ -42,6 +42,15 @@ type FeedbackJudgment struct {
 	Eligible   [2]float64 `json:"eligible_probabilities"`
 }
 
+// FixedCoordinate is derived from committed masks, never from model confidence.
+type FixedCoordinate struct {
+	DecisionID string `json:"decision_id"`
+	Option     int    `json:"remaining_option"`
+	Selected   string `json:"remaining_label"`
+	OtherTried int    `json:"committed_other_option_masks"`
+	Remaining  int    `json:"unattempted_masks"`
+}
+
 type FeedbackReceipt struct {
 	Schema             string             `json:"schema"`
 	Round              int                `json:"round"`
@@ -71,6 +80,7 @@ type FeedbackReceipt struct {
 	DeclinedInputSHA   string             `json:"declined_input_sha256,omitempty"`
 	DeclinedIntentSHA  string             `json:"declined_intent_sha256,omitempty"`
 	RankingUnnecessary bool               `json:"ranking_unnecessary,omitempty"`
+	FixedCoordinates   []FixedCoordinate  `json:"fixed_coordinates,omitempty"`
 	Scope              string             `json:"scope"`
 }
 
@@ -79,6 +89,28 @@ type FeedbackReceipt struct {
 // One call per newly committed batch and at most 16 rounds prevent retry loops.
 // Cancellation leaves ranking unchanged but records predictions already made.
 func (session *Session) Reconsider(ctx context.Context, model *decision.Model, ci *CIHint) (FeedbackReceipt, error) {
+	return session.reconsider(ctx, model, ci, false)
+}
+
+// ReconsiderUnfixed predicts only coordinates that vary over all unattempted
+// masks. It is opt-in: Reconsider retains its original ranking/receipt contract.
+// Removing common log factors can alter floating-point near ties; ordinary type
+// checks and finite tests still decide acceptance. No prediction is fabricated.
+func (session *Session) ReconsiderUnfixed(ctx context.Context, model *decision.Model, ci *CIHint) (FeedbackReceipt, error) {
+	return session.reconsider(ctx, model, ci, true)
+}
+
+func (session *Session) fixedOption(i int) (int, bool) {
+	half := session.result.DeclaredCombinations / 2
+	for option := range 2 {
+		if int(session.committedBits[i][1-option]) == half {
+			return option, true
+		}
+	}
+	return 0, false
+}
+
+func (session *Session) reconsider(ctx context.Context, model *decision.Model, ci *CIHint, unfixed bool) (FeedbackReceipt, error) {
 	if err := searchBounds(ctx, []TestCase{{}}, 1); err != nil {
 		return FeedbackReceipt{}, err
 	}
@@ -153,7 +185,17 @@ func (session *Session) Reconsider(ctx context.Context, model *decision.Model, c
 	// A representation decline is observed once per new partial batch. It leaves
 	// the frontier untouched and counts toward the round budget without inference.
 	var inputs [16]string
+	var fixed [16]bool
+	var proposal uint16
 	for i, choice := range session.prepared.plan.Decisions {
+		if option, ok := session.fixedOption(i); unfixed && ok {
+			fixed[i] = true
+			proposal |= uint16(option) << i
+			receipt.FixedCoordinates = append(receipt.FixedCoordinates, FixedCoordinate{choice.ID, option,
+				choice.Options[option].Label, session.result.DeclaredCombinations / 2,
+				session.result.DeclaredCombinations - session.attempted})
+			continue
+		}
 		inputs[i] = prefix + " selected=" + session.result.Selection.Choices[choice.ID] + "\nintent: " + choice.Intent
 		if len(inputs[i]) > decision.InputMaxBytes {
 			receipt.ContextDeclined, receipt.DeclinedDecision, receipt.DeclinedBytes = true, choice.ID, len(inputs[i])
@@ -163,10 +205,13 @@ func (session *Session) Reconsider(ctx context.Context, model *decision.Model, c
 	}
 	var workspace decision.Workspace
 	var weights [16][2]float64
-	var proposal uint16
 	for i, choice := range session.prepared.plan.Decisions {
 		if err := ctx.Err(); err != nil {
 			return finish(err)
+		}
+		if fixed[i] {
+			// Every unattempted mask has this bit. Its common factor is zero.
+			continue
 		}
 		var prediction decision.Prediction
 		started := time.Now()

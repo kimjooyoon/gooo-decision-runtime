@@ -159,6 +159,31 @@ These are contract fixtures, not trained-model benchmark results.
 
 ## Optional observed feedback
 
+`v0.2.6-experimental` adds opt-in `Session.ReconsiderUnfixed(ctx, model, ci)`.
+It calls the frozen model only for coordinates varying among all unattempted
+declared masks. Fixed coordinates are derived from committed attempts using
+`[16][2]uint16` counters (64 bytes per session; each count is at most 32,768).
+Interrupted candidates consume no count; type-rejected masks count as attempts.
+Hashed `fixed_coordinates` receipts record each remaining label and mask count,
+without fabricated predictions. Original model, deadline, CI syntax and budgets
+remain validated. Removing common log factors can change floating-point near
+ties on other data; candidates still pass ordinary type checks and finite tests.
+Default `Reconsider`, disconnected ordering and unused receipt fields retain
+their existing behavior. Native compiler main continues using SDK 2.5.
+
+This 24-file extraction is pinned to research
+`e5d115f79944765d7a675f2f99664d556333ef2a`, manifest SHA256
+`843a5b1ea47969c188e1724b2ef42c7b591c6f0081adb4df90cf7b64e5cf3c49`.
+The v0.2.5 manifest remains in `source-provenance-v7.json`.
+The [paired SDK study](https://github.com/kimjooyoon/gooo-neural-decision-experiments/blob/main/docs/unfixed-feedback-study.md)
+records 576 actual SDK sessions and 1,931 own-model predictions: the opt-in arm
+uses 917 versus 1,014 legacy predictions, skipping 97 fixed-coordinate calls.
+All 288 pairs retain candidate sequence and selected body/finite outcomes. The
+legacy SDK matches 288 frozen native references. Twelve actual Go processes
+execute 192 function evaluations against an independent integer-state oracle.
+These are reused development views, not untouched language accuracy, native
+deployment or causal wall-time improvement. No weights or training are added.
+
 `v0.2.5-experimental` skips reconsideration predictions when exactly one declared
 candidate remains. There is no alternative ordering to choose. It records a
 hashed `ranking_unnecessary` receipt with zero calls, retaining original model,

@@ -35,6 +35,7 @@ type Session struct {
 	queue          searchHeap
 	scheduled      []uint64
 	attempted      int
+	committedBits  [16][2]uint16
 	best           *bodyplan.Program
 	bestPassed     int
 	bestCases      []TestResult
@@ -253,6 +254,11 @@ func (session *Session) Advance(ctx context.Context, maxNewAttempts int) (Sessio
 			break
 		}
 		session.attempted++
+		// Each coordinate occurs at most 32,768 times in the 16-bit space.
+		// Only completed attempts (including type rejections) consume a mask.
+		for i := range session.prepared.plan.Decisions {
+			session.committedBits[i][int(node.mask>>i&1)]++
+		}
 		if program == nil {
 			session.result.TypeRejected++
 		} else {

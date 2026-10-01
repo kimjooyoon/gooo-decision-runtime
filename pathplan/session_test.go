@@ -187,6 +187,9 @@ func TestSessionCancellationRequeuesUnfinishedCandidateAndBusyDoesNotWait(t *tes
 	if !errors.Is(err, context.Canceled) || body != nil || !interrupted.Interrupted || interrupted.Attempted != 0 || len(interrupted.NewAttempts) != 0 || session.queue.Len() != 1 {
 		t.Fatal("canceled attempt was committed or lost")
 	}
+	if session.committedBits != ([16][2]uint16{}) {
+		t.Fatal("interrupted candidate consumed coordinate counts")
+	}
 	next, _, err := session.Advance(ctx, 4)
 	if err != nil || next.Attempted != 4 || !next.Exhausted {
 		t.Fatal("canceled frontier could not resume")

@@ -7,7 +7,129 @@ import (
 	"reflect"
 	"strings"
 	"testing"
+	"unsafe"
 )
+
+func TestUnfixedFeedbackSkipsOnlyCommittedConstantCoordinates(t *testing.T) {
+	ctx := sessionContext(t)
+	prepared, err := Prepare(interactingPlan())
+	if err != nil {
+		t.Fatal(err)
+	}
+	model := zeroPathModel(t)
+	session, err := prepared.NewSession(ctx, model, []TestCase{{Input: 3, Expected: 999}}, "")
+	if err != nil {
+		t.Fatal(err)
+	}
+	first, body, err := session.Advance(ctx, 2)
+	if err != nil || first.NewAttempts[0].Mask != 0 || first.NewAttempts[1].Mask != 1 {
+		t.Fatalf("two committed masks: %+v %v", first, err)
+	}
+	if session.committedBits[0] != [2]uint16{1, 1} || session.committedBits[1] != [2]uint16{2, 0} || unsafe.Sizeof(session.committedBits) != 64 {
+		t.Fatal("fixed 64-byte counters differ")
+	}
+	before := body.GoSource()
+	hint := &CIHint{SourceSHA: strings.Repeat("a", 40), Status: "FAIL"}
+	for _, invalid := range []*CIHint{{SourceSHA: "short", Status: "PASS"}} {
+		if _, err := session.ReconsiderUnfixed(ctx, model, invalid); err == nil {
+			t.Fatal("fixed coordinates bypassed CI validation")
+		}
+	}
+	if _, err := session.ReconsiderUnfixed(ctx, nil, hint); err == nil {
+		t.Fatal("fixed coordinates bypassed model binding")
+	}
+	canceled, cancel := context.WithCancel(ctx)
+	cancel()
+	if _, err := session.ReconsiderUnfixed(canceled, model, hint); !errors.Is(err, context.Canceled) {
+		t.Fatal("fixed coordinates bypassed cancellation")
+	}
+	receipt, err := session.ReconsiderUnfixed(ctx, model, hint)
+	if err != nil || !receipt.Applied || receipt.ModelCalls != 1 || receipt.CumulativeCalls != 3 || len(receipt.Judgments) != 1 || len(receipt.FixedCoordinates) != 1 || receipt.FirstFailure == nil || receipt.FromProgressSHA != first.SHA {
+		t.Fatalf("unfixed receipt: %+v %v", receipt, err)
+	}
+	if receipt.FixedCoordinates[0] != (FixedCoordinate{prepared.plan.Decisions[1].ID, 1, prepared.plan.Decisions[1].Options[1].Label, 2, 2}) || receipt.Judgments[0].DecisionID != prepared.plan.Decisions[0].ID {
+		t.Fatal("wrong coordinate removed")
+	}
+	copy := receipt
+	copy.SHA = ""
+	raw, _ := json.Marshal(copy)
+	if hash(raw) != receipt.SHA {
+		t.Fatal("fixed-coordinate evidence is not hashed")
+	}
+	receipt.FixedCoordinates[0].Option = 0
+	if _, err := session.ReconsiderUnfixed(ctx, model, nil); err == nil {
+		t.Fatal("same batch repeated fixed-coordinate feedback")
+	}
+	last, body, err := session.Advance(ctx, 2)
+	if err != nil || !last.Exhausted || last.NewAttempts[0].Mask != 2 || last.NewAttempts[1].Mask != 3 || body.GoSource() != before || last.Selection.ModelCalls != 3 {
+		t.Fatal("fixed-coordinate receipt mutation changed cases, best body or remaining space")
+	}
+	// Explicit legacy feedback continues to call both coordinates.
+	legacy, _ := prepared.NewSession(ctx, model, []TestCase{{Input: 3, Expected: 999}}, "")
+	_, _, _ = legacy.Advance(ctx, 2)
+	old, err := legacy.Reconsider(ctx, model, nil)
+	if err != nil || old.ModelCalls != 2 || len(old.FixedCoordinates) != 0 {
+		t.Fatal("opt-in optimization changed the default")
+	}
+	zero, _ := json.Marshal(FeedbackReceipt{})
+	if strings.Contains(string(zero), "fixed_coordinates") {
+		t.Fatal("unused optional field changed frozen receipt bytes")
+	}
+}
+
+func TestFixedOptionMatchesExhaustiveUnattemptedMasks(t *testing.T) {
+	for n := 1; n <= 16; n++ {
+		declared := 1 << n
+		for _, side := range []int{0, 1} {
+			session := &Session{result: SearchResult{DeclaredCombinations: declared}}
+			for mask := range declared {
+				if mask>>(n-1)&1 != side {
+					continue
+				}
+				for bit := range n {
+					session.committedBits[bit][mask>>bit&1]++
+				}
+			}
+			for bit := range n {
+				option, fixed := session.fixedOption(bit)
+				if fixed != (bit == n-1) || fixed && option != 1-side {
+					t.Fatalf("n=%d side=%d bit=%d option=%d fixed=%t", n, side, bit, option, fixed)
+				}
+			}
+			if int(session.committedBits[n-1][side]) != declared/2 {
+				t.Fatal("maximum 32768 count overflowed")
+			}
+		}
+	}
+}
+
+func TestUnfixedFeedbackDoesNotFormatUnneededOversizedContext(t *testing.T) {
+	ctx := sessionContext(t)
+	plan := interactingPlan()
+	plan.Decisions[1].Intent = strings.Repeat("한", 170)
+	prepared, err := Prepare(plan)
+	if err != nil {
+		t.Fatal(err)
+	}
+	model := zeroPathModel(t)
+	session, err := prepared.NewSession(ctx, model, []TestCase{{Input: 3, Expected: 999}}, "")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if _, _, err := session.Advance(ctx, 2); err != nil {
+		t.Fatal(err)
+	}
+	receipt, err := session.ReconsiderUnfixed(ctx, model, nil)
+	if err != nil || receipt.ModelCalls != 1 || len(receipt.FixedCoordinates) != 1 || receipt.ContextDeclined {
+		t.Fatalf("unneeded context prevented active decision: %+v %v", receipt, err)
+	}
+	legacy, _ := prepared.NewSession(ctx, model, []TestCase{{Input: 3, Expected: 999}}, "")
+	_, _, _ = legacy.Advance(ctx, 2)
+	old, err := legacy.Reconsider(ctx, model, nil)
+	if !errors.Is(err, ErrFeedbackContextBound) || !old.ContextDeclined || old.ModelCalls != 0 {
+		t.Fatal("legacy bound handling changed")
+	}
+}
 
 func TestSoleRemainingCandidateSkipsPredictionAndPreservesFailure(t *testing.T) {
 	ctx := sessionContext(t)
