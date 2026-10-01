@@ -377,3 +377,25 @@ No model weights, private environments, raw studies or Python are included.
 The [actual frozen-model pilot](https://github.com/kimjooyoon/gooo-neural-decision-experiments/blob/main/docs/feedback-path-pilot-results.md)
 found no aggregate functional gain and 102 additional predictions; it informs
 the optional default rather than a claim of improved general language accuracy.
+
+## Joint full-path model (v0.2.12-experimental)
+
+The opt-in `jointdecision` package loads a separate closed 512/24/4 model ABI.
+It preserves two complete canonical source-v3 inputs and ranks the four legal
+absolute masks together. `NewJointSession` and `SearchJointFeedbackBatches`
+make one initial prediction. Later observed failures can re-rank the remaining
+full masks with one explicit prediction, while the final sole mask needs none.
+Seeded sampling is reproducible and excludes the seed from model text.
+
+The caller owns fixed arrays: 2,160-byte workspace, zero heap allocations in
+valid prediction tests. Five-trit matrices occupy 2,590 file bytes and decode
+into 12,496 tensor bytes plus eight scale bytes. Runtime arithmetic remains
+int8/float32; packed file size is not whole-process RAM. Invalid inputs leave
+workspace/prediction unchanged. Representation decline keeps deterministic
+continuation; nonblocking session locks and cancellation retain committed work.
+
+This optional head changes no previous model ABI and is not the default model.
+The SDK accepts a caller's validated typed plan; source-file binding belongs to
+the native compiler. All nine additional runtime/test files and earlier files
+are digest-bound in `source-provenance.json`; the previous v0.2.11 manifest is
+preserved in `source-provenance-v0.2.11.json`.

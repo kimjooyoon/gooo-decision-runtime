@@ -82,6 +82,7 @@ type FeedbackReceipt struct {
 	RankingUnnecessary bool               `json:"ranking_unnecessary,omitempty"`
 	FixedCoordinates   []FixedCoordinate  `json:"fixed_coordinates,omitempty"`
 	Scope              string             `json:"scope"`
+	Joint              *JointReceipt      `json:"joint_prediction,omitempty"`
 }
 
 // Reconsider re-ranks only unattempted paths with the original frozen model.
@@ -124,7 +125,7 @@ func (session *Session) reconsider(ctx context.Context, model *decision.Model, c
 	if err := ci.Validate(); err != nil {
 		return FeedbackReceipt{}, err
 	}
-	if !session.initialized || model == nil || !session.ranked || model.Schema() != decision.PathMetadataSchema ||
+	if session.joint || !session.initialized || model == nil || !session.ranked || model.Schema() != decision.PathMetadataSchema ||
 		model.MetadataSHA256() != session.result.Selection.MetadataSHA256 || model.WeightsSHA256() != session.result.Selection.WeightsSHA256 {
 		return FeedbackReceipt{}, errors.New("feedback requires the successfully initialized original structural model")
 	}

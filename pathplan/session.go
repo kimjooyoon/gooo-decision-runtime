@@ -25,29 +25,32 @@ var ErrNoTypedCandidate = errors.New("no typed candidate has been evaluated in t
 // Default sessions rank only at initialization. Explicit Reconsider calls require
 // the original frozen model again; model pointers are never retained here.
 type Session struct {
-	lock           sync.Mutex
-	prepared       *PreparedPlan
-	cases          []TestCase
-	result         SearchResult
-	logWeights     [16][2]float64
-	fallbackMask   uint16
-	ranked         bool
-	queue          searchHeap
-	scheduled      []uint64
-	attempted      int
-	committedBits  [16][2]uint16
-	best           *bodyplan.Program
-	bestPassed     int
-	bestCases      []TestResult
-	caseSHA        string
-	previous       string
-	sequence       int
-	initialized    bool
-	initialError   error
-	feedbackRounds int
-	feedbackCalls  int
-	feedbackAt     int
-	feedbackSHA    string
+	lock            sync.Mutex
+	prepared        *PreparedPlan
+	cases           []TestCase
+	result          SearchResult
+	logWeights      [16][2]float64
+	fallbackMask    uint16
+	ranked          bool
+	queue           searchHeap
+	scheduled       []uint64
+	attempted       int
+	committedBits   [16][2]uint16
+	best            *bodyplan.Program
+	bestPassed      int
+	bestCases       []TestResult
+	caseSHA         string
+	previous        string
+	sequence        int
+	initialized     bool
+	initialError    error
+	feedbackRounds  int
+	feedbackCalls   int
+	feedbackAt      int
+	feedbackSHA     string
+	joint           bool
+	jointLogWeights [4]float64
+	jointInput      string
 }
 
 type SessionProgress struct {
@@ -200,6 +203,9 @@ func (session *Session) observe(interrupted bool) (SessionProgress, error) {
 	return session.progress(nil, interrupted || session.initialError != nil)
 }
 func (session *Session) score(mask uint16) float64 {
+	if session.joint {
+		return session.jointLogWeights[mask]
+	}
 	if !session.ranked {
 		return -float64(bits.OnesCount16(mask ^ session.fallbackMask))
 	}
@@ -282,6 +288,11 @@ func (session *Session) Advance(ctx context.Context, maxNewAttempts int) (Sessio
 		for i := range session.prepared.plan.Decisions {
 			session.enqueue(node.mask ^ (1 << i))
 		}
+		if session.joint {
+			for mask := uint16(0); mask < 4; mask++ {
+				session.enqueue(mask)
+			}
+		}
 	}
 	if failure == nil && session.best == nil {
 		failure = ErrNoTypedCandidate
@@ -325,6 +336,10 @@ func (session *Session) evaluate(ctx context.Context, mask uint16) (SearchAttemp
 func ownedSelection(selection Selection) Selection {
 	selection.Choices = cloneChoices(selection.Choices)
 	selection.Receipts = append([]Receipt(nil), selection.Receipts...)
+	if selection.Joint != nil {
+		copy := *selection.Joint
+		selection.Joint = &copy
+	}
 	return selection
 }
 func (session *Session) progress(attempts []SearchAttempt, interrupted bool) (SessionProgress, error) {

@@ -13,6 +13,15 @@ const semanticContextPrefix = "gooo;sem64="
 const semanticContextSeparator = ";intent: "
 const semanticContextHeaderBytes = len(semanticContextPrefix) + SplitContextDim*2 + len(semanticContextSeparator)
 
+// SemanticContextFeaturesInto exposes the frozen source-v3 feature contract
+// without loading any weights. Invalid inputs preserve the caller's array.
+func SemanticContextFeaturesInto(text string, output *[FeatureDim]float32) error {
+	if output == nil || len(text) == 0 || len(text) > InputMaxBytes || !utf8.ValidString(text) {
+		return errors.New("bounded valid semantic feature input and output required")
+	}
+	return buildSemanticContextIntentFeatures(text, output)
+}
+
 // EncodeSemanticContextInput serializes caller-provided structural facts. It
 // grants no source authority; native callers bind/project their source first.
 func EncodeSemanticContextInput(fields [SplitContextDim]byte, intent string) (string, error) {
