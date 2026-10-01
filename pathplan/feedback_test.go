@@ -9,6 +9,69 @@ import (
 	"testing"
 )
 
+func TestSoleRemainingCandidateSkipsPredictionAndPreservesFailure(t *testing.T) {
+	ctx := sessionContext(t)
+	plan := interactingPlan()
+	plan.Decisions = plan.Decisions[:1]
+	prepared, err := Prepare(plan)
+	if err != nil {
+		t.Fatal(err)
+	}
+	model := zeroPathModel(t)
+	session, err := prepared.NewSession(ctx, model, []TestCase{{Input: 3, Expected: 999}}, "")
+	if err != nil {
+		t.Fatal(err)
+	}
+	first, before, err := session.Advance(ctx, 1)
+	if err != nil || first.Unattempted != 1 {
+		t.Fatalf("%+v %v", first, err)
+	}
+	queue := append(searchHeap(nil), session.queue...)
+	weights := session.logWeights
+	scheduled := append([]uint64(nil), session.scheduled...)
+	if _, err := session.Reconsider(ctx, nil, nil); err == nil {
+		t.Fatal("missing original model bypassed validation")
+	}
+	canceled, cancel := context.WithCancel(ctx)
+	cancel()
+	if _, err := session.Reconsider(canceled, model, nil); !errors.Is(err, context.Canceled) {
+		t.Fatal("single remaining candidate bypassed cancellation")
+	}
+	if _, err := session.Reconsider(ctx, model, &CIHint{SourceSHA: "short", Status: "PASS"}); err == nil {
+		t.Fatal("invalid CI hint bypassed validation")
+	}
+	receipt, err := session.Reconsider(ctx, model, nil)
+	if err != nil || !receipt.RankingUnnecessary || receipt.Applied || receipt.AddedMask || receipt.ContextDeclined || receipt.ModelCalls != 0 || receipt.CumulativeCalls != 1 || receipt.FirstFailure == nil || receipt.FromProgressSHA != first.SHA || receipt.SHA == "" || len(receipt.Judgments) != 0 {
+		t.Fatalf("%+v %v", receipt, err)
+	}
+	if !reflect.DeepEqual(queue, session.queue) || weights != session.logWeights || !reflect.DeepEqual(scheduled, session.scheduled) {
+		t.Fatal("zero-choice ranking mutated frontier")
+	}
+	copy := receipt
+	copy.SHA = ""
+	raw, _ := json.Marshal(copy)
+	if hash(raw) != receipt.SHA || strings.Contains(receipt.Scope, "non-feedback-trained") {
+		t.Fatal("receipt digest or unobserved training claim differs")
+	}
+	if _, err := session.Reconsider(ctx, model, nil); err == nil {
+		t.Fatal("same batch repeated a skipped judgment")
+	}
+	last, after, err := session.Advance(ctx, 1)
+	if err != nil || !last.Exhausted || last.FeedbackRounds != 1 || last.FeedbackPredictions != 0 || last.Selection.ModelCalls != 1 || last.LatestFeedbackSHA != receipt.SHA || before.GoSource() != after.GoSource() {
+		t.Fatalf("%+v %v", last, err)
+	}
+	empty, _ := json.Marshal(FeedbackReceipt{})
+	if strings.Contains(string(empty), "ranking_unnecessary") {
+		t.Fatal("zero optional field changed prior receipt serialization")
+	}
+	result, body, records, feedback, err := prepared.SearchFeedbackBatches(ctx, model,
+		[]TestCase{{Input: 3, Expected: 999}}, 2, 1, "", 16, nil)
+	if err != nil || body == nil || len(result.Attempts) != 2 || result.Selection.ModelCalls != 1 ||
+		len(feedback) != 1 || !feedback[0].RankingUnnecessary || records[len(records)-1].FeedbackPredictions != 0 {
+		t.Fatal("batch adapter lost zero-call continuation or remaining candidate")
+	}
+}
+
 func TestFeedbackKeepsCasesBestBodyAndNeverRepeatsCommittedMasks(t *testing.T) {
 	ctx := sessionContext(t)
 	prepared, err := Prepare(interactingPlan())

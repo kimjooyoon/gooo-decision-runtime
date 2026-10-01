@@ -43,34 +43,35 @@ type FeedbackJudgment struct {
 }
 
 type FeedbackReceipt struct {
-	Schema            string             `json:"schema"`
-	Round             int                `json:"round"`
-	PreviousSHA       string             `json:"previous_feedback_sha256,omitempty"`
-	SHA               string             `json:"feedback_sha256,omitempty"`
-	FromProgressSHA   string             `json:"from_progress_sha256,omitempty"`
-	PlanSHA           string             `json:"plan_sha256"`
-	CaseSHA           string             `json:"finite_cases_sha256"`
-	MetadataSHA       string             `json:"model_metadata_sha256"`
-	WeightsSHA        string             `json:"model_weights_sha256"`
-	Attempted         int                `json:"prior_attempts"`
-	Passed            int                `json:"prior_selected_passed"`
-	Cases             int                `json:"finite_cases"`
-	TypeRejected      int                `json:"prior_type_rejections"`
-	FirstFailure      *TestResult        `json:"first_selected_failure,omitempty"`
-	CI                *CIHint            `json:"caller_ci_hint,omitempty"`
-	CIIsAuthority     bool               `json:"ci_hint_is_authority"`
-	Judgments         []FeedbackJudgment `json:"judgments,omitempty"`
-	ModelCalls        int                `json:"new_local_model_predictions"`
-	CumulativeCalls   int                `json:"cumulative_local_model_predictions"`
-	Applied           bool               `json:"frontier_ranking_applied"`
-	AddedMask         bool               `json:"new_proposal_scheduled"`
-	Error             string             `json:"error,omitempty"`
-	ContextDeclined   bool               `json:"context_declined,omitempty"`
-	DeclinedDecision  string             `json:"declined_decision_id,omitempty"`
-	DeclinedBytes     int                `json:"declined_input_bytes,omitempty"`
-	DeclinedInputSHA  string             `json:"declined_input_sha256,omitempty"`
-	DeclinedIntentSHA string             `json:"declined_intent_sha256,omitempty"`
-	Scope             string             `json:"scope"`
+	Schema             string             `json:"schema"`
+	Round              int                `json:"round"`
+	PreviousSHA        string             `json:"previous_feedback_sha256,omitempty"`
+	SHA                string             `json:"feedback_sha256,omitempty"`
+	FromProgressSHA    string             `json:"from_progress_sha256,omitempty"`
+	PlanSHA            string             `json:"plan_sha256"`
+	CaseSHA            string             `json:"finite_cases_sha256"`
+	MetadataSHA        string             `json:"model_metadata_sha256"`
+	WeightsSHA         string             `json:"model_weights_sha256"`
+	Attempted          int                `json:"prior_attempts"`
+	Passed             int                `json:"prior_selected_passed"`
+	Cases              int                `json:"finite_cases"`
+	TypeRejected       int                `json:"prior_type_rejections"`
+	FirstFailure       *TestResult        `json:"first_selected_failure,omitempty"`
+	CI                 *CIHint            `json:"caller_ci_hint,omitempty"`
+	CIIsAuthority      bool               `json:"ci_hint_is_authority"`
+	Judgments          []FeedbackJudgment `json:"judgments,omitempty"`
+	ModelCalls         int                `json:"new_local_model_predictions"`
+	CumulativeCalls    int                `json:"cumulative_local_model_predictions"`
+	Applied            bool               `json:"frontier_ranking_applied"`
+	AddedMask          bool               `json:"new_proposal_scheduled"`
+	Error              string             `json:"error,omitempty"`
+	ContextDeclined    bool               `json:"context_declined,omitempty"`
+	DeclinedDecision   string             `json:"declined_decision_id,omitempty"`
+	DeclinedBytes      int                `json:"declined_input_bytes,omitempty"`
+	DeclinedInputSHA   string             `json:"declined_input_sha256,omitempty"`
+	DeclinedIntentSHA  string             `json:"declined_intent_sha256,omitempty"`
+	RankingUnnecessary bool               `json:"ranking_unnecessary,omitempty"`
+	Scope              string             `json:"scope"`
 }
 
 // Reconsider re-ranks only unattempted paths with the original frozen model.
@@ -103,7 +104,7 @@ func (session *Session) Reconsider(ctx context.Context, model *decision.Model, c
 		PreviousSHA: session.feedbackSHA, FromProgressSHA: session.previous, PlanSHA: session.prepared.sha, CaseSHA: session.caseSHA,
 		MetadataSHA: model.MetadataSHA256(), WeightsSHA: model.WeightsSHA256(), Attempted: session.attempted,
 		Passed: session.result.SelectedTrainingPassed, Cases: len(session.cases), TypeRejected: session.result.TypeRejected,
-		Scope: "Finite observed failures condition a frozen, non-feedback-trained model; ranking hints are not acceptance, online learning, general language correctness or semantic edit authority."}
+		Scope: "Finite observed failures condition the original frozen model; ranking hints are not acceptance, online learning, general language correctness or semantic edit authority."}
 	if ci != nil {
 		copy := *ci
 		receipt.CI = &copy
@@ -128,7 +129,7 @@ func (session *Session) Reconsider(ctx context.Context, model *decision.Model, c
 			receipt.Error = failure.Error()
 		}
 		receipt.CumulativeCalls = session.result.Selection.ModelCalls
-		if receipt.ModelCalls == 0 && !receipt.ContextDeclined {
+		if receipt.ModelCalls == 0 && !receipt.ContextDeclined && !receipt.RankingUnnecessary {
 			return receipt, failure
 		}
 		raw, err := json.Marshal(receipt)
@@ -138,6 +139,16 @@ func (session *Session) Reconsider(ctx context.Context, model *decision.Model, c
 		receipt.SHA = hash(raw)
 		session.feedbackRounds, session.feedbackAt, session.feedbackSHA = receipt.Round, session.attempted, receipt.SHA
 		return receipt, failure
+	}
+	// With one unattempted declared path, probabilities cannot change which path
+	// is evaluated next. Preserve the observed failure and original model binding
+	// without inference or a frontier rewrite; this observation consumes a round.
+	if session.result.DeclaredCombinations-session.attempted == 1 {
+		if err := ctx.Err(); err != nil {
+			return finish(err)
+		}
+		receipt.RankingUnnecessary = true
+		return finish(nil)
 	}
 	// A representation decline is observed once per new partial batch. It leaves
 	// the frontier untouched and counts toward the round budget without inference.

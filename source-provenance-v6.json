@@ -111,10 +111,10 @@
     {
       "origin_path": "internal/pathplan/feedback.go",
       "copied_path": "pathplan/feedback.go",
-      "origin_sha256": "62431e209d8b78d90a500a324a9bd447a4363f8c3b0401fd6673de896807631e",
-      "sha256": "ea6cc63d8c5e34dba98c9c9a0838c1ec08e0791d1438d575fc09a6f911298683",
-      "origin_bytes": 10181,
-      "bytes": 10152,
+      "origin_sha256": "21164901edc6ae7be679e4f69d05e94ee864e507c7e501a4e3cfdbae23a590c4",
+      "sha256": "585cf3083bf0085e78cde7a5c034efa30a09227b82293ee43a906664b182e7ac",
+      "origin_bytes": 9629,
+      "bytes": 9600,
       "transformation": "fixed_module_import_relocation_and_gofmt"
     },
     {
@@ -138,10 +138,10 @@
     {
       "origin_path": "internal/pathplan/feedback_test.go",
       "copied_path": "pathplan/feedback_test.go",
-      "origin_sha256": "29b6e7a9c0278d24e6041e2dd5749dd9a352e64b2c859a598a9e9af7f7104b7a",
-      "sha256": "29b6e7a9c0278d24e6041e2dd5749dd9a352e64b2c859a598a9e9af7f7104b7a",
-      "origin_bytes": 10395,
-      "bytes": 10395,
+      "origin_sha256": "a23c5883a698b05de70cabc0d9ea6f52984cd77ec810bc29697e6e6d51c1f35d",
+      "sha256": "a23c5883a698b05de70cabc0d9ea6f52984cd77ec810bc29697e6e6d51c1f35d",
+      "origin_bytes": 7427,
+      "bytes": 7427,
       "transformation": "exact"
     },
     {
@@ -219,7 +219,7 @@
   ],
   "module": "github.com/kimjooyoon/gooo-decision-runtime",
   "origin_repository": "github.com/kimjooyoon/gooo-neural-decision-experiments",
-  "origin_revision": "99e9a1267c3857933c6ab826efbd3703fdb15342",
+  "origin_revision": "a8840b8a6ecd079503b7764aef96356e852a5d88",
   "schema": "gooo/decision-runtime-source-provenance/v2",
   "scope": "Fixed source and test extraction; import relocation is recorded with separate origin and copied byte digests. No weights or raw experiment directories are copied."
 }

@@ -159,6 +159,27 @@ These are contract fixtures, not trained-model benchmark results.
 
 ## Optional observed feedback
 
+`v0.2.5-experimental` skips reconsideration predictions when exactly one declared
+candidate remains. There is no alternative ordering to choose. It records a
+hashed `ranking_unnecessary` receipt with zero calls, retaining original model,
+case, plan, failure, prior progress and caller CI bindings. The round and batch
+are consumed; retrying the same batch is rejected. The remaining candidate still
+passes ordinary type checks and finite tests. Model validation, deadlines and
+invalid caller context remain enforced before this shortcut.
+
+This 24-file extraction is pinned to research
+`99e9a1267c3857933c6ab826efbd3703fdb15342`, manifest SHA256
+`508c4b09ad195324a5d87b56e81ff00acbba82f449b5cb8ddb13e1e5c1c64c90`.
+The v0.2.4 extraction is preserved in `source-provenance-v6.json`. Receipt scope
+now describes the original frozen model without inferring its training history.
+The [five-family native study](https://github.com/kimjooyoon/gooo-neural-decision-experiments/blob/main/docs/native-feedback-families-study.md)
+recorded 244 extra predictions without changed outcomes on two-option plans.
+These are observations on SDK v0.2.4; this source release itself is not a native
+deployment or a measurement of saved wall time. Multi-option feedback remains
+available. No model weights or training are added by this release.
+
+### Earlier v0.2.4 representation handling
+
 `v0.2.4-experimental` records a recoverable representation decline when formatted
 feedback exceeds the 512-byte model bound while the original intention is valid.
 `Reconsider` returns `ErrFeedbackContextBound` plus a hashed `context_declined`
