@@ -124,7 +124,7 @@ returned default maps and receipts are independent. There is no global cache.
 The existing `Search` signature remains available and prepares internally.
 
 The previous 16-file extraction is retained as `source-provenance-v2.json`;
-the current fixed extraction pins 18 original/relocated source and test files.
+that revision's fixed extraction pins 18 original/relocated source and test files.
 
 ## Incremental finite path sessions
 
