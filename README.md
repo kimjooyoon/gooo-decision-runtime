@@ -159,6 +159,35 @@ These are contract fixtures, not trained-model benchmark results.
 
 ## Optional observed feedback
 
+### Optional finite ambiguity diagnosis
+
+The additive `v0.2.8-experimental` API is
+`prepared.Diagnose(ctx, selectedChoices, cases, probeInputs, maxCandidates)`.
+It deterministically observes the reference first, then ascending remaining
+masks, with at most 64 candidates, 128 cases and 32 probes. The original deadline
+and combined type/scope checks apply. It reports unobserved space, actual finite
+output-vector agreement, and the first supplied input distinguishing each
+case-indistinguishable alternative. Equal pass counts alone are not agreement.
+Cancellation retains completed candidates and leaves interrupted work unobserved.
+
+A distinguishing input contains two candidate outputs; neither is an expected
+answer or permission to change source. Probe agreement remains unresolved bounded
+evidence. The API makes zero model predictions, mutates no session or source,
+and supports concurrent calls on owned prepared state. Fixed reference value
+arrays total 1,280 bytes; whole-process RAM is separate. Comparison needs the
+reference and current candidate, with bounded receipts rather than retained
+bodies or an all-pairs matrix.
+
+This 26-file extraction is pinned to research
+`a2b7c0c6960888d93f408f0f45af698c579d68cf`, manifest SHA256
+`8da2179716d70269852c24c2bb7ab6c200fc4013679b1f0ea6c9bd18fd64f4de`.
+The SDK 2.7 manifest is retained in `source-provenance-v9.json`. The new API is
+covered by sparse/contradictory cases, incomplete enumeration including mask
+65,535, combined rejection, concurrent ownership and cancellation fixtures.
+[Methods and captured own-model study](https://github.com/kimjooyoon/gooo-neural-decision-experiments/blob/main/docs/path-diagnosis.md)
+are separate from release provenance. Native compiler main still uses SDK 2.7;
+this SDK release does not establish native integration or new model training.
+
 `v0.2.7-experimental` adds `prepared.SearchFeedbackBatchesUnfixed` with the same
 arguments and bounded progress/receipt ownership as `SearchFeedbackBatches`.
 Both APIs share one adapter, including interrupted prediction accounting,
