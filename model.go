@@ -575,7 +575,11 @@ func (m *Model) PredictInto(text string, workspace *Workspace, output *Predictio
 		return errors.New("workspace and prediction output are required")
 	}
 	destination := output
-	*destination = Prediction{}
+	// Legacy versions clear failed predictions. The explicit semantic-v3 ABI
+	// publishes output only on success, matching its immutable input contract.
+	if m.metadata.FeatureVersion != SemanticContextIntentFeatureVersion {
+		*destination = Prediction{}
+	}
 	if len(m.floatWeights) != 0 {
 		if len(m.floatWeights) != FeatureDim*HiddenDim+HiddenDim+HiddenDim*LabelCount+LabelCount {
 			return errors.New("model float tensor layout is uninitialized or invalid")

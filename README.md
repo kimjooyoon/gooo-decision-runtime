@@ -18,7 +18,7 @@ The published [tiny model bundles](https://huggingface.co/asketeddy/gooo-ir-oper
 were independently initialized and are not fine-tuned from Laya. This repository
 contains runtime code only; callers choose and supply a compatible model bundle.
 
-## Direct typed source features (v0.2.10-experimental)
+## Direct typed source features (v0.2.11-experimental)
 
 Explicit `semantic_context_intent_v3` path models read 64 structural values plus
 192 positioned Korean/English byte features. `PreparedPlan.SourceFeatures(id)`
@@ -35,15 +35,24 @@ array, 1,248-byte workspace and eight-label model dimensions remain unchanged.
 Feedback preserves the source header and appends only subsequent observations;
 oversized feedback leaves the frontier unchanged and makes zero new predictions.
 
+This corrective release also preserves the previous prediction and workspace
+when semantic-v3 input is invalid. V0.2.10's common kernel cleared prediction
+output before validating the new codec; this contradicted the frozen v3 error
+contract. New actual-kernel tests cover malformed/empty headers, byte overflow,
+invalid UTF-8 and invalid feature flags, plus zero-allocation valid prediction.
+Old feature versions retain their existing failed-output clearing behavior.
+
 The SDK does not bind an original Gooo file. Native source binding must precede
 this projection. No new trained weights or accuracy improvement is claimed by
 this ABI release; previous feature versions retain their semantics. See the
 [frozen source feature protocol](https://github.com/kimjooyoon/gooo-neural-decision-experiments/blob/7741b41/docs/semantic-context-v3-protocol-20261002.md).
 
 All 33 extracted files are pinned to research revision
-`c1bbd4847c120dbabe4d898944a2fd2565842547`, manifest SHA256
-`3c3890430bdf2f1a5fd340cd1ce473a857483c794b89f03a04c5a69c215ff935`.
+`0c540357794028675011c440f203076359ce85c9`, manifest SHA256
+`433b4523d2fc582c312b79c20452a014a42b25fff1b30d311500a230a12ebe49`.
 The earlier 29-file manifest remains in `source-provenance-v11.json`.
+The first v3 33-file extraction remains in `source-provenance-v12.json` and the
+v0.2.10 tag; its malformed-input prediction clearing is corrected by v0.2.11.
 
 ## Previous Gooo context and bilingual intent codec
 

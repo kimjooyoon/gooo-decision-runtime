@@ -114,8 +114,31 @@ func TestSemanticFeatureMetadataIsExplicitPathOnly(t *testing.T) {
 	if err = os.WriteFile(name, raw, 0600); err != nil {
 		t.Fatal(err)
 	}
-	if _, err = LoadPath(name); err != nil {
+	model, err := LoadPath(name)
+	if err != nil {
 		t.Fatal("explicit v3 path metadata rejected", err)
+	}
+	valid, err := EncodeSemanticContextInput(semanticTestFields(), "Use the first variable.")
+	if err != nil {
+		t.Fatal(err)
+	}
+	var workspace Workspace
+	var prediction Prediction
+	if err = model.PredictInto(valid, &workspace, &prediction); err != nil {
+		t.Fatal(err)
+	}
+	before, scratch := prediction, workspace
+	for _, invalid := range []string{"plain intent", valid[:semanticContextHeaderBytes], strings.Replace(valid, "8000", "ff00", 1), valid + strings.Repeat("x", 513), "\xff"} {
+		if err = model.PredictInto(invalid, &workspace, &prediction); err == nil || prediction != before || workspace != scratch {
+			t.Fatal("semantic failed prediction mutated output/workspace", err)
+		}
+	}
+	if n := testing.AllocsPerRun(1000, func() {
+		if err := model.PredictInto(valid, &workspace, &prediction); err != nil {
+			panic(err)
+		}
+	}); n != 0 {
+		t.Fatal("semantic prediction allocated", n)
 	}
 	if _, err = Load(name); err == nil {
 		t.Fatal("path facts reinterpreted as operation model")
