@@ -18,6 +18,52 @@ The published [tiny model bundles](https://huggingface.co/asketeddy/gooo-ir-oper
 were independently initialized and are not fine-tuned from Laya. This repository
 contains runtime code only; callers choose and supply a compatible model bundle.
 
+## Experimental Gooo context and bilingual intent codec
+
+`v0.2.9-experimental` adds the exact `split_context_intent_ngrams_v2` feature
+contract for explicit structural `LoadPath` models. It preserves the 256-value
+feature array and 1,248-byte per-worker workspace: 64 context values and 192
+intent values in four position buckets. The last literal `intent: ` separates
+caller-supplied context from intent; absent a marker, all input is intent. Active
+channels normalize independently with a fixed presence scale. ASCII byte ngrams
+remain bounded features, not a natural-language parser or typed source authority.
+
+This version accepts the [own-model experimental exports](https://huggingface.co/asketeddy/gooo-feedback-path-tiny-v1/tree/ad979c4db936cebaeb996acdd9f48b9b4ff135e3/research/split-context-gooo-judgment-20261001).
+The matched training comparison regressed continuation attempts in all three
+variants. The SDK adds codec compatibility; it selects no default weights and
+does not claim a better model. Existing feature versions retain their semantics.
+Callers must supply verified structure and legal alternatives separately; the
+codec does not extract or validate Gooo context automatically.
+
+All 29 extracted source/test/fixture files are pinned to research
+`3b6b38a21978e6c68cb5f498b18a2c9f593668f9`, manifest SHA256
+`0a862ac468e5d230e2d0cd6560296d380f546f39cd14ec281cc54ce3281992be`.
+The previous 26-file manifest is retained in `source-provenance-v10.json`.
+Tests cover exact channel isolation, zero-allocation feature encoding, boundary
+rejection, closed metadata versions and eight Go/Python feature fixtures. Model
+weights remain separate; offline training and captured model comparisons are in
+the research repository. Native compiler main `1e01c96c54f2f8dd43334b8f580af93ffaea24df`
+still uses SDK 0.2.8 and rejects v2 before inference. Native SDK adoption and
+compiler-produced context are separate subsequent work.
+
+### Go-only own-model typed path example
+
+`go run ./examples/gooo-path --plan plan.json --model model.json` loads an explicit
+local structural model and a bounded typed path document. Omitting `--model`
+uses deterministic declared ordering and zero predictions. For split-v2 only,
+the example checks the original typed plan, then serializes its activity/result,
+choice kind/address and legal alternative facts alongside the original intent.
+The combined input uses a fixed 512-byte assembly buffer, with explicit overflow
+and reserved-separator rejection. The resulting string allocates during setup;
+the inference kernel/workspace contract remains separate.
+
+The output records model calls, finite results, context-input digests and the
+selected Gooo body. Its serialized facts differ from the current training text;
+compatibility is not an effectiveness claim. This SDK-owned example is additional
+source outside the 29-file extraction. It does not bind a full original Gooo file
+or invoke the native compiler or emitted Go. Source-bound compiler integration
+remains a separate step.
+
 ## Load and predict
 
 Import `github.com/kimjooyoon/gooo-decision-runtime` as package `decision`.

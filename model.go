@@ -19,13 +19,14 @@ import (
 )
 
 const (
-	MetadataSchema                 = "gooo/tiny-ir-decision-model/v1"
-	PathMetadataSchema             = "gooo/tiny-path-decision-model/v1"
-	PositionedIntentFeatureVersion = "positioned_intent_ngrams_v1"
-	FeatureDim                     = 256
-	HiddenDim                      = 48
-	LabelCount                     = 8
-	InputMaxBytes                  = 512
+	MetadataSchema                   = "gooo/tiny-ir-decision-model/v1"
+	PathMetadataSchema               = "gooo/tiny-path-decision-model/v1"
+	PositionedIntentFeatureVersion   = "positioned_intent_ngrams_v1"
+	SplitContextIntentFeatureVersion = "split_context_intent_ngrams_v2"
+	FeatureDim                       = 256
+	HiddenDim                        = 48
+	LabelCount                       = 8
+	InputMaxBytes                    = 512
 
 	DefaultConfidenceThreshold float32 = 0.5
 )
@@ -434,7 +435,8 @@ func validateMetadataContract(metadata Metadata, schema string, labels [LabelCou
 	if metadata.Schema != schema || metadata.FeatureDim != FeatureDim || metadata.HiddenDim != HiddenDim || metadata.MaxBytes != InputMaxBytes {
 		return errors.New("model metadata schema or fixed dimensions do not match the supported contract")
 	}
-	if metadata.FeatureVersion != "" && (schema != PathMetadataSchema || metadata.FeatureVersion != PositionedIntentFeatureVersion) {
+	if metadata.FeatureVersion != "" && (schema != PathMetadataSchema ||
+		(metadata.FeatureVersion != PositionedIntentFeatureVersion && metadata.FeatureVersion != SplitContextIntentFeatureVersion)) {
 		return errors.New("feature version is outside the closed model contract")
 	}
 	if metadata.Variant != "fp32" && metadata.Variant != "ptq_ternary" && metadata.Variant != "qat_ternary" {
@@ -698,9 +700,12 @@ func (m *Model) FeaturesInto(text string, output *[FeatureDim]float32) error {
 	if err := validateFeatureInput(text, output); err != nil {
 		return err
 	}
-	if m.metadata.FeatureVersion == PositionedIntentFeatureVersion {
+	switch m.metadata.FeatureVersion {
+	case PositionedIntentFeatureVersion:
 		buildPositionedIntentFeatures(text, output)
-	} else {
+	case SplitContextIntentFeatureVersion:
+		buildSplitContextIntentFeatures(text, output)
+	default:
 		buildFeatures(text, output)
 	}
 	return nil

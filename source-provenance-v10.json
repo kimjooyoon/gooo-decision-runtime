@@ -75,10 +75,10 @@
     {
       "origin_path": "internal/decision/model.go",
       "copied_path": "model.go",
-      "origin_sha256": "c0f1a6e8f657c253532b529c8cecd3d014bb9c32de927c78a60f1d4fc1bb8a7f",
-      "sha256": "c0f1a6e8f657c253532b529c8cecd3d014bb9c32de927c78a60f1d4fc1bb8a7f",
-      "origin_bytes": 26430,
-      "bytes": 26430,
+      "origin_sha256": "6f5379065cda5722a538167f31219be617cb872eaac1c700580d39b14c7f992a",
+      "sha256": "6f5379065cda5722a538167f31219be617cb872eaac1c700580d39b14c7f992a",
+      "origin_bytes": 26184,
+      "bytes": 26184,
       "transformation": "exact"
     },
     {
@@ -233,38 +233,11 @@
       "origin_bytes": 12907,
       "bytes": 12858,
       "transformation": "fixed_module_import_relocation_and_gofmt"
-    },
-    {
-      "origin_path": "internal/decision/split_features.go",
-      "copied_path": "split_features.go",
-      "origin_sha256": "823856603447bd20df7d6c9f675d4e9f902918d9d563710144989bf0e0c015a5",
-      "sha256": "823856603447bd20df7d6c9f675d4e9f902918d9d563710144989bf0e0c015a5",
-      "origin_bytes": 1887,
-      "bytes": 1887,
-      "transformation": "exact"
-    },
-    {
-      "origin_path": "internal/decision/split_features_test.go",
-      "copied_path": "split_features_test.go",
-      "origin_sha256": "8461d689d2d50196990b0bb7d971810adec4c7ccab2780ee9bc96374adb5c89c",
-      "sha256": "8461d689d2d50196990b0bb7d971810adec4c7ccab2780ee9bc96374adb5c89c",
-      "origin_bytes": 3946,
-      "bytes": 3946,
-      "transformation": "exact"
-    },
-    {
-      "origin_path": "studies/split-context-features-v2/parity.json",
-      "copied_path": "testdata/split-context-features-parity.json",
-      "origin_sha256": "ef045f3ccc149ee154a772ffa683c6900392b2aeb13474a00753de00af74131d",
-      "sha256": "ef045f3ccc149ee154a772ffa683c6900392b2aeb13474a00753de00af74131d",
-      "origin_bytes": 33187,
-      "bytes": 33187,
-      "transformation": "exact"
     }
   ],
   "module": "github.com/kimjooyoon/gooo-decision-runtime",
   "origin_repository": "github.com/kimjooyoon/gooo-neural-decision-experiments",
-  "origin_revision": "3b6b38a21978e6c68cb5f498b18a2c9f593668f9",
+  "origin_revision": "a2b7c0c6960888d93f408f0f45af698c579d68cf",
   "schema": "gooo/decision-runtime-source-provenance/v2",
   "scope": "Fixed source and test extraction; import relocation is recorded with separate origin and copied byte digests. No weights or raw experiment directories are copied."
 }
