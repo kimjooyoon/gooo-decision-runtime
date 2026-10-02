@@ -14,6 +14,7 @@ one component of application RAM.
 
 | Read next | Contents |
 | --- | --- |
+| [Gooo Wiki, 한국어](https://github.com/kimjooyoon/meta-ontology-go/wiki) | Language/model walkthrough, current support and metric definitions |
 | [Public model](https://huggingface.co/asketeddy/gooo-shared-judgment-tiny-v1) | FP32/PTQ/QAT artifacts, quality table and intended use |
 | [Research and current results](https://github.com/kimjooyoon/gooo-neural-decision-experiments) | Training, parity, finite execution and resource measurements |
 | [Language direction, 한국어](https://github.com/kimjooyoon/meta-ontology-go/blob/dev/docs/language-direction.ko.md) | Intent, construction, provenance and next language work |
@@ -24,7 +25,7 @@ Actual predictions totaled 816. The model-free arm completed deterministically.
 Model first-choice quality and Korean/English agreement remain separate tasks.
 [Full measurement scope](https://github.com/kimjooyoon/gooo-neural-decision-experiments/blob/main/docs/full-input-native-results-20261003.md).
 
-A later [input-sensitivity study](https://github.com/kimjooyoon/gooo-neural-decision-experiments/blob/main/docs/bilingual-wrapper-audit-results-20261003.md)
+The earlier [input-sensitivity study](https://github.com/kimjooyoon/gooo-neural-decision-experiments/blob/main/docs/bilingual-wrapper-audit-results-20261003.md)
 keeps all six models fixed and varies authored instruction phrasing. Shared FP32
 completes 113/512 original development views and 480/512 bare instructions that
 match the training format. These conditions expose a wording weakness in the
@@ -38,8 +39,8 @@ paths, compared with 113/512 for the positioned control. It also exposed an
 operation-order feature alias and quantization regressions. Its V4 feature
 contract and the explicit arithmetic rule are now extracted into this SDK.
 Use the [pinned compact V3 bundle](https://huggingface.co/asketeddy/gooo-shared-judgment-tiny-v1/tree/985999a89caba6a31cc7147f66ba29a5ce76a1d9/research/compact-runtime-20261003)
-with the current compiler; this SDK also loads the explicit V3/V4 artifacts
-described below. The [Linux follow-up](https://github.com/kimjooyoon/gooo-neural-decision-experiments/blob/main/docs/full-input-numerical-portability-followup-20261003.md)
+with SDK v0.2.14 and later; the v0.2.15 compiler integration also loads the
+explicit V3/V4 artifacts described below. The [Linux follow-up](https://github.com/kimjooyoon/gooo-neural-decision-experiments/blob/main/docs/full-input-numerical-portability-followup-20261003.md)
 records 272 differing complete candidate rankings. The subsequent
 [explicit arithmetic comparison](https://github.com/kimjooyoon/gooo-neural-decision-experiments/blob/main/docs/full-input-separate-arithmetic-results-20261003.md)
 reproduces every intermediate value, probability and ranking across 18,432
@@ -47,8 +48,9 @@ arm64/Linux input pairs, using unchanged weights and 147,456 actual calls.
 Both runtime implementations carry the arithmetic identity in model metadata
 and initial/feedback receipts. The SDK CI replays every explicit model against
 the frozen observations. Native V4 generation and execution completed on compiler
-`e461c1d`; ordinary adoption is tracked in
-[PR 1158](https://github.com/kimjooyoon/meta-ontology-go/pull/1158) and dev/main promotion.
+`e461c1d`. The integration merged to dev as `75b2b7d` in
+[PR 1158](https://github.com/kimjooyoon/meta-ontology-go/pull/1158); main promotion
+is tracked in [PR 1159](https://github.com/kimjooyoon/meta-ontology-go/pull/1159).
 
 The sections below document each API and the release in which it was introduced.
 Historical compiler-version statements describe that release's observation.
