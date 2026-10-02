@@ -28,7 +28,18 @@ keeps all six models fixed and varies authored instruction phrasing. Shared FP32
 completes 113/512 original development views and 480/512 bare instructions that
 match the training format. These conditions expose a wording weakness in the
 current model. The runtime continues to preserve complete caller input; phrasing
-robustness is the next model/feature comparison.
+robustness motivated the next model/feature comparison.
+
+That [full-input study](https://github.com/kimjooyoon/gooo-neural-decision-experiments/blob/main/docs/full-input-judgment-initial-results-20261003.md)
+has now published twelve exports from four training conditions. On the same
+observed development tasks, whole-text fragment FP32 completed 368/512 first
+paths, compared with 113/512 for the positioned control. It also exposed an
+operation-order feature alias and quantization regressions. Its V4 feature
+contract currently runs in the research repository; this release accepts V3.
+Use the [pinned compact V3 bundle](https://huggingface.co/asketeddy/gooo-shared-judgment-tiny-v1/tree/985999a89caba6a31cc7147f66ba29a5ce76a1d9/research/compact-runtime-20261003)
+with this SDK. The [Linux follow-up](https://github.com/kimjooyoon/gooo-neural-decision-experiments/blob/main/docs/full-input-numerical-portability-followup-20261003.md)
+records 272 differing complete candidate rankings; the arithmetic contract,
+SDK extraction and actual native V4 observations are the next integration work.
 
 The sections below document each API and the release in which it was introduced.
 Source extraction manifests retain the exact origin of the runtime files.
