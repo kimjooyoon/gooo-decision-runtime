@@ -6,7 +6,7 @@ source-bound plan; this library ranks its permitted choices and continues finite
 search using observed failures. Think of it as the small assembly mechanism
 inside the larger language workshop.
 
-**API version: v0.2.15-experimental.** The latest shared judge uses 2,072
+**API version: v0.2.16-experimental.** The latest shared judge uses 2,072
 parameters across three binary decisions. Its compact FP32 weights occupy 8,288
 bytes; ternary files occupy 446 bytes and decode into 2,096 tensor bytes plus
 eight scale bytes. A caller owns a 3,200-byte workspace. These array sizes are
@@ -52,7 +52,7 @@ the frozen observations. Native V4 generation and execution completed on compile
 [PR 1158](https://github.com/kimjooyoon/meta-ontology-go/pull/1158); main promotion
 completed as `fc0e99c4` in [PR 1159](https://github.com/kimjooyoon/meta-ontology-go/pull/1159).
 
-### Next useful observation (development API)
+### Next useful observation (v0.2.16)
 
 `prepared.RankProbes(ctx, cases, inputs, maxCandidates)` compares declared
 integer bodies that match the supplied cases. It proposes the input separating
@@ -68,8 +68,8 @@ The example resolves `input-2` versus `2-input` using one new oracle observation
 after both pass at input 2. Bounds: 64 candidates, 128 cases, 32 probes; the fixed
 output matrix is 16 KiB. Model calls and training updates are zero. Partial space,
 unresolved agreement, cancellation and source/case/probe identities are explicit.
-This additive API is on the development branch; the released v0.2.15 and current
-compiler CLI retain their documented interfaces. It follows the practical
+This additive API is introduced in v0.2.16; the current compiler CLI integration
+is tracked separately. It follows the practical
 information-value question in [LAVOIR](https://arxiv.org/abs/2609.30706), using a
 finite output-partition count as its score.
 
