@@ -93,19 +93,19 @@
     {
       "origin_path": "internal/jointdecision/load.go",
       "copied_path": "jointdecision/load.go",
-      "origin_sha256": "efecbda555396e1b656794a1b2600313c081a64b6f5e91f4586fe22cb666e2ba",
-      "sha256": "4d145700ec84cb09ef543d70a3b39a3766377a83387068f015916a68f5383103",
-      "origin_bytes": 7207,
-      "bytes": 7178,
+      "origin_sha256": "35095fca115532aec9e54312cdb98a1c823631079b5397689f5681c77e3bb941",
+      "sha256": "2dec38065fb95c49aa2a0ef7327bb893849bf50afff78b61aa7236ee209a2d79",
+      "origin_bytes": 6992,
+      "bytes": 6963,
       "transformation": "fixed_module_import_relocation_and_gofmt"
     },
     {
       "origin_path": "internal/jointdecision/model.go",
       "copied_path": "jointdecision/model.go",
-      "origin_sha256": "01c3c86e2685c18a708d2f8d03f9358d524edec1e733fce73056b98f82767322",
-      "sha256": "01c3c86e2685c18a708d2f8d03f9358d524edec1e733fce73056b98f82767322",
-      "origin_bytes": 3791,
-      "bytes": 3791,
+      "origin_sha256": "d980e7dd1c0de4f786304813ffd4c2aa5ce98dc8171ed11579a166907a1d5c93",
+      "sha256": "d980e7dd1c0de4f786304813ffd4c2aa5ce98dc8171ed11579a166907a1d5c93",
+      "origin_bytes": 3750,
+      "bytes": 3750,
       "transformation": "exact"
     },
     {
@@ -120,19 +120,19 @@
     {
       "origin_path": "internal/jointdecision/shared_compact.go",
       "copied_path": "jointdecision/shared_compact.go",
-      "origin_sha256": "222512e405608b51320889bbedf457a4c52c7b91a644319dc7607063fa2b2b5d",
-      "sha256": "64fbfb584a1ad859927ce776e6d107737f618cd9f9586b6482c9721e2aedb3d6",
-      "origin_bytes": 4627,
-      "bytes": 4598,
+      "origin_sha256": "3185847e13159fa2a160adc807d042122495e65289b4b6a3b8d5b0966e24b6ad",
+      "sha256": "cd13c8be8fbeb4bbef3b08baf9b69de00218325bbcea76a96bda834b2395e586",
+      "origin_bytes": 4593,
+      "bytes": 4564,
       "transformation": "fixed_module_import_relocation_and_gofmt"
     },
     {
       "origin_path": "internal/jointdecision/shared_load.go",
       "copied_path": "jointdecision/shared_load.go",
-      "origin_sha256": "e59d24582ee5f207e1d62e72a530d50dfe92de9a428f98df70fd5744653985e0",
-      "sha256": "ef39218b92efd44506f3c81a7e4807058fd419a89432b8525f7e6a6400badac8",
-      "origin_bytes": 4093,
-      "bytes": 4064,
+      "origin_sha256": "f168daacbe3242defe68eca3da3152afc3446cc8bcb80b0cbf7fa33c0d4a4678",
+      "sha256": "ec4af1456c1c2bfd2493abd950f74c8812aa9200604a55e0e4e394881caedf73",
+      "origin_bytes": 3914,
+      "bytes": 3885,
       "transformation": "fixed_module_import_relocation_and_gofmt"
     },
     {
@@ -163,24 +163,6 @@
       "transformation": "exact"
     },
     {
-      "origin_path": "internal/jointdecision/three_bag_input.go",
-      "copied_path": "jointdecision/three_bag_input.go",
-      "origin_sha256": "9b3a92244ba029e9be3fd6b73cc9b8950e0080affe508438d3b463f87a1b77e5",
-      "sha256": "1b350d2888c85adec37ca25a5869528fb0379f9d329aeffa4f6eb22580ebabd0",
-      "origin_bytes": 1676,
-      "bytes": 1647,
-      "transformation": "fixed_module_import_relocation_and_gofmt"
-    },
-    {
-      "origin_path": "internal/jointdecision/three_bag_test.go",
-      "copied_path": "jointdecision/three_bag_test.go",
-      "origin_sha256": "6b0080ae2cf9401aa5d946997c1b1b87667a1d451b66ba760d91f2c6e7437950",
-      "sha256": "6b0080ae2cf9401aa5d946997c1b1b87667a1d451b66ba760d91f2c6e7437950",
-      "origin_bytes": 2840,
-      "bytes": 2840,
-      "transformation": "exact"
-    },
-    {
       "origin_path": "internal/jointdecision/three_input.go",
       "copied_path": "jointdecision/three_input.go",
       "origin_sha256": "83ac471091d2ee91ea28121b10b8ecdcc8a53bcf31274788b9c4a5cf7d5ba980",
@@ -192,28 +174,10 @@
     {
       "origin_path": "internal/jointdecision/three_model.go",
       "copied_path": "jointdecision/three_model.go",
-      "origin_sha256": "b6ed87ff505e576462dc7a2a2a5baad75a6a50bd5f67470155a31e2969afd91c",
-      "sha256": "b6ed87ff505e576462dc7a2a2a5baad75a6a50bd5f67470155a31e2969afd91c",
-      "origin_bytes": 4450,
-      "bytes": 4450,
-      "transformation": "exact"
-    },
-    {
-      "origin_path": "internal/jointdecision/three_separate.go",
-      "copied_path": "jointdecision/three_separate.go",
-      "origin_sha256": "d975c8468045cf265adf2dd06b1d9377a5bc505771406b0ef7aa4ff3981467a4",
-      "sha256": "d975c8468045cf265adf2dd06b1d9377a5bc505771406b0ef7aa4ff3981467a4",
-      "origin_bytes": 3258,
-      "bytes": 3258,
-      "transformation": "exact"
-    },
-    {
-      "origin_path": "internal/jointdecision/three_separate_test.go",
-      "copied_path": "jointdecision/three_separate_test.go",
-      "origin_sha256": "198a9cd77b1ac961f73515fc30830432145ba8e82d33bc4a905a80e2466da21b",
-      "sha256": "198a9cd77b1ac961f73515fc30830432145ba8e82d33bc4a905a80e2466da21b",
-      "origin_bytes": 5735,
-      "bytes": 5735,
+      "origin_sha256": "80958b1e4f47d95e0cc34647c3eada94e24bd922b4fc8aa331177936c33422eb",
+      "sha256": "80958b1e4f47d95e0cc34647c3eada94e24bd922b4fc8aa331177936c33422eb",
+      "origin_bytes": 4055,
+      "bytes": 4055,
       "transformation": "exact"
     },
     {
@@ -426,10 +390,10 @@
     {
       "origin_path": "internal/pathplan/shared_three_test.go",
       "copied_path": "pathplan/shared_three_test.go",
-      "origin_sha256": "e911124b2d1537a0460dcce824ac9a4fd2f9a7254c2a01b570a8095695e1dd9d",
-      "sha256": "b1f2bd8ae46e2e6bdceee9d94bc7b981d572f3e4b16dd6094daaf12b504da012",
-      "origin_bytes": 6601,
-      "bytes": 6552,
+      "origin_sha256": "5bbb233db3632829757a997134d6de40274a9de29f09ee3fcdab9b06734b0e3c",
+      "sha256": "a3b4bc15784fc6fc118264790d1e8c1f981e07d8dde0909e15d273b2fe9f849e",
+      "origin_bytes": 5360,
+      "bytes": 5311,
       "transformation": "fixed_module_import_relocation_and_gofmt"
     },
     {
@@ -453,19 +417,10 @@
     {
       "origin_path": "internal/pathplan/three.go",
       "copied_path": "pathplan/three.go",
-      "origin_sha256": "0e7d0169bfcda262ff5741bf7b8d7978a576b9fe1f943a6c392c0c6e69122c3b",
-      "sha256": "228ab914220a46e1dea78b61bd78ce5705780cda81d8d53a91716e47d9b56a5c",
-      "origin_bytes": 6034,
-      "bytes": 6014,
-      "transformation": "fixed_module_import_relocation_and_gofmt"
-    },
-    {
-      "origin_path": "internal/pathplan/three_arithmetic_test.go",
-      "copied_path": "pathplan/three_arithmetic_test.go",
-      "origin_sha256": "9644cf3628b388163cb338c1f58d3c81469db8928e93f7f6c05704c9a86f519f",
-      "sha256": "08fae32ec8e119eb3b490abf8846b06cad496a60f86b96df919f4eb53ffbef7b",
-      "origin_bytes": 1169,
-      "bytes": 1149,
+      "origin_sha256": "5ed0cf2830553748f4881fb54fcd030c06d7013e8195fced24bf081244d52d7b",
+      "sha256": "ea65111bfa8eaaa8b1c6336460494c4f9e0c3bddfac683a742cae3f819ced4b4",
+      "origin_bytes": 5940,
+      "bytes": 5920,
       "transformation": "fixed_module_import_relocation_and_gofmt"
     },
     {
@@ -503,24 +458,6 @@
       "origin_bytes": 10691,
       "bytes": 10622,
       "transformation": "fixed_module_import_relocation_and_gofmt"
-    },
-    {
-      "origin_path": "internal/decision/semantic_bag_features.go",
-      "copied_path": "semantic_bag_features.go",
-      "origin_sha256": "1f5b2822a7fbac6c71e908d1c50df23b248ca15cfdfd4ac23730f701cd98683a",
-      "sha256": "1f5b2822a7fbac6c71e908d1c50df23b248ca15cfdfd4ac23730f701cd98683a",
-      "origin_bytes": 1308,
-      "bytes": 1308,
-      "transformation": "exact"
-    },
-    {
-      "origin_path": "internal/decision/semantic_bag_features_test.go",
-      "copied_path": "semantic_bag_features_test.go",
-      "origin_sha256": "58f325db847928ffc1d7b0037064a0570de49186cf2807a1f56a093c2dcc528c",
-      "sha256": "58f325db847928ffc1d7b0037064a0570de49186cf2807a1f56a093c2dcc528c",
-      "origin_bytes": 2756,
-      "bytes": 2756,
-      "transformation": "exact"
     },
     {
       "origin_path": "internal/decision/semantic_features.go",
@@ -570,7 +507,7 @@
   ],
   "module": "github.com/kimjooyoon/gooo-decision-runtime",
   "origin_repository": "github.com/kimjooyoon/gooo-neural-decision-experiments",
-  "origin_revision": "daecfea3583614e006c960de263448a1645a9190",
+  "origin_revision": "3fb6699e3b2ddf937a409cb415e1eb32d8e015fb",
   "schema": "gooo/decision-runtime-source-provenance/v2",
   "scope": "Fixed source and test extraction; import relocation is recorded with separate origin and copied byte digests. No weights or raw experiment directories are copied."
 }

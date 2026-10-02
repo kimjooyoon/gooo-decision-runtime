@@ -37,7 +37,7 @@ func LoadSharedThree(name string) (*ThreeModel, error) {
 	if digest(weights) != meta.WeightsSHA {
 		return nil, errors.New("shared weights digest differs")
 	}
-	m := &Model{variant: meta.Variant, metadataSHA: digest(raw), weightsSHA: meta.WeightsSHA,
+	m := &Model{variant: meta.Variant, metadataSHA: digest(raw), weightsSHA: meta.WeightsSHA, arithmetic: meta.Arithmetic,
 		temperature: float32(meta.Temperature), packed: len(weights)}
 	if meta.Variant == "fp32" {
 		m.floatWeights = make([]float32, sharedW1+SharedHiddenDim+sharedW2)
@@ -48,11 +48,14 @@ func LoadSharedThree(name string) (*ThreeModel, error) {
 	if err = sharedLayout(meta, weights, m); err != nil {
 		return nil, err
 	}
-	return &ThreeModel{inner: m, shared: true}, nil
+	return &ThreeModel{inner: m, shared: true, feature: meta.Feature}, nil
 }
 
 func validateShared(meta Metadata) error {
-	if meta.Schema != SharedThreeSchema || meta.Feature != ThreeFeatureVersion || meta.FeatureDim != ThreeFeatureDim ||
+	if err := validateArithmetic(meta.Arithmetic, true); err != nil {
+		return err
+	}
+	if meta.Schema != SharedThreeSchema || (meta.Feature != ThreeFeatureVersion && meta.Feature != ThreeBagFeatureVersion) || meta.FeatureDim != ThreeFeatureDim ||
 		meta.HiddenDim != SharedHiddenDim || meta.MaxBytes != ThreeInputMaxBytes || len(meta.Labels) != ThreeLabelCount ||
 		meta.WeightsFile != "weights.bin" || len(meta.Tensors) != 3 {
 		return errors.New("closed shared three-choice dimensions/schema differ")

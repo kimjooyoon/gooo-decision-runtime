@@ -17,6 +17,7 @@ type Prediction struct {
 }
 type Model struct {
 	variant, metadataSHA, weightsSHA string
+	arithmetic                       string
 	temperature, w1Scale, w2Scale    float32
 	floatWeights                     []float32
 	codes                            []int8

@@ -16,8 +16,18 @@ import (
 
 func testSharedThreeModel(t *testing.T) *jointdecision.ThreeModel {
 	t.Helper()
+	return testSharedThreeFeatures(t, jointdecision.ThreeFeatureVersion)
+}
+
+func testSharedThreeFeatures(t *testing.T, feature string) *jointdecision.ThreeModel {
+	return testSharedThreeContract(t, feature, "")
+}
+
+func testSharedThreeContract(t *testing.T, feature, arithmetic string) *jointdecision.ThreeModel {
+	t.Helper()
 	raw := make([]byte, 8288)
-	meta := jointdecision.Metadata{Schema: jointdecision.SharedThreeSchema, Feature: jointdecision.ThreeFeatureVersion, Variant: "fp32", FeatureDim: 768, HiddenDim: 8, MaxBytes: 1600, Temperature: 1, WeightsFile: "weights.bin", WeightsSHA: hash(raw), Labels: []string{"mask_0", "mask_1", "mask_2", "mask_3", "mask_4", "mask_5", "mask_6", "mask_7"}}
+	meta := jointdecision.Metadata{Schema: jointdecision.SharedThreeSchema, Feature: feature, Variant: "fp32", FeatureDim: 768, HiddenDim: 8, MaxBytes: 1600, Temperature: 1, WeightsFile: "weights.bin", WeightsSHA: hash(raw), Labels: []string{"mask_0", "mask_1", "mask_2", "mask_3", "mask_4", "mask_5", "mask_6", "mask_7"}}
+	meta.Arithmetic = arithmetic
 	var at int64
 	for i, name := range [3]string{"w1", "b1", "w2"} {
 		rows, cols := [3]int{8, 1, 2}[i], [3]int{256, 8, 8}[i]
@@ -41,6 +51,31 @@ func testSharedThreeModel(t *testing.T) *jointdecision.ThreeModel {
 		t.Fatal(e)
 	}
 	return m
+}
+
+func TestBagThreeSessionAndFeedbackRetainActualFeatureVersion(t *testing.T) {
+	p, ctx := threePrepared(t, false), threeContext(t)
+	m := testSharedThreeFeatures(t, jointdecision.ThreeBagFeatureVersion)
+	s, err := p.NewThreeSession(ctx, m, []TestCase{{Input: 3, Expected: 999}}, "")
+	if err != nil {
+		t.Fatal(err)
+	}
+	r, err := s.Observe()
+	if err != nil || r.Selection.Three.Feature != jointdecision.ThreeBagFeatureVersion || r.Selection.ModelCalls != 1 {
+		t.Fatal("v4 initial receipt", err)
+	}
+	if _, _, err = s.Advance(ctx, 1); err != nil {
+		t.Fatal(err)
+	}
+	f, err := s.ReconsiderThree(ctx, m, nil)
+	if err != nil || f.Three == nil || f.Three.Feature != jointdecision.ThreeBagFeatureVersion || f.ModelCalls != 1 {
+		t.Fatal("v4 feedback receipt", err)
+	}
+	for _, choice := range p.plan.Decisions {
+		if !strings.Contains(f.Three.Input, choice.Intent) {
+			t.Fatal("v4 lost complete original intent")
+		}
+	}
 }
 
 func TestSharedThreeSessionReceiptsAndFeedbackUseActualArtifact(t *testing.T) {

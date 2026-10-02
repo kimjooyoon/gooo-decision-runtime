@@ -28,3 +28,22 @@ jobs:
         run: go test ./...
       - name: Race tests
         run: go test -race ./...
+      - name: Retrieve the immutable complete arithmetic observations
+        uses: actions/checkout@v7
+        with:
+          repository: kimjooyoon/gooo-neural-decision-experiments
+          ref: 600dc282fb059918c0fd6588d955d3a56c380b58
+          path: .replay-reference
+          persist-credentials: false
+          sparse-checkout: publication/full-input-separate-arithmetic-20261003
+      - name: Replay every explicit model using the public SDK
+        run: |
+          go run ./examples/three-replay \
+            --bundle .replay-reference/publication/full-input-separate-arithmetic-20261003 \
+            --source-revision "$GITHUB_SHA" --output "$RUNNER_TEMP/sdk-full-input-replay.json"
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: sdk-full-input-replay
+          path: ${{ runner.temp }}/sdk-full-input-replay.json
+          if-no-files-found: error

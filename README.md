@@ -6,7 +6,7 @@ source-bound plan; this library ranks its permitted choices and continues finite
 search using observed failures. Think of it as the small assembly mechanism
 inside the larger language workshop.
 
-**Current release: v0.2.14-experimental.** The latest shared judge uses 2,072
+**API version: v0.2.15-experimental.** The latest shared judge uses 2,072
 parameters across three binary decisions. Its compact FP32 weights occupy 8,288
 bytes; ternary files occupy 446 bytes and decode into 2,096 tensor bytes plus
 eight scale bytes. A caller owns a 3,200-byte workspace. These array sizes are
@@ -35,16 +35,17 @@ has now published twelve exports from four training conditions. On the same
 observed development tasks, whole-text fragment FP32 completed 368/512 first
 paths, compared with 113/512 for the positioned control. It also exposed an
 operation-order feature alias and quantization regressions. Its V4 feature
-contract currently runs in the research repository; this release accepts V3.
+contract and the explicit arithmetic rule are now extracted into this SDK.
 Use the [pinned compact V3 bundle](https://huggingface.co/asketeddy/gooo-shared-judgment-tiny-v1/tree/985999a89caba6a31cc7147f66ba29a5ce76a1d9/research/compact-runtime-20261003)
 with this SDK. The [Linux follow-up](https://github.com/kimjooyoon/gooo-neural-decision-experiments/blob/main/docs/full-input-numerical-portability-followup-20261003.md)
 records 272 differing complete candidate rankings. The subsequent
 [explicit arithmetic comparison](https://github.com/kimjooyoon/gooo-neural-decision-experiments/blob/main/docs/full-input-separate-arithmetic-results-20261003.md)
 reproduces every intermediate value, probability and ranking across 18,432
 arm64/Linux input pairs, using unchanged weights and 147,456 actual calls.
-The research runtime carries the new arithmetic identity in model metadata and
-receipts. SDK extraction and actual native V4 observations are next; this release
-continues to use its published V3 contract.
+Both runtime implementations carry the arithmetic identity in model metadata
+and initial/feedback receipts. The SDK CI replays every explicit model against
+the frozen observations. Actual native V4 generation and execution are the next
+integration stage; the currently deployed compiler still uses SDK v0.2.14.
 
 The sections below document each API and the release in which it was introduced.
 Source extraction manifests retain the exact origin of the runtime files.
@@ -69,7 +70,44 @@ The published [tiny model bundles](https://huggingface.co/asketeddy/gooo-ir-oper
 were independently initialized and are not fine-tuned from Laya. This repository
 contains runtime code only; callers choose and supply a compatible model bundle.
 
-## Compact shared three-choice judgments (v0.2.14-experimental)
+## Full input and explicit arithmetic (v0.2.15-experimental)
+
+Three-choice artifacts can declare `arithmetic_version: float32_separate_v1`.
+The runtime rounds each product before adding it and records this rule through
+`ThreeModel.ArithmeticVersion()` and path receipts. Omitted metadata retains the
+previous arithmetic implementation; unknown versions are rejected. Compaction
+preserves the declared rule.
+
+`jointdecision.LoadThreeBag` loads expanded
+`triple_semantic_context_bag_v4_joint_v1` artifacts. `LoadThree` retains its V3
+contract, and `LoadSharedThree` accepts either declared feature version for the
+compact layout. V4 retains complete text and counts 2/3-byte intent fragments.
+It has a documented operation-order alias, so typed alternatives, finite cases
+and deterministic continuation remain part of its intended use.
+
+Source and tests are extracted from research revision
+`daecfea3583614e006c960de263448a1645a9190`: 63 pinned files, manifest SHA-256
+`608238066589da0cb6065a2f77b6254c8102891fb598dc2d41c64d5ee7d630f2`.
+The previous manifest is retained in `source-provenance-v0.2.14.json`.
+
+The [registered integration protocol](https://github.com/kimjooyoon/gooo-neural-decision-experiments/blob/daecfea3583614e006c960de263448a1645a9190/docs/full-input-sdk-native-protocol-20261003.md)
+requires 36,864 actual SDK predictions over all 18,432 frozen inputs, comparing
+both layouts' full intermediate values and rankings to the public explicit
+lanes. The replay emits a result even on a collection failure, with actual call
+counts and the last condition/view. Run it from a clean SDK checkout:
+
+```sh
+go run ./examples/three-replay --bundle /path/to/full-input-separate-arithmetic-20261003 \
+  --source-revision "$(git rev-parse HEAD)" --output /tmp/sdk-full-input-replay.json
+```
+
+The output path must be fresh and outside tracked source. Model artifacts come
+from the [public arithmetic appendix](https://huggingface.co/asketeddy/gooo-shared-judgment-tiny-v1/tree/7c4501789b34d885c14ab54aee1d40995eb8b1e6/research/full-input-separate-20261003).
+CI retrieves the pinned reference and publishes its replay report. Local and
+CI observations have separate prediction counts. Native compiler integration
+and model-default selection have their own subsequent evidence.
+
+## Compact shared three-choice judgments (introduced in v0.2.14-experimental)
 
 `jointdecision.LoadSharedThree` explicitly loads
 `gooo/tiny-shared-three-choice-path-model/v1`. The same 768-value, full-input
@@ -105,7 +143,7 @@ artifact and seed reproduce the same choice; the same seed across expanded and
 compact representations may choose differently. Missing models and unsupported
 full input retain deterministic continuation with zero predictions.
 
-All 56 extracted files are pinned to research revision
+The v0.2.14 release's 56 extracted files are pinned to research revision
 `3fb6699e3b2ddf937a409cb415e1eb32d8e015fb`, manifest SHA256
 `ccfbfdf1b4de51f2cf444369709fd8316767e8e3c731d5b5938b5f024c31aa99`.
 The previous extraction is preserved in `source-provenance-v0.2.13.json`.

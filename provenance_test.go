@@ -14,7 +14,7 @@ func TestProductionSourceMatchesPinnedOrigin(t *testing.T) {
 		t.Fatal(err)
 	}
 	hash := func(data []byte) string { sum := sha256.Sum256(data); return hex.EncodeToString(sum[:]) }
-	if hash(raw) != "ccfbfdf1b4de51f2cf444369709fd8316767e8e3c731d5b5938b5f024c31aa99" {
+	if hash(raw) != "608238066589da0cb6065a2f77b6254c8102891fb598dc2d41c64d5ee7d630f2" {
 		t.Fatal("fixed source extraction manifest changed")
 	}
 	var manifest struct {
@@ -27,7 +27,7 @@ func TestProductionSourceMatchesPinnedOrigin(t *testing.T) {
 			Bytes int    `json:"bytes"`
 		} `json:"files"`
 	}
-	if json.Unmarshal(raw, &manifest) != nil || manifest.Schema != "gooo/decision-runtime-source-provenance/v2" || manifest.Module != "github.com/kimjooyoon/gooo-decision-runtime" || manifest.Origin != "3fb6699e3b2ddf937a409cb415e1eb32d8e015fb" || len(manifest.Files) != 56 {
+	if json.Unmarshal(raw, &manifest) != nil || manifest.Schema != "gooo/decision-runtime-source-provenance/v2" || manifest.Module != "github.com/kimjooyoon/gooo-decision-runtime" || manifest.Origin != "daecfea3583614e006c960de263448a1645a9190" || len(manifest.Files) != 63 {
 		t.Fatal("source extraction identity mismatch")
 	}
 	seen := map[string]bool{}

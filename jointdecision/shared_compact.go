@@ -19,7 +19,7 @@ func CompactThree(m *ThreeModel) (Metadata, []byte, error) {
 	if err := verifySharedTies(m.inner); err != nil {
 		return Metadata{}, nil, err
 	}
-	meta := Metadata{Schema: SharedThreeSchema, Feature: ThreeFeatureVersion, Variant: m.Variant(),
+	meta := Metadata{Schema: SharedThreeSchema, Feature: m.FeatureVersion(), Arithmetic: m.ArithmeticVersion(), Variant: m.Variant(),
 		FeatureDim: ThreeFeatureDim, HiddenDim: SharedHiddenDim, MaxBytes: ThreeInputMaxBytes,
 		Temperature: float64(m.inner.temperature), WeightsFile: "weights.bin"}
 	for i := range ThreeLabelCount {

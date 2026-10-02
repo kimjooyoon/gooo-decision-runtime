@@ -19,6 +19,7 @@ import (
 type Metadata struct {
 	Schema      string                    `json:"schema"`
 	Feature     string                    `json:"feature_version"`
+	Arithmetic  string                    `json:"arithmetic_version,omitempty"`
 	Variant     string                    `json:"variant"`
 	FeatureDim  int                       `json:"feature_dim"`
 	HiddenDim   int                       `json:"hidden_dim"`
@@ -65,6 +66,9 @@ var twoContract = modelContract{Schema, FeatureVersion, FeatureDim, LabelCount, 
 
 func validate(meta Metadata) error { return validateContract(meta, twoContract) }
 func validateContract(meta Metadata, contract modelContract) error {
+	if err := validateArithmetic(meta.Arithmetic, contract.schema == ThreeSchema); err != nil {
+		return err
+	}
 	if meta.Schema != contract.schema || meta.Feature != contract.feature || meta.FeatureDim != contract.features || meta.HiddenDim != HiddenDim || meta.MaxBytes != contract.inputBytes ||
 		len(meta.Labels) != contract.labels || meta.WeightsFile != "weights.bin" || len(meta.Tensors) != 4 {
 		return errors.New("closed joint model dimensions/schema differ")
@@ -200,7 +204,7 @@ func loadContract(name string, contract modelContract) (*Model, error) {
 	if digest(weights) != meta.WeightsSHA {
 		return nil, errors.New("joint weights digest differs")
 	}
-	m := &Model{variant: meta.Variant, metadataSHA: digest(raw), weightsSHA: meta.WeightsSHA, temperature: float32(meta.Temperature), packed: len(weights)}
+	m := &Model{variant: meta.Variant, metadataSHA: digest(raw), weightsSHA: meta.WeightsSHA, arithmetic: meta.Arithmetic, temperature: float32(meta.Temperature), packed: len(weights)}
 	if meta.Variant == "fp32" {
 		m.floatWeights = make([]float32, contract.features*HiddenDim+HiddenDim+HiddenDim*contract.labels+contract.labels)
 	} else {
