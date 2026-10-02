@@ -23,6 +23,13 @@ runs; all 2,304 supplied finite expectations passed. Model first-choice quality
 and Korean/English agreement remain separate development tasks.
 [Full measurement scope](https://github.com/kimjooyoon/gooo-neural-decision-experiments/blob/main/docs/compact-shared-native-results-20261003.md).
 
+A later [input-sensitivity study](https://github.com/kimjooyoon/gooo-neural-decision-experiments/blob/main/docs/bilingual-wrapper-audit-results-20261003.md)
+keeps all six models fixed and varies authored instruction phrasing. Shared FP32
+completes 113/512 original development views and 480/512 bare instructions that
+match the training format. These conditions expose a wording weakness in the
+current model. The runtime continues to preserve complete caller input; phrasing
+robustness is the next model/feature comparison.
+
 The sections below document each API and the release in which it was introduced.
 Source extraction manifests retain the exact origin of the runtime files.
 
@@ -149,9 +156,10 @@ The previous 26-file manifest is retained in `source-provenance-v10.json`.
 Tests cover exact channel isolation, zero-allocation feature encoding, boundary
 rejection, closed metadata versions and eight Go/Python feature fixtures. Model
 weights remain separate; offline training and captured model comparisons are in
-the research repository. Native compiler main `1e01c96c54f2f8dd43334b8f580af93ffaea24df`
-still uses SDK 0.2.8 and rejects v2 before inference. Native SDK adoption and
-compiler-produced context are separate subsequent work.
+the research repository. At that release, native compiler main
+`1e01c96c54f2f8dd43334b8f580af93ffaea24df` used SDK 0.2.8 and rejected v2
+before inference. Current compiler integration uses SDK v0.2.14-experimental;
+see the compact native study linked at the top for its measured scope.
 
 ### Go-only own-model typed path example
 
@@ -338,8 +346,9 @@ The SDK 2.7 manifest is retained in `source-provenance-v9.json`. The new API is
 covered by sparse/contradictory cases, incomplete enumeration including mask
 65,535, combined rejection, concurrent ownership and cancellation fixtures.
 [Methods and captured own-model study](https://github.com/kimjooyoon/gooo-neural-decision-experiments/blob/main/docs/path-diagnosis.md)
-are separate from release provenance. Native compiler main still uses SDK 2.7;
-this SDK release does not establish native integration or new model training.
+are separate from release provenance. At the time of this API's release, native
+compiler main used SDK v0.2.7-experimental. Later compiler adoption is documented
+in the current integration links at the top of this README.
 
 `v0.2.7-experimental` adds `prepared.SearchFeedbackBatchesUnfixed` with the same
 arguments and bounded progress/receipt ownership as `SearchFeedbackBatches`.
