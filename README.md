@@ -38,8 +38,13 @@ operation-order feature alias and quantization regressions. Its V4 feature
 contract currently runs in the research repository; this release accepts V3.
 Use the [pinned compact V3 bundle](https://huggingface.co/asketeddy/gooo-shared-judgment-tiny-v1/tree/985999a89caba6a31cc7147f66ba29a5ce76a1d9/research/compact-runtime-20261003)
 with this SDK. The [Linux follow-up](https://github.com/kimjooyoon/gooo-neural-decision-experiments/blob/main/docs/full-input-numerical-portability-followup-20261003.md)
-records 272 differing complete candidate rankings; the arithmetic contract,
-SDK extraction and actual native V4 observations are the next integration work.
+records 272 differing complete candidate rankings. The subsequent
+[explicit arithmetic comparison](https://github.com/kimjooyoon/gooo-neural-decision-experiments/blob/main/docs/full-input-separate-arithmetic-results-20261003.md)
+reproduces every intermediate value, probability and ranking across 18,432
+arm64/Linux input pairs, using unchanged weights and 147,456 actual calls.
+The research runtime carries the new arithmetic identity in model metadata and
+receipts. SDK extraction and actual native V4 observations are next; this release
+continues to use its published V3 contract.
 
 The sections below document each API and the release in which it was introduced.
 Source extraction manifests retain the exact origin of the runtime files.
