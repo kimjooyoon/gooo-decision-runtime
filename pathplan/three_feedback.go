@@ -43,7 +43,7 @@ func (session *Session) ReconsiderThree(ctx context.Context, model *jointdecisio
 	if err != nil {
 		return session.finishJointFeedback(r, err)
 	}
-	r3 := threeReceipt(text, 3)
+	r3 := threeReceipt(text, 3, model)
 	for i, part := range parts {
 		r3.PartSHA[i] = hash([]byte(part))
 	}

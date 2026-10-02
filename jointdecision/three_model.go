@@ -17,7 +17,10 @@ type ThreePrediction struct {
 }
 
 // ThreeModel exposes a separate ABI and never exposes a v1 prediction view.
-type ThreeModel struct{ inner *Model }
+type ThreeModel struct {
+	inner  *Model
+	shared bool
+}
 
 var threeContract = modelContract{ThreeSchema, ThreeFeatureVersion, ThreeFeatureDim, ThreeLabelCount, ThreeInputMaxBytes, 128 << 10}
 
@@ -26,9 +29,14 @@ func LoadThree(name string) (*ThreeModel, error) {
 	if err != nil {
 		return nil, err
 	}
-	return &ThreeModel{m}, nil
+	return &ThreeModel{inner: m}, nil
 }
-func (m *ThreeModel) Schema() string           { return ThreeSchema }
+func (m *ThreeModel) Schema() string {
+	if m != nil && m.shared {
+		return SharedThreeSchema
+	}
+	return ThreeSchema
+}
 func (m *ThreeModel) FeatureVersion() string   { return ThreeFeatureVersion }
 func (m *ThreeModel) Variant() string          { return m.inner.Variant() }
 func (m *ThreeModel) MetadataSHA256() string   { return m.inner.MetadataSHA256() }
@@ -38,6 +46,10 @@ func (m *ThreeModel) ResidentTensorBytes() int { return m.inner.ResidentTensorBy
 func (m *ThreeModel) MatrixScaleBytes() int    { return m.inner.MatrixScaleBytes() }
 
 func (m *ThreeModel) first(x *[ThreeFeatureDim]float32, y *[HiddenDim]float32) {
+	if m.shared {
+		m.sharedFirst(x, y)
+		return
+	}
 	for row := range y {
 		var sum float32
 		if len(m.inner.codes) == 0 {
@@ -55,6 +67,10 @@ func (m *ThreeModel) first(x *[ThreeFeatureDim]float32, y *[HiddenDim]float32) {
 	}
 }
 func (m *ThreeModel) last(x *[HiddenDim]float32, y *[ThreeLabelCount]float32) {
+	if m.shared {
+		m.sharedLast(x, y)
+		return
+	}
 	for row := range y {
 		var sum float32
 		if len(m.inner.codes) == 0 {

@@ -58,8 +58,8 @@ func (prepared *PreparedPlan) ThreeInput() (string, error) {
 	}
 	return b.String(), errors.New("complete three-choice input is unsupported")
 }
-func threeReceipt(text string, decisions int) ThreeReceipt {
-	r := ThreeReceipt{Schema: jointdecision.ThreeSchema, Feature: jointdecision.ThreeFeatureVersion, Input: text, InputSHA: hash([]byte(text)), Bytes: len(text), Decisions: decisions}
+func threeReceipt(text string, decisions int, model *jointdecision.ThreeModel) ThreeReceipt {
+	r := ThreeReceipt{Schema: model.Schema(), Feature: jointdecision.ThreeFeatureVersion, Input: text, InputSHA: hash([]byte(text)), Bytes: len(text), Decisions: decisions}
 	if parts, err := jointdecision.ThreeParts(text); err == nil {
 		for i, part := range parts {
 			r.PartSHA[i] = hash([]byte(part))
@@ -125,7 +125,7 @@ func (prepared *PreparedPlan) NewThreeSession(ctx context.Context, model *jointd
 	selection := &session.result.Selection
 	selection.ModelVariant, selection.MetadataSHA256, selection.WeightsSHA256 = model.Variant(), model.MetadataSHA256(), model.WeightsSHA256()
 	text, err := prepared.ThreeInput()
-	r := threeReceipt(text, len(prepared.plan.Decisions))
+	r := threeReceipt(text, len(prepared.plan.Decisions), model)
 	if err != nil {
 		if len(prepared.plan.Decisions) == 3 {
 			for i, choice := range prepared.plan.Decisions {

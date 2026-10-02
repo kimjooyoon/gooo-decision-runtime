@@ -18,6 +18,49 @@ The published [tiny model bundles](https://huggingface.co/asketeddy/gooo-ir-oper
 were independently initialized and are not fine-tuned from Laya. This repository
 contains runtime code only; callers choose and supply a compatible model bundle.
 
+## Compact shared three-choice judgments (v0.2.14-experimental)
+
+`jointdecision.LoadSharedThree` explicitly loads
+`gooo/tiny-shared-three-choice-path-model/v1`. The same 768-value, full-input
+feature contract reuses an 8-hidden-unit judge for each of three decisions.
+`hidden_dim: 8` describes the stored local judge; the caller still provides a
+3,200-byte `ThreeWorkspace` containing 24 computed hidden values and eight mask
+scores. All existing three-choice path/session/feedback APIs accept this model.
+Initial and feedback receipts name its actual compact schema and file hashes.
+
+| Layout | FP32 | PTQ/QAT ternary |
+| --- | ---: | ---: |
+| Weight file | 8,288 bytes | 446 bytes |
+| Resident tensors | 8,288 bytes | 2,096 bytes |
+| Separate matrix scales | 0 bytes | 8 bytes |
+
+`jointdecision.CompactThree(expanded)` returns closed metadata and weight bytes
+only when every removed zero and tied copy is exact. It performs no training or
+requantization. The loader rejects malformed dimensions, tensor layouts,
+nonfinite values, invalid trits/padding, digest mismatches and symlinked files.
+Inference uses caller-owned arrays and preserves them on invalid input/numerical
+failure. Valid warmed calls allocate zero heap objects in the contract tests.
+
+The expanded and compact public shared models matched bit-for-bit on all
+10,739 previously frozen initial/feedback inputs for each of three variants.
+This is representation parity, not a new accuracy result. Local kernel medians
+were 24.5–27.7 microseconds including features; these exclude native codegen and
+are not a cross-machine performance guarantee. The
+[full report](https://github.com/kimjooyoon/gooo-neural-decision-experiments/blob/main/publication/compact-shared-runtime-20261003/report.json)
+records measurements, identities, caller workspace, allocation probes and scope.
+
+Sampling seeds remain bound to the actual metadata/weight hashes. Same compact
+artifact and seed reproduce the same choice; the same seed across expanded and
+compact representations may choose differently. Missing models and unsupported
+full input retain deterministic continuation with zero predictions.
+
+All 56 extracted files are pinned to research revision
+`3fb6699e3b2ddf937a409cb415e1eb32d8e015fb`, manifest SHA256
+`ccfbfdf1b4de51f2cf444369709fd8316767e8e3c731d5b5938b5f024c31aa99`.
+The previous extraction is preserved in `source-provenance-v0.2.13.json`.
+Model weights remain separate; this SDK release alone does not deploy a new
+native compiler or select a default model.
+
 ## Direct typed source features (v0.2.11-experimental)
 
 Explicit `semantic_context_intent_v3` path models read 64 structural values plus
