@@ -7,6 +7,7 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"io"
 	"math"
 	"os"
@@ -53,13 +54,23 @@ func boundedFile(name string, max int64) ([]byte, error) {
 	}
 	return raw, nil
 }
-func validate(meta Metadata) error {
-	if meta.Schema != Schema || meta.Feature != FeatureVersion || meta.FeatureDim != FeatureDim || meta.HiddenDim != HiddenDim || meta.MaxBytes != InputMaxBytes ||
-		len(meta.Labels) != LabelCount || meta.WeightsFile != "weights.bin" || len(meta.Tensors) != 4 {
+
+type modelContract struct {
+	schema, feature              string
+	features, labels, inputBytes int
+	weightBytes                  int64
+}
+
+var twoContract = modelContract{Schema, FeatureVersion, FeatureDim, LabelCount, InputMaxBytes, 64 << 10}
+
+func validate(meta Metadata) error { return validateContract(meta, twoContract) }
+func validateContract(meta Metadata, contract modelContract) error {
+	if meta.Schema != contract.schema || meta.Feature != contract.feature || meta.FeatureDim != contract.features || meta.HiddenDim != HiddenDim || meta.MaxBytes != contract.inputBytes ||
+		len(meta.Labels) != contract.labels || meta.WeightsFile != "weights.bin" || len(meta.Tensors) != 4 {
 		return errors.New("closed joint model dimensions/schema differ")
 	}
-	for i, label := range [4]string{"mask_0", "mask_1", "mask_2", "mask_3"} {
-		if meta.Labels[i] != label {
+	for i, label := range meta.Labels {
+		if label != fmt.Sprintf("mask_%d", i) {
 			return errors.New("canonical joint mask labels required")
 		}
 	}
@@ -107,9 +118,12 @@ func decodeTrits(raw []byte, values []int8) error {
 	return nil
 }
 func layout(meta Metadata, raw []byte, m *Model) error {
+	return layoutContract(meta, raw, m, FeatureDim, LabelCount)
+}
+func layoutContract(meta Metadata, raw []byte, m *Model, features, labels int) error {
 	names := [4]string{"w1", "b1", "w2", "b2"}
-	rows := [4]int{HiddenDim, 1, LabelCount, 1}
-	cols := [4]int{FeatureDim, HiddenDim, HiddenDim, LabelCount}
+	rows := [4]int{HiddenDim, 1, labels, 1}
+	cols := [4]int{features, HiddenDim, HiddenDim, labels}
 	at, floatAt, matrixAt, biasAt := 0, 0, 0, 0
 	for i, t := range meta.Tensors {
 		matrix := i == 0 || i == 2
@@ -160,6 +174,9 @@ func layout(meta Metadata, raw []byte, m *Model) error {
 }
 
 func Load(name string) (*Model, error) {
+	return loadContract(name, twoContract)
+}
+func loadContract(name string, contract modelContract) (*Model, error) {
 	raw, err := boundedFile(name, 64<<10)
 	if err != nil {
 		return nil, err
@@ -173,10 +190,10 @@ func Load(name string) (*Model, error) {
 	if err = d.Decode(&meta); err != nil {
 		return nil, err
 	}
-	if err = validate(meta); err != nil {
+	if err = validateContract(meta, contract); err != nil {
 		return nil, err
 	}
-	weights, err := boundedFile(filepath.Join(filepath.Dir(name), meta.WeightsFile), 64<<10)
+	weights, err := boundedFile(filepath.Join(filepath.Dir(name), meta.WeightsFile), contract.weightBytes)
 	if err != nil {
 		return nil, err
 	}
@@ -185,12 +202,12 @@ func Load(name string) (*Model, error) {
 	}
 	m := &Model{variant: meta.Variant, metadataSHA: digest(raw), weightsSHA: meta.WeightsSHA, temperature: float32(meta.Temperature), packed: len(weights)}
 	if meta.Variant == "fp32" {
-		m.floatWeights = make([]float32, FeatureDim*HiddenDim+HiddenDim+HiddenDim*LabelCount+LabelCount)
+		m.floatWeights = make([]float32, contract.features*HiddenDim+HiddenDim+HiddenDim*contract.labels+contract.labels)
 	} else {
-		m.codes = make([]int8, FeatureDim*HiddenDim+HiddenDim*LabelCount)
-		m.biases = make([]float32, HiddenDim+LabelCount)
+		m.codes = make([]int8, contract.features*HiddenDim+HiddenDim*contract.labels)
+		m.biases = make([]float32, HiddenDim+contract.labels)
 	}
-	if err = layout(meta, weights, m); err != nil {
+	if err = layoutContract(meta, weights, m, contract.features, contract.labels); err != nil {
 		return nil, err
 	}
 	return m, nil

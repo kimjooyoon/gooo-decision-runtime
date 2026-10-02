@@ -149,10 +149,24 @@ func (prepared *PreparedPlan) NewJointSession(ctx context.Context, model *jointd
 	return session, nil
 }
 func (session *Session) rescoreJoint(ctx context.Context, probabilities [4]float32) error {
-	var weights [4]float64
-	queue := make(searchHeap, len(session.queue), 4)
+	return session.rescoreMaskDistribution(ctx, probabilities[:])
+}
+func (session *Session) rescoreMaskDistribution(ctx context.Context, probabilities []float32) error {
+	if len(probabilities) != session.result.DeclaredCombinations || len(probabilities) > 8 {
+		return errors.New("full bounded joint probability space required")
+	}
+	var weights [8]float64
+	queue := make(searchHeap, len(session.queue), len(probabilities))
+	var total float64
 	for i, p := range probabilities {
+		if p < 0 || math.IsNaN(float64(p)) || math.IsInf(float64(p), 0) {
+			return errors.New("finite nonnegative joint probabilities required")
+		}
+		total += float64(p)
 		weights[i] = math.Log(math.Max(float64(p), 1e-12))
+	}
+	if total == 0 {
+		return errors.New("positive joint probability mass required")
 	}
 	for i, node := range session.queue {
 		queue[i] = searchNode{node.mask, weights[node.mask]}

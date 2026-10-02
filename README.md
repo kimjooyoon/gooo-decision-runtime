@@ -399,3 +399,41 @@ The SDK accepts a caller's validated typed plan; source-file binding belongs to
 the native compiler. All nine additional runtime/test files and earlier files
 are digest-bound in `source-provenance.json`; the previous v0.2.11 manifest is
 preserved in `source-provenance-v0.2.11.json`.
+
+## Three-choice full-path model (v0.2.13-experimental)
+
+The separate opt-in `jointdecision.ThreeModel` ABI is 768/24/8. Use
+`jointdecision.LoadThree`, `PreparedPlan.NewThreeSession`,
+`Session.ReconsiderThree` or `PreparedPlan.SearchThreeFeedbackBatches`.
+It preserves three complete source-v3 inputs and ranks all eight masks together.
+`FeedbackThreeWithParts` exposes complete attempted inputs and individual parts
+so representation declines retain their full byte/hash identity.
+
+One initial prediction precedes finite candidate tests. Explicit actual-failure
+feedback can re-rank all remaining masks with one prediction; the final sole
+mask needs none. Unsupported arity preserves every intention, including a fourth
+choice, and runs deterministic continuation with zero predictions. Disconnected
+execution is also deterministic. Context overflow leaves the frontier unchanged,
+retains full attempted input and consumes one bounded feedback round.
+
+The caller-owned fixed workspace is 3,200 bytes. FP32 tensors occupy 74,624 bytes;
+five-trit packed weights occupy 3,854 file bytes and decode to 18,624 int8 matrix
+bytes plus 128 FP32 bias bytes and eight additional scale bytes. Valid warmed
+projection and inference allocate zero heap objects in contract tests. These
+counts exclude allocator and process overhead. The shared Session gains 32 bytes
+for four additional scores. Metadata remains capped at 64 KiB; the new weights
+cap is 128 KiB and old four-label models retain their 64 KiB cap.
+
+Tests check nonzero FP32/ternary matrices against separate float64 arithmetic,
+all eight probabilities, atomic failed outputs, simultaneous independent sessions,
+finite TDD, model pins, full overflow identities, cancellation and nonblocking
+locks. Runtime arithmetic uses int8/float32, rather than executing in packed form.
+
+All 51 source/test/fixture files are pinned to research revision
+`1dae673495bce8b8a906d8cc4412f4abbe25c8b2`, manifest SHA256
+`36207f298a0884aaedb76057e6dc018e8ec198c429b7564df8624085584323fe`.
+The previous manifest is retained in `source-provenance-v0.2.12.json`.
+This release adds model compatibility and controlled test weights only. It does
+not claim new trained quality, native deployment or general language completeness.
+See the [frozen three-choice study](https://github.com/kimjooyoon/gooo-neural-decision-experiments/blob/d74a8a455ceed5949fcbad482375405b4704dc9a/docs/own-three-choice-completeness-preregistration-20261002.md)
+and its [implementation phase](https://github.com/kimjooyoon/gooo-neural-decision-experiments/blob/1dae673495bce8b8a906d8cc4412f4abbe25c8b2/docs/own-three-choice-sdk-abi-20261002.md).

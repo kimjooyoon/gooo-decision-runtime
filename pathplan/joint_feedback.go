@@ -52,7 +52,7 @@ func (session *Session) finishJointFeedback(r FeedbackReceipt, failure error) (F
 	return r, failure
 }
 func (session *Session) jointFeedbackBounds(model *jointdecision.Model) error {
-	if !session.initialized || !session.joint || model == nil || model.MetadataSHA256() != session.result.Selection.MetadataSHA256 || model.WeightsSHA256() != session.result.Selection.WeightsSHA256 {
+	if !session.initialized || !session.joint || session.result.DeclaredCombinations != 4 || model == nil || model.MetadataSHA256() != session.result.Selection.MetadataSHA256 || model.WeightsSHA256() != session.result.Selection.WeightsSHA256 {
 		return errors.New("joint feedback requires original initialized model")
 	}
 	if session.result.Status == "TRAINING_COMPLETE" || session.attempted == 4 || session.attempted <= session.feedbackAt || session.feedbackRounds >= 16 {

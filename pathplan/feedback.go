@@ -83,6 +83,7 @@ type FeedbackReceipt struct {
 	FixedCoordinates   []FixedCoordinate  `json:"fixed_coordinates,omitempty"`
 	Scope              string             `json:"scope"`
 	Joint              *JointReceipt      `json:"joint_prediction,omitempty"`
+	Three              *ThreeReceipt      `json:"three_choice_prediction,omitempty"`
 }
 
 // Reconsider re-ranks only unattempted paths with the original frozen model.

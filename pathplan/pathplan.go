@@ -75,6 +75,7 @@ type Selection struct {
 	ExternalCalls      int               `json:"external_provider_calls"`
 	ExternalCallsKnown bool              `json:"external_provider_calls_known"`
 	Joint              *JointReceipt     `json:"joint_prediction,omitempty"`
+	Three              *ThreeReceipt     `json:"three_choice_prediction,omitempty"`
 }
 
 func cloneBase(base bodyplan.Plan) bodyplan.Plan {

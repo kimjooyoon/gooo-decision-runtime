@@ -49,7 +49,7 @@ type Session struct {
 	feedbackAt      int
 	feedbackSHA     string
 	joint           bool
-	jointLogWeights [4]float64
+	jointLogWeights [8]float64
 	jointInput      string
 }
 
@@ -289,7 +289,7 @@ func (session *Session) Advance(ctx context.Context, maxNewAttempts int) (Sessio
 			session.enqueue(node.mask ^ (1 << i))
 		}
 		if session.joint {
-			for mask := uint16(0); mask < 4; mask++ {
+			for mask := uint16(0); int(mask) < session.result.DeclaredCombinations; mask++ {
 				session.enqueue(mask)
 			}
 		}
@@ -339,6 +339,10 @@ func ownedSelection(selection Selection) Selection {
 	if selection.Joint != nil {
 		copy := *selection.Joint
 		selection.Joint = &copy
+	}
+	if selection.Three != nil {
+		copy := *selection.Three
+		selection.Three = &copy
 	}
 	return selection
 }
