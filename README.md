@@ -18,10 +18,11 @@ one component of application RAM.
 | [Research and current results](https://github.com/kimjooyoon/gooo-neural-decision-experiments) | Training, parity, finite execution and resource measurements |
 | [Language direction, 한국어](https://github.com/kimjooyoon/meta-ontology-go/blob/dev/docs/language-direction.ko.md) | Intent, construction, provenance and next language work |
 
-The latest native study used **v0.2.14** in 96 Gooo generations and 192 compiled
-runs; all 2,304 supplied finite expectations passed. Model first-choice quality
-and Korean/English agreement remain separate development tasks.
-[Full measurement scope](https://github.com/kimjooyoon/gooo-neural-decision-experiments/blob/main/docs/compact-shared-native-results-20261003.md).
+The latest native study used **v0.2.15** in 400 Gooo generations and 800 compiled
+runs; all 9,600 supplied finite expectations and 192 representation pairs matched.
+Actual predictions totaled 816. The model-free arm completed deterministically.
+Model first-choice quality and Korean/English agreement remain separate tasks.
+[Full measurement scope](https://github.com/kimjooyoon/gooo-neural-decision-experiments/blob/main/docs/full-input-native-results-20261003.md).
 
 A later [input-sensitivity study](https://github.com/kimjooyoon/gooo-neural-decision-experiments/blob/main/docs/bilingual-wrapper-audit-results-20261003.md)
 keeps all six models fixed and varies authored instruction phrasing. Shared FP32
@@ -45,10 +46,12 @@ reproduces every intermediate value, probability and ranking across 18,432
 arm64/Linux input pairs, using unchanged weights and 147,456 actual calls.
 Both runtime implementations carry the arithmetic identity in model metadata
 and initial/feedback receipts. The SDK CI replays every explicit model against
-the frozen observations. Actual native V4 generation and execution are the next
-integration stage; the currently deployed compiler still uses SDK v0.2.14.
+the frozen observations. Native V4 generation and execution completed on compiler
+`e461c1d`; ordinary adoption is tracked in
+[PR 1158](https://github.com/kimjooyoon/meta-ontology-go/pull/1158) and dev/main promotion.
 
 The sections below document each API and the release in which it was introduced.
+Historical compiler-version statements describe that release's observation.
 Source extraction manifests retain the exact origin of the runtime files.
 
 ## Module and original operator interface
@@ -97,8 +100,8 @@ at source `59c8d342da4475506b90954469aa201f85cadeb3`. Local darwin/arm64 and
 each completed all 18,432 inputs with 36,864 actual predictions. Both matched
 the complete explicit-arithmetic reference, including intermediate bits and
 full rankings. These repeated numerical observations use frozen models and
-zero optimizer updates. The compiler currently depends on v0.2.14; native V4
-generation and execution remain the next integration step.
+zero optimizer updates. The native observation linked above then exercised this
+contract through generation, immediate build and two executions per request.
 
 The [registered integration protocol](https://github.com/kimjooyoon/gooo-neural-decision-experiments/blob/daecfea3583614e006c960de263448a1645a9190/docs/full-input-sdk-native-protocol-20261003.md)
 requires 36,864 actual SDK predictions over all 18,432 frozen inputs, comparing
@@ -437,7 +440,7 @@ without fabricated predictions. Original model, deadline, CI syntax and budgets
 remain validated. Removing common log factors can change floating-point near
 ties on other data; candidates still pass ordinary type checks and finite tests.
 Default `Reconsider`, disconnected ordering and unused receipt fields retain
-their existing behavior. Native compiler main continues using SDK 2.5.
+their existing behavior. At that release, compiler main used SDK v0.2.5.
 
 This 24-file extraction is pinned to research
 `e5d115f79944765d7a675f2f99664d556333ef2a`, manifest SHA256
