@@ -1,5 +1,33 @@
 # Gooo Decision Runtime
 
+This is the Go inference and program-assembly component of
+[Gooo](https://github.com/kimjooyoon/meta-ontology-go). The compiler provides a
+source-bound plan; this library ranks its permitted choices and continues finite
+search using observed failures. Think of it as the small assembly mechanism
+inside the larger language workshop.
+
+**Current release: v0.2.14-experimental.** The latest shared judge uses 2,072
+parameters across three binary decisions. Its compact FP32 weights occupy 8,288
+bytes; ternary files occupy 446 bytes and decode into 2,096 tensor bytes plus
+eight scale bytes. A caller owns a 3,200-byte workspace. These array sizes are
+one component of application RAM.
+
+| Read next | Contents |
+| --- | --- |
+| [Public model](https://huggingface.co/asketeddy/gooo-shared-judgment-tiny-v1) | FP32/PTQ/QAT artifacts, quality table and intended use |
+| [Research and current results](https://github.com/kimjooyoon/gooo-neural-decision-experiments) | Training, parity, finite execution and resource measurements |
+| [Language direction, 한국어](https://github.com/kimjooyoon/meta-ontology-go/blob/dev/docs/language-direction.ko.md) | Intent, construction, provenance and next language work |
+
+The latest native study used this release in 96 Gooo generations and 192 compiled
+runs; all 2,304 supplied finite expectations passed. Model first-choice quality
+and Korean/English agreement remain separate development tasks.
+[Full measurement scope](https://github.com/kimjooyoon/gooo-neural-decision-experiments/blob/main/docs/compact-shared-native-results-20261003.md).
+
+The sections below document each API and the release in which it was introduced.
+Source extraction manifests retain the exact origin of the runtime files.
+
+## Module and original operator interface
+
 This module is a small Go-only inference and typed body runtime. It exposes
 the operation classifier, a separate structural model contract, typed binary IR
 and bounded body/path assembly. Source/tests are pinned in
