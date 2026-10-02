@@ -18,7 +18,7 @@ one component of application RAM.
 | [Research and current results](https://github.com/kimjooyoon/gooo-neural-decision-experiments) | Training, parity, finite execution and resource measurements |
 | [Language direction, 한국어](https://github.com/kimjooyoon/meta-ontology-go/blob/dev/docs/language-direction.ko.md) | Intent, construction, provenance and next language work |
 
-The latest native study used this release in 96 Gooo generations and 192 compiled
+The latest native study used **v0.2.14** in 96 Gooo generations and 192 compiled
 runs; all 2,304 supplied finite expectations passed. Model first-choice quality
 and Korean/English agreement remain separate development tasks.
 [Full measurement scope](https://github.com/kimjooyoon/gooo-neural-decision-experiments/blob/main/docs/compact-shared-native-results-20261003.md).
@@ -37,7 +37,8 @@ paths, compared with 113/512 for the positioned control. It also exposed an
 operation-order feature alias and quantization regressions. Its V4 feature
 contract and the explicit arithmetic rule are now extracted into this SDK.
 Use the [pinned compact V3 bundle](https://huggingface.co/asketeddy/gooo-shared-judgment-tiny-v1/tree/985999a89caba6a31cc7147f66ba29a5ce76a1d9/research/compact-runtime-20261003)
-with this SDK. The [Linux follow-up](https://github.com/kimjooyoon/gooo-neural-decision-experiments/blob/main/docs/full-input-numerical-portability-followup-20261003.md)
+with the current compiler; this SDK also loads the explicit V3/V4 artifacts
+described below. The [Linux follow-up](https://github.com/kimjooyoon/gooo-neural-decision-experiments/blob/main/docs/full-input-numerical-portability-followup-20261003.md)
 records 272 differing complete candidate rankings. The subsequent
 [explicit arithmetic comparison](https://github.com/kimjooyoon/gooo-neural-decision-experiments/blob/main/docs/full-input-separate-arithmetic-results-20261003.md)
 reproduces every intermediate value, probability and ranking across 18,432
@@ -89,6 +90,15 @@ Source and tests are extracted from research revision
 `daecfea3583614e006c960de263448a1645a9190`: 63 pinned files, manifest SHA-256
 `608238066589da0cb6065a2f77b6254c8102891fb598dc2d41c64d5ee7d630f2`.
 The previous manifest is retained in `source-provenance-v0.2.14.json`.
+
+[v0.2.15 is published](https://github.com/kimjooyoon/gooo-decision-runtime/releases/tag/v0.2.15-experimental)
+at source `59c8d342da4475506b90954469aa201f85cadeb3`. Local darwin/arm64 and
+[Linux CI](https://github.com/kimjooyoon/gooo-decision-runtime/actions/runs/37070241916)
+each completed all 18,432 inputs with 36,864 actual predictions. Both matched
+the complete explicit-arithmetic reference, including intermediate bits and
+full rankings. These repeated numerical observations use frozen models and
+zero optimizer updates. The compiler currently depends on v0.2.14; native V4
+generation and execution remain the next integration step.
 
 The [registered integration protocol](https://github.com/kimjooyoon/gooo-neural-decision-experiments/blob/daecfea3583614e006c960de263448a1645a9190/docs/full-input-sdk-native-protocol-20261003.md)
 requires 36,864 actual SDK predictions over all 18,432 frozen inputs, comparing
