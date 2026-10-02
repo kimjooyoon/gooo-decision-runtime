@@ -5,6 +5,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"io"
 	"os"
 	"time"
 
@@ -13,15 +14,15 @@ import (
 	"github.com/kimjooyoon/gooo-decision-runtime/pathplan"
 )
 
-func run() error {
+func run(output io.Writer) error {
 	p, err := pathplan.Prepare(pathplan.Plan{Schema: pathplan.Schema,
 		Base: bodyplan.Plan{Schema: bodyplan.Schema, ID: "order-probe", Name: "Adjust", ResultType: decision.TypeInt,
 			Expressions: []bodyplan.Expr{{Kind: "input", Name: "input"}, {Kind: "int", Int: 2},
 				{Kind: "binary", Operation: "subtract", Left: 0, Right: 1}},
 			Statements: []bodyplan.Stmt{{Kind: "return", Expr: 2}}, Root: []int{0}},
 		Decisions: []pathplan.Choice{{ID: "order", Kind: pathplan.OperandOrder, Target: 2,
-			Intent: "Subtract the input from two. / 2에서 입력을 뺀다.", Fallback: "forward",
-			Options: []pathplan.Option{{Label: "forward"}, {Label: "reverse", Reverse: true}}}},
+			Intent: "Subtract the input from two. / 2에서 입력을 뺀다.", Fallback: "layout_forward",
+			Options: []pathplan.Option{{Label: "layout_forward"}, {Label: "layout_reverse", Reverse: true}}}},
 	})
 	if err != nil {
 		return err
@@ -48,11 +49,11 @@ func run() error {
 	if len(after.SurvivingMasks) != 1 || after.SurvivingMasks[0] != 1 {
 		return fmt.Errorf("order remains unresolved")
 	}
-	body, err := p.Compile(map[string]string{"order": "reverse"})
+	body, err := p.Compile(map[string]string{"order": "layout_reverse"})
 	if err != nil {
 		return err
 	}
-	return json.NewEncoder(os.Stdout).Encode(struct {
+	return json.NewEncoder(output).Encode(struct {
 		Before      pathplan.ProbeRanking `json:"before"`
 		Observation pathplan.TestCase     `json:"oracle_observation"`
 		After       pathplan.ProbeRanking `json:"after"`
@@ -61,7 +62,7 @@ func run() error {
 }
 
 func main() {
-	if err := run(); err != nil {
+	if err := run(os.Stdout); err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
 	}
