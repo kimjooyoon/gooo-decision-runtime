@@ -50,7 +50,28 @@ and initial/feedback receipts. The SDK CI replays every explicit model against
 the frozen observations. Native V4 generation and execution completed on compiler
 `e461c1d`. The integration merged to dev as `75b2b7d` in
 [PR 1158](https://github.com/kimjooyoon/meta-ontology-go/pull/1158); main promotion
-is tracked in [PR 1159](https://github.com/kimjooyoon/meta-ontology-go/pull/1159).
+completed as `fc0e99c4` in [PR 1159](https://github.com/kimjooyoon/meta-ontology-go/pull/1159).
+
+### Next useful observation (development API)
+
+`prepared.RankProbes(ctx, cases, inputs, maxCandidates)` compares declared
+integer bodies that match the supplied cases. It proposes the input separating
+the most surviving candidate pairs, with deterministic tie handling. An existing
+test oracle supplies that input's expected value; candidate outputs remain
+observations. See [the executable example](examples/probe-ranking/main.go):
+
+```sh
+go run ./examples/probe-ranking
+```
+
+The example resolves `input-2` versus `2-input` using one new oracle observation
+after both pass at input 2. Bounds: 64 candidates, 128 cases, 32 probes; the fixed
+output matrix is 16 KiB. Model calls and training updates are zero. Partial space,
+unresolved agreement, cancellation and source/case/probe identities are explicit.
+This additive API is on the development branch; the released v0.2.15 and current
+compiler CLI retain their documented interfaces. It follows the practical
+information-value question in [LAVOIR](https://arxiv.org/abs/2609.30706), using a
+finite output-partition count as its score.
 
 The sections below document each API and the release in which it was introduced.
 Historical compiler-version statements describe that release's observation.
