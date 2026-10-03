@@ -2,3 +2,4 @@
 coverage.out
 *.bin
 /.replay-reference/
+/.order-reference/
