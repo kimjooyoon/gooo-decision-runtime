@@ -69,9 +69,50 @@ after both pass at input 2. Bounds: 64 candidates, 128 cases, 32 probes; the fix
 output matrix is 16 KiB. Model calls and training updates are zero. Partial space,
 unresolved agreement, cancellation and source/case/probe identities are explicit.
 This additive API is introduced in v0.2.16; the current compiler CLI integration
-is tracked separately. It follows the practical
+is tracked in [compiler PR 1160](https://github.com/kimjooyoon/meta-ontology-go/pull/1160).
+The [paired native pilot](https://github.com/kimjooyoon/gooo-neural-decision-experiments/tree/main/publication/path-observation-loop-20261003)
+retains its exact compiler and model versions. The API follows the practical
 information-value question in [LAVOIR](https://arxiv.org/abs/2609.30706), using a
 finite output-partition count as its score.
+
+### Reusing observations (development API)
+
+`prepared.StartProbeSession(ctx, cases, inputs, maxCandidates)` performs that
+initial ranking and retains its outputs. `session.AppendObservation(ctx, testCase)`
+then filters the already observed rows using an expected value supplied by an
+existing oracle. It does zero new compilation, evaluation or model calls.
+`session.Snapshot(ctx)` returns an owned copy of the current evidence.
+
+```go
+session, first, err := prepared.StartProbeSession(ctx, cases, inputs, 64)
+if err != nil { return err }
+// Obtain expected from the separately declared specification.
+next, err := session.AppendObservation(ctx, pathplan.TestCase{
+    Input: chosenInput, Expected: expected,
+})
+if err != nil { return err }
+fmt.Println(first.TotalEvaluationAttempts, next.Ranking.SurvivingMasks)
+```
+
+The input must have appeared in the initial probes and must not already belong
+to the finite suite. Initial cases remain unchanged. A partial candidate budget
+stays partial after filtering. An oracle value can leave no surviving candidate;
+that remains visible. The session owns fixed arrays for 64×32 output values,
+128 cases, 32 inputs and 64 masks. Source plans and returned receipts are separate
+memory costs. Methods are serial per session; independent sessions may share a
+prepared plan. Invalid additions and cancellation before commit keep the prior
+revision intact.
+
+Each snapshot records its original ranking hash, current case hash, revision,
+cached comparisons, reused output values and cumulative evaluation count.
+`ranking.evaluation_attempts` counts new evaluations in that operation, which is
+zero on append/snapshot. The first operation records the initial actual work.
+No serialized receipt can be imported as a trusted session.
+
+The [small local kernel comparison](benchmarks/probe-session-20261003.md) compares
+fresh ranking with cached continuation. This development API is not in the
+v0.2.16 tag or the compiler's first observation-loop integration. Full codegen
+latency and skipping unnecessary model ranking require separate integration.
 
 The sections below document each API and the release in which it was introduced.
 Historical compiler-version statements describe that release's observation.
