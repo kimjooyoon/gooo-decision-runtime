@@ -6,7 +6,7 @@ source-bound plan; this library ranks its permitted choices and continues finite
 search using observed failures. Think of it as the small assembly mechanism
 inside the larger language workshop.
 
-**API version: v0.2.16-experimental.** The latest shared judge uses 2,072
+**API version: v0.2.17-experimental.** The latest shared judge uses 2,072
 parameters across three binary decisions. Its compact FP32 weights occupy 8,288
 bytes; ternary files occupy 446 bytes and decode into 2,096 tensor bytes plus
 eight scale bytes. A caller owns a 3,200-byte workspace. These array sizes are
@@ -75,7 +75,7 @@ retains its exact compiler and model versions. The API follows the practical
 information-value question in [LAVOIR](https://arxiv.org/abs/2609.30706), using a
 finite output-partition count as its score.
 
-### Reusing observations (development API)
+### Reusing observations (v0.2.17)
 
 `prepared.StartProbeSession(ctx, cases, inputs, maxCandidates)` performs that
 initial ranking and retains its outputs. `session.AppendObservation(ctx, testCase)`
@@ -110,8 +110,8 @@ zero on append/snapshot. The first operation records the initial actual work.
 No serialized receipt can be imported as a trusted session.
 
 The [small local kernel comparison](benchmarks/probe-session-20261003.md) compares
-fresh ranking with cached continuation. This development API is not in the
-v0.2.16 tag or the compiler's first observation-loop integration. Full codegen
+fresh ranking with cached continuation. This additive API is introduced in
+v0.2.17. The compiler's first observation-loop integration uses v0.2.16. Full codegen
 latency and skipping unnecessary model ranking require separate integration.
 
 The sections below document each API and the release in which it was introduced.

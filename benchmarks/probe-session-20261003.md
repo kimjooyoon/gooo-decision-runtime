@@ -35,7 +35,7 @@ directly into the complete session made its output matrix escape into a heap
 allocation on every copied continuation. Keeping those slices separate reduces
 that allocation while retaining the fixed matrix and transactional update.
 
-This API is a development change. Compiler integration must continue to bind
+This API is introduced in v0.2.17. Compiler integration must continue to bind
 the original Gooo source, declared oracle and append-only observations, then
 perform its native emission/replay checks. Reusing finite outputs does not prove
 behavior beyond those inputs.
