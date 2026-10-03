@@ -71,3 +71,14 @@ jobs:
           name: sdk-whole-candidate-replay
           path: ${{ runner.temp }}/order-sdk
           if-no-files-found: error
+      - name: Replay prepared candidates against every original search record
+        run: |
+          go build -trimpath -o "$RUNNER_TEMP/order-prepared-replay" ./examples/order-prepared
+          "$RUNNER_TEMP/order-prepared-replay" --input "$RUNNER_TEMP/order-initial" \
+            --output "$RUNNER_TEMP/order-prepared" --repeats 1
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: sdk-prepared-candidate-replay
+          path: ${{ runner.temp }}/order-prepared
+          if-no-files-found: error
