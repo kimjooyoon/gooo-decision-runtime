@@ -6,7 +6,7 @@ source-bound plan; this library ranks its permitted choices and continues finite
 search using observed failures. Think of it as the small assembly mechanism
 inside the larger language workshop.
 
-**API version: v0.2.17-experimental.** The latest shared judge uses 2,072
+**API version: v0.2.18-experimental.** The latest shared judge uses 2,072
 parameters across three binary decisions. Its compact FP32 weights occupy 8,288
 bytes; ternary files occupy 446 bytes and decode into 2,096 tensor bytes plus
 eight scale bytes. A caller owns a 3,200-byte workspace. These array sizes are
@@ -51,6 +51,26 @@ the frozen observations. Native V4 generation and execution completed on compile
 `e461c1d`. The integration merged to dev as `75b2b7d` in
 [PR 1158](https://github.com/kimjooyoon/meta-ontology-go/pull/1158); main promotion
 completed as `fc0e99c4` in [PR 1159](https://github.com/kimjooyoon/meta-ontology-go/pull/1159).
+
+### Constant bodies with a declared input (v0.2.18)
+
+A typed body still declares exactly one Integer input named `input`. Its body
+may leave that parameter unread, as in `func Constant(input int64) int64` returning
+a literal or a constant expression. The input node belongs to the function
+signature; this release permits it to be absent from the expression dependencies.
+Other unused expressions, missing/duplicate input nodes, unreachable statements,
+scope errors and type errors remain rejected. The existing plan schemas and
+already accepted bodies keep their representation.
+
+This allows source-derived Gooo recipes for constant results to use ordinary
+typed search and observation. Model inference and training are optional. Tests
+cover Integer and Boolean constants, integer endpoints, ordinary structural
+selection and rejection of unrelated unused nodes.
+
+The [research change](https://github.com/kimjooyoon/gooo-neural-decision-experiments/commit/5cda16c301b32b21c0d87093aff03c37c7471fd7)
+is extracted with its regression test and exact byte digests in the current
+64-file manifest. The preceding extraction is retained in
+[source-provenance-v0.2.17.json](source-provenance-v0.2.17.json).
 
 ### Next useful observation (v0.2.16)
 

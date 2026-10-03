@@ -12,10 +12,10 @@
     {
       "origin_path": "internal/bodyplan/bodyplan.go",
       "copied_path": "bodyplan/bodyplan.go",
-      "origin_sha256": "562374bc20db45063db1b934564aedfb234c3b819617eb999948ca822385be5e",
-      "sha256": "2392d116147ad978c455c0029b0ce5bb5664b6012314b8c654c72e30a8e1f80b",
-      "origin_bytes": 41423,
-      "bytes": 41394,
+      "origin_sha256": "6ebd90bde6e97ffc93dede1ae741a262cb56408194ca3696e9ced530dd109a07",
+      "sha256": "ab45f997a0dedee913526b9c0e5b9c1258c25dd1c2af47c6e8791e8985c66fa5",
+      "origin_bytes": 41230,
+      "bytes": 41201,
       "transformation": "fixed_module_import_relocation_and_gofmt"
     },
     {
@@ -25,15 +25,6 @@
       "sha256": "5a649c14f3a56fc860078935bde53daf821690a8c4309c5ed5574f7554dbaf44",
       "origin_bytes": 23648,
       "bytes": 23619,
-      "transformation": "fixed_module_import_relocation_and_gofmt"
-    },
-    {
-      "origin_path": "internal/bodyplan/constant_input_test.go",
-      "copied_path": "bodyplan/constant_input_test.go",
-      "origin_sha256": "e84a1e494373f48dd9794ae521388105a8e28252c45d03218371bf8b82ac3016",
-      "sha256": "57b21b03b272841e0e789bf983a0a4a6c1f454fe63aef079f3d1d65d886fbed1",
-      "origin_bytes": 2291,
-      "bytes": 2262,
       "transformation": "fixed_module_import_relocation_and_gofmt"
     },
     {
@@ -579,7 +570,7 @@
   ],
   "module": "github.com/kimjooyoon/gooo-decision-runtime",
   "origin_repository": "github.com/kimjooyoon/gooo-neural-decision-experiments",
-  "origin_revision": "5cda16c301b32b21c0d87093aff03c37c7471fd7",
+  "origin_revision": "daecfea3583614e006c960de263448a1645a9190",
   "schema": "gooo/decision-runtime-source-provenance/v2",
   "scope": "Fixed source and test extraction; import relocation is recorded with separate origin and copied byte digests. No weights or raw experiment directories are copied."
 }

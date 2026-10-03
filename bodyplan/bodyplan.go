@@ -352,7 +352,9 @@ func analyze(plan Plan) (*validatedPlan, error) {
 		return nil, errors.New("every body path must return a value")
 	}
 	for index, used := range validated.usedExpr {
-		if !used {
+		// The single Integer input declares the function parameter. Constant
+		// bodies may leave that parameter unread; other nodes must be reachable.
+		if !used && plan.Expressions[index].Kind != ExprInput {
 			return nil, fmt.Errorf("expression %d is unused", index)
 		}
 	}
