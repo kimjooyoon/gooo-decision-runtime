@@ -61,6 +61,9 @@ type residency struct {
 }
 
 func resident(ctx context.Context, model *orderjudge.Model, plans []pathplan.Plan, arm string, trial int) residency {
+	// Drain prior-cycle pools before the baseline. The first collector version
+	// measured after large JSON serialization and mixed pool release into residency.
+	runtime.GC()
 	runtime.GC()
 	var before, after runtime.MemStats
 	runtime.ReadMemStats(&before)
@@ -237,8 +240,6 @@ func main() {
 		requests++
 	}
 	require(requests == 64 && searches == 64*2*2*3*(*repeats) && predictions == searches/2, "actual counts differ")
-	save(filepath.Join(*out, "records.json"), records)
-	save(filepath.Join(*out, "preparations.json"), preparations)
 	var residencyRecords []residency
 	for trial := 0; trial < 3; trial++ {
 		residencyRecords = append(residencyRecords, resident(ctx, nil, plans, "deterministic", trial), resident(ctx, model, plans, "model", trial))
@@ -246,12 +247,14 @@ func main() {
 	runtime.KeepAlive(records)
 	runtime.KeepAlive(preparations)
 	save(filepath.Join(*out, "residency.json"), residencyRecords)
+	save(filepath.Join(*out, "records.json"), records)
+	save(filepath.Join(*out, "preparations.json"), preparations)
 	info, ok := debug.ReadBuildInfo()
 	require(ok, "build metadata required")
 	save(filepath.Join(*out, "manifest.json"), map[string]any{
 		"schema": "gooo/order-prepared-replay/v1", "requests": requests, "repeats": *repeats, "searches": searches, "actual_model_predictions": predictions,
 		"training_updates": 0, "native_runs": 0, "dataset_sha256": metadata.DatasetSHA, "weights_sha256": digest(weights),
-		"resident_memory_scope": "Three post-GC live-heap observations per arm, 64 prepared requests plus one owned model; includes private program objects. Inputs and replay records kept alive across each observation. Process heap deltas may include runtime noise.",
+		"resident_memory_scope": "Three post-GC live-heap observations per arm, before result serialization with two collections before each baseline. 64 prepared requests plus one owned model, including private program objects. Inputs and replay records kept alive across each observation. Process heap deltas may include runtime noise.",
 		"go_version":            info.GoVersion, "build_settings": info.Settings, "goos": runtime.GOOS, "goarch": runtime.GOARCH,
 		"semantic_comparison": "Complete search, score/ranking, descriptors, aliases and selected Gooo/Go; only Ranking.predict_ns removed.",
 		"scope":               "Paired SDK interpreter measurements on already observed development requests. Per-operation process allocation deltas; counter reads and serialization outside wall intervals. No compiler CLI or native timing."})
