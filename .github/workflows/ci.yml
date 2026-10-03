@@ -47,3 +47,27 @@ jobs:
           name: sdk-full-input-replay
           path: ${{ runner.temp }}/sdk-full-input-replay.json
           if-no-files-found: error
+      - uses: actions/checkout@v7
+        with:
+          repository: kimjooyoon/gooo-neural-decision-experiments
+          ref: 8a41bb0f825dfd3f950101b33491581492c740f6
+          path: .order-reference
+          persist-credentials: false
+          sparse-checkout: publication/order-judge-initial-20261003
+      - name: Replay whole-candidate ranking and every finite search result
+        run: |
+          root=.order-reference/publication/order-judge-initial-20261003
+          (cd "$root" && sha256sum -c SHA256SUMS)
+          unzip -q "$root/initial.zip" -d "$RUNNER_TEMP/order-initial"
+          unzip -q "$root/runtime.zip" -d "$RUNNER_TEMP/order-original"
+          go build -trimpath -o "$RUNNER_TEMP/order-sdk-replay" ./examples/order-replay
+          "$RUNNER_TEMP/order-sdk-replay" --input "$RUNNER_TEMP/order-initial" --output "$RUNNER_TEMP/order-sdk"
+          jq -S 'map(del(.SearchNS) | .Ranking |= del(.predict_ns))' "$RUNNER_TEMP/order-original/records.json" > "$RUNNER_TEMP/order-original.json"
+          jq -S 'map(del(.SearchNS) | .Ranking |= del(.predict_ns))' "$RUNNER_TEMP/order-sdk/records.json" > "$RUNNER_TEMP/order-sdk.json"
+          cmp "$RUNNER_TEMP/order-original.json" "$RUNNER_TEMP/order-sdk.json"
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: sdk-whole-candidate-replay
+          path: ${{ runner.temp }}/order-sdk
+          if-no-files-found: error

@@ -6,7 +6,7 @@ source-bound plan; this library ranks its permitted choices and continues finite
 search using observed failures. Think of it as the small assembly mechanism
 inside the larger language workshop.
 
-**API version: v0.2.18-experimental.** The latest shared judge uses 2,072
+**API version: v0.2.19-experimental.** The shared judge uses 2,072
 parameters across three binary decisions. Its compact FP32 weights occupy 8,288
 bytes; ternary files occupy 446 bytes and decode into 2,096 tensor bytes plus
 eight scale bytes. A caller owns a 3,200-byte workspace. These array sizes are
@@ -51,6 +51,48 @@ the frozen observations. Native V4 generation and execution completed on compile
 `e461c1d`. The integration merged to dev as `75b2b7d` in
 [PR 1158](https://github.com/kimjooyoon/meta-ontology-go/pull/1158); main promotion
 completed as `fc0e99c4` in [PR 1159](https://github.com/kimjooyoon/meta-ontology-go/pull/1159).
+
+### Whole-candidate source-conditioned judge (v0.2.19)
+
+The additive `orderfacts` and `orderjudge` packages support a separately trained
+[16 KiB model](https://huggingface.co/asketeddy/gooo-order-judge-tiny-v1). It scores
+all eight complete candidate bodies against the original Korean/English intent.
+The admitted shape is `let v=input; two integer updates; return v`, with one root
+order and two operand choices. Constants in the learned feature projection are
+bounded to -16..16. Existing V3/V4 APIs and models retain their contracts.
+
+```go
+model, err := orderjudge.Load(metadataBytes, weightBytes)
+if err != nil { return err }
+search, body, ranking, err := orderjudge.Search(ctx, plan, model, cases, 8, true)
+```
+
+`ctx` must have a deadline. The caller supplies a validated source-bound plan;
+this library independently checks its typed candidates. One whole-candidate
+prediction precedes finite candidate tests. The final Boolean flag enables reuse
+of already evaluated equal 48-byte descriptors. The budget counts actual body
+evaluations; the ranking receipt records skipped masks and representatives.
+A nil model keeps deterministic fallback-distance order and makes zero predictions.
+Rank probabilities are uncalibrated, and results describe the finite input cases.
+
+This package owns 4,096 FP32 weights. A caller's prediction workspace is 128 bytes;
+features, typed programs and receipts use additional memory. Search currently
+prepares all candidates each call. The optional Go `Fit` API implements the fixed
+bounded experiment; runtime callers normally load the public artifact.
+
+The [source manifest](source-provenance-order-judge-v1.json) binds the additive
+packages and [complete replay example](examples/order-replay/main.go) to their
+research origin. Run the example against decoded `initial.zip` from the
+[original evidence](https://github.com/kimjooyoon/gooo-neural-decision-experiments/tree/8a41bb0f825dfd3f950101b33491581492c740f6/publication/order-judge-initial-20261003):
+
+```sh
+go run ./examples/order-replay --input /tmp/gooo-order-initial --output /tmp/gooo-order-sdk
+```
+
+It makes 480 real predictions, executes 960 searches and checks 320 baseline
+searches, plus every frozen feature and candidate result. Outputs must be fresh.
+This SDK example uses the typed interpreter; compiler native integration is a
+separate stage.
 
 ### Constant bodies with a declared input (v0.2.18)
 

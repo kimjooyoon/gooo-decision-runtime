@@ -1,0 +1,93 @@
+{
+  "files": [
+    {
+      "origin_path": "internal/orderfacts/candidates.go",
+      "copied_path": "orderfacts/candidates.go",
+      "origin_sha256": "3f26e79085ee2d130d17866f23af5145cf7d4b0106e5af51c5d95238f722fe5e",
+      "sha256": "bdb2b5591123d132d073bc772456fbdac715b9d1c4fc38e8569686eb2cb1bca0",
+      "bytes": 1940
+    },
+    {
+      "origin_path": "internal/orderfacts/candidates_test.go",
+      "copied_path": "orderfacts/candidates_test.go",
+      "origin_sha256": "d9635669f1a23c611d729d2c7648bb00766c5e977a8bc4f3e9d6cce5c42ad938",
+      "sha256": "39db4405069731b986368d108d4c20e844c9a106ba55492beed0fc16e77355df",
+      "bytes": 1996
+    },
+    {
+      "origin_path": "internal/orderfacts/facts.go",
+      "copied_path": "orderfacts/facts.go",
+      "origin_sha256": "191465895cfd3c7e42fff3e7bbe6c6b7474a9a0270d4e2592e3e2b733d5feb90",
+      "sha256": "322b2b54fa33ebf4ef76b4abf4ab2e7e80f1e6097fcdde6be8b759937f1280cb",
+      "bytes": 4398
+    },
+    {
+      "origin_path": "internal/orderfacts/facts_test.go",
+      "copied_path": "orderfacts/facts_test.go",
+      "origin_sha256": "5f91b8f9151f6441710aacf975d1bc039d554e5d17a95d1c641261bec9028e9e",
+      "sha256": "6fcf859c618c00027ce217ab197958b4da994b104ff81b658ea879e7b2765241",
+      "bytes": 4984
+    },
+    {
+      "origin_path": "internal/orderjudge/artifact.go",
+      "copied_path": "orderjudge/artifact.go",
+      "origin_sha256": "9f94114b11be0b4430bc53360977fed257a1cc8859138a981eccee8dee948b5e",
+      "sha256": "5fe6a1dfde86832a07bf14bd59dc3cc155a54c760d0686b2daace948d8315719",
+      "bytes": 2188
+    },
+    {
+      "origin_path": "internal/orderjudge/features.go",
+      "copied_path": "orderjudge/features.go",
+      "origin_sha256": "1032a39c6da5d778e8a81e83b1ebde43ca5f898aaf55661f67884fd9fb524f6b",
+      "sha256": "17cfccd8cb31f44290d5d53aaf62c5a57f5119b6dbf32d2b41fa83f0825a1bd6",
+      "bytes": 2974
+    },
+    {
+      "origin_path": "internal/orderjudge/fit.go",
+      "copied_path": "orderjudge/fit.go",
+      "origin_sha256": "038e699f69d48e2f6451f8ef122dd25f2e2f63b836458d71d940ee78c6fbd92d",
+      "sha256": "038e699f69d48e2f6451f8ef122dd25f2e2f63b836458d71d940ee78c6fbd92d",
+      "bytes": 3215
+    },
+    {
+      "origin_path": "internal/orderjudge/model.go",
+      "copied_path": "orderjudge/model.go",
+      "origin_sha256": "755b048923520d2321eb01a0c158c9f275726508dddaa518af9bcbd6adecce80",
+      "sha256": "755b048923520d2321eb01a0c158c9f275726508dddaa518af9bcbd6adecce80",
+      "bytes": 2767
+    },
+    {
+      "origin_path": "internal/orderjudge/model_test.go",
+      "copied_path": "orderjudge/model_test.go",
+      "origin_sha256": "02f064af4b43a76134288e459b863b9b57db6c510d01da3f0d33d1e0492eaf3b",
+      "sha256": "9806bd82099b7f7f09c8afd5ce19616453799f19823b303d3009e7a75745a28c",
+      "bytes": 3743
+    },
+    {
+      "origin_path": "internal/orderjudge/search.go",
+      "copied_path": "orderjudge/search.go",
+      "origin_sha256": "13c35a945d4aba955277d15f7848244f2d7c83b0974f783994071f8d024a04d4",
+      "sha256": "9188e96f73d38a2f77ba9c66ecfba76ff8ba7f39a34bcfe392f0d84af5b39f84",
+      "bytes": 6817
+    },
+    {
+      "origin_path": "internal/orderjudge/search_test.go",
+      "copied_path": "orderjudge/search_test.go",
+      "origin_sha256": "72878c3182e7ce4d24003212939a7b9e5406788fc0a7b497afe8991252552dbd",
+      "sha256": "a3ce451fad9024535e91c5ae46a7fba4ffac5c3ce672b6e4004e410909824f07",
+      "bytes": 4482
+    },
+    {
+      "origin_path": "cmd/order-judge-replay/main.go",
+      "copied_path": "examples/order-replay/main.go",
+      "origin_sha256": "50dcadbb523fe6c408d002bf5941637ed555f37438c9aeef5ad9decd30ee09f3",
+      "sha256": "156f4f92b92b73cb9c851194ab0c2afede10772e050ba2bcf561b631add3256b",
+      "bytes": 8659
+    }
+  ],
+  "origin_repository": "github.com/kimjooyoon/gooo-neural-decision-experiments",
+  "origin_revision": "ada8a3fd728a9288b5d7060982bcb3801e8bccfa",
+  "schema": "gooo/order-judge-sdk-source/v1",
+  "scope": "Additive orderfacts/orderjudge packages, unit tests and complete frozen-evidence replay. Existing SDK sources, manifests and models are unchanged.",
+  "transformation": "fixed_module_import_relocation_and_gofmt"
+}
