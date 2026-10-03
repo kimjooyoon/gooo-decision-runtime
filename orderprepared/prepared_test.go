@@ -107,6 +107,11 @@ func TestOwnershipDifferentCasesAndFourConcurrentCallers(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
+	identity := runtime.Identity()
+	if identity.MetadataSHA256 != want.Selection.MetadataSHA256 || identity.WeightsSHA256 != want.Selection.WeightsSHA256 ||
+		identity.TensorBytes != 16384 || (orderprepared.Runtime{}).Identity() != (orderprepared.Identity{}) {
+		t.Fatal("captured model identity differs", identity)
+	}
 	*m = orderjudge.Model{}
 	runtime = orderprepared.Runtime{}
 	plan.Base.Expressions[2].Int = 999

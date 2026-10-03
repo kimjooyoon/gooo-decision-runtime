@@ -25,6 +25,21 @@ type Runtime struct {
 	metadataSHA, weightsSHA string
 }
 
+// Identity reports the captured canonical artifact without serializing again.
+// Its strings are values; it exposes no mutable weights or runtime state.
+type Identity struct {
+	MetadataSHA256 string `json:"metadata_sha256,omitempty"`
+	WeightsSHA256  string `json:"weights_sha256,omitempty"`
+	TensorBytes    int    `json:"tensor_bytes"`
+}
+
+func (runtime Runtime) Identity() Identity {
+	if runtime.model == nil {
+		return Identity{}
+	}
+	return Identity{runtime.metadataSHA, runtime.weightsSHA, orderjudge.ParameterCount * 4}
+}
+
 func NewRuntime(model *orderjudge.Model) (Runtime, error) {
 	if model == nil {
 		return Runtime{}, nil
