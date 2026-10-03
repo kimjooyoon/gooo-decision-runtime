@@ -1,0 +1,12 @@
+goos: darwin
+goarch: arm64
+pkg: github.com/kimjooyoon/gooo-decision-runtime/pathplan
+cpu: Apple M4
+BenchmarkProbeObservationContinuation/fresh_rank-10         	    1000	     72304 ns/op	   78724 B/op	    1441 allocs/op
+BenchmarkProbeObservationContinuation/fresh_rank-10         	    1000	     59001 ns/op	   78688 B/op	    1441 allocs/op
+BenchmarkProbeObservationContinuation/fresh_rank-10         	    1000	     58750 ns/op	   78724 B/op	    1441 allocs/op
+BenchmarkProbeObservationContinuation/cached_append-10      	    1000	      1245 ns/op	     993 B/op	      20 allocs/op
+BenchmarkProbeObservationContinuation/cached_append-10      	    1000	      1215 ns/op	     993 B/op	      20 allocs/op
+BenchmarkProbeObservationContinuation/cached_append-10      	    1000	      1209 ns/op	     993 B/op	      20 allocs/op
+PASS
+ok  	github.com/kimjooyoon/gooo-decision-runtime/pathplan	0.655s
