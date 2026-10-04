@@ -16,6 +16,8 @@ import (
 	"strings"
 	"unicode/utf8"
 	"unsafe"
+
+	"github.com/kimjooyoon/gooo-decision-runtime/internal/modelfile"
 )
 
 const (
@@ -292,7 +294,7 @@ func loadContract(metadataPath, schema string, labels [LabelCount]string) (*Mode
 	if metadataInfo.Size() <= 0 || metadataInfo.Size() > 64*1024 {
 		return nil, errors.New("model metadata file size is outside the allowed range")
 	}
-	metadataRaw, err := os.ReadFile(metadataAbs)
+	metadataRaw, err := modelfile.ReadChecked(metadataAbs, 64*1024, metadataInfo)
 	if err != nil {
 		return nil, fmt.Errorf("read model metadata: %w", err)
 	}
@@ -329,7 +331,7 @@ func loadContract(metadataPath, schema string, labels [LabelCount]string) (*Mode
 	if weightsInfo.Size() <= 0 || weightsInfo.Size() > 1024*1024 {
 		return nil, errors.New("weights file size is outside the allowed range")
 	}
-	weightsRaw, err := os.ReadFile(weightsPath)
+	weightsRaw, err := modelfile.ReadChecked(weightsPath, 1024*1024, weightsInfo)
 	if err != nil {
 		return nil, fmt.Errorf("read weights file: %w", err)
 	}
@@ -547,7 +549,7 @@ func decodeTernaryTensor(raw []byte, dst []int8) error {
 			return fmt.Errorf("packed base-3 byte %d exceeds five-trit range", byteIndex)
 		}
 		value := int(packed)
-		for tritIndex := 0; tritIndex < 5; tritIndex++ {
+		for tritIndex := range 5 {
 			trit := value % 3
 			value /= 3
 			if at < len(dst) {
@@ -592,17 +594,17 @@ func (m *Model) PredictInto(text string, workspace *Workspace, output *Predictio
 	if err := m.FeaturesInto(text, &workspace.features); err != nil {
 		return err
 	}
-	for i := 0; i < HiddenDim; i++ {
+	for i := range HiddenDim {
 		var bias, dot float32
 		start := i * FeatureDim
 		if len(m.floatWeights) != 0 {
 			bias = m.floatWeights[FeatureDim*HiddenDim+i]
-			for j := 0; j < FeatureDim; j++ {
+			for j := range FeatureDim {
 				dot += m.floatWeights[start+j] * workspace.features[j]
 			}
 		} else {
 			bias = m.biases[i]
-			for j := 0; j < FeatureDim; j++ {
+			for j := range FeatureDim {
 				dot += float32(m.ternaryWeights[start+j]) * workspace.features[j]
 			}
 			dot *= m.w1Scale
@@ -616,20 +618,20 @@ func (m *Model) PredictInto(text string, workspace *Workspace, output *Predictio
 		}
 		workspace.hidden[i] = activation
 	}
-	for i := 0; i < LabelCount; i++ {
+	for i := range LabelCount {
 		var logit float32
 		if len(m.floatWeights) != 0 {
 			biasOffset := FeatureDim*HiddenDim + HiddenDim + HiddenDim*LabelCount + i
 			matrixOffset := FeatureDim*HiddenDim + HiddenDim + i*HiddenDim
 			var dot float32
-			for j := 0; j < HiddenDim; j++ {
+			for j := range HiddenDim {
 				dot += m.floatWeights[matrixOffset+j] * workspace.hidden[j]
 			}
 			logit = m.floatWeights[biasOffset] + dot
 		} else {
 			matrixOffset := HiddenDim*FeatureDim + i*HiddenDim
 			var dot float32
-			for j := 0; j < HiddenDim; j++ {
+			for j := range HiddenDim {
 				dot += float32(m.ternaryWeights[matrixOffset+j]) * workspace.hidden[j]
 			}
 			logit = m.biases[HiddenDim+i] + dot*m.w2Scale
@@ -790,7 +792,7 @@ func buildFeatures(text string, features *[FeatureDim]float32) {
 
 func hashNgram(text string, start, count int) int {
 	hash := uint32(2166136261)
-	for i := 0; i < count; i++ {
+	for i := range count {
 		value := text[start+i]
 		if value >= 'A' && value <= 'Z' {
 			value += 'a' - 'A'

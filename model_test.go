@@ -465,7 +465,7 @@ func writeFixtureModel(t testingTB, variant string, threshold float64) (string, 
 		if encoding == "ternary_base3_5" {
 			tensor.Scale = 0.25
 			n := (segment.count + 4) / 5
-			for i := 0; i < n; i++ {
+			for range n {
 				packed = append(packed, 121) // five zero weights, including required padding trits
 			}
 		} else {
