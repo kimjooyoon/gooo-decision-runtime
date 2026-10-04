@@ -32,7 +32,21 @@ every full-budget native graph. These are separate measurements.
 with one 256/8/2 judge shared across three fields. It returns eight composed
 path scores in one call. The FP32 weight file is 8,288 bytes; PTQ/QAT ternary
 files are 446 bytes. This release supplies the execution contract and regression
-fixtures; trained model quality requires its own measured experiment.
+fixtures. The [frozen field study](https://github.com/kimjooyoon/gooo-neural-decision-experiments/tree/172d366a45cbf591273823832a367ce3c66b8cdb/publication/record-shared-field-20261005)
+now measures independently trained weights under this contract. The same3,840
+MPS updates produce first-mask agreement of1,152/1,536 FP32 and1,344/1,536 QAT
+on the registered source-body axis; different bodies with new wording reach
+120/512 and102/512. Across24 native source views, budget-one active fields reach
+126/144, while the eight new-wording views regress from the earlier model's32/48
+to30/48. These are three authored field roles and eight authored body families;
+all eight required masks occur in training. [Public weights and finite observations](https://huggingface.co/asketeddy/gooo-record-shared-field-tiny-v1).
+
+The fixed prepared-array prediction measured3.04µs FP32/3.13µs QAT with zero
+warmed heap allocations. Source parsing and full generation/build/execution
+have separate costs. Model probabilities order attempts; supplied finite cases
+measure matching fields and remaining work. Omitting a model keeps the compiler's
+deterministic order. The immutable v0.2.23 tag retains its original release source;
+this main documentation links the later measured study.
 
 ```go
 model, err := jointdecision.LoadRecordSharedThree("fp32/model.json")
