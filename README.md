@@ -6,11 +6,22 @@ source-bound plan; this library ranks its permitted choices and continues finite
 search using observed failures. Think of it as the small assembly mechanism
 inside the larger language workshop.
 
-**API version: v0.2.21-experimental.** The shared judge uses 2,072
+**API version: v0.2.22-experimental.** The shared judge uses 2,072
 parameters across three binary decisions. Its compact FP32 weights occupy 8,288
 bytes; ternary files occupy 446 bytes and decode into 2,096 tensor bytes plus
 eight scale bytes. A caller owns a 3,200-byte workspace. These array sizes are
 one component of application RAM.
+
+The new `jointdecision.RecordFieldFeatureVersion` describes three source-owned
+string-field choices directly. `EncodeRecordThree` keeps each complete field
+name, ordered alternative expression and Korean/English intent; supplied inputs
+and expected outputs are excluded. `LoadRecordThree` requires a separately
+trained feature contract and the explicit `PredictRecordInto` entry point. Its dense 768/24/8 layout uses the existing fixed
+3,200-byte workspace; JSON and expression parsing currently allocate temporary
+storage. The feature map distinguishes same-field copying, constants, and
+prefix/suffix concatenation, with finite hashed literal/intent channels. It
+does not encode enclosing control flow or resolve local variable bindings.
+Training and compiled language evaluation for this contract are separate work.
 
 | Read next | Contents |
 | --- | --- |
