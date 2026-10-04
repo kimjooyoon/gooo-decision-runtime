@@ -6,7 +6,7 @@ source-bound plan; this library ranks its permitted choices and continues finite
 search using observed failures. Think of it as the small assembly mechanism
 inside the larger language workshop.
 
-**API version: v0.2.22-experimental.** The shared judge uses 2,072
+**API version: v0.2.23-experimental.** The shared judge uses 2,072
 parameters across three binary decisions. Its compact FP32 weights occupy 8,288
 bytes; ternary files occupy 446 bytes and decode into 2,096 tensor bytes plus
 eight scale bytes. A caller owns a 3,200-byte workspace. These array sizes are
@@ -21,7 +21,42 @@ trained feature contract and the explicit `PredictRecordInto` entry point. Its d
 storage. The feature map distinguishes same-field copying, constants, and
 prefix/suffix concatenation, with finite hashed literal/intent channels. It
 does not encode enclosing control flow or resolve local variable bindings.
-Training and compiled language evaluation for this contract are separate work.
+The [paired-intent study](https://github.com/kimjooyoon/gooo-neural-decision-experiments/tree/main/publication/paired-field-intents-20261005)
+trained the dense contract and executed its generated record bodies. Its FP32
+first complete mask matched 424/1,536 source views; finite continuation completed
+every full-budget native graph. These are separate measurements.
+
+### Shared record field judge (v0.2.23)
+
+`RecordSharedFeatureVersion` uses the same complete expression/intent projection
+with one 256/8/2 judge shared across three fields. It returns eight composed
+path scores in one call. The FP32 weight file is 8,288 bytes; PTQ/QAT ternary
+files are 446 bytes. This release supplies the execution contract and regression
+fixtures; trained model quality requires its own measured experiment.
+
+```go
+model, err := jointdecision.LoadRecordSharedThree("fp32/model.json")
+if err != nil { return err }
+var scratch jointdecision.ThreeWorkspace
+var prediction jointdecision.ThreePrediction
+err = model.PredictRecordSharedInto(completeRecordText, &scratch, &prediction)
+if err != nil { return err }
+fieldProbabilities, err := jointdecision.RecordChoiceMarginals(prediction)
+```
+
+`PredictRecordSharedFeaturesInto` accepts a caller-prepared `[768]float32` array,
+using `FeaturesIntoRecordThree` unchanged. Text/Go-expression parsing can then
+be measured separately from prediction. Each concurrent request owns its scratch
+and output; loaded weights are shared. Model metadata explicitly carries
+`triple_record_field_context_v1_shared_v1` and `float32_separate_v1`; the integer
+and dense record APIs reject this different contract.
+
+Each field's score depends on its own ordered expressions and intent. Combining
+the scores assumes fields can be judged independently. Cross-field requirements
+still need finite execution or a model representing that dependency. Marginals
+are ordering probabilities; supplied cases determine observed completeness.
+Literal hashing, wording sensitivity and the current three-field bound remain
+properties of the input representation.
 
 | Read next | Contents |
 | --- | --- |
