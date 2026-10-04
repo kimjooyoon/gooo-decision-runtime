@@ -17,15 +17,15 @@ import (
 func tiedFixture(t *testing.T, variant string) *ThreeModel {
 	t.Helper()
 	meta := Metadata{Schema: ThreeSchema, Feature: ThreeFeatureVersion, Variant: variant, FeatureDim: 768, HiddenDim: 24, MaxBytes: 1600, Temperature: .5, WeightsFile: "weights.bin"}
-	for i := 0; i < 8; i++ {
+	for i := range 8 {
 		meta.Labels = append(meta.Labels, "mask_"+string(rune('0'+i)))
 	}
 	var raw []byte
 	for tensor, name := range [4]string{"w1", "b1", "w2", "b2"} {
 		rows, cols := [4]int{24, 1, 8, 1}[tensor], [4]int{768, 24, 24, 8}[tensor]
 		values := make([]float32, rows*cols)
-		for row := 0; row < rows; row++ {
-			for col := 0; col < cols; col++ {
+		for row := range rows {
+			for col := range cols {
 				v := float32(0)
 				switch tensor {
 				case 0:
@@ -51,7 +51,7 @@ func tiedFixture(t *testing.T, variant string) *ThreeModel {
 			block = make([]byte, (len(values)+4)/5)
 			for j := range block {
 				power := 1
-				for k := 0; k < 5; k++ {
+				for k := range 5 {
 					digit := 1
 					if j*5+k < len(values) {
 						digit = int(values[j*5+k]) + 1

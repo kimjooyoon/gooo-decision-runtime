@@ -8,12 +8,12 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"io"
 	"math"
 	"os"
 	"path/filepath"
 
 	"github.com/kimjooyoon/gooo-decision-runtime"
+	"github.com/kimjooyoon/gooo-decision-runtime/internal/modelfile"
 )
 
 type Metadata struct {
@@ -37,21 +37,9 @@ func boundedFile(name string, max int64) ([]byte, error) {
 	if err != nil || !info.Mode().IsRegular() || info.Size() <= 0 || info.Size() > max {
 		return nil, errors.New("bounded regular joint model file required")
 	}
-	f, err := os.Open(name)
+	raw, err := modelfile.ReadChecked(name, max, info)
 	if err != nil {
-		return nil, err
-	}
-	defer f.Close()
-	opened, err := f.Stat()
-	if err != nil || !opened.Mode().IsRegular() || !os.SameFile(info, opened) {
-		return nil, errors.New("joint model file changed during bounded open")
-	}
-	raw, err := io.ReadAll(io.LimitReader(f, max+1))
-	if err != nil {
-		return nil, err
-	}
-	if int64(len(raw)) != info.Size() || int64(len(raw)) > max {
-		return nil, errors.New("joint model file extent changed")
+		return nil, fmt.Errorf("joint %w", err)
 	}
 	return raw, nil
 }

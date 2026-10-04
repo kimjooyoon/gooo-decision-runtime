@@ -6,7 +6,7 @@ source-bound plan; this library ranks its permitted choices and continues finite
 search using observed failures. Think of it as the small assembly mechanism
 inside the larger language workshop.
 
-**API version: v0.2.19-experimental.** The shared judge uses 2,072
+**API version: v0.2.21-experimental.** The shared judge uses 2,072
 parameters across three binary decisions. Its compact FP32 weights occupy 8,288
 bytes; ternary files occupy 446 bytes and decode into 2,096 tensor bytes plus
 eight scale bytes. A caller owns a 3,200-byte workspace. These array sizes are
@@ -51,6 +51,27 @@ the frozen observations. Native V4 generation and execution completed on compile
 `e461c1d`. The integration merged to dev as `75b2b7d` in
 [PR 1158](https://github.com/kimjooyoon/meta-ontology-go/pull/1158); main promotion
 completed as `fc0e99c4` in [PR 1159](https://github.com/kimjooyoon/meta-ontology-go/pull/1159).
+
+### Reading model artifacts (v0.2.21)
+
+On Unix, operation, structural, two-choice, expanded three-choice and shared
+three-choice loaders open metadata and weights without waiting for a FIFO writer.
+They reject symlinks and validate the opened regular-file identity and extent
+before reading at most the declared bound plus one byte. Existing model schemas,
+weight digests, tensor layouts and finite-value checks still apply. This changes
+artifact loading; prediction arithmetic and model weights keep their identities.
+
+Missing, replaced or malformed artifacts return an error. Callers can omit the
+model to use their deterministic path order; a failed requested model remains a
+visible setup failure. The non-Unix implementation has Windows arm64 compilation
+evidence and retains descriptor checks. Runtime nonblocking behavior there has
+not been measured.
+
+The loader source and regressions come from research revision
+[`ddcd1002`](https://github.com/kimjooyoon/gooo-neural-decision-experiments/commit/ddcd1002b14996f4e6b5577a227e065441a407c5).
+The current 69-file extraction records both original and relocated byte digests;
+the prior extraction is retained in
+[source-provenance-v0.2.20.json](source-provenance-v0.2.20.json).
 
 ### Whole-candidate source-conditioned judge (v0.2.19)
 
