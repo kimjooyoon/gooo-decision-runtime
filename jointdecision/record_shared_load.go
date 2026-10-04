@@ -15,6 +15,16 @@ import (
 const RecordSharedFeatureVersion = "triple_record_field_context_v1_shared_v1"
 
 func LoadRecordSharedThree(name string) (*ThreeModel, error) {
+	return loadRecordSharedContract(name, RecordSharedFeatureVersion, ThreeInputMaxBytes)
+}
+
+// LoadRecordOriginSharedThree requires weights trained for the distinct source
+// origin projection. Shape equality does not make older weights compatible.
+func LoadRecordOriginSharedThree(name string) (*ThreeModel, error) {
+	return loadRecordSharedContract(name, RecordOriginSharedFeatureVersion, RecordOriginInputMaxBytes)
+}
+
+func loadRecordSharedContract(name, feature string, maxBytes int) (*ThreeModel, error) {
 	raw, err := boundedFile(name, 64<<10)
 	if err != nil {
 		return nil, err
@@ -28,13 +38,13 @@ func LoadRecordSharedThree(name string) (*ThreeModel, error) {
 	if err = decoder.Decode(&meta); err != nil {
 		return nil, err
 	}
-	if meta.Feature != RecordSharedFeatureVersion || meta.Arithmetic != SeparateArithmeticVersion {
+	if meta.Feature != feature || meta.MaxBytes != maxBytes || meta.Arithmetic != SeparateArithmeticVersion {
 		return nil, errors.New("explicit shared record feature and arithmetic contract required")
 	}
 	// Dimensions/layout are the existing compact shared ABI. Validate a local
 	// descriptor against that ABI while retaining the real immutable metadata.
 	shape := meta
-	shape.Feature = ThreeFeatureVersion
+	shape.Feature, shape.MaxBytes = ThreeFeatureVersion, ThreeInputMaxBytes
 	if err = validateShared(shape); err != nil {
 		return nil, err
 	}

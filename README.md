@@ -6,13 +6,13 @@ source-bound plan; this library ranks its permitted choices and continues finite
 search using observed failures. Think of it as the small assembly mechanism
 inside the larger language workshop.
 
-**API version: v0.2.23-experimental.** The shared judge uses 2,072
+**API version: v0.2.24-experimental.** The shared judge uses 2,072
 parameters across three binary decisions. Its compact FP32 weights occupy 8,288
 bytes; ternary files occupy 446 bytes and decode into 2,096 tensor bytes plus
 eight scale bytes. A caller owns a 3,200-byte workspace. These array sizes are
 one component of application RAM.
 
-The new `jointdecision.RecordFieldFeatureVersion` describes three source-owned
+`jointdecision.RecordFieldFeatureVersion` describes three source-owned
 string-field choices directly. `EncodeRecordThree` keeps each complete field
 name, ordered alternative expression and Korean/English intent; supplied inputs
 and expected outputs are excluded. `LoadRecordThree` requires a separately
@@ -25,6 +25,45 @@ The [paired-intent study](https://github.com/kimjooyoon/gooo-neural-decision-exp
 trained the dense contract and executed its generated record bodies. Its FP32
 first complete mask matched 424/1,536 source views; finite continuation completed
 every full-budget native graph. These are separate measurements.
+
+### Source value origins (v0.2.24)
+
+`RecordOriginSharedFeatureVersion` adds a separate input contract for three
+ordered record choices. Each choice carries its complete expressions, intent,
+and two fixed 16-slot arrays of source ancestor counts. Think of a copied record
+as a saved photograph: later writes change the working record, while the saved
+photograph keeps its earlier values. The compiler supplies that distinction.
+
+`EncodeRecordOriginThree` and `FeaturesIntoRecordOriginThree` use 64 expression
+slots, 32 origin slots and 160 intent slots per field. Each channel normalizes
+independently; three 256-slot parts keep the existing 768-slot workspace. The
+origin slots count input fields, literals, expressions, copies, writes, earlier
+choices, conditional joins, guards and reads. Input values and test answers
+are absent. Each alternative has 1..512 ancestors, each canonical part is at
+most 1,024 UTF-8 bytes, and the complete input bound is 4,096 bytes.
+
+`LoadRecordOriginSharedThree` requires that exact feature version, byte bound,
+and `float32_separate_v1` arithmetic. `PredictRecordOriginSharedInto` performs
+projection and prediction; `PredictRecordOriginSharedFeaturesInto` consumes a
+prepared array. The shared 256/8/2 layout and request-owned workspace stay the
+same. Tests check text/prepared parity, concurrent calls, atomic errors, and
+zero warmed allocations for prepared prediction. Source JSON/AST projection
+still allocates temporary storage.
+
+This release implements the runtime contract with synthetic regression weights.
+The published v1 field model retains its original feature contract and weights.
+New origin weights and their quality require a separate training study. Counts
+give a bounded summary of the dependency graph; distinct graphs can still share
+counts. The shared judge also retains its independent-field scoring assumption.
+Finite execution remains the measurement of observed functionality.
+
+```go
+model, err := jointdecision.LoadRecordOriginSharedThree("origin/model.json")
+if err != nil { return err }
+var workspace jointdecision.ThreeWorkspace
+var prediction jointdecision.ThreePrediction
+err = model.PredictRecordOriginSharedInto(sourceOriginText, &workspace, &prediction)
+```
 
 ### Shared record field judge (v0.2.23)
 

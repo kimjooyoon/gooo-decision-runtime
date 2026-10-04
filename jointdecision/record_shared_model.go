@@ -27,6 +27,10 @@ func (m *ThreeModel) PredictRecordSharedFeaturesInto(features *[ThreeFeatureDim]
 		features == nil || workspace == nil || output == nil || !finite(features[:]) {
 		return errors.New("finite prepared shared record model/features/workspace/output required")
 	}
+	return m.predictRecordSharedFeatures(features, workspace, output)
+}
+
+func (m *ThreeModel) predictRecordSharedFeatures(features *[ThreeFeatureDim]float32, workspace *ThreeWorkspace, output *ThreePrediction) error {
 	var candidate ThreeWorkspace
 	candidate.Features = *features
 	m.first(&candidate.Features, &candidate.Hidden)
