@@ -6,11 +6,57 @@ source-bound plan; this library ranks its permitted choices and continues finite
 search using observed failures. Think of it as the small assembly mechanism
 inside the larger language workshop.
 
-**API version: v0.2.25-experimental.** The shared judge uses 2,072
+**API version: v0.2.26-experimental.** The shared judge uses 2,072
 parameters across three binary decisions. Its compact FP32 weights occupy 8,288
 bytes; ternary files occupy 446 bytes and decode into 2,096 tensor bytes plus
 eight scale bytes. A caller owns a 3,200-byte workspace. These array sizes are
 one component of application RAM.
+
+### Ordered source value graph (v0.2.26)
+
+`RecordGraphSharedFeatureVersion` (`triple_record_value_graph_v3_shared_v1`)
+retains source operators, canonical literals, root parameter positions/types and
+ordered value edges. It addresses distinctions removed by the v1 expression
+summary and v2 ancestor counts, including AND/OR and subtraction operand order.
+
+`RecordGraphInput` carries exactly three complete field choices and one shared
+graph of at most 512 nodes. Choice roots and all ordered parent, condition and
+execution-guard edges refer to one-based node positions. Parents precede their
+child, so cyclic or forward relations are rejected. The full canonical source
+input is bounded to 64 KiB; each string is bounded to 1,024 UTF-8 bytes. A caller
+owns source provenance, type validity and expression/root correspondence. The
+SDK validates the structural contract without executing code or test cases.
+Each input node declares `bool`, `int64` or `string`; record fields retain their
+stable field IDs and the corresponding primitive type.
+
+Each field still occupies 256 floats: 96 per ordered alternative and 64 for the
+complete intent's byte ngrams. An alternative has 32 explicit root-operation
+slots, 32 reachable-operation counts and 32 hashed value-relation slots. Ordered
+recursive fingerprints retain operand positions, conditional arms, literal
+values and input identity. Plain copies share their value fingerprint; a newly
+attached execution guard remains represented. Local names, source spans and
+graph node numbers do not enter those fingerprints. Only reachable nodes enter
+the features. The seven channels normalize independently.
+
+The finite relation and intent hashes can collide. This is a compact learned
+input, not a lossless semantic comparison. The intent channel has fewer slots
+than v2; bilingual and unseen-program quality need measurement. The shared judge
+still scores fields independently. Eight synthetic alternative arrangements are
+distinct in the regression fixture, but that is not a prediction-accuracy result.
+
+`EncodeRecordGraphThree`, `DecodeRecordGraphThree` and
+`FeaturesIntoRecordGraphThree` expose transport and feature preparation.
+`LoadRecordGraphSharedThree`, `PredictRecordGraphSharedInto` and
+`PredictRecordGraphSharedFeaturesInto` require this explicit contract and its byte
+bound. The 256/8/2 judge, 768-float input, FP32/ternary layouts and caller-owned
+prediction workspace are unchanged. Prepared prediction retains zero warmed
+heap allocations; JSON decoding and source feature preparation use additional
+temporary memory. Tests use synthetic ABI weights only. New trained weights,
+compiler integration and native program evaluation remain separate work.
+
+The published v1 and v2 contracts and their feature arrays remain unchanged.
+Their model files are rejected by the graph loader. The new graph files are
+SDK-local additions; the extracted source provenance manifest remains intact.
 
 ### Unread candidate locals (v0.2.25)
 
