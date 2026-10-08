@@ -84,8 +84,8 @@ func main() {
 }
 
 func replay(root, source, output string) (failure error) {
-	if root == "" || output == "" || runtime.Version() != "go1.27.1" {
-		return errors.New("bundle, fresh output and Go 1.27.1 required")
+	if root == "" || output == "" || runtime.Version() != "go1.27.2" {
+		return errors.New("bundle, fresh output and Go 1.27.2 required")
 	}
 	if _, err := os.Lstat(output); !os.IsNotExist(err) {
 		return errors.New("fresh output required")

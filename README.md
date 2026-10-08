@@ -610,7 +610,7 @@ where matrix values are decoded to `int8`.
 
 ## Checks
 
-The CI workflow uses Go 1.27.1 for formatting, vet, unit tests, and race tests.
+The CI workflow uses Go 1.27.2 for formatting, vet, unit tests, and race tests.
 Tests construct deterministic tiny bundles in temporary directories. They do
 not download weights, invoke training, or call a model service. The source files
 copied into this SDK are byte-pinned in `source-provenance.json`.
