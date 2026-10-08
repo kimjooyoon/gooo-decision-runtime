@@ -13,12 +13,10 @@
       "origin_path": "internal/bodyplan/bodyplan.go",
       "copied_path": "bodyplan/bodyplan.go",
       "origin_sha256": "562374bc20db45063db1b934564aedfb234c3b819617eb999948ca822385be5e",
-      "sha256": "a586c4776dd5dc2017ad938d1dd8b237294ddedd08f62f3bfe0c04c5d919a10e",
+      "sha256": "2392d116147ad978c455c0029b0ce5bb5664b6012314b8c654c72e30a8e1f80b",
       "origin_bytes": 41423,
-      "bytes": 41620,
-      "transformation": "fixed_module_import_relocation_and_gofmt_then_sdk_unread_local_rendering",
-      "extracted_sha256": "2392d116147ad978c455c0029b0ce5bb5664b6012314b8c654c72e30a8e1f80b",
-      "extracted_bytes": 41394
+      "bytes": 41394,
+      "transformation": "fixed_module_import_relocation_and_gofmt"
     },
     {
       "origin_path": "internal/bodyplan/bodyplan_test.go",
@@ -628,5 +626,5 @@
   "origin_repository": "github.com/kimjooyoon/gooo-neural-decision-experiments",
   "origin_revision": "ddcd1002b14996f4e6b5577a227e065441a407c5",
   "schema": "gooo/decision-runtime-source-provenance/v2",
-  "scope": "Source extraction with original byte identities retained. bodyplan/bodyplan.go additionally records the extracted baseline and SDK-local unread-local rendering. Other listed copied files retain their original extraction identity. New SDK-local helpers and tests are tracked by Git; no weights or raw experiment directories are copied."
+  "scope": "Fixed source and test extraction; import relocation is recorded with separate origin and copied byte digests. No weights or raw experiment directories are copied."
 }

@@ -172,7 +172,8 @@ func Compile(plan Plan, choices map[string]string) (*Program, error) {
 	}
 
 	ownedPlan := clonePlan(plan)
-	goBody, err := renderSequence(ownedPlan, ownedChoices, ownedPlan.Root, renderGo, 0)
+	unread := unreadLocalStatements(ownedPlan, validated)
+	goBody, err := renderSequence(ownedPlan, ownedChoices, ownedPlan.Root, renderGo, 0, &unread)
 	if err != nil {
 		return nil, err
 	}
@@ -189,7 +190,7 @@ func Compile(plan Plan, choices map[string]string) (*Program, error) {
 	if err := checkGoSource(goSource); err != nil {
 		return nil, fmt.Errorf("generated Go source failed type checking: %w", err)
 	}
-	goooBody, err := renderSequence(ownedPlan, ownedChoices, ownedPlan.Root, renderGooo, -1)
+	goooBody, err := renderSequence(ownedPlan, ownedChoices, ownedPlan.Root, renderGooo, -1, &unread)
 	if err != nil {
 		return nil, err
 	}
@@ -873,7 +874,7 @@ const (
 	renderGooo
 )
 
-func renderSequence(plan Plan, choices map[string]string, indices []int, dialect sourceDialect, depth int) (string, error) {
+func renderSequence(plan Plan, choices map[string]string, indices []int, dialect sourceDialect, depth int, unread *[maxStmts]bool) (string, error) {
 	var output strings.Builder
 	for _, index := range indices {
 		statement := plan.Statements[index]
@@ -889,6 +890,9 @@ func renderSequence(plan Plan, choices map[string]string, indices []int, dialect
 				declaration = "let "
 			}
 			fmt.Fprintf(&output, "%s%s%s = %s\n", indent, declaration, statement.Name, expression)
+			if dialect == renderGo && unread[index] {
+				fmt.Fprintf(&output, "%s_ = %s\n", indent, statement.Name)
+			}
 		case StmtAssign:
 			expression, err := renderExpression(plan, choices, statement.Expr, dialect)
 			if err != nil {
@@ -901,7 +905,7 @@ func renderSequence(plan Plan, choices map[string]string, indices []int, dialect
 				return "", err
 			}
 			fmt.Fprintf(&output, "%sif %s {\n", indent, condition)
-			thenBody, err := renderSequence(plan, choices, statement.Then, dialect, depth+1)
+			thenBody, err := renderSequence(plan, choices, statement.Then, dialect, depth+1, unread)
 			if err != nil {
 				return "", err
 			}
@@ -909,7 +913,7 @@ func renderSequence(plan Plan, choices map[string]string, indices []int, dialect
 			fmt.Fprintf(&output, "%s}", indent)
 			if len(statement.Else) > 0 {
 				output.WriteString(" else {\n")
-				elseBody, err := renderSequence(plan, choices, statement.Else, dialect, depth+1)
+				elseBody, err := renderSequence(plan, choices, statement.Else, dialect, depth+1, unread)
 				if err != nil {
 					return "", err
 				}
