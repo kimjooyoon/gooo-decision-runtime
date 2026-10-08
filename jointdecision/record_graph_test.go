@@ -11,8 +11,8 @@ import (
 
 func graphFixture() RecordGraphInput {
 	input := RecordGraphInput{Nodes: []RecordGraphNode{
-		{Kind: "input", Input: 1},
-		{Kind: "input", Input: 2},
+		{Kind: "input", Input: 1, InputType: "bool"},
+		{Kind: "input", Input: 2, InputType: "bool"},
 		{Kind: "expression", Operator: "&&", Parents: [2]uint16{1, 2}},
 		{Kind: "expression", Operator: "||", Parents: [2]uint16{1, 2}},
 		{Kind: "literal", Operator: "INT", Literal: "0"},
@@ -143,6 +143,23 @@ func TestRecordGraphNodeNumbersAndLiteralIdentity(t *testing.T) {
 	}
 }
 
+func TestRecordGraphInputTypesRemainVisible(t *testing.T) {
+	input := graphFixture()
+	input.Nodes = input.Nodes[:2]
+	for i := range input.Choices {
+		input.Choices[i].Roots = [2]uint16{1, 2}
+	}
+	seen := map[[ThreeFeatureDim]float32]bool{}
+	for _, primitive := range []string{"bool", "int64", "string"} {
+		input.Nodes[0].InputType, input.Nodes[1].InputType = primitive, primitive
+		features := graphArray(t, input)
+		if seen[features] {
+			t.Fatal("primitive input types collided", primitive)
+		}
+		seen[features] = true
+	}
+}
+
 func TestRecordGraphInvalidInputPreservesOutput(t *testing.T) {
 	for _, mutate := range []func(*RecordGraphInput){
 		func(i *RecordGraphInput) { i.Nodes = nil },
@@ -151,6 +168,8 @@ func TestRecordGraphInvalidInputPreservesOutput(t *testing.T) {
 		func(i *RecordGraphInput) { i.Nodes[2].Guard = 999 },
 		func(i *RecordGraphInput) { i.Nodes[0].Input = 0 },
 		func(i *RecordGraphInput) { i.Nodes[0].Input = 17 },
+		func(i *RecordGraphInput) { i.Nodes[0].InputType = "" },
+		func(i *RecordGraphInput) { i.Nodes[0].InputType = "untyped" },
 		func(i *RecordGraphInput) { i.Nodes[2].Operator = "unknown" },
 		func(i *RecordGraphInput) { i.Nodes[2].Operator = "!" },
 		func(i *RecordGraphInput) { i.Nodes[4].Literal = "0x00" },

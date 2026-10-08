@@ -23,6 +23,7 @@ type RecordGraphNode struct {
 	Operator  string    `json:"operator,omitempty"`
 	Literal   string    `json:"literal,omitempty"`
 	Input     uint16    `json:"input,omitempty"`
+	InputType string    `json:"input_type,omitempty"`
 	FieldID   string    `json:"field_id,omitempty"`
 	Parents   [2]uint16 `json:"parents"`
 	Condition uint16    `json:"condition,omitempty"`
@@ -108,14 +109,15 @@ func validateGraphNode(n RecordGraphNode, id uint16) error {
 	if !utf8.ValidString(n.FieldID) || len(n.FieldID) > 1024 || !utf8.ValidString(n.Literal) || len(n.Literal) > 1024 {
 		return errors.New("bounded UTF-8 source node required")
 	}
-	if n.Kind != "literal" && n.Literal != "" || n.Kind != "input" && n.Input != 0 || n.Kind != "join" && n.Condition != 0 {
+	if n.Kind != "literal" && n.Literal != "" || n.Kind != "input" && (n.Input != 0 || n.InputType != "") || n.Kind != "join" && n.Condition != 0 {
 		return errors.New("source node contains an unrelated value or relation")
 	}
 	a, b := n.Parents[0], n.Parents[1]
 	valid := false
 	switch n.Kind {
 	case "input":
-		valid = n.Input > 0 && n.Input <= 16 && a == 0 && b == 0 && n.Guard == 0 && n.Operator == ""
+		valid = n.Input > 0 && n.Input <= 16 && a == 0 && b == 0 && n.Guard == 0 && n.Operator == "" &&
+			(n.InputType == "bool" || n.InputType == "int64" || n.InputType == "string")
 	case "literal":
 		valid = a == 0 && b == 0 && canonicalGraphLiteral(n.Operator, n.Literal)
 	case "read", "copy", "write", "return", "call", "call_parameter":

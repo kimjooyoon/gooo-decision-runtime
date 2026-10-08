@@ -156,7 +156,7 @@ func graphFingerprint(n RecordGraphNode, nodes []RecordGraphNode, hashes *[Recor
 		return graphHashWord(hash, value(n.Guard))
 	}
 	hash := graphHashText(graphHashStart, n.Kind)
-	for _, text := range [3]string{n.Operator, n.Literal, n.FieldID} {
+	for _, text := range [4]string{n.Operator, n.Literal, n.FieldID, n.InputType} {
 		hash = graphHashText(hash, text)
 	}
 	hash = graphHashWord(hash, uint64(n.Input))
@@ -184,5 +184,5 @@ func graphHashWord(hash, word uint64) uint64 {
 
 func graphHashedFeature(output []float32, hash uint64) {
 	output[hash&15]++
-	output[16+(hash>>32)&15]++
+	output[16+((hash>>32)&15)]++
 }

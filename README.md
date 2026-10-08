@@ -15,7 +15,7 @@ one component of application RAM.
 ### Ordered source value graph (v0.2.26)
 
 `RecordGraphSharedFeatureVersion` (`triple_record_value_graph_v3_shared_v1`)
-retains source operators, canonical literals, root parameter positions and
+retains source operators, canonical literals, root parameter positions/types and
 ordered value edges. It addresses distinctions removed by the v1 expression
 summary and v2 ancestor counts, including AND/OR and subtraction operand order.
 
@@ -26,6 +26,8 @@ child, so cyclic or forward relations are rejected. The full canonical source
 input is bounded to 64 KiB; each string is bounded to 1,024 UTF-8 bytes. A caller
 owns source provenance, type validity and expression/root correspondence. The
 SDK validates the structural contract without executing code or test cases.
+Each input node declares `bool`, `int64` or `string`; record fields retain their
+stable field IDs and the corresponding primitive type.
 
 Each field still occupies 256 floats: 96 per ordered alternative and 64 for the
 complete intent's byte ngrams. An alternative has 32 explicit root-operation
