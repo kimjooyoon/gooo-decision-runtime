@@ -6,11 +6,25 @@ source-bound plan; this library ranks its permitted choices and continues finite
 search using observed failures. Think of it as the small assembly mechanism
 inside the larger language workshop.
 
-**API version: v0.2.24-experimental.** The shared judge uses 2,072
+**API version: v0.2.25-experimental.** The shared judge uses 2,072
 parameters across three binary decisions. Its compact FP32 weights occupy 8,288
 bytes; ternary files occupy 446 bytes and decode into 2,096 tensor bytes plus
 eight scale bytes. A caller owns a 3,200-byte workspace. These array sizes are
 one component of application RAM.
+
+### Unread candidate locals (v0.2.25)
+
+Typed body plans can retain local values that a selected candidate never reads.
+Their initialization, assignments, scope and type checks are preserved. Go
+emission adds an adjacent `_ = local` only for an unread binding; Gooo bodies and
+the typed arena keep their original statements. Existing bodies with all locals
+read emit the same source. Two fixed 128-slot scratch arrays track reads and
+emission markers by binding identity, including same-name locals in separate branches. The interpreter's
+runtime frame and model contracts are unchanged.
+
+The original extraction receipt remains in `source-provenance-v0.2.24.json`.
+The current receipt preserves the research origin and records the subsequent
+SDK-local renderer change against the extracted baseline.
 
 `jointdecision.RecordFieldFeatureVersion` describes three source-owned
 string-field choices directly. `EncodeRecordThree` keeps each complete field
