@@ -1,0 +1,25 @@
+{
+  "intent_diagnostics": {
+    "different_encoded_inputs": 80,
+    "different_inputs_same_prediction": 40,
+    "disjoint_acceptable_sets": 80,
+    "paired_opposite_intents": 80,
+    "rows": {
+      "max": 80,
+      "min": 80
+    },
+    "valid": {
+      "max": 0,
+      "min": 80
+    }
+  },
+  "judgments": 162,
+  "new_audit_candidate_executions": 0,
+  "new_audit_model_calls": 0,
+  "producer": "3dfcb1701bba1020d4002025e2c3dd163b534359",
+  "search_model_calls": 404,
+  "searches": 324,
+  "sources": 162,
+  "status": "PASS",
+  "training_rows_per_fit": 16
+}
