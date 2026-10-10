@@ -12,6 +12,40 @@ bytes; ternary files occupy 446 bytes and decode into 2,096 tensor bytes plus
 eight scale bytes. A caller owns a 3,200-byte workspace. These array sizes are
 one component of application RAM.
 
+### Intermediate condition observations (unreleased)
+
+`bodyplan.Program.ObserveCondition(input, statement)` observes an existing `if`
+condition while running the complete selected body. It uses the ordinary local
+slots and expression evaluator. Skipped branches return `reached: false`.
+
+`pathplan.PreparedPlan.CheckConditions` connects these observations to declared
+choice IDs. For example, after preparing a source-bound plan and choosing all its
+paths:
+
+```go
+rows, err := prepared.CheckConditions(ctx, selectedChoices, []pathplan.ConditionCase{
+    {ChoiceID: "comparison", Input: -1, Expected: true},
+    {ChoiceID: "comparison", Input: 0, Expected: false},
+    {ChoiceID: "comparison", Input: 1, Expected: false},
+})
+```
+
+Each row records the final output, observed condition and `MATCH`, `MISMATCH` or
+`NOT_REACHED`. Only `MATCH` passes. A `branch_layout` choice identifies its own
+`if`; an `operand_order` choice must identify the whole condition of exactly one
+`if`. Ambiguous references and other expression/choice kinds return an error.
+There are at most 128 cases, with exact int64 inputs and explicit Boolean answers.
+No model calls occur in either API.
+
+These APIs expose a gap seen in the
+[Gooo joint-path model study](https://github.com/kimjooyoon/gooo-ecosystem-workbench/tree/b63ea6d74603a89e1a74af2b3dc36c1596742935/models/joint-path-20261010):
+opposite predicates can produce the same final answers after swapping branches.
+The caller supplies the expected predicate values. Counts cover only those
+authored cases. The existing search APIs still select using final-output cases;
+Gooo source syntax, candidate filtering and saved-replay enforcement remain
+integration work. Keep final-output scores and intermediate-condition scores
+separate when using this observation API.
+
 ### Ordered source value graph (v0.2.26)
 
 `RecordGraphSharedFeatureVersion` (`triple_record_value_graph_v3_shared_v1`)

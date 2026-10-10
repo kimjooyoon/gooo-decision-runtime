@@ -1,0 +1,223 @@
+{
+  "schema": "gooo/intermediate-condition-observation/v1",
+  "sdk_producer": "503659bcd8f28ee4b2cbc2e350323e54640e4d99",
+  "plan_sha256": "fed0f1cb6c5c1ed71b9a93da484af45d1d57e9de535ab0169eb554fb1e806b40",
+  "source_sha256": "sha256:b847f1ba48ef1964ad7743c6bcbb1732b6ad168b200ccc768f37d761e7ba5ee1",
+  "document_sha256": "sha256:3f134f0d35435c2dc0035efcb422ce475fc8da75ca3347edf1f43b98f4952b68",
+  "results": [
+    {
+      "arm": "previous",
+      "choices": {
+        "comparison": "layout_reverse",
+        "negative": "layout_reverse",
+        "sign": "layout_reverse"
+      },
+      "matched": 1,
+      "cases": [
+        {
+          "case": {
+            "choice_id": "comparison",
+            "input": -1,
+            "expected": true
+          },
+          "observation": {
+            "statement": 2,
+            "expression": 4,
+            "reached": true,
+            "value": false
+          },
+          "output": {
+            "type": "Int",
+            "int": -1
+          },
+          "status": "MISMATCH",
+          "passed": false
+        },
+        {
+          "case": {
+            "choice_id": "comparison",
+            "input": 0,
+            "expected": false
+          },
+          "observation": {
+            "statement": 2,
+            "expression": 4,
+            "reached": true,
+            "value": false
+          },
+          "output": {
+            "type": "Int"
+          },
+          "status": "MATCH",
+          "passed": true
+        },
+        {
+          "case": {
+            "choice_id": "comparison",
+            "input": 1,
+            "expected": false
+          },
+          "observation": {
+            "statement": 2,
+            "expression": 4,
+            "reached": true,
+            "value": true
+          },
+          "output": {
+            "type": "Int",
+            "int": 1
+          },
+          "status": "MISMATCH",
+          "passed": false
+        }
+      ]
+    },
+    {
+      "arm": "control",
+      "choices": {
+        "comparison": "layout_reverse",
+        "negative": "layout_reverse",
+        "sign": "layout_reverse"
+      },
+      "matched": 1,
+      "cases": [
+        {
+          "case": {
+            "choice_id": "comparison",
+            "input": -1,
+            "expected": true
+          },
+          "observation": {
+            "statement": 2,
+            "expression": 4,
+            "reached": true,
+            "value": false
+          },
+          "output": {
+            "type": "Int",
+            "int": -1
+          },
+          "status": "MISMATCH",
+          "passed": false
+        },
+        {
+          "case": {
+            "choice_id": "comparison",
+            "input": 0,
+            "expected": false
+          },
+          "observation": {
+            "statement": 2,
+            "expression": 4,
+            "reached": true,
+            "value": false
+          },
+          "output": {
+            "type": "Int"
+          },
+          "status": "MATCH",
+          "passed": true
+        },
+        {
+          "case": {
+            "choice_id": "comparison",
+            "input": 1,
+            "expected": false
+          },
+          "observation": {
+            "statement": 2,
+            "expression": 4,
+            "reached": true,
+            "value": true
+          },
+          "output": {
+            "type": "Int",
+            "int": 1
+          },
+          "status": "MISMATCH",
+          "passed": false
+        }
+      ]
+    },
+    {
+      "arm": "joint",
+      "choices": {
+        "comparison": "layout_reverse",
+        "negative": "layout_forward",
+        "sign": "layout_forward"
+      },
+      "matched": 1,
+      "cases": [
+        {
+          "case": {
+            "choice_id": "comparison",
+            "input": -1,
+            "expected": true
+          },
+          "observation": {
+            "statement": 2,
+            "expression": 4,
+            "reached": true,
+            "value": false
+          },
+          "output": {
+            "type": "Int",
+            "int": 1
+          },
+          "status": "MISMATCH",
+          "passed": false
+        },
+        {
+          "case": {
+            "choice_id": "comparison",
+            "input": 0,
+            "expected": false
+          },
+          "observation": {
+            "statement": 2,
+            "expression": 4,
+            "reached": true,
+            "value": false
+          },
+          "output": {
+            "type": "Int"
+          },
+          "status": "MATCH",
+          "passed": true
+        },
+        {
+          "case": {
+            "choice_id": "comparison",
+            "input": 1,
+            "expected": false
+          },
+          "observation": {
+            "statement": 2,
+            "expression": 4,
+            "reached": true,
+            "value": true
+          },
+          "output": {
+            "type": "Int",
+            "int": 1
+          },
+          "status": "MISMATCH",
+          "passed": false
+        }
+      ]
+    }
+  ],
+  "archive_sha256": {
+    "publication/compatible-path-targets-20261010/original/context.json.gz": "20a1cef0140e4af264b9641961b77fb840f4a792f577399d531e9cd846319d0b",
+    "publication/joint-path-learning-20261010/native/control/construction.json.gz": "c6b2d176e41777e25367dd43760b9b546f3dac677c6b76e18a81e7d1b098e88a",
+    "publication/joint-path-learning-20261010/native/control/generated.go.gz": "19b258e7ffb7420f706f23ef8feb87d994e27b5b1e0da75211917b38508e5b41",
+    "publication/joint-path-learning-20261010/native/hint-audit.json.gz": "19c9b010962861e0098c7859f84657b4d5881e3ba611dc17e55da38924a74690",
+    "publication/joint-path-learning-20261010/native/joint/construction.json.gz": "a367d09178e4bcf8bc364b1878aad006d276d6ad3931005912f5f3e02b6797dd",
+    "publication/joint-path-learning-20261010/native/joint/generated.go.gz": "8924abb8a91ff966b9dc1b6d986d5032cf270b4d288674b9a731134614314785",
+    "publication/joint-path-learning-20261010/native/previous/construction.json.gz": "db04f64125f8f772134e4874ca690cc8ee08e9266f775cdad8da8d1cf31652e2",
+    "publication/joint-path-learning-20261010/native/previous/generated.go.gz": "19b258e7ffb7420f706f23ef8feb87d994e27b5b1e0da75211917b38508e5b41",
+    "publication/joint-path-learning-20261010/native/source.gooo.gz": "fef7cbdbec9cf4de37983b41d148ad481183667dcf194b6ee21e5fc6019ad66d"
+  },
+  "new_model_calls": 0,
+  "scope": "Replay of the three original selected Gooo bodies against already-authored posthoc predicate probes; final outputs unchanged; no retraining, new generation, heldout accuracy claim or search filtering."
+}
