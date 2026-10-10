@@ -1,0 +1,49 @@
+Interaction requirement study: freeze before fitting
+
+Purpose: measure first-candidate selection and finite completeness when a small
+local Go model binds cases to their targets and combines source/output/condition
+representations. Compiler8a759cba557b6c6e22aeea57040e8e1c69e6ec68, Go1.27.2;
+SDK architecture acceptedc75fb2a24b9ea953e8bf3da419f66ca9144c0c43.
+
+80 fresh synthetic Gooo documents reuse only the published template generator.
+Train8:distance,constant41,direct,Korean,2source reversals x2output goals x
+2condition goals. Evaluate64:constant67,Korean/English xdirect/alias/assignment/
+rebinding xthe same8goals. Evaluate8more:constant67,English,two-root-branch rare
+form with128conditions; both models must decline and preserve deterministic
+search. All documents have2binary choices,4candidates,8exact-int64 outputs.
+72supported documents have3conditions each;8unsupported have128 each.
+This tests new instances and source/wording changes of one distance template.
+Unseen algorithms and arbitrary natural-language understanding are outside scope.
+
+Freeze compressed corpus bytes and clean producer commit before collecting any
+candidate or fitting. Gooo labels all320candidates. Fit each model ONCE on the
+same8training rows:ordered requirement17,890parameters and interaction requirement
+19,034parameters. Both use all528source fields and all32-field output/condition
+rows. Mean pooling,2000epochs,LR0.3,L2=0.0001,seed17. No tuning,seed sweep,refit or
+restart after scores. Changes include features,activations,interactions,parameter
+count and numeric rule; compare whole models without assigning causality to one
+ingredient. The original ordered computation retains its ABI; the interaction
+model explicitly uses FMA64-to-FP32 affine accumulation. Run on this local arm64
+CPU; this study makes no cross-architecture learned-weight identity claim.
+
+Run80x3=240searches in fixed document order and modes deterministic,ordered,
+interaction. Exactly144model calls:72per model,8declines each. One initial
+prediction per supported model session,then immediate finite candidate checking.
+Record all source arrays,training rows,labels,model files,histories,proposals,
+intermediate progress,selected bodies,failures and final results. Separate train,
+supported evaluation,unsupported fallback and all heldout denominators.
+Report first-choice success,final completeness,attempts,output/condition micro
+and macro completeness,paired regressions,input collision bounds,training time,
+single-call latency and whole-process user/system CPU/elapsed/RSS. Fixed timing
+order and a single pass do not control warm-up or background load. Process CPU
+time yields core-equivalent utilization,not whole-PC utilization. No native
+execution,model-free replay or quantization claim for these new weights.
+
+Use a new output directory,started marker before collection,save each fit/history
+immediately,save completion only after every search. Preserve partial failures.
+Source-only preflight may check lowering and feature availability before fitting,
+but may not execute candidates or call models. An independent stored-data audit
+uses exact-int64 template arithmetic to check every candidate,receipt,training
+row and reported metric; it never fits,predicts,lowers or executes programs.
+Public data is synthetic. No cloud compute or default-model replacement.
+All historical experiments and original model bytes remain untouched.
