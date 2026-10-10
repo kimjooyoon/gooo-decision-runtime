@@ -43,7 +43,8 @@ continue with its remaining frontier. Output-correct bodies with a failed
 condition remain rejected.
 
 This implementation is available through the SDK command and API. Native Gooo
-CLI artifact loading and a fresh held-out model study are follow-up work.
+CLI artifact loading is follow-up work. The [fresh model study](../studies/requirement-learning-20261010/README.md)
+provides recorded weights, full observations and explicit learning limitations.
 
 ## Small joint computation
 
@@ -107,8 +108,11 @@ The regression fixture learns from two Gooo-labelled opposite-condition goals,
 loads the saved model, and constructs each valid body in one attempt. Each
 construction checks two exact integer output cases and one intermediate
 condition, with one initial prediction. This is a training-fixture regression.
-Fresh held-out performance, rare conditions, more choices and conflicting goals
-still need measurement before comparing model quality with the published weights.
+The [172-document study](../studies/requirement-learning-20261010/README.md) separately
+measures held-out source variants, rare conditions, empty suites and conflicting
+goals. First-choice learning remains weak there: 8/32 training documents, with
+40 full-input collision groups remaining. Larger choice counts and general
+function coverage remain outside that study's two-choice scope.
 
 Tests also cover independent scalar equations, numerical gradient comparisons,
 both pooling rules, all 128 rows in both streams, 16 source choices, byte-bound

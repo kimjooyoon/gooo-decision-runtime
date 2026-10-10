@@ -1,0 +1,90 @@
+Fresh requirement-conditioned decision study, frozen before training.
+
+Question: can source/output/condition inputs distinguish correct internal paths
+when two Gooo contracts share the same output examples? Does a trained compact
+model use that information on held-out source variants, and does Gooo preserve
+finite-case completeness when the first prediction is wrong?
+
+172 authored Gooo documents, each with two binary source choices (comparison
+operand order and branch layout), eight exact int64 output cases and four
+complete candidate masks. Adjacent condition-goal pairs share output goals,
+source features and output features; their declared comparison results differ.
+The two comparison forms agree (false) at equality. Every output template has
+equal arm values at equality, so both internal paths can implement each output
+goal. Output goals and intermediate-condition goals vary independently.
+
+Predeclared cohorts: train32, unseen constants32, representation48, wording32,
+unseen negative-bound family8, reordered source choices8, rare128th condition4,
+empty condition suite4, contradictory conditions4. Thus136 satisfiable held-out
+documents plus32 training documents and4 unsatisfiable held-out documents.
+The rare cohort has127 unique nonnegative inputs mapped to the comparison's
+equality value by a fixed source prefix, and one decisive negative tail input.
+Its eight output examples are negative; the nonnegative conditions exercise the
+fixed-prefix equality region without adding output promises in that region.
+This is a stress cohort with an extra fixed branch, not an isolated row-order
+ablation. Contradictions require the same Boolean result at distinct inputs
+below and above the threshold, impossible for either source comparison.
+Representations are local aliases, assignments and rebinding. Wording cohorts
+use English and a fresh Korean phrasing. Training is Korean. All arithmetic and
+source examples preserve int64, including values beyond2^53. Bounds avoid int64
+overflow. This is a related-template corpus, not a general language benchmark.
+
+Lower every frozen source and check declared rows before fitting. Enumerate all
+four Gooo candidates to obtain acceptable sets before either model fit. Keep
+every source and failure. Audit the actual complete input arrays, separately
+for the old two-channel and new three-channel models; omit the four impossible
+contracts from input-information bounds and retain their search results.
+
+Exactly two local CPU fits: existing ChoiceModel (12,818 weights) and new
+RequirementModel (13,282 weights). Both use arithmetic-mean pooling,32 identical
+training documents,2000 epochs, learning rate0.3, L2=0.0001 and seed17. No held-out
+labels, hyperparameter search, post-evaluation fitting, best-seed selection or
+epoch selection. Existing published models and studies remain unchanged.
+
+Exactly three searches per document in fixed order: deterministic, choice,
+requirements. One initial prediction for each model, immediate candidate use,
+one candidate per Advance, at most four candidates, zero later predictions.
+Total516 searches and344 initial predictions. Record all proposals, per-output
+and per-condition results, failed attempts, progress hashes and source-bound
+rankings. Do not treat training completion as proof for unseen inputs.
+
+Report first candidate validity, output and condition coverage separately,
+eventual finite-case completion, attempts, improvements and regressions,
+paired-goal differentiation, per-cohort results, input-information bounds,
+fit wall time, prediction median/p95 and total search time. Measure the one
+producer process with /usr/bin/time -l; report user/system CPU and maximum RSS.
+This does not measure whole-PC utilization or native generated Go execution.
+
+Freeze source corpus bytes and hash before fitting. A clean committed producer
+and exact compiler revision identify the run. Exclusive output creation and
+start/completion receipts prevent replacing the original observation. Preserve
+all original artifacts, histories and failures. Compress JSON records with
+gzip -n and check decompressed bytes. Independently recount recorded int64
+candidate behavior, bounds, search evidence and metrics without rerunning the
+model, source lowering or candidate execution. Publish all outcomes honestly.
+
+Preflight history: the first frozen draft used repeated equality inputs and a
+same-input contradiction. Gooo's parser rejects duplicate condition_case inputs.
+The original draft, original protocol and failure are retained under
+preflight-rejected/. No model fitting or candidate execution took place. The
+current corpus uses distinct condition inputs throughout, preserving cohort
+sizes, training documents, comparison settings and measurement scope.
+
+Collection history: the second frozen draft's rare cohort mixed negative and
+positive output examples. Mapping positive inputs to the comparison equality
+value made one required reverse-comparison path unable to meet both outputs.
+The complete four-candidate oracle caught this at source162 before either fit.
+161 completed source records, the draft corpus, protocol, producer identity and
+failure/process measurements are retained under collection-rejected/. The rare
+cohort now declares eight negative output examples and keeps its128 unique
+conditions. Training documents and both fit settings are unchanged. A separate
+integer reference checks satisfiability for every current frozen source before
+fitting. Earlier failed collections are not included in final-run speed claims.
+
+Collector history: the current corpus passed source and arithmetic preflight.
+At source165 its intentionally empty condition suite exposed a collector call
+to CheckConditions, which requires1..128 cases. The164 earlier records and the
+zero-fit failure are retained in empty-collection-failure/. The corpus, labels
+and fit settings stay fixed. The collector now skips this call for zero
+conditions, keeps output checks, and counts1360 actual oracle compile calls.
+A focused regression covers all four empty-suite variants before fitting.

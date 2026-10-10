@@ -1,0 +1,19 @@
+package requirements
+namespace requirements
+entity Integer id "requirements://integer"
+activity Choose(Integer) -> Integer computes "let value = input; let limit = 6; if value < limit { return limit } else { return value }" assembling {
+ choice "comparison" operand_order at "0" intent "작성한 입력에서 비교 결과를 맞춘다. Match the declared comparison results."
+ choice "branches" branch_layout at "0" intent "출력 예시와 중간 조건을 함께 만족하는 처리 순서를 고른다."
+ case "-9007199254740995" -> "-9007199254740995"
+ case "0" -> "0"
+ case "5" -> "5"
+ case "6" -> "6"
+ case "7" -> "6"
+ case "9007199254740993" -> "6"
+ case "9007199254740995" -> "6"
+ case "18014398509481990" -> "6"
+ condition_case "comparison" input "-9007199254740995" -> "true"
+ condition_case "comparison" input "6" -> "false"
+ condition_case "comparison" input "18014398509481990" -> "false"
+ attempts "4"
+}

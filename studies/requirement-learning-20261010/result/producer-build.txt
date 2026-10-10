@@ -1,0 +1,23 @@
+requirement-learning-producer: go1.27.2
+	path	github.com/kimjooyoon/meta-ontology-go/research/requirement-learning-study
+	mod	github.com/kimjooyoon/meta-ontology-go/research/requirement-learning-study	(devel)	
+	dep	github.com/kimjooyoon/gooo-decision-runtime	v0.2.38-experimental
+	=>	../../..	(devel)	
+	
+	dep	github.com/kimjooyoon/meta-ontology-go	v0.0.0
+	=>	../../../../meta-ontology-go	(devel)	
+	
+	build	-buildmode=exe
+	build	-compiler=gc
+	build	CGO_ENABLED=1
+	build	CGO_CFLAGS=
+	build	CGO_CPPFLAGS=
+	build	CGO_CXXFLAGS=
+	build	CGO_LDFLAGS=
+	build	GOARCH=arm64
+	build	GOOS=darwin
+	build	GOARM64=v8.0
+	build	vcs=git
+	build	vcs.revision=1d59cf13f80562f26213d3a2771e7f3947eb77fa
+	build	vcs.time=2026-10-10T13:47:24Z
+	build	vcs.modified=false
