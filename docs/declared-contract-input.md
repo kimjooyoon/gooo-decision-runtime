@@ -38,8 +38,8 @@ meaning and neither can replace the other.
 
 The input owns 128 slots of two `int64` values: 2,048 bytes for the case payload,
 plus its count and source/input metadata. It projects one 32-cell FP32 row into
-128 bytes of caller-owned scratch. A future model can stream every case through
-shared weights. No suite sampling, fixed four-case prefix, hidden truncation or
+128 bytes of caller-owned scratch. `CaseFeatures` also returns the same row by
+value for streaming model readers. No suite sampling, fixed four-case prefix, hidden truncation or
 whole-suite floating-point cache is used. Order, duplicates and contradictory
 declarations are preserved for the owning verifier.
 
@@ -60,17 +60,17 @@ Flags use 1/8; each byte uses its value divided by 2,048. Integers are converted
 to bytes before floating-point encoding. All bits survive for values beyond
 2^53 and both int64 endpoints; arithmetic relation flags avoid overflow.
 
-## Current boundary and next model
+## Model and execution connection
 
-This is an implemented source/case input API. Existing model weights and
-selection APIs retain their original ABI and behavior. The published v6 model
-does not consume this new channel. Training and compiler routing for a dedicated
-contract-aware model remain work.
+The separate [`contractdecision`](../contractdecision/README.md) package now
+trains a shared 32→8 case encoder and a source/pooled-case→24→2 ranking network.
+`PreparedPlan.NewContractSession` invokes it before candidate execution, then
+uses the existing complete finite checks. Nil preserves fallback search.
+The local `examples/contract-model` command fits extracted training documents
+and runs new documents with or without the model.
 
-The intended local design uses shared case weights and a small fixed-size
-aggregate combined with each source choice. Case count can grow to the existing
-128-case limit without increasing the number of learned parameters. Evaluation
-must include paired contracts with the same source/intent but different expected
-behavior, held-out expressions and wording, and comparisons with deterministic
-candidate checking. Report initial selection, actual program completeness and
-observation cost separately.
+Existing published v6 weights retain their original ABI. The new model requires
+fresh training; its 9,746 parameters occupy 38,984 FP32 bytes. Current paired
+learning tests establish the connection, while an independent held-out study
+and the ordinary compiler CLI route remain work. All cases reach the encoder,
+but pooling is lossy and cannot replace verification of the original suite.

@@ -69,3 +69,11 @@ func (input *ContractInput) CaseFeaturesInto(index int, output *[decision.Declar
 	c := input.cases[index]
 	return decision.DeclaredCaseFeaturesInto(c.Input, c.Expected, output)
 }
+
+// CaseFeatures returns a fixed value for streaming model readers. Returning by
+// value keeps caller scratch from escaping through an interface method call.
+func (input *ContractInput) CaseFeatures(index int) ([decision.DeclaredCaseFeatureDim]float32, error) {
+	var row [decision.DeclaredCaseFeatureDim]float32
+	err := input.CaseFeaturesInto(index, &row)
+	return row, err
+}

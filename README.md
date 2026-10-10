@@ -76,9 +76,14 @@ stability on the panel and leaves additional corrective benefit unmeasured.
 The [declared contract input](docs/declared-contract-input.md) now exposes every
 source-authored input/expected-output case as a separate exact 32-cell channel.
 It owns up to 128 integer pairs and reuses 128 bytes of scratch per projected
-case. Initial v6 source inputs remain unchanged. This prepares a dedicated model
-to read the requirements before execution; existing weights do not yet consume
-the new channel.
+case. Initial v6 source inputs remain unchanged. The new
+[`contractdecision`](contractdecision/README.md) model learns a shared case
+encoder alongside source-based choice scores: 9,746 FP32 parameters and 38,984
+weight bytes. `NewContractSession` calls it once before finite validation;
+without a model, search keeps the declared fallback order. A local example can
+fit extracted training documents and search new documents. Paired learning and
+execution tests pass; held-out performance and ordinary compiler CLI integration
+remain unmeasured and unfinished, respectively. Existing weights keep their ABI.
 
 ### Condition candidate model
 
