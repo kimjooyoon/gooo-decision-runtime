@@ -44,7 +44,7 @@ func (s *ConditionSession) ExecutionInput() (*ConditionInput, error) {
 	return &input, nil
 }
 
-// Both input ABIs share search behavior while retaining distinct model shapes,
+// The input ABIs share search behavior while retaining distinct model shapes,
 // artifact schemas and fingerprints. This transient adapter is never retained.
 type executionRanker struct {
 	condition *conditiondecision.Model

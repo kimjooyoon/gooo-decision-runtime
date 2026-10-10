@@ -50,7 +50,7 @@ func validOptions(o FitOptions) bool {
 		!math.IsNaN(o.LearningRate) && o.L2 >= 0 && !math.IsInf(o.L2, 0) && !math.IsNaN(o.L2)
 }
 
-// Fit makes deterministic full-batch CPU updates to a shared 320→24→2 network.
+// Fit makes deterministic full-batch CPU updates to a shared 384→24→2 network.
 // The loss is minus log probability mass of the complete acceptable mask set.
 // Its additive score cannot represent every joint distribution; the compiler
 // must still check the proposed complete candidate. Cancellation returns no model.
@@ -62,10 +62,10 @@ func Fit(ctx context.Context, samples []Sample, options FitOptions) (*Model, []E
 // identify their own representation. It retains the same bounded CPU training.
 func FitForFeatures(ctx context.Context, samples []Sample, options FitOptions, version string) (*Model, []Epoch, error) {
 	if !supportedFeatures(version) {
-		return nil, nil, errors.New("unsupported execution training feature version")
+		return nil, nil, errors.New("unsupported flow training feature version")
 	}
 	if ctx == nil || len(samples) == 0 || len(samples) > 4096 || !validOptions(options) {
-		return nil, nil, errors.New("bounded execution training samples and options required")
+		return nil, nil, errors.New("bounded flow training samples and options required")
 	}
 	if err := ctx.Err(); err != nil {
 		return nil, nil, err

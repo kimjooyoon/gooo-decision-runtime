@@ -1,5 +1,5 @@
 // Package flowdecision learns finite candidate rankings from source-bound
-// condition and output inputs. A shared small network scores each choice; full candidate
+// condition, output and static value-flow inputs. A shared small network scores each choice; full candidate
 // masks retain the combinations against which learning and selection are scored.
 package flowdecision
 
