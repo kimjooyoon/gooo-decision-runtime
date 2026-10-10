@@ -1,5 +1,9 @@
 # Learn from output and intermediate-condition requirements
 
+For the subsequent case-association and interaction experiment, see the
+[interaction model guide](interaction-requirement-contract.md). The models
+below retain their original schemas and recorded study results.
+
 ## Development: retain calculation order during learning
 
 `fit -ordered-requirements` selects a new explicit model that consumes the
