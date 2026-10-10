@@ -24,6 +24,13 @@ corpus, first-choice validity outside training rose from 107/170 to 112/170;
 four documents regressed and opposite-goal discrimination remained limited.
 The public v1 model and default mean pooling keep their existing computation.
 
+A [392-call internal diagnostic](studies/contract-signal-diagnostics-20261010/README.md)
+records the actual case summaries, source/bias prefixes, hidden values and final
+scores. Every saved selection is reproduced. All 97 opposite-goal pairs have
+different hidden values and scores, even where the selected path stays the
+same. `ExplainInto` exposes these values from one normal prediction so this
+decision behavior can be inspected without another fit or body search.
+
 The earlier shared judge uses 2,072
 parameters across three binary decisions. Its compact FP32 weights occupy 8,288
 bytes; ternary files occupy 446 bytes and decode into 2,096 tensor bytes plus

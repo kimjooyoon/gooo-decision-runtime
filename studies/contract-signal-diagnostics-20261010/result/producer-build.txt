@@ -1,0 +1,14 @@
+/tmp/gooo-release-0623-20261010.hCOVqV/contract-signal-producer: go1.27.2
+	path	github.com/kimjooyoon/gooo-decision-runtime/studies/contract-signal-diagnostics-20261010/producer
+	mod	github.com/kimjooyoon/gooo-decision-runtime	v0.2.36-experimental.0.20261010095510-662389ae86b0	
+	build	-buildmode=exe
+	build	-compiler=gc
+	build	-trimpath=true
+	build	CGO_ENABLED=1
+	build	GOARCH=arm64
+	build	GOOS=darwin
+	build	GOARM64=v8.0
+	build	vcs=git
+	build	vcs.revision=662389ae86b0606a1354e5e73d33d3df48a8bd32
+	build	vcs.time=2026-10-10T09:55:10Z
+	build	vcs.modified=false
