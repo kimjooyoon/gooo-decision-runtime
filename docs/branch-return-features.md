@@ -81,10 +81,10 @@ locals, assignments, reversed fallbacks, nested returns, atomic errors, immutabl
 feedback, exact large integers, concurrent projection and versioned search.
 They do not rerun the historical probe or establish new model accuracy.
 
-No trained v2 model or compiler CLI release is included in this change. The next
-study should train from actual Gooo source, separating new wording from new
-program structures: max/min, threshold selection, local returns and nested clamp
-bodies. It should retain wrong proposals, the fraction of finite cases passed,
-completed searches, model calls, CPU time and memory. One fixed split and training
-configuration must be chosen before measuring; results should be published even
-when broader structures remain difficult.
+The subsequent [paired source study](../studies/branch-role-learning-20261010/README.md)
+publishes a trained v2 artifact and a fresh v1 comparison. V2 fits the training
+layouts better (8/8 versus 4/8) but scores lower on held-out wording (6/16 versus
+8/16). Local and nested challenge scores remain unchanged. The fixed original
+protocol, both weights, every finite result and local resource observations are
+retained. Compiler CLI consumption of v2 and typed output-mismatch feedback are
+still subsequent work.

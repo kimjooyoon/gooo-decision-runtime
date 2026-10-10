@@ -45,7 +45,9 @@ err := model.PredictInto(features, candidateMasks, &work, &prediction)
 The module provides training, serialization, finite-pool ranking and incremental
 source-bound search. Compiler CLI integration for the published v1 model is in
 [compiler PR1441](https://github.com/kimjooyoon/meta-ontology-go/pull/1441).
-Trained v2 weights, their compiler CLI connection and compression remain work.
+The [paired branch-role study](../studies/branch-role-learning-20261010/README.md)
+publishes trained v2 weights and a fresh v1 comparison, including held-out wording
+regressions. Their compiler CLI connection and compression remain work.
 The fixed [source-based study](../studies/condition-candidate-20261010/protocol.txt)
 separates initial judgments, observations, new wording and local-variable bodies.
 
