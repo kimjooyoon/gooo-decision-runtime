@@ -101,6 +101,7 @@ func fit(ctx context.Context, args []string, out io.Writer) error {
 	modelPath := f.String("out", "", "new model JSON path (must not exist)")
 	epochs := f.Int("epochs", 400, "CPU full-batch epochs")
 	pooling := f.String("pooling", contractdecision.MeanPooling, "arithmetic_mean or signed_max_abs")
+	pairedGoals := f.Bool("goal-pairs", false, "pair consecutive training documents with opposite goals (weight 0.5, margin 2)")
 	if err := f.Parse(args); err != nil {
 		return err
 	}
@@ -109,6 +110,9 @@ func fit(ctx context.Context, args []string, out io.Writer) error {
 	}
 	if *epochs < 1 || *epochs > 10000 {
 		return errors.New("fit requires 1..10000 epochs")
+	}
+	if *pairedGoals && f.NArg()%2 != 0 {
+		return errors.New("goal-pairs requires an even number of consecutive training documents")
 	}
 	if *pooling != contractdecision.MeanPooling && *pooling != contractdecision.ExtremePooling {
 		return errors.New("fit pooling must be arithmetic_mean or signed_max_abs")
@@ -130,7 +134,7 @@ func fit(ctx context.Context, args []string, out io.Writer) error {
 		samples = append(samples, s)
 	}
 	start := time.Now()
-	model, history, err := contractdecision.FitForPooling(ctx, samples, options, *pooling)
+	model, history, pairInfo, err := fitSamples(ctx, samples, options, *pooling, *pairedGoals)
 	elapsed := time.Since(start).Nanoseconds()
 	if err != nil {
 		return err
@@ -151,6 +155,10 @@ func fit(ctx context.Context, args []string, out io.Writer) error {
 	if closeErr != nil {
 		return closeErr
 	}
+	schema := "gooo/contract-local-fit/v1"
+	if pairInfo != nil {
+		schema = "gooo/contract-local-fit/v2"
+	}
 	return json.NewEncoder(out).Encode(struct {
 		Schema            string                      `json:"schema"`
 		TrainingDocuments int                         `json:"training_documents"`
@@ -159,7 +167,8 @@ func fit(ctx context.Context, args []string, out io.Writer) error {
 		ModelSHA          string                      `json:"model_sha256"`
 		Fingerprint       string                      `json:"model_fingerprint"`
 		History           []contractdecision.Epoch    `json:"history"`
-	}{"gooo/contract-local-fit/v1", len(samples), options, elapsed, fmt.Sprintf("%x", sha256.Sum256(raw)), model.Fingerprint(), history})
+		GoalPairs         *goalPairFit                `json:"goal_pairs,omitempty"`
+	}{schema, len(samples), options, elapsed, fmt.Sprintf("%x", sha256.Sum256(raw)), model.Fingerprint(), history, pairInfo})
 }
 
 func search(ctx context.Context, args []string, out io.Writer) error {

@@ -1,0 +1,40 @@
+Fixed before one fresh comparison of the paired-goal training objective.
+
+Preserve both existing contract models, their weights, and all original outcomes.
+New fit: signed_max_abs pooling, the same 9,746 FP32 parameters/38,984 weight bytes,
+source v6 and declared-case v1 inputs. Same original24 rows, source arrays, case
+arrays, acceptable sets and candidate order. Pair consecutive g0/g1 rows of each
+identical source:12 pairs. No new labels, held-out training data or model capacity.
+
+One fresh full-batch CPU fit:600epochs,LR0.3,L2.0001,seed17,weight0.5,margin2.
+Loss: mean original candidate NLL plus weight*mean softplus(margin-paired_gap).
+Keep both ordinary and paired terms. Fit reads each paired sample twice/epoch,
+28,800 training forwards. No schedule search, warm start or repeated fit.
+
+Pinned compressed inputs from the original contract-goals result:
+sources.jsonl.gz 773db4e279b497465a92ad2d7df683f0a2898d72365f6f48ac351e5f7036b413
+training.json.gz e8e07ad2cbc8ff5adac35b81999000717baef4e0143c93c204dc483cbdcf7d1d
+
+Pinned signed-pooling baseline (contract-pooling result, read-only):
+searches.jsonl.gz ccdf0b3312c123d7b4c3bc804e9443d43489f38ac024578af7bbb85f25e2b827
+model.json f69944394dbe66b3449c5f87cb5ee51b09a9f34c4a2483e5fc119a005160e8b7
+
+Compare only against saved signed-pooling observations and fixed oracle labels.
+Do not rerun previous models, fits, compiler source lowering or four-mask oracles.
+For each original source, prepare its stored typed document, verify the initial
+arrays/case identity and run one new ContractSession until complete or exhausted.
+196 new sessions/196 initial model forwards/0feedback/0native/GPU/external calls.
+Keep both contradictions, both 128-case tail documents and all incorrect choices.
+
+Retain all24 consumed rows,12 pair indices,600 losses,weights and196 chained
+search records. Report first-path validity and finite completeness by original
+split, output and condition completeness, attempts, all improvements/regressions,
+both-valid and same-proposal opposite-goal pairs, prediction latency and full
+process time/RSS. Timings across different processes do not isolate a speedup.
+The goal objective is chosen using known-corpus diagnostics; the unchanged
+evaluation rows remain outside Fit but are not fresh unseen-language evidence.
+
+Use a clean committed Go1.27.2 producer, exclusive fresh output directory and
+start/completion markers. Execute once. A failed run must be retained rather
+than replaced. Read-only auditors can be repaired without replacing observations.
+Default fitting, published model weights and previous evidence remain unchanged.

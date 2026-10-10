@@ -3,6 +3,10 @@
 [Inspect one decision](../docs/contract-signals.md) with `ExplainInto`: the actual
 case summary, source prefix, joint hidden values and scores from the same pass.
 
+[Paired-goal training](../docs/contract-goal-pairs.md) can compare two goals for
+the same source while retaining the current inference layout and weight budget.
+The API and local command are implemented; a corpus-level comparison is pending.
+
 The optional [signed extreme pooling experiment](../docs/contract-pooling.md)
 adds an explicit v2 computation with the same weight layout. The default and
 the v1 description below retain arithmetic mean.
