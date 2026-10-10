@@ -1,0 +1,1 @@
+plans=128 declined=0 collisions=72->0 declined_pairs=0 model_calls=0 candidate_tests=0

@@ -1,0 +1,25 @@
+New representation study, 2026-10-10. Execute once from a clean committed producer.
+
+Input: the immutable 128 Gooo source documents and saved initial v3 contexts from
+studies/execution-feedback-learning-20261010/result. Preserve original files.
+Prepare each source plan normally (including fallback validation). Extract
+branch assignment/return and predicate operand facts without evaluating a
+candidate or calling/training a model. Compare the old 320 inputs to a new
+384-cell projection. The first 320 cells must be byte-identical.
+
+The appended 64 cells hold four 16-cell static values: then return, else return,
+predicate left, predicate right. Eight flags plus eight int64 bytes per value.
+Copying a local snapshots its value; later writes do not retroactively affect
+the copy. Both arms of other branches are joined. Distinct or arithmetic values
+are unknown. Forcing the selected branch is syntactic, not feasibility proof.
+
+Count equal joint feature hashes whose saved acceptable masks are disjoint,
+before and after projection, using the same 128 initial contexts and labels.
+Report declines separately and never count their absence as discrimination.
+Save per-row arrays, facts, source/plan hashes and acceptable mask sets so the
+counts can be recounted without preparation or execution. Preserve exact int64.
+
+This measures representational collisions, not learned selection accuracy.
+No fresh fit, model call, candidate evaluation, native run or retuning.
+Existing models still accept their old 256/320-cell ABI only. A 384-cell model
+and training protocol are subsequent work; old weights must not be relabelled.

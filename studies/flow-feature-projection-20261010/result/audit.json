@@ -1,0 +1,16 @@
+{
+  "after_collisions": 0,
+  "before_collisions": 72,
+  "new_candidate_tests": 0,
+  "new_model_calls": 0,
+  "new_plan_preparations": 0,
+  "prior_pairs_by_split": {
+    "assignment/assignment": 16,
+    "constants/constants": 8,
+    "constants/train": 16,
+    "new_family/new_family": 16,
+    "train/train": 8,
+    "wording/wording": 8
+  },
+  "rows": 128
+}
