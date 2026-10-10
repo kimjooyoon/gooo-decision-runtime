@@ -71,7 +71,7 @@ func inspectInput(ctx context.Context, args []string, out io.Writer) error {
 		ConditionFeatureFormat: input.ConditionFeatureVersion(),
 		Choices:                make([]inspectedSourceChoice, len(doc.Plan.Decisions)), Outputs: make([]inspectedOutput, input.CaseCount()),
 		Conditions: make([]inspectedCondition, input.ConditionCount()),
-		Scope:      "source-bound inputs only; published contract models consume source and output channels; condition model consumption requires a new artifact ABI",
+		Scope:      "source-bound inputs only; requirement-conditioned artifacts consume all three channels; prediction requires an explicit compatible model",
 	}
 	for i, choice := range doc.Plan.Decisions {
 		report.Choices[i].ID, report.Choices[i].Options = choice.ID, [2]string{choice.Options[0].Label, choice.Options[1].Label}

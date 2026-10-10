@@ -109,6 +109,7 @@ func fit(ctx context.Context, args []string, out io.Writer) error {
 	pairedGoals := f.Bool("goal-pairs", false, "pair consecutive training documents with opposite goals (weight 0.5, margin 2)")
 	caseVersion := f.String("case-features", decision.DeclaredCaseFeatureVersion, "declared_integer_case_v1 or source_literal_integer_case_v1")
 	choiceContext := f.Bool("choice-context", false, "condition the case encoder on each source choice before pooling")
+	readConditions := f.Bool("requirements", false, "learn jointly from every authored output and Boolean condition")
 	if err := f.Parse(args); err != nil {
 		return err
 	}
@@ -130,6 +131,9 @@ func fit(ctx context.Context, args []string, out io.Writer) error {
 	if *choiceContext && (*pairedGoals || *caseVersion != decision.DeclaredCaseFeatureVersion) {
 		return errors.New("choice-context requires original declared cases and no goal-pairs")
 	}
+	if *readConditions && (*choiceContext || *pairedGoals || *caseVersion != decision.DeclaredCaseFeatureVersion) {
+		return errors.New("requirements uses original declared cases and a separate model from choice-context or goal-pairs")
+	}
 	if *pooling != contractdecision.MeanPooling && *pooling != contractdecision.ExtremePooling {
 		return errors.New("fit pooling must be arithmetic_mean or signed_max_abs")
 	}
@@ -149,12 +153,29 @@ func fit(ctx context.Context, args []string, out io.Writer) error {
 		}
 		samples = append(samples, s)
 	}
-	audit, err := contractdecision.AuditInputs(ctx, samples)
+	var audit *contractdecision.InputAudit
+	var requirements []contractdecision.RequirementSample
+	var err error
+	if *readConditions {
+		requirements, err = requirementSamples(samples)
+		if err == nil {
+			audit, err = contractdecision.AuditRequirements(ctx, requirements)
+		}
+	} else {
+		audit, err = contractdecision.AuditInputs(ctx, samples)
+	}
 	if err != nil {
 		return err
 	}
 	start := time.Now()
-	model, history, pairInfo, err := fitSamples(ctx, samples, options, *pooling, *pairedGoals, *choiceContext, *caseVersion)
+	var model fittedContractModel
+	var history []contractdecision.Epoch
+	var pairInfo *goalPairFit
+	if *readConditions {
+		model, history, err = contractdecision.FitRequirementConditioned(ctx, requirements, options, *pooling)
+	} else {
+		model, history, pairInfo, err = fitSamples(ctx, samples, options, *pooling, *pairedGoals, *choiceContext, *caseVersion)
+	}
 	elapsed := time.Since(start).Nanoseconds()
 	if err != nil {
 		return err
@@ -186,6 +207,11 @@ func fit(ctx context.Context, args []string, out io.Writer) error {
 	if *caseVersion != decision.DeclaredCaseFeatureVersion {
 		schema, explicitCaseVersion = "gooo/contract-local-fit/v3", *caseVersion
 	}
+	conditionVersion := ""
+	if *readConditions {
+		schema, explicitCaseVersion = "gooo/requirement-conditioned-local-fit/v1", decision.DeclaredCaseFeatureVersion
+		conditionVersion = decision.DeclaredConditionFeatureVersion
+	}
 	return json.NewEncoder(out).Encode(struct {
 		Schema            string                       `json:"schema"`
 		TrainingDocuments int                          `json:"training_documents"`
@@ -196,8 +222,9 @@ func fit(ctx context.Context, args []string, out io.Writer) error {
 		History           []contractdecision.Epoch     `json:"history"`
 		GoalPairs         *goalPairFit                 `json:"goal_pairs,omitempty"`
 		CaseFeatures      string                       `json:"case_feature_version,omitempty"`
+		ConditionFeatures string                       `json:"condition_feature_version,omitempty"`
 		InputAudit        *contractdecision.InputAudit `json:"input_audit"`
-	}{schema, len(samples), options, elapsed, fmt.Sprintf("%x", sha256.Sum256(raw)), model.Fingerprint(), history, pairInfo, explicitCaseVersion, audit})
+	}{schema, len(samples), options, elapsed, fmt.Sprintf("%x", sha256.Sum256(raw)), model.Fingerprint(), history, pairInfo, explicitCaseVersion, conditionVersion, audit})
 }
 
 func search(ctx context.Context, args []string, out io.Writer) error {

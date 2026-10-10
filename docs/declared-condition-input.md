@@ -9,8 +9,10 @@ This makes the [condition-only input collision](decision-input-audit.md)
 distinguishable in an explicit new channel. The two contracts retain identical
 legacy source/output arrays while their expected Boolean cells differ. The
 published contract models still consume the original source/output channels.
-A model that learns from conditions needs a new artifact computation contract,
-training path and measured integration; those consumers remain future work.
+The new [requirement-conditioned model](requirement-conditioned-contract.md)
+adds a joint learned consumer, explicit artifact contract, CPU fitting and SDK
+finite construction. Fresh held-out quality and native compiler loading remain
+the next integration steps.
 
 ## Inspect a document locally
 
@@ -78,5 +80,6 @@ destination. Concurrent readers use separate output arrays.
 The regression suite reconstructs every integer bit, checks all 16 target
 positions, retains 128 source-bound rows under caller mutation and concurrent
 reads, and exports the opposite-condition pair without changing old inputs.
-These checks establish representation fidelity. Model quality will require
-training and finite construction observations using this channel.
+These checks establish representation fidelity. The new model's training and
+construction regressions exercise this channel; broader model quality still
+requires fresh held-out observations.

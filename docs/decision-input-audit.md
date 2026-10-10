@@ -75,5 +75,8 @@ condition targets, exact integer inputs and expected Boolean values in a
 separate versioned channel. Its local inspection command exposes both sides of
 the opposite-condition pair. Current contract models and this audit retain
 their original input contract, so the diagnosed first-choice limit remains
-applicable to those models. Learning from the new channel requires an explicit
-new model computation contract and measured construction results.
+applicable to those models. The new
+[requirement-conditioned model](requirement-conditioned-contract.md) learns from
+all three channels. Its `AuditRequirements` diagnostic includes every condition
+row under `gooo/requirement-input-audit/v1`, using the same exact-comparison and
+label-counting rules. Its local fit report uses this complete-input audit.

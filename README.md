@@ -33,6 +33,31 @@ compiler's [current release and support status](https://github.com/kimjooyoon/me
 for what a released compiler includes. All SDK releases are listed
 [here](https://github.com/kimjooyoon/gooo-decision-runtime/releases).
 
+## Development: read intermediate requirements
+
+The new [requirement-conditioned model](docs/requirement-conditioned-contract.md)
+reads source choices, declared outputs and intermediate Boolean requirements
+together. It has 13,282 FP32 weights / 53,128 weight bytes and trains locally in
+Go. `fit -requirements` writes its explicit artifact; `search -model` makes one
+initial prediction and lets Gooo check the proposed bodies. `inspect` exports
+the three source-bound input channels without loading a model.
+
+Two Gooo-labelled training fixtures have identical outputs and opposite
+condition goals. The regression learns different paths and constructs both
+checked bodies in one attempt. A wrong proposal still continues through the
+finite verifier. The [input audit](docs/decision-input-audit.md) records the
+information available to each model version. Fresh held-out measurements and
+native compiler loading of this new schema are the next steps; public model
+files retain their recorded computation and results.
+
+The existing choice model's compiler integration was accepted as `dev` source
+`deff13a2`, including its original CI, readiness and compatibility checks.
+[PR1446](https://github.com/kimjooyoon/meta-ontology-go/pull/1446) prepares
+0.6.26 with download, inspection, construction and saved-replay help. The
+currently published compiler remains 0.6.25.
+
+## Earlier models and measured comparisons
+
 An optional [choice-specific case encoder](docs/choice-conditioned-contract.md)
 preserves all source and case cells, then lets each source choice influence how
 its cases are summarized. It has12,818 FP32 parameters / 51,272 weight bytes.
