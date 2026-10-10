@@ -6,14 +6,17 @@ source-bound plan; this library ranks its permitted choices and continues finite
 search using observed failures. Think of it as the small assembly mechanism
 inside the larger language workshop.
 
-**API baseline: v0.2.28-experimental.** It includes the condition-aware feedback
+**Published model baseline: v0.2.29-experimental.** The
+[release](https://github.com/kimjooyoon/gooo-decision-runtime/releases/tag/v0.2.29-experimental)
+contains the condition model's FP32 artifact and checksum. Existing compiler
+integration uses v0.2.28-experimental and includes the condition-aware feedback
 described below. The shared judge uses 2,072
 parameters across three binary decisions. Its compact FP32 weights occupy 8,288
 bytes; ternary files occupy 446 bytes and decode into 2,096 tensor bytes plus
 eight scale bytes. A caller owns a 3,200-byte workspace. These array sizes are
 one component of application RAM.
 
-### Condition candidate model on the development branch
+### Condition candidate model
 
 [`conditiondecision`](conditiondecision/README.md) trains a shared 256 → 24 → 2
 network directly in Go. Its 6,218 FP32 parameters occupy 24,872 weight bytes.
@@ -27,6 +30,19 @@ local-variable versions of the same absolute-value problem scored 8/8 and32/32.
 The study retains all120 selected bodies and finite results, including failures.
 This package has its own artifact ABI; general compiler CLI provider integration
 and compression of these new weights are subsequent steps.
+
+### Connecting the condition model to finite search
+
+`PreparedPlan.NewConditionSession` now uses the model's additive choice scores
+inside the existing frontier. It supports 1–16 binary choices and source-bound
+feedback, with one neural call per changed context. Gooo's typed checks, declared
+conditions and output cases still decide which complete body can be selected.
+A nil model preserves declared-fallback search. Calls, skipped calls, rejected
+candidates and cancellation are recorded separately.
+
+See [the API and its limits](docs/condition-search.md). `SearchConditionBatches`
+provides a 64-attempt, 16-feedback-round adapter for local document consumers;
+the new artifact still needs a provider in the general compiler CLI.
 
 ### Separate inputs for the condition model
 
