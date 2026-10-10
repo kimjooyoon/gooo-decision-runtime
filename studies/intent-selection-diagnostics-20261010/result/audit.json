@@ -1,0 +1,12 @@
+{
+  "all_zero_branch_pairs": {
+    "v5": 0,
+    "v6": 8
+  },
+  "new_audit_candidate_executions": 0,
+  "new_audit_forward_calls": 0,
+  "pairs": 32,
+  "producer": "5ccf5e21e8c41256eb50d7b0506f5893148bcb99",
+  "status": "PASS",
+  "traces": 64
+}

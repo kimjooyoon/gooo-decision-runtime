@@ -1,0 +1,28 @@
+Fixed before the first diagnostic forward pass. This is an internal-observation
+study of two frozen models, not a new fit or a repeat of the prior body searches.
+
+Use the32 direct-source rows in the immutable162-source normalization dataset.
+Use exact v5 modelSHA8127de6776d13b9c06710d1da762bb254401c1d8ff7e26ee6bb3c2d50d5cb8db
+and v6 modelSHA3ba2c75cd7a3dd398e445bdd31abaaa3b3337e6261beac9e88faba4ea12c9c3b.
+Keep all source-authored Korean/English intents, source fields, choices and cases.
+Derive v6 arrays only from frozen source facts; v5 uses frozen arrays unchanged.
+
+Execute exactly64 new diagnostic forward passes (32 sources*2 models) through
+ExplainInto. Expose actual hidden activations, both option scores per choice,
+all supplied candidate scores and the prediction from that one pass. Require
+each prediction to equal its already saved original result. These64 forwards
+are new model calls and are counted explicitly. No training, native execution,
+body compilation, case evaluation, parameter edits or language rewrites.
+
+Pair opposite max/min intents at the same constant, arm layout and wording.
+There are16 pairs per model. Require different inputs with differences confined
+to the branch choice's intent channel, and disjoint frozen acceptable sets.
+Count active branch hidden units, equal hidden vectors, equal option scores,
+equal whole prediction distributions and first-choice validity by task kind.
+Record every trace, including all-zero activations and failed choices.
+This observes where distinctions disappear; it does not establish a unique
+training cause or prove a proposed fix. No timing comparison or speedup claim.
+
+Commit clean Go1.27.2 producer and this protocol before execution. Run once into
+a new output directory. Preserve build identity and raw records. Publish gzip-n
+with decompressed byte comparisons and an independent read-only trace recount.

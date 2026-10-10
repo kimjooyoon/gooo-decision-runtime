@@ -43,6 +43,13 @@ from101/162 to82/162 first-choice valid candidates; both v6 search modes complet
 162/162 authored case suites. The experiment retains all failures and keeps
 these weights opt-in.
 
+A [follow-up diagnostic](studies/intent-selection-diagnostics-20261010/README.md)
+uses the same weights and exposes actual hidden activations through
+`Model.ExplainInto`. In eight of16 paired direct-source cases, the v6 branch
+activations were all zero, so opposite intents received the same bias-only
+branch scores. The64 diagnostic forwards and every trace are recorded; no
+new fitting or body execution was performed in that study.
+
 ### Condition candidate model
 
 [`conditiondecision`](conditiondecision/README.md) trains a shared 256 → 24 → 2
