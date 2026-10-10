@@ -1,0 +1,69 @@
+Original paired branch-role learning study, fixed before training.
+
+Purpose: train a small Gooo decision model on this PC and compare the available
+source representation. The model scores source-declared alternatives; Gooo
+lowering and typed execution provide full-candidate labels and final checks.
+
+Dataset: 60 authored source variants, not 60 independent language tasks.
+  train8: max/min x thresholds{-10,10} x forward/reversed direct body.
+  wording16: those forms with two held-out Korean/English paraphrases.
+  structure8: local input/constant declarations and local returns.
+  both16: local structure with both held-out paraphrases.
+  nested8: clamp at +/-10 or +/-20, all four branch orientations.
+  literal_collision4: sign codes with two wordings and both orientations.
+The source strings and case values are fixed in exporter/main.go. Every source
+is actually lowered by meta-ontology-go commit
+1ceb96b99fa6fabe12648f5ec6deac47a0d546e1 using public SDK0.2.31-experimental.
+The exporter and training producer must be clean builds of the same SDK commit.
+
+The 48 max/min programs have one operand-order and one branch-layout choice;
+their declared predicate must mean input < threshold. Clamp has two branch
+choices; sign has one. Complete-mask enumeration totals 232 candidates.
+Use the initial input and observations of every mask: 292 contexts.
+Only the eight training sources' 40 contexts enter either fit.
+Initial/observed rows are correlated; max/min forms share templates/thresholds.
+No broad natural-language understanding or independent task accuracy claim.
+
+Paired fits: exactly TWO fresh CPU fits with identical options and initial seed,
+one for source_intent_condition_channels_v1 and one for
+source_intent_condition_branch_roles_v2. Each has 256->24->2 ReLU, 6218 FP32
+parameters, full-batch acceptable-set loss, epochs400, learning_rate0.25,
+L2=0.0001, seed17. The feature representation is the changed factor. Existing
+published v1 weights are not used. No hyperparameter sweep or post-eval retuning.
+FitForFeatures receives training rows only. Save both artifacts and histories.
+
+Labels: compile each complete candidate and check every authored output and
+condition case. Keep all candidate bodies, exact results and acceptable bitsets.
+The dataset includes 9007199254740993, +/-9007199254740995 and 18014398509481990.
+Integers stay int64 in Go serialization and evaluation; no whole-value floats.
+
+Predictions: each frozen fitted model judges all 292 contexts, total584 calls.
+Immediately after each prediction, compile the selected Gooo body and evaluate
+its source cases. Save all cases and bodies, including wrong/partial results.
+Report first judgment and observed judgment separately per split, along with
+output/condition passed totals, baseline valid counts and per-call timing.
+Relative candidate scores are not calibrated correctness probabilities.
+Count disjoint-label initial-input collision pairs for each feature version.
+Literal-only sign cases intentionally probe a remaining missing representation;
+do not tune them away after reading the results.
+
+Search: each source uses deterministic, v1 initial, v1 feedback, v2 initial and
+v2 feedback modes, total300 searches. Batch size1, budget equals its complete
+mask count (2 or4), feedback bound count-1, no random sampling. Candidate tests
+are visible during search. Save every progress/ranking/attempt record. Record
+completion, attempts, actual inference calls, skipped/reused calls and time.
+Search completion is distinct from first-proposal correctness. Zero declared
+condition cases means no condition coverage, not a 100% condition score.
+
+Resources: /usr/bin/time -l for original export and original fit/judgment/search
+commands; record real/user/system CPU seconds and maximum RSS. The fit program
+has a five-minute deadline. No GPU, new base-model download, generated tokens or
+native executable runs. Weight bytes are one part of process RAM. No host CPU
+utilization delta, speedup guarantee or general probability calibration claim.
+
+Custody: fresh exclusive output directories, started/completed markers, source
+and model hashes, and immediate append-only JSONL observations. Stop on producer
+errors, preserve partial files, never repeat a completed measured run. Later
+auditing may only recount saved values. Publish deterministic gzip originals
+with decompressed byte comparisons and a manifest. Keep private paths out of
+public reports; identify any derived excerpts and retain original digests.

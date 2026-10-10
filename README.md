@@ -34,9 +34,13 @@ these new weights remains work.
 
 The opt-in [v2 branch return inputs](docs/branch-return-features.md) distinguish
 which branch returns an input, literal, local or composed expression. They fill
-twenty reserved cells without increasing the model's dimensions. Tests cover the
-previously saved input collision; trained v2 weights and accuracy measurements
-are still pending.
+twenty reserved cells without increasing the model's dimensions. In the
+[paired 60-source study](studies/branch-role-learning-20261010/README.md), v2
+reached 8/8 on the training sources and 6/16 on new wording; v1 scored 4/8 and
+8/16 respectively. Both weights and every selected body/case are published.
+All five finite-search modes completed the authored cases. Condition-only
+feedback supplied no extra neural calls when output values were wrong but the
+declared comparison was right; output-mismatch input is the next concrete gap.
 
 ### Connecting the condition model to finite search
 

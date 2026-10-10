@@ -1,0 +1,13 @@
+	path	github.com/kimjooyoon/gooo-decision-runtime/examples/branch-role-fit
+	mod	github.com/kimjooyoon/gooo-decision-runtime	v0.2.31-experimental.0.20261010042811-b3360fb08c3f	
+	build	-buildmode=exe
+	build	-compiler=gc
+	build	-trimpath=true
+	build	CGO_ENABLED=1
+	build	GOARCH=arm64
+	build	GOOS=darwin
+	build	GOARM64=v8.0
+	build	vcs=git
+	build	vcs.revision=b3360fb08c3f72bef003821fe4543de484c70664
+	build	vcs.time=2026-10-10T04:28:11Z
+	build	vcs.modified=false
