@@ -1,0 +1,44 @@
+Fixed before any v6 study fit or prediction. One fresh local CPU decision fit.
+
+Use the immutable 162-source semantic-flow-normalization-20261010 records,
+gzip SHA256 05fa80975f0e6ea56e0e653fc1207d5894805957cd7a4a54091b67d0e1a7ed40.
+Read existing semantic-flow-learning-20261010 report as the historical baseline,
+SHA256 83ab9f2b87845e519e9f7d0d6bbc474d2dc87fcf568df91be972460412e9f4ac.
+Do not rerun its fits, predictions, searches, exporter or exhaustive oracle.
+No old model is loaded by this producer.
+
+For eligible single-branch forms, derive six source-atom pair relations from
+the saved semantic context. Equal/less/greater occupy cells236:254, cell254
+remains zero and marker255 becomes3. Exact int64 comparisons never subtract
+or convert whole integers to floating point. Unsupported forms retain v5.
+Keep source intent, committed observations and exact atom suffix unchanged.
+The runtime must produce exactly the same initial arrays as the frozen inputs.
+
+Architecture384->24->2 FP32,9290 parameters; epochs400, rate0.25,
+L2=0.0001, seed17. Fit only16 future_train direct-return initial rows.
+No observed-failure contexts enter training; feedback is exploratory.
+Store the16 samples,400 losses and one v6 model. No tuning, repeated fits,
+model selection, quantization, GPU job or token generation.
+
+Immediately after each of162 predictions, compile/evaluate the selected
+candidate with8 declared outputs and3 condition cases. Save probability,
+selected mask, Gooo body, Go digest and every pass/failure. Compare with
+the frozen oracle only after selection. No native execution in this study.
+
+Execute324 searches:162 sources*v6_initial/v6_feedback. Budget4,batch1,
+no seed, at most4 feedback rounds. Save all attempts, progress, feedback,
+durations and final body. Assert candidate non-repetition, exact runtime
+input hashes and model call accounting. Preserve partial output on failure.
+
+Report train16, representation64, constant-transfer80 and controls2 separately,
+plus source forms. Recount first-choice output/condition completeness, valid
+selections, all128 equivalent representation pairs, search completion/attempts,
+calls, predict latency median/p95, fit and process time/RSS. Compare counts
+with the immutable v5 baseline; historical and current timing are separate
+observations, not a speedup measurement. Representation transfer shares tasks
+with training. Finite authored cases do not prove general correctness.
+
+Build a clean committed Go1.27.2 producer and execute it once into a new output
+directory. Keep binary/build hashes, protocol and start/completion markers.
+Publish gzip-n with decompressed byte comparisons. Independently recount
+saved evidence without model calls, candidate execution or retraining.
