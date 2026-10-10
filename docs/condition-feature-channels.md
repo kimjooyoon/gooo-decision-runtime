@@ -81,6 +81,38 @@ The destination is replaced only after source, intent and observation validation
 
 ## Training and evaluation criteria
 
+### Bind inputs directly to a Gooo plan
+
+`pathplan.PreparedPlan` now creates the inputs without parsing model prompt text
+or accepting a caller-rewritten observation:
+
+```go
+initial, err := prepared.InitialConditionInput()
+// Handle err. This performs no evaluation or model inference.
+var features [decision.FeatureDim]float32
+err = initial.FeaturesInto(choiceID, &features)
+
+observed, err := prepared.ObserveConditionInput(ctx, completeChoices)
+// Handle err. This compiles that combination and evaluates declared conditions.
+err = observed.FeaturesInto(choiceID, &features)
+failure, hasFailure := observed.Failure()
+// Retain observed.PlanSHA256() and failure with the training/evaluation record.
+```
+
+The authored intent, source fields and choice indexes come from the same immutable
+snapshot. Observation records the first mismatching or unreached declared
+condition. Subsequent feature projections reuse it without executing again.
+Changing the original plan, caller choice map or returned failure cannot change
+the stored input. Use separate destination arrays for concurrent callers.
+
+When every declared condition passes, the failure channel is empty. This input
+does not certify final output cases, produce training labels or call a model.
+Input preparation and actual model inference should be counted separately.
+The constructor compiles even when no condition examples exist, preserving checks
+for interacting choices that individually compile but fail when combined.
+
+### Learn from complete candidate results
+
 The next training run should use Gooo candidate evaluations to label the full set
 of valid choices, retaining correlations between multiple decisions. Pair source
 contracts with opposite expected conditions, distinguish unrelated choices and
