@@ -1,0 +1,23 @@
+/tmp/gooo-canonical-pooling-20261011/producer: go1.27.2
+	path	github.com/kimjooyoon/meta-ontology-go/research/canonical-pooling-study
+	mod	github.com/kimjooyoon/meta-ontology-go/research/canonical-pooling-study	(devel)	
+	dep	github.com/kimjooyoon/gooo-decision-runtime	v0.2.40-experimental
+	=>	../../..	(devel)	
+	
+	dep	github.com/kimjooyoon/meta-ontology-go	v0.0.0
+	=>	../../../../meta-ontology-go	(devel)	
+	
+	build	-buildmode=exe
+	build	-compiler=gc
+	build	CGO_ENABLED=1
+	build	CGO_CFLAGS=
+	build	CGO_CPPFLAGS=
+	build	CGO_CXXFLAGS=
+	build	CGO_LDFLAGS=
+	build	GOARCH=arm64
+	build	GOOS=darwin
+	build	GOARM64=v8.0
+	build	vcs=git
+	build	vcs.revision=706c590ba188afed5992fba07d313dbd6bd3de09
+	build	vcs.time=2026-10-10T22:05:47Z
+	build	vcs.modified=false
