@@ -1,0 +1,83 @@
+{
+  "dataset_sha256": "0b3bddcaf1ebd82f5e1153634f44e2f841e6f3944d5432a4c50744a4eb17123b",
+  "groups": {
+    "both/initial": {
+      "Rows": 4,
+      "Valid": 2,
+      "BaselineValid": 2,
+      "OutputsPassed": 28,
+      "OutputsTotal": 28,
+      "ConditionsPassed": 8,
+      "ConditionsTotal": 12
+    },
+    "both/observed": {
+      "Rows": 16,
+      "Valid": 12,
+      "BaselineValid": 8,
+      "OutputsPassed": 112,
+      "OutputsTotal": 112,
+      "ConditionsPassed": 40,
+      "ConditionsTotal": 48
+    },
+    "structure/initial": {
+      "Rows": 8,
+      "Valid": 8,
+      "BaselineValid": 4,
+      "OutputsPassed": 56,
+      "OutputsTotal": 56,
+      "ConditionsPassed": 24,
+      "ConditionsTotal": 24
+    },
+    "structure/observed": {
+      "Rows": 32,
+      "Valid": 32,
+      "BaselineValid": 16,
+      "OutputsPassed": 224,
+      "OutputsTotal": 224,
+      "ConditionsPassed": 96,
+      "ConditionsTotal": 96
+    },
+    "train/initial": {
+      "Rows": 8,
+      "Valid": 8,
+      "BaselineValid": 4,
+      "OutputsPassed": 56,
+      "OutputsTotal": 56,
+      "ConditionsPassed": 24,
+      "ConditionsTotal": 24
+    },
+    "train/observed": {
+      "Rows": 32,
+      "Valid": 32,
+      "BaselineValid": 16,
+      "OutputsPassed": 224,
+      "OutputsTotal": 224,
+      "ConditionsPassed": 96,
+      "ConditionsTotal": 96
+    },
+    "wording/initial": {
+      "Rows": 4,
+      "Valid": 2,
+      "BaselineValid": 2,
+      "OutputsPassed": 22,
+      "OutputsTotal": 28,
+      "ConditionsPassed": 8,
+      "ConditionsTotal": 12
+    },
+    "wording/observed": {
+      "Rows": 16,
+      "Valid": 12,
+      "BaselineValid": 8,
+      "OutputsPassed": 100,
+      "OutputsTotal": 112,
+      "ConditionsPassed": 40,
+      "ConditionsTotal": 48
+    }
+  },
+  "model_sha256": "a16696ed44c668f38cc2e7ee1dc6ff3f4716649d57e59df7c9490d1c670edc48",
+  "new_fits": 0,
+  "new_predictions": 0,
+  "new_program_executions": 0,
+  "status": "PASS",
+  "unique_rows": 120
+}

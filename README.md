@@ -13,14 +13,30 @@ bytes; ternary files occupy 446 bytes and decode into 2,096 tensor bytes plus
 eight scale bytes. A caller owns a 3,200-byte workspace. These array sizes are
 one component of application RAM.
 
-### Experimental inputs for the next decision model
+### Condition candidate model on the development branch
+
+[`conditiondecision`](conditiondecision/README.md) trains a shared 256 → 24 → 2
+network directly in Go. Its 6,218 FP32 parameters occupy 24,872 weight bytes.
+Learning uses the probability mass of complete source-valid candidate sets;
+the selected combination is still checked by the Gooo compiler or interpreter.
+
+In the [first fixed study](studies/condition-candidate-20261010/README.md), CPU
+training took 0.172s. Ranking four candidates over two choices had a 7.667µs
+median. New wording scored 2/4 on initial judgments and 12/16 after observations;
+local-variable versions of the same absolute-value problem scored 8/8 and32/32.
+The study retains all120 selected bodies and finite results, including failures.
+This package has its own artifact ABI; general compiler CLI provider integration
+and compression of these new weights are subsequent steps.
+
+### Separate inputs for the condition model
 
 `ConditionFeaturesInto` separates source structure, full intent and an observed
 condition into a fixed 1,024-byte array. Expected/actual Boolean roles, unreached
 conditions, candidate choices and exact int64 bytes have dedicated fields.
-Appending feedback leaves source and intent features unchanged. The new feature
-contract requires separately trained weights and is not accepted by current
-model loaders. See [the layout and evaluation criteria](docs/condition-feature-channels.md).
+Appending feedback leaves source and intent features unchanged. The new
+`conditiondecision` artifact uses separately trained weights. Prior path-model
+loaders retain their original feature contracts. See
+[the layout and evaluation criteria](docs/condition-feature-channels.md).
 
 ### Condition-aware model feedback
 
@@ -104,8 +120,9 @@ These APIs address a gap seen in the
 [Gooo joint-path model study](https://github.com/kimjooyoon/gooo-ecosystem-workbench/tree/b63ea6d74603a89e1a74af2b3dc36c1596742935/models/joint-path-20261010):
 opposite predicates can produce the same final answers after swapping branches.
 The caller supplies the expected predicate values. Counts cover only those
-authored cases. Gooo source syntax and saved-replay enforcement are compiler
-integration work. Keep final-output scores and intermediate-condition scores
+authored cases. Gooo source syntax and saved-replay enforcement were merged in
+[compiler PR1439](https://github.com/kimjooyoon/meta-ontology-go/pull/1439), with
+publication being prepared in PR1440. Keep final-output scores and intermediate-condition scores
 separate. Empty condition suites carry no predicate evidence. The previous
 extraction manifest is preserved in `source-provenance-v0.2.26.json`;
 `source-evolution-condition-cases.json` records the exact SDK-owned changes.

@@ -1,11 +1,15 @@
 # Separate source, intent and observed conditions
 
-`ConditionFeaturesInto` is an experimental input for the next small Gooo decision
+`ConditionFeaturesInto` is an experimental input for a small Gooo decision
 model. It writes a fixed `[256]float32` array (1,024 bytes) from structural source
 fields, the complete Korean/English intent and one typed condition observation.
-It performs feature extraction only. Training, a model artifact and an explicit
-inference contract are subsequent steps; the existing model loader rejects its
-new feature-version identifier.
+It performs feature extraction only. The separate
+[`conditiondecision` package](../conditiondecision/README.md) supplies training,
+an explicit artifact ABI and finite candidate ranking. Prior path-model loaders
+retain their existing feature identifiers. The
+[first fixed training study](../studies/condition-candidate-20261010/README.md)
+records source-derived labels, selected bodies, finite results and remaining
+wording failures.
 
 ## Why separate these inputs?
 
