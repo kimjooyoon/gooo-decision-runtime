@@ -8,6 +8,7 @@ import (
 	"io"
 
 	decision "github.com/kimjooyoon/gooo-decision-runtime"
+	"github.com/kimjooyoon/gooo-decision-runtime/contractdecision"
 	"github.com/kimjooyoon/gooo-decision-runtime/pathplan"
 )
 
@@ -22,11 +23,13 @@ type inspectedCondition struct {
 }
 
 type inspectedSourceChoice struct {
-	ID              string                                         `json:"id"`
-	Options         [2]string                                      `json:"options"`
-	Features        [decision.ExecutionFlowFeatureDim]float32      `json:"features"`
-	OrderedContext  *pathplan.OrderedBranchContext                 `json:"ordered_context,omitempty"`
-	OrderedFeatures *[decision.OrderedExpressionFeatureDim]float32 `json:"ordered_features,omitempty"`
+	ID                string                                         `json:"id"`
+	Options           [2]string                                      `json:"options"`
+	Features          [decision.ExecutionFlowFeatureDim]float32      `json:"features"`
+	OrderedContext    *pathplan.OrderedBranchContext                 `json:"ordered_context,omitempty"`
+	OrderedFeatures   *[decision.OrderedExpressionFeatureDim]float32 `json:"ordered_features,omitempty"`
+	CanonicalContext  *pathplan.CanonicalOrderedBranchContext        `json:"canonical_context,omitempty"`
+	CanonicalFeatures *[contractdecision.OrderedFeatureDim]float32   `json:"canonical_features,omitempty"`
 }
 
 type contractInputInspection struct {
@@ -37,6 +40,7 @@ type contractInputInspection struct {
 	OutputFeatureFormat    string                  `json:"output_feature_version"`
 	ConditionFeatureFormat string                  `json:"condition_feature_version"`
 	OrderedFeatureFormat   string                  `json:"ordered_feature_version,omitempty"`
+	CanonicalFeatureFormat string                  `json:"canonical_feature_version,omitempty"`
 	Choices                []inspectedSourceChoice `json:"source_choices"`
 	Outputs                []inspectedOutput       `json:"declared_outputs"`
 	Conditions             []inspectedCondition    `json:"declared_conditions"`
@@ -55,6 +59,7 @@ func inspectInput(ctx context.Context, args []string, out io.Writer) error {
 	}
 	f := flag.NewFlagSet("inspect", flag.ContinueOnError)
 	ordered := f.Bool("ordered-source", false, "include ordered predicate and return expressions for input development")
+	canonical := f.Bool("canonical-source", false, "include the complete canonical source input; no prediction or body execution")
 	if err := f.Parse(args); err != nil {
 		return err
 	}
@@ -82,6 +87,11 @@ func inspectInput(ctx context.Context, args []string, out io.Writer) error {
 		report.OrderedFeatureFormat = decision.OrderedExpressionFeatureVersion
 		report.Scope += "; ordered source adjunct is available for a future separately trained consumer"
 	}
+	if *canonical {
+		report.Schema = "gooo/contract-input-inspection/v3"
+		report.CanonicalFeatureFormat = contractdecision.CanonicalOrderedSourceFeatureVersion
+		report.Scope += "; canonical source input requires its own explicitly trained model"
+	}
 	for i, choice := range doc.Plan.Decisions {
 		report.Choices[i].ID, report.Choices[i].Options = choice.ID, [2]string{choice.Options[0].Label, choice.Options[1].Label}
 		if err := input.RelationalSourceFeaturesInto(choice.ID, &report.Choices[i].Features); err != nil {
@@ -99,6 +109,20 @@ func inspectInput(ctx context.Context, args []string, out io.Writer) error {
 					return err
 				}
 				report.Choices[i].OrderedFeatures = features
+			}
+		}
+		if *canonical {
+			view, err := prepared.CanonicalOrderedBranchContext(choice.ID)
+			if err != nil {
+				return err
+			}
+			report.Choices[i].CanonicalContext = &view
+			if view.Available {
+				features := new([contractdecision.OrderedFeatureDim]float32)
+				if err := input.CanonicalOrderedSourceFeaturesInto(choice.ID, features); err != nil {
+					return err
+				}
+				report.Choices[i].CanonicalFeatures = features
 			}
 		}
 	}

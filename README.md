@@ -8,8 +8,9 @@ inside the larger language workshop.
 
 ## Public code, model files and compiler support
 
-[SDK0.2.38](https://github.com/kimjooyoon/gooo-decision-runtime/releases/tag/v0.2.38-experimental)
-provides the decision inspection APIs and example command described below.
+[SDK0.2.39](https://github.com/kimjooyoon/gooo-decision-runtime/releases/tag/v0.2.39-experimental)
+provides the ordered and interaction requirement models, saved weights and
+example commands. The earlier decision inspection APIs remain available.
 The [SDK0.2.37 model release](https://github.com/kimjooyoon/gooo-decision-runtime/releases/tag/v0.2.37-experimental)
 contains the compatible choice-conditioned model (12,818 parameters / 51,272 weight bytes),
 its global-pooling comparator (9,746 parameters / 38,984 weight bytes) and
@@ -19,7 +20,7 @@ records 388 Gooo documents, both fits and all failures. Earlier defaults remain
 available in [v0.2.36](https://github.com/kimjooyoon/gooo-decision-runtime/releases/tag/v0.2.36-experimental).
 
 The SDK and compiler have separate release versions. Compiler
-[0.6.26](https://github.com/kimjooyoon/meta-ontology-go/releases/tag/v0.6.26-dev)
+[0.6.27](https://github.com/kimjooyoon/meta-ontology-go/releases/tag/v0.6.27-dev)
 uses SDK0.2.37 and includes the choice-conditioned model route. Its development
 integrations and their original observations are:
 
@@ -29,6 +30,8 @@ integrations and their original observations are:
 | [PR1444](https://github.com/kimjooyoon/meta-ontology-go/pull/1444) | Declared-case models, 20 original CLI commands, accepted `dev` source93566df0 |
 | [PR1445](https://github.com/kimjooyoon/meta-ontology-go/pull/1445) | Choice-conditioned model, 15 original commands, native construction evaluation and saved replay each24/24 |
 | [PR1446](https://github.com/kimjooyoon/meta-ontology-go/pull/1446) | Download, inspect, construct and replay guidance; included in the verified 0.6.26 public binary |
+| [PR1449](https://github.com/kimjooyoon/meta-ontology-go/pull/1449) | Saved-result change reports and the small Go baseline; accepted on `dev` after 0.6.27 |
+| [PR1450](https://github.com/kimjooyoon/meta-ontology-go/pull/1450) | Ordered/interaction model loading and immediate native construction; development PR, separate from the public 0.6.27 binary |
 
 One of the three PR1445 examples needs more attempts with the model. See the
 compiler's [current release and support status](https://github.com/kimjooyoon/meta-ontology-go/wiki/Current-Status)
@@ -36,6 +39,25 @@ for what a released compiler includes. All SDK releases are listed
 [here](https://github.com/kimjooyoon/gooo-decision-runtime/releases).
 
 ## Development: read intermediate requirements
+
+The optional [canonical branch input](docs/canonical-branch-input.md) gives
+equivalent direct-return and assignment bodies the same model input within its
+supported source shapes. `inspect -canonical-source` displays that input;
+`fit -canonical-interactions` and `search -model` connect it to local Go learning
+and bounded construction. Old artifacts retain their original inputs.
+A [retained-record inspection](studies/canonical-input-inspection-20261011/README.md)
+finds identical arrays in 96/96 paired bodies, versus 32/96 before. It makes zero
+predictions or candidate evaluations. New trained-model quality and native
+compiler support for this format remain unmeasured and unimplemented respectively.
+
+The latest completed [broader training study](studies/multifamily-requirement-learning-20261011/README.md)
+keeps the existing 19,034-parameter interaction architecture and expands its
+training to 64 Gooo documents across two rule families and Korean/English intents.
+First-choice success is 117/128 on new instances of trained families, versus
+72/128 for the released model, with four regressions. On the excluded family it
+is 34/64 versus 33/64, with eight regressions. Fixed search remains faster overall
+for these cheap bodies. The Go CPU fit took 16.116 seconds. Weights and all
+observations are public; these template results do not measure external adoption.
 
 The latest [interaction model](docs/interaction-requirement-contract.md) keeps
 each input associated with its requested target and learns small products of
@@ -83,13 +105,11 @@ trains in 875ms, predicts at a median 38.083µs and declines eight unsupported
 sources without a call. Both weights and all regressions are public. Existing
 model files keep their original inputs.
 
-The existing choice model's compiler integration was accepted as `dev` source
-`deff13a2`, including its original CI, readiness and compatibility checks.
-[PR1446](https://github.com/kimjooyoon/meta-ontology-go/pull/1446) added download,
-inspection, construction and saved-replay help. Compiler
-[0.6.26](https://github.com/kimjooyoon/meta-ontology-go/releases/tag/v0.6.26-dev)
-is published from `8a759cba`, with the actual public macOS arm64 file installed
-and its source, Go1.27.2, SDK0.2.37 and checksums verified.
+Compiler [0.6.27](https://github.com/kimjooyoon/meta-ontology-go/releases/tag/v0.6.27-dev)
+is published from `34eb72d6`, with the actual public macOS arm64 file installed
+and its source, Go1.27.2, SDK0.2.37 and checksums verified. SDK development and
+compiler development have separate adoption steps; model-file availability
+alone does not establish native compiler support.
 
 ## Earlier models and measured comparisons
 

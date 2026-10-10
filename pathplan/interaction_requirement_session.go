@@ -14,14 +14,42 @@ import (
 // Nil retains the original deterministic receipt. Unsupported representations
 // decline with zero predictions and retain ordinary finite search.
 func (p *PreparedPlan) NewInteractionRequirementContractSession(ctx context.Context, model *contractdecision.InteractionRequirementModel, cases []TestCase) (*ContractSession, error) {
+	if model == nil {
+		return p.newContractSession(ctx, cases, "", "", "", nil)
+	}
+	return p.newInteractionRequirementSession(ctx, model, cases, false)
+}
+
+// NewCanonicalInteractionRequirementContractSession uses source-resolved
+// expressions for equivalent direct-return and assignment forms. The selected
+// candidates still compile and execute the original source-owned plan.
+func (p *PreparedPlan) NewCanonicalInteractionRequirementContractSession(ctx context.Context, model *contractdecision.CanonicalInteractionRequirementModel, cases []TestCase) (*ContractSession, error) {
+	if model == nil {
+		return p.newContractSession(ctx, cases, "", "", "", nil)
+	}
+	return p.newInteractionRequirementSession(ctx, model, cases, true)
+}
+
+type interactionRequirementModel interface {
+	Fingerprint() string
+	SourceFeatureVersion() string
+	CaseFeatureVersion() string
+	ConditionFeatureVersion() string
+	PredictChoicesInto([][contractdecision.OrderedFeatureDim]float32, contractdecision.CaseSource, contractdecision.ConditionSource, *contractdecision.InteractionRequirementWorkspace, *contractdecision.ChoicePrediction) error
+}
+
+func (p *PreparedPlan) newInteractionRequirementSession(ctx context.Context, model interactionRequirementModel, cases []TestCase, canonical bool) (*ContractSession, error) {
 	s, err := p.newContractSession(ctx, cases, "", "", "", nil)
-	if err != nil || model == nil {
+	if err != nil {
 		return s, err
 	}
 	r := &s.ranking
 	r.Schema, r.SHA = "gooo/interaction-requirement-path-ranking/v1", ""
+	if canonical {
+		r.Schema = "gooo/canonical-interaction-requirement-path-ranking/v1"
+	}
 	r.ModelFingerprint = model.Fingerprint()
-	r.SourceFeatures, r.CaseFeatures = contractdecision.OrderedSourceFeatureVersion, model.CaseFeatureVersion()
+	r.SourceFeatures, r.CaseFeatures = model.SourceFeatureVersion(), model.CaseFeatureVersion()
 	r.ConditionFeatures, r.ConditionCount = model.ConditionFeatureVersion(), len(p.plan.ConditionCases)
 	input, err := p.InitialContractInput(s.core.cases)
 	if err != nil {
@@ -36,7 +64,11 @@ func (p *PreparedPlan) NewInteractionRequirementContractSession(ctx context.Cont
 		if err := ctx.Err(); err != nil {
 			return nil, err
 		}
-		if err := input.OrderedSourceFeaturesInto(choice.ID, &source[i]); err != nil {
+		features := input.OrderedSourceFeaturesInto
+		if canonical {
+			features = input.CanonicalOrderedSourceFeaturesInto
+		}
+		if err := features(choice.ID, &source[i]); err != nil {
 			r.Declined, r.Error = true, err.Error()
 			return s.finish()
 		}
@@ -58,6 +90,9 @@ func (p *PreparedPlan) NewInteractionRequirementContractSession(ctx context.Cont
 		return nil, err
 	}
 	s.applyInteractionRequirement(prediction, p)
+	if canonical {
+		s.core.result.Selection.ModelVariant = "canonical_interaction_requirement_contract_fp32"
+	}
 	return s.finish()
 }
 
