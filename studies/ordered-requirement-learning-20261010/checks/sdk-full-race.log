@@ -1,0 +1,67 @@
+ok  	github.com/kimjooyoon/gooo-decision-runtime	(cached)
+ok  	github.com/kimjooyoon/gooo-decision-runtime/bodyplan	(cached)
+ok  	github.com/kimjooyoon/gooo-decision-runtime/conditiondecision	(cached)
+ok  	github.com/kimjooyoon/gooo-decision-runtime/contractdecision	(cached)
+ok  	github.com/kimjooyoon/gooo-decision-runtime/examples/branch-role-fit	(cached)
+ok  	github.com/kimjooyoon/gooo-decision-runtime/examples/condition-fit	(cached)
+?   	github.com/kimjooyoon/gooo-decision-runtime/examples/condition-search	[no test files]
+ok  	github.com/kimjooyoon/gooo-decision-runtime/examples/contract-model	(cached)
+ok  	github.com/kimjooyoon/gooo-decision-runtime/examples/execution-feedback-fit	(cached)
+ok  	github.com/kimjooyoon/gooo-decision-runtime/examples/gooo-path	(cached)
+?   	github.com/kimjooyoon/gooo-decision-runtime/examples/order-prepared	[no test files]
+?   	github.com/kimjooyoon/gooo-decision-runtime/examples/order-replay	[no test files]
+ok  	github.com/kimjooyoon/gooo-decision-runtime/examples/probe-ranking	(cached)
+ok  	github.com/kimjooyoon/gooo-decision-runtime/examples/three-replay	(cached)
+ok  	github.com/kimjooyoon/gooo-decision-runtime/executiondecision	(cached)
+ok  	github.com/kimjooyoon/gooo-decision-runtime/flowdecision	(cached)
+ok  	github.com/kimjooyoon/gooo-decision-runtime/internal/modelfile	(cached)
+ok  	github.com/kimjooyoon/gooo-decision-runtime/internal/strictjson	(cached)
+ok  	github.com/kimjooyoon/gooo-decision-runtime/jointdecision	(cached)
+?   	github.com/kimjooyoon/gooo-decision-runtime/observations/condition-observation-20261010	[no test files]
+ok  	github.com/kimjooyoon/gooo-decision-runtime/orderfacts	(cached)
+ok  	github.com/kimjooyoon/gooo-decision-runtime/orderjudge	(cached)
+ok  	github.com/kimjooyoon/gooo-decision-runtime/orderprepared	(cached)
+ok  	github.com/kimjooyoon/gooo-decision-runtime/pathplan	(cached)
+?   	github.com/kimjooyoon/gooo-decision-runtime/studies/branch-feature-discrimination-20261010	[no test files]
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/branch-role-learning-20261010/audit	(cached)
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/choice-context-learning-20261010/audit	(cached)
+?   	github.com/kimjooyoon/gooo-decision-runtime/studies/choice-context-learning-20261010/freeze	[no test files]
+?   	github.com/kimjooyoon/gooo-decision-runtime/studies/choice-context-learning-20261010/record	[no test files]
+?   	github.com/kimjooyoon/gooo-decision-runtime/studies/condition-candidate-20261010	[no test files]
+?   	github.com/kimjooyoon/gooo-decision-runtime/studies/condition-search-20261010	[no test files]
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/contract-goal-pairs-20261010/audit	(cached)
+?   	github.com/kimjooyoon/gooo-decision-runtime/studies/contract-goal-pairs-20261010/producer	[no test files]
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/contract-goals-20261010/audit	(cached)
+?   	github.com/kimjooyoon/gooo-decision-runtime/studies/contract-goals-20261010/record	[no test files]
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/contract-pooling-20261010/audit	(cached)
+?   	github.com/kimjooyoon/gooo-decision-runtime/studies/contract-pooling-20261010/producer	[no test files]
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/contract-signal-diagnostics-20261010/audit	(cached)
+?   	github.com/kimjooyoon/gooo-decision-runtime/studies/contract-signal-diagnostics-20261010/producer	[no test files]
+?   	github.com/kimjooyoon/gooo-decision-runtime/studies/contract-signal-diagnostics-20261010/record	[no test files]
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/execution-feedback-learning-20261010/audit	(cached)
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/feedback-flow-learning-20261010	(cached)
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/feedback-flow-learning-20261010/audit	(cached)
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/flow-feature-projection-20261010	(cached)
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/flow-feature-projection-20261010/audit	(cached)
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/heldout-repair-20261010	(cached)
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/heldout-repair-20261010/audit	(cached)
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/intent-selection-diagnostics-20261010	(cached)
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/intent-selection-diagnostics-20261010/audit	(cached)
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/leaky-flow-learning-20261010	(cached)
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/leaky-flow-learning-20261010/audit	(cached)
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/ordered-requirement-learning-20261010/audit	4.839s
+?   	github.com/kimjooyoon/gooo-decision-runtime/studies/ordered-requirement-learning-20261010/freeze	[no test files]
+?   	github.com/kimjooyoon/gooo-decision-runtime/studies/ordered-requirement-learning-20261010/record	[no test files]
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/relational-flow-learning-20261010	(cached)
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/relational-flow-learning-20261010/audit	(cached)
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/requirement-learning-20261010/audit	(cached)
+?   	github.com/kimjooyoon/gooo-decision-runtime/studies/requirement-learning-20261010/freeze	[no test files]
+?   	github.com/kimjooyoon/gooo-decision-runtime/studies/requirement-learning-20261010/record	[no test files]
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/semantic-flow-learning-20261010	(cached)
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/semantic-flow-learning-20261010/audit	(cached)
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/semantic-flow-normalization-20261010/audit	(cached)
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/source-literal-contract-20261010/audit	(cached)
+?   	github.com/kimjooyoon/gooo-decision-runtime/studies/source-literal-contract-20261010/producer	[no test files]
+?   	github.com/kimjooyoon/gooo-decision-runtime/studies/source-literal-contract-20261010/record	[no test files]
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/value-flow-learning-20261010	(cached)
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/value-flow-learning-20261010/audit	(cached)

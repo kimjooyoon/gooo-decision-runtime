@@ -39,9 +39,13 @@ subtraction order learn distinct paths and each complete all declared cases on
 their first proposal. Independent float64 equations, numerical gradients for
 both new source connections, full 128-row readers, concurrent inference and CLI
 artifact loading have regression coverage. These are implementation and
-training-fixture checks; held-out accuracy and deployment resource measurements
-for the new model remain to be collected. Native compiler loading of this schema
-is subsequent integration work.
+training-fixture checks. The [separate 48-document study](../studies/ordered-requirement-learning-20261010/README.md)
+records 11/40 first-candidate evaluation successes versus 10/40 for the original
+requirement model, with all 40 completed through finite checking. Training remains
+2/8 and loss stays near uniform; preserving source distinctions has not yet led
+to strong joint learning. Both saved models, all regressions and local CPU/RSS
+measurements are included. Native compiler loading of this schema is subsequent
+integration work.
 
 ## Original requirement model
 
