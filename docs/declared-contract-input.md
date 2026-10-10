@@ -71,6 +71,8 @@ and runs new documents with or without the model.
 
 Existing published v6 weights retain their original ABI. The new model requires
 fresh training; its 9,746 parameters occupy 38,984 FP32 bytes. Current paired
-learning tests establish the connection, while an independent held-out study
-and the ordinary compiler CLI route remain work. All cases reach the encoder,
-but pooling is lossy and cannot replace verification of the original suite.
+learning tests establish the connection. A separate
+[196-document study](../studies/contract-goals-20261010/README.md) now records
+held-out finite results and local costs, including regressions. The ordinary
+compiler CLI route remains work. All cases reach the encoder, but pooling is
+lossy and cannot replace verification of the original suite.
