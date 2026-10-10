@@ -1,0 +1,52 @@
+Fixed before the one-use experiment. This is a new contract-input study; no
+previous training, held-out repair, or compiler timing observation is rerun.
+
+Generate and lower196 real Gooo sources with compiler89b000d046ab706bb7d61b91148aa4fd805821f6.
+Every source has two binary choices (comparison operand order and branch layout),
+four complete masks, and three authored comparison cases. Paired goals share the
+same body, source choices and neutral intent; only declared output cases differ.
+
+Families: bound(input/constant), distance(input-k/k-input), offset(input+k/input-k),
+and signed constant(-k/k). Use direct returns, local aliases, and branch assignment.
+All expressions remain within int64 for every fixed input. Preserve exact integers
+-9007199254740995,9007199254740993,9007199254740995,18014398509481990.
+
+Train24 documents: first three families, constants7/13, both original arm orders,
+both goals, direct returns and Korean neutral wording. Evaluation-only:48 alias/
+assignment transfers;72 documents at constants11/17 across all three forms;
+24 direct-return English-wording transfers;24 signed-constant unseen-family
+documents at7/13 across all forms. These192 documents have8 output cases each.
+Add two128-case rare-tail bound contracts (127 equal-input cases and one decisive
+large negative input) and two128-case contradictory contracts. Total196 sources,
+194 satisfiable,2 unsatisfiable,2048 output cases,588 condition cases.
+
+Before fitting, compile and execute all4 masks per source for outputs and conditions;
+record every result, source/document/hash, initial384-cell arrays and all32-cell
+case rows. Do not omit unsupported or wrong outcomes. Explicit oracle counts:
+784 complete masks,1568 compile calls across the two public APIs,8192 output
+evaluations,2352 condition observations. Source/fallback preparation compilation
+is additional and is not included in those explicit oracle counters.
+
+Exactly one fresh CPU fit, contractdecision schema v1:9746 parameters,38984 FP32
+weight bytes;600 epochs,learning rate0.3,L2=0.0001,seed17. Only the24 training
+documents enter Fit; all held-out sources remain outside it. No retuning/restart.
+Save all24 model inputs and acceptable complete mask labels plus every epoch loss.
+
+For every source, run deterministic then trained-model ContractSession once each,
+advancing one candidate immediately per step until complete or all4 exhausted.
+392 sessions, exactly196 model forwards; no later feedback inference. No extra
+standalone prediction, native execution, GPU work or external model call.
+Record initial ranking and every chained progress, exact returned body, attempts,
+conditions/outputs, whole-session elapsed time and per-call inference time.
+Report every split separately, including rare-tail and contradictions. Compare
+first validity, finite completion, attempts and cost. Condition-only and output
+completeness remain distinct. Scores are not calibrated correctness percentages.
+
+Keep the fixed ordering explicit as a timing confound. External process time/RSS
+is measured with /usr/bin/time -lp; no host CPU utilization delta is claimed.
+Templates are shared across splits; this does not establish broad language accuracy.
+Use a clean committed Go1.27.2 producer, fresh output directory, start/completion
+records and original build/time logs. Retain partial output if the run fails.
+Compress with gzip-n; compare decompressed bytes and write SHA256SUMS. A separate
+read-only audit checks recorded exact arithmetic/receipts/counts without Fit,
+Predict, Prepare, Compile, Evaluate, source lowering or native execution.
