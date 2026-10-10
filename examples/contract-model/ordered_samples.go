@@ -9,6 +9,10 @@ import (
 )
 
 func orderedSample(ctx context.Context, doc pathplan.Document, p *pathplan.PreparedPlan) (contractdecision.OrderedRequirementSample, error) {
+	return orderedSampleFor(ctx, doc, p, false)
+}
+
+func orderedSampleFor(ctx context.Context, doc pathplan.Document, p *pathplan.PreparedPlan, canonical bool) (contractdecision.OrderedRequirementSample, error) {
 	var result contractdecision.OrderedRequirementSample
 	if ctx == nil {
 		return result, errors.New("ordered sample context required")
@@ -21,8 +25,12 @@ func orderedSample(ctx context.Context, doc pathplan.Document, p *pathplan.Prepa
 		return result, err
 	}
 	result.Inputs = make([][contractdecision.OrderedFeatureDim]float32, len(doc.Plan.Decisions))
+	features := input.OrderedSourceFeaturesInto
+	if canonical {
+		features = input.CanonicalOrderedSourceFeaturesInto
+	}
 	for i, choice := range doc.Plan.Decisions {
-		if err := input.OrderedSourceFeaturesInto(choice.ID, &result.Inputs[i]); err != nil {
+		if err := features(choice.ID, &result.Inputs[i]); err != nil {
 			return result, err
 		}
 	}

@@ -112,6 +112,7 @@ func fit(ctx context.Context, args []string, out io.Writer) error {
 	readConditions := f.Bool("requirements", false, "learn jointly from every authored output and Boolean condition")
 	orderedConditions := f.Bool("ordered-requirements", false, "include ordered predicate/return operands in requirement learning")
 	interactions := f.Bool("interactions", false, "learn input-goal associations and joint source/output/condition interactions")
+	canonical := f.Bool("canonical-interactions", false, "learn interactions using resolved predicate and return expressions across equivalent variable forms")
 	if err := f.Parse(args); err != nil {
 		return err
 	}
@@ -142,6 +143,9 @@ func fit(ctx context.Context, args []string, out io.Writer) error {
 	if *interactions && (*orderedConditions || *readConditions || *choiceContext || *pairedGoals || *caseVersion != decision.DeclaredCaseFeatureVersion) {
 		return errors.New("interactions selects its own model and requires original declared cases")
 	}
+	if *canonical && (*interactions || *orderedConditions || *readConditions || *choiceContext || *pairedGoals || *caseVersion != decision.DeclaredCaseFeatureVersion) {
+		return errors.New("canonical-interactions selects its own source input and model; use it alone with original declared cases")
+	}
 	if *pooling != contractdecision.MeanPooling && *pooling != contractdecision.ExtremePooling {
 		return errors.New("fit pooling must be arithmetic_mean or signed_max_abs")
 	}
@@ -151,13 +155,14 @@ func fit(ctx context.Context, args []string, out io.Writer) error {
 	options := contractdecision.FitOptions{Epochs: *epochs, LearningRate: 0.3, L2: 0.0001, Seed: 17}
 	samples := make([]contractdecision.Sample, 0, f.NArg())
 	var orderedRequirements []contractdecision.OrderedRequirementSample
+	usesOrdered := *orderedConditions || *interactions || *canonical
 	for _, path := range f.Args() {
 		d, p, err := document(path)
 		if err != nil {
 			return err
 		}
-		if *orderedConditions || *interactions {
-			s, err := orderedSample(ctx, d, p)
+		if usesOrdered {
+			s, err := orderedSampleFor(ctx, d, p, *canonical)
 			if err != nil {
 				return fmt.Errorf("ordered training document %s: %w", path, err)
 			}
@@ -173,7 +178,9 @@ func fit(ctx context.Context, args []string, out io.Writer) error {
 	var audit *contractdecision.InputAudit
 	var requirements []contractdecision.RequirementSample
 	var err error
-	if *orderedConditions || *interactions {
+	if *canonical {
+		audit, err = contractdecision.AuditCanonicalRequirements(ctx, orderedRequirements)
+	} else if usesOrdered {
 		audit, err = contractdecision.AuditOrderedRequirements(ctx, orderedRequirements)
 	} else if *readConditions {
 		requirements, err = requirementSamples(samples)
@@ -190,7 +197,9 @@ func fit(ctx context.Context, args []string, out io.Writer) error {
 	var model fittedContractModel
 	var history []contractdecision.Epoch
 	var pairInfo *goalPairFit
-	if *interactions {
+	if *canonical {
+		model, history, err = contractdecision.FitCanonicalInteractionRequirementConditioned(ctx, orderedRequirements, options, *pooling)
+	} else if *interactions {
 		model, history, err = contractdecision.FitInteractionRequirementConditioned(ctx, orderedRequirements, options, *pooling)
 	} else if *orderedConditions {
 		model, history, err = contractdecision.FitOrderedRequirementConditioned(ctx, orderedRequirements, options, *pooling)
@@ -236,12 +245,15 @@ func fit(ctx context.Context, args []string, out io.Writer) error {
 		conditionVersion = decision.DeclaredConditionFeatureVersion
 	}
 	trainingCount, sourceVersion := len(samples), ""
-	if *orderedConditions || *interactions {
+	if usesOrdered {
 		schema, explicitCaseVersion = "gooo/ordered-requirement-local-fit/v1", decision.DeclaredCaseFeatureVersion
 		if *interactions {
 			schema = "gooo/interaction-requirement-local-fit/v1"
 		}
 		conditionVersion, sourceVersion = decision.DeclaredConditionFeatureVersion, contractdecision.OrderedSourceFeatureVersion
+		if *canonical {
+			schema, sourceVersion = "gooo/canonical-interaction-requirement-local-fit/v1", contractdecision.CanonicalOrderedSourceFeatureVersion
+		}
 		trainingCount = len(orderedRequirements)
 	}
 	return json.NewEncoder(out).Encode(struct {

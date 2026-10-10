@@ -18,6 +18,13 @@ func sourceContractSession(ctx context.Context, plan *pathplan.PreparedPlan, cas
 	if err := json.Unmarshal(raw, &header); err != nil {
 		return nil, err
 	}
+	if header.Schema == contractdecision.CanonicalInteractionRequirementSchema {
+		model, err := contractdecision.DecodeCanonicalInteractionRequirementConditioned(raw)
+		if err != nil {
+			return nil, err
+		}
+		return plan.NewCanonicalInteractionRequirementContractSession(ctx, model, cases)
+	}
 	if header.Schema == contractdecision.InteractionRequirementSchema {
 		model, err := contractdecision.DecodeInteractionRequirementConditioned(raw)
 		if err != nil {

@@ -47,11 +47,15 @@ that ranking and make zero further predictions. A nil model preserves the
 deterministic receipt. Unsupported ordered source shapes return a declined
 receipt with a reason and zero predictions, retaining deterministic search.
 
-This schema is available through the SDK API and example command. Native
-compiler loading and a versioned model release remain follow-up work. A
+This schema is available through the SDK API and example command, with weights
+published in [SDK0.2.39](https://github.com/kimjooyoon/gooo-decision-runtime/releases/tag/v0.2.39-experimental).
+Native compiler loading is implemented in development
+[PR1450](https://github.com/kimjooyoon/meta-ontology-go/pull/1450). A
 [fresh study](../studies/interaction-requirement-learning-20261011/README.md)
-provides saved weights, held-out results and cost measurements. Compiler 0.6.26
-includes the earlier choice-conditioned schema.
+provides saved weights, held-out results and cost measurements. Public compiler
+0.6.27 includes the earlier choice-conditioned schema. The optional
+[canonical input](canonical-branch-input.md) uses a separate artifact for
+learning from equivalent variable forms; this schema keeps its original input.
 
 ## The small computation
 
