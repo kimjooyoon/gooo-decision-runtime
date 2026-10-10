@@ -57,10 +57,18 @@ func rejected(t *testing.T, check func()) {
 
 func TestExactRecordedOutputsAndRankingMutations(t *testing.T) {
 	frozen := filepath.Join("..", "..", "contract-goals-20261010", "result")
-	x := lines[r.Source](load(frozen, "sources.jsonl.gz"))[0]
-	row := lines[r.Search](load("../result", "searches.jsonl.gz"))[0]
+	sources := lines[r.Source](load(frozen, "sources.jsonl.gz"))
+	searches := lines[r.Search](load("../result", "searches.jsonl.gz"))
 	for _, mutation := range []string{"actual", "actual_expected", "positive_actual_expected", "rank", "source_goal"} {
 		t.Run(mutation, func(t *testing.T) {
+			x, row := sources[0], searches[0]
+			if mutation == "positive_actual_expected" {
+				x, row = sources[1], searches[1]
+				value := row.Progress[1].NewAttempts[0].Results[5]
+				if value.Actual <= 1<<53 || value.Expected <= 1<<53 {
+					t.Fatal("positive mutation must change actual large output values", value)
+				}
+			}
 			a := decode[r.Source](r.Encode(x))
 			b := decode[r.Search](r.Encode(row))
 			switch mutation {
@@ -82,5 +90,27 @@ func TestExactRecordedOutputsAndRankingMutations(t *testing.T) {
 				checkSearch(b, a, "e6dc12548759daa3ef77244ae155d88ce25f83d8372a821debafb520c4c260e2")
 			})
 		})
+	}
+}
+
+func TestLargeOracleOutputMutationsWithoutDigestFailure(t *testing.T) {
+	frozen := filepath.Join("..", "..", "contract-goals-20261010", "result")
+	sources := lines[r.Source](load(frozen, "sources.jsonl.gz"))
+	for _, example := range []struct{ source, mask, output int }{{0, 0, 0}, {1, 2, 5}} {
+		source := sources[example.source]
+		for _, coordinated := range []bool{false, true} {
+			altered := decode[r.Source](r.Encode(source))
+			value := &altered.Candidates[example.mask].Outputs[example.output]
+			if value.Actual >= -(1<<53) && value.Actual <= 1<<53 {
+				t.Fatal("oracle mutation requires a large integer", *value)
+			}
+			value.Actual++
+			if coordinated {
+				value.Expected++
+			}
+			// Candidate output arrays are checked arithmetically by checkSource;
+			// they are outside the source text, plan and case digest payloads.
+			rejected(t, func() { checkSource(altered, source.Spec) })
+		}
 	}
 }
