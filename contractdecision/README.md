@@ -16,6 +16,12 @@ include the diagnostic. A condition-only goal pair exposes a missing signal in
 the current input representation even though finite Gooo search can complete
 both contracts.
 
+[Read source-declared conditions](../docs/declared-condition-input.md) as a
+separate exact Boolean-goal channel. `contract-model inspect` exports source,
+output and condition rows without a model. Existing contract models consume
+the original source/output channels; learning from the new condition rows
+requires a new model computation contract.
+
 [Paired-goal training](../docs/contract-goal-pairs.md) can compare two goals for
 the same source while retaining the current inference layout and weight budget.
 The API and local command are implemented. The first fixed comparison retained
@@ -54,6 +60,7 @@ The [local example](../examples/contract-model/main.go) consumes strict
 `gooo/body-codegen-typed-path-plan/v1` documents derived from Gooo source:
 
 ```sh
+go run ./examples/contract-model inspect evaluation.json
 go run ./examples/contract-model fit -out contract.json train-a.json train-b.json
 go run ./examples/contract-model search -model contract.json evaluation.json
 go run ./examples/contract-model search evaluation.json

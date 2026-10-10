@@ -70,8 +70,10 @@ The `fit` command reuses the labels it already collected; its `training_ns`
 continues to time fitting, with audit work outside that interval. Conflicting
 valid labels remain trainable and are reported as diagnostics.
 
-The current change adds this diagnostic and its regression fixtures. It does
-not publish a new model or repeat the earlier corpus studies. The next input
-representation should carry source condition targets, exact integer inputs and
-expected Boolean values explicitly, with its own version and retained checks
-for opposite condition goals. That representation is not implemented here.
+The [declared-condition input](declared-condition-input.md) now carries source
+condition targets, exact integer inputs and expected Boolean values in a
+separate versioned channel. Its local inspection command exposes both sides of
+the opposite-condition pair. Current contract models and this audit retain
+their original input contract, so the diagnosed first-choice limit remains
+applicable to those models. Learning from the new channel requires an explicit
+new model computation contract and measured construction results.
