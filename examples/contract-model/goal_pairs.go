@@ -6,12 +6,21 @@ import (
 	"github.com/kimjooyoon/gooo-decision-runtime/contractdecision"
 )
 
+type fittedContractModel interface {
+	Marshal() ([]byte, error)
+	Fingerprint() string
+}
+
 type goalPairFit struct {
 	Pairs   []contractdecision.GoalPair      `json:"pairs"`
 	Options contractdecision.GoalPairOptions `json:"options"`
 }
 
-func fitSamples(ctx context.Context, samples []contractdecision.Sample, options contractdecision.FitOptions, pooling string, paired bool, caseVersion string) (*contractdecision.Model, []contractdecision.Epoch, *goalPairFit, error) {
+func fitSamples(ctx context.Context, samples []contractdecision.Sample, options contractdecision.FitOptions, pooling string, paired, choiceContext bool, caseVersion string) (fittedContractModel, []contractdecision.Epoch, *goalPairFit, error) {
+	if choiceContext {
+		model, history, err := contractdecision.FitChoiceConditioned(ctx, samples, options, pooling)
+		return model, history, nil, err
+	}
 	if !paired {
 		model, history, err := contractdecision.FitForCaseFeatures(ctx, samples, options, pooling, caseVersion)
 		return model, history, nil, err

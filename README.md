@@ -17,7 +17,15 @@ the v5/v6 inputs and explicit computation artifact to the ordinary CLI, with
 actual construction and model-free replay records, and is merged into `dev`.
 The installed compiler 0.6.25 still uses SDK0.2.28. The separate declared-case
 CLI integration is public in [PR1444](https://github.com/kimjooyoon/meta-ontology-go/pull/1444),
-with 20 original command observations and model-free saved replay; its CI is in progress.
+with 20 original command observations and model-free saved replay. It passed the
+original CI, readiness and independent compatibility checks and is merged into
+`dev` at93566df0. The installed compiler remains0.6.25.
+
+An optional [choice-specific case encoder](docs/choice-conditioned-contract.md)
+preserves all source and case cells, then lets each source choice influence how
+its cases are summarized. It has12,818 FP32 parameters / 51,272 weight bytes.
+Local CPU fitting and immediate finite construction are implemented; decision
+quality on a fresh corpus and whole-process cost remain to be measured.
 
 An optional [signed pooling experiment](studies/contract-pooling-20261010/README.md)
 keeps rare case signals from shrinking in the case average. On the same known
