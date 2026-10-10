@@ -27,6 +27,11 @@ The [162-source comparison](studies/semantic-flow-normalization-20261010/README.
 found identical v5 inputs for all 128 paired equivalent forms, versus 0 with v4.
 All pairs retained the same acceptable candidate sets; two unsupported controls
 kept their full v4 inputs. This measures representation, with no new model fit.
+In the [separate fresh learning comparison](studies/semantic-flow-learning-20261010/README.md),
+training only 16 direct-return forms gave 32/64 → 40/64 first-choice validity on
+other forms with v4 → v5, but training validity fell from 16/16 to 10/16.
+Both fresh weights and all failures are available. All five finite-search modes
+completed 162/162 authored case suites; v5 training took 107 ms on the local CPU.
 
 ### Condition candidate model
 

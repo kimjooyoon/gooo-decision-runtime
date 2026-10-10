@@ -1,0 +1,11 @@
+{
+  "judgments": 324,
+  "new_audit_candidate_executions": 0,
+  "new_audit_model_calls": 0,
+  "producer": "197790b77aab5f1190695e4e09c9b209d4ee0afb",
+  "search_model_calls": 773,
+  "searches": 810,
+  "sources": 162,
+  "status": "PASS",
+  "training_rows_per_fit": 16
+}
