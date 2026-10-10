@@ -19,14 +19,16 @@ records 388 Gooo documents, both fits and all failures. Earlier defaults remain
 available in [v0.2.36](https://github.com/kimjooyoon/gooo-decision-runtime/releases/tag/v0.2.36-experimental).
 
 The SDK and compiler have separate release versions. Compiler
-[0.6.25](https://github.com/kimjooyoon/meta-ontology-go/releases/tag/v0.6.25-dev)
-uses SDK0.2.28. Later development integrations and their original observations are:
+[0.6.26](https://github.com/kimjooyoon/meta-ontology-go/releases/tag/v0.6.26-dev)
+uses SDK0.2.37 and includes the choice-conditioned model route. Its development
+integrations and their original observations are:
 
 | Compiler source change | Capability and evidence |
 | --- | --- |
 | [PR1443](https://github.com/kimjooyoon/meta-ontology-go/pull/1443) | v5/v6 inputs and explicit computation artifacts, construction and model-free replay |
 | [PR1444](https://github.com/kimjooyoon/meta-ontology-go/pull/1444) | Declared-case models, 20 original CLI commands, accepted `dev` source93566df0 |
 | [PR1445](https://github.com/kimjooyoon/meta-ontology-go/pull/1445) | Choice-conditioned model, 15 original commands, native construction evaluation and saved replay each24/24 |
+| [PR1446](https://github.com/kimjooyoon/meta-ontology-go/pull/1446) | Download, inspect, construct and replay guidance; included in the verified 0.6.26 public binary |
 
 One of the three PR1445 examples needs more attempts with the model. See the
 compiler's [current release and support status](https://github.com/kimjooyoon/meta-ontology-go/wiki/Current-Status)
@@ -34,6 +36,15 @@ for what a released compiler includes. All SDK releases are listed
 [here](https://github.com/kimjooyoon/gooo-decision-runtime/releases).
 
 ## Development: read intermediate requirements
+
+The latest [interaction model](docs/interaction-requirement-contract.md) keeps
+each input associated with its requested target and learns small products of
+source, output and condition representations. `fit -interactions` and
+`search -model` use its explicit 19,034-parameter artifact locally in Go
+(76,136 FP32 weight bytes). A fixed eight-goal training regression reaches 8/8
+first-candidate completions, including 48/48 reorderings of the same cases.
+Held-out accuracy and performance are still unmeasured. The guide explains local
+use, the computation, existing release support and the next evaluation needed.
 
 The new [requirement-conditioned model](docs/requirement-conditioned-contract.md)
 reads source choices, declared outputs and intermediate Boolean requirements
