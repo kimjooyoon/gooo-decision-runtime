@@ -6,13 +6,14 @@ source-bound plan; this library ranks its permitted choices and continues finite
 search using observed failures. Think of it as the small assembly mechanism
 inside the larger language workshop.
 
-**Latest published models: v0.2.34-experimental.** The
-[release](https://github.com/kimjooyoon/gooo-decision-runtime/releases/tag/v0.2.34-experimental)
-contains separately trained v4 and v5 FP32 models and checksums. Each uses
-384 inputs, 9,290 parameters and 37,160 weight bytes; the v5 JSON is108,469 bytes.
-Compiler [PR1442](https://github.com/kimjooyoon/meta-ontology-go/pull/1442) connects
-the earlier v4 models to construction; v5 compiler integration is being developed
-separately. The installed compiler0.6.25 still uses SDK0.2.28.
+**Latest published release: v0.2.35-experimental.** The
+[release](https://github.com/kimjooyoon/gooo-decision-runtime/releases/tag/v0.2.35-experimental)
+contains the v6 ReLU and fixed negative-slope models and checksums. Each uses
+384 inputs, 9,290 parameters and 37,160 weight bytes; the leaky JSON is 108,562 bytes.
+Compiler [PR1443](https://github.com/kimjooyoon/meta-ontology-go/pull/1443) connects
+the v5/v6 inputs and explicit computation artifact to the ordinary CLI, with
+actual construction and model-free replay records. The installed compiler
+0.6.25 still uses SDK0.2.28.
 
 The earlier shared judge uses 2,072
 parameters across three binary decisions. Its compact FP32 weights occupy 8,288
@@ -54,8 +55,15 @@ The [separate fixed negative-slope fit](studies/leaky-flow-learning-20261010/REA
 keeps the same16 training arrays and9,290 parameters. First-choice validity rose
 from 82/162 to 141/162 against saved ReLU v6 results; 80 sources improved and 21
 regressed. Both bounded searches completed 162/162 suites in 183 attempts each.
-This explicit v2 computation artifact is an SDK experiment awaiting compiler
-CLI integration. Its local CPU fit took133ms.
+The local CPU fit took 133 ms. PR1443 carries the compiler CLI integration.
+
+The [observed-context training study](studies/feedback-flow-learning-20261010/README.md)
+adds 48 actual rejected-candidate observations from those same 16 training
+sources. One CPU fit took 515 ms and first-choice validity reached 162/162 on
+the fixed collection, with 21 improvements and zero regressions against the
+saved leaky model. This artifact remains a separate experiment. Every initial
+choice passed, leaving post-failure repair quality unmeasured. The 162 sources
+share a small set of task templates; unfamiliar tasks remain future work.
 
 ### Condition candidate model
 
