@@ -168,9 +168,10 @@ func TestCanonicalInputIgnoresAtomSharingAndLocalNames(t *testing.T) {
 			p.Base.Statements[i].Name = "copied_value"
 		}
 	}
-	p.Base.Expressions = append(p.Base.Expressions, p.Base.Expressions[1])
-	p.Base.Expressions = append(p.Base.Expressions, bodyplan.Expr{Kind: "binary", Operation: "subtract", Left: 6, Right: 0})
-	p.Base.Statements[1].Expr = 7
+	literal, local := p.Base.Expressions[1], p.Base.Expressions[5]
+	p.Base.Expressions = append(p.Base.Expressions[:4:4], literal,
+		bodyplan.Expr{Kind: "binary", Operation: "subtract", Left: 4, Right: 0}, local)
+	p.Base.Statements[1].Expr, p.Base.Statements[4].Expr = 5, 6
 	var inputs [2][528]float32
 	for i, plan := range plans {
 		prepared, err := Prepare(plan)
