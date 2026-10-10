@@ -1,0 +1,45 @@
+{
+  "schema": "gooo/decision-runtime-source-evolution/v1",
+  "base_revision": "d7d92dea081de1a44a606e6b426c318ba1ec5820",
+  "previous_manifest": "source-provenance-v0.2.26.json",
+  "previous_manifest_sha256": "88a2268e0254ee861db3ec38e289d890d2fa2ea19f97a13177b7b7412f7ebc00",
+  "updated_manifest_sha256": "b50eceb5755896f3a5b4f81f71f97e49fd31d26f4acd83e224465ca166eae084",
+  "reason": "Source-declared finite if-condition constraints across selection, bounded search and retained sessions; original extraction identities remain recorded.",
+  "changed_extracted_files": [
+    {
+      "path": "pathplan/diagnosis.go",
+      "before_sha256": "d122f5ce1b7affde9e76f22c7857233126ec276fe0c3f620818d34782320acb0",
+      "before_bytes": 9540,
+      "after_sha256": "cf98373f442c60f0df827a53926399d49978b3679c5e1a785dd9936bdcc9b9de",
+      "after_bytes": 9803
+    },
+    {
+      "path": "pathplan/pathplan.go",
+      "before_sha256": "20cb516efc4c248c4cfa3497e180e6dfb340dca1b06ffad612ac2476ca9c6eaa",
+      "before_bytes": 14350,
+      "after_sha256": "5d1250b55c2f6d48891bc1a3b4ea6898a1e2accd3bd673a2088eab0bb7e6504d",
+      "after_bytes": 14913
+    },
+    {
+      "path": "pathplan/prepared.go",
+      "before_sha256": "c55fd81b7f67829251000bf11fe8cdedf3ac61aa0ec5e5abcec16fd592079a3f",
+      "before_bytes": 3757,
+      "after_sha256": "a0ddaa444faccc96763628da2d501c61d91acd58265c5cb3070b901bd0d92595",
+      "after_bytes": 3867
+    },
+    {
+      "path": "pathplan/search.go",
+      "before_sha256": "12e1c27b5675fbb32959b4a79992e77e5166ef460c19ad816ffca62566271a36",
+      "before_bytes": 10566,
+      "after_sha256": "d3f132d32c85747f76389a1c68494cafc4c3b37e560997bfc59c16b9a80e374c",
+      "after_bytes": 10498
+    },
+    {
+      "path": "pathplan/session.go",
+      "before_sha256": "56fc53141e075ed56f316df1b2c13dc3f8166fabac625b804bb46cc3ccb05b19",
+      "before_bytes": 18098,
+      "after_sha256": "e595bedb11cd230398e4ff985132a205c511903deec32909af2c7f66482b41d6",
+      "after_bytes": 17988
+    }
+  ]
+}

@@ -30,6 +30,7 @@ type CandidateDiagnosis struct {
 	ProbeOutputsSHA256    string               `json:"probe_outputs_sha256,omitempty"`
 	CaseIndistinguishable bool                 `json:"case_indistinguishable"`
 	Witness               *DistinguishingInput `json:"distinguishing_input,omitempty"`
+	Conditions            []ConditionResult    `json:"condition_results,omitempty"`
 }
 
 // Diagnosis describes an observed finite space relative to one selected body.
@@ -140,8 +141,13 @@ func diagnosisPairDigest(digest stdhash.Hash, input, output int64) {
 	_, _ = digest.Write(raw[:])
 }
 
-func diagnoseCandidate(ctx context.Context, program *bodyplan.Program, mask uint16, reference diagnosisReference, cases []TestCase, probes []int64) (CandidateDiagnosis, error) {
+func (prepared *PreparedPlan) diagnoseCandidate(ctx context.Context, program *bodyplan.Program, mask uint16, reference diagnosisReference, cases []TestCase, probes []int64) (CandidateDiagnosis, error) {
 	row := CandidateDiagnosis{Mask: mask, Status: "EVALUATED", GoooSHA256: hashBytes([]byte(program.GoooSource())), CaseIndistinguishable: true}
+	var err error
+	row.Conditions, err = prepared.checkProgramConditions(ctx, program)
+	if err != nil {
+		return CandidateDiagnosis{}, err
+	}
 	caseDigest, probeDigest := sha256.New(), sha256.New()
 	for i, test := range cases {
 		value, err := diagnosisValue(ctx, program, test.Input)
@@ -222,7 +228,7 @@ func (prepared *PreparedPlan) Diagnose(ctx context.Context, choices map[string]s
 		CasesSHA256: hashBytes(caseRaw), ProbesSHA256: hashBytes(probeRaw), ReferenceMask: mask,
 		Declared: 1 << len(prepared.plan.Decisions), FiniteCases: len(cases), ProbeInputs: len(probes)}
 	result.Unobserved = result.Declared
-	row, err := diagnoseCandidate(ctx, program, mask, reference, cases, probes)
+	row, err := prepared.diagnoseCandidate(ctx, program, mask, reference, cases, probes)
 	if err != nil {
 		return result, err
 	}
@@ -240,7 +246,7 @@ func (prepared *PreparedPlan) Diagnose(ctx context.Context, choices map[string]s
 		}
 		row := CandidateDiagnosis{Mask: uint16(index), Status: "TYPE_REJECTED"}
 		if compileErr == nil {
-			row, err = diagnoseCandidate(ctx, candidate, uint16(index), reference, cases, probes)
+			row, err = prepared.diagnoseCandidate(ctx, candidate, uint16(index), reference, cases, probes)
 			if err != nil {
 				return result, err
 			}

@@ -9,14 +9,15 @@ import (
 // ProbeSnapshot separates evaluations performed now from previously observed
 // outputs reused now. COMPLETE still describes a finite candidate enumeration.
 type ProbeSnapshot struct {
-	Schema                  string       `json:"schema"`
-	Revision                int          `json:"revision"`
-	InitialRankingSHA256    string       `json:"initial_ranking_sha256"`
-	Ranking                 ProbeRanking `json:"ranking"`
-	ReusedProbeValues       int          `json:"reused_probe_values"`
-	CachedComparisons       int          `json:"cached_comparisons"`
-	TotalEvaluationAttempts int          `json:"total_evaluation_attempts"`
-	TotalCachedComparisons  int          `json:"total_cached_comparisons"`
+	Schema                    string       `json:"schema"`
+	Revision                  int          `json:"revision"`
+	InitialRankingSHA256      string       `json:"initial_ranking_sha256"`
+	Ranking                   ProbeRanking `json:"ranking"`
+	ReusedProbeValues         int          `json:"reused_probe_values"`
+	CachedComparisons         int          `json:"cached_comparisons"`
+	TotalEvaluationAttempts   int          `json:"total_evaluation_attempts"`
+	TotalConditionEvaluations int          `json:"total_condition_evaluations,omitempty"`
+	TotalCachedComparisons    int          `json:"total_cached_comparisons"`
 }
 
 // ProbeSession retains one bounded observation matrix for a prepared plan.
@@ -36,6 +37,8 @@ type ProbeSession struct {
 	observed             int
 	typeRejected         int
 	caseRejected         int
+	conditionRejected    int
+	conditionEvaluations int
 	evaluationAttempts   int
 	cachedComparisons    int
 	revision             int
@@ -49,7 +52,7 @@ func (prepared *PreparedPlan) StartProbeSession(ctx context.Context, cases []Tes
 	probes []int64, maxCandidates int) (*ProbeSession, ProbeSnapshot, error) {
 	ranking, err := prepared.RankProbes(ctx, cases, probes, maxCandidates)
 	initial := ProbeSnapshot{Schema: "gooo/typed-path-probe-snapshot/v1", Ranking: ranking,
-		TotalEvaluationAttempts: ranking.EvaluationAttempts}
+		TotalEvaluationAttempts: ranking.EvaluationAttempts, TotalConditionEvaluations: ranking.ConditionEvaluations}
 	if err != nil {
 		return nil, initial, err
 	}
@@ -58,6 +61,7 @@ func (prepared *PreparedPlan) StartProbeSession(ctx context.Context, cases []Tes
 	s := &ProbeSession{prepared: prepared, caseCount: len(cases), probeCount: len(probes),
 		count: len(ranking.SurvivingMasks), declared: ranking.Declared, observed: ranking.Observed,
 		typeRejected: ranking.TypeRejected, caseRejected: ranking.CaseRejected,
+		conditionRejected: ranking.ConditionRejected, conditionEvaluations: ranking.ConditionEvaluations,
 		evaluationAttempts: ranking.EvaluationAttempts, initialRankingSHA256: initial.InitialRankingSHA256}
 	copy(s.cases[:], cases)
 	copy(s.probes[:], probes)
@@ -157,6 +161,7 @@ func (s *ProbeSession) snapshot(comparisons int) ProbeSnapshot {
 		PlanSHA256: s.prepared.sha, CasesSHA256: hashBytes(caseRaw), ProbesSHA256: hashBytes(probeRaw),
 		Declared: s.declared, Observed: s.observed, Unobserved: s.declared - s.observed,
 		TypeRejected: s.typeRejected, CaseRejected: s.caseRejected,
+		ConditionRejected: s.conditionRejected, ReusedConditionEvaluations: s.conditionEvaluations,
 		OutputStorageBytes: 64 * 32 * 8}
 	if r.Unobserved == 0 {
 		r.Status = "COMPLETE"
@@ -168,5 +173,5 @@ func (s *ProbeSession) snapshot(comparisons int) ProbeSnapshot {
 	return ProbeSnapshot{Schema: "gooo/typed-path-probe-snapshot/v1", Revision: s.revision,
 		InitialRankingSHA256: s.initialRankingSHA256, Ranking: r,
 		ReusedProbeValues: s.count * s.probeCount, CachedComparisons: comparisons,
-		TotalEvaluationAttempts: s.evaluationAttempts, TotalCachedComparisons: s.cachedComparisons}
+		TotalEvaluationAttempts: s.evaluationAttempts, TotalConditionEvaluations: s.conditionEvaluations, TotalCachedComparisons: s.cachedComparisons}
 }

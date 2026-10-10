@@ -3,6 +3,7 @@
 package pathplan
 
 import (
+	"context"
 	"crypto/sha256"
 	"encoding/binary"
 	"encoding/hex"
@@ -29,9 +30,10 @@ const (
 )
 
 type Plan struct {
-	Schema    string        `json:"schema"`
-	Base      bodyplan.Plan `json:"base"`
-	Decisions []Choice      `json:"decisions"`
+	Schema         string          `json:"schema"`
+	Base           bodyplan.Plan   `json:"base"`
+	Decisions      []Choice        `json:"decisions"`
+	ConditionCases []ConditionCase `json:"condition_cases,omitempty"`
 }
 
 type Choice struct {
@@ -76,6 +78,7 @@ type Selection struct {
 	ExternalCallsKnown bool              `json:"external_provider_calls_known"`
 	Joint              *JointReceipt     `json:"joint_prediction,omitempty"`
 	Three              *ThreeReceipt     `json:"three_choice_prediction,omitempty"`
+	Conditions         []ConditionResult `json:"condition_results,omitempty"`
 }
 
 func cloneBase(base bodyplan.Plan) bodyplan.Plan {
@@ -251,6 +254,9 @@ func validatePlan(plan Plan) (map[string]string, *bodyplan.Program, error) {
 			}
 		}
 	}
+	if err := validateConditionCases(plan); err != nil {
+		return nil, nil, err
+	}
 	return choices, fallback, nil
 }
 
@@ -284,8 +290,9 @@ func cloneChoices(choices map[string]string) map[string]string {
 
 func hash(raw []byte) string { sum := sha256.Sum256(raw); return hex.EncodeToString(sum[:]) }
 
-// Choose reads only validated plans and intent. Gold choices and test cases are
-// absent from its API. An omitted model selects deterministic declared fallbacks.
+// Choose ranks validated plans and intent. An omitted model selects declared
+// fallbacks. Explicit source condition cases are checked after selection; use
+// Search to try other candidates when the chosen body violates them.
 func Choose(plan Plan, model *decision.Model, seed string) (Selection, *bodyplan.Program, error) {
 	choices, err := Validate(plan)
 	if err != nil {
@@ -352,6 +359,13 @@ func Choose(plan Plan, model *decision.Model, seed string) (Selection, *bodyplan
 	program, err := assemble(plan, result.Choices)
 	if err != nil {
 		return result, nil, fmt.Errorf("combined selected path: %w", err)
+	}
+	result.Conditions, err = (&PreparedPlan{plan: plan}).checkProgramConditions(context.Background(), program)
+	if err != nil {
+		return result, nil, err
+	}
+	if !ConditionsPassed(result.Conditions) {
+		return result, nil, ErrNoConditionCandidate
 	}
 	return result, program, nil
 }

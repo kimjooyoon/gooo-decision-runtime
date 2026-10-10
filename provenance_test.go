@@ -14,7 +14,7 @@ func TestProductionSourceMatchesPinnedOrigin(t *testing.T) {
 		t.Fatal(err)
 	}
 	hash := func(data []byte) string { sum := sha256.Sum256(data); return hex.EncodeToString(sum[:]) }
-	if hash(raw) != "88a2268e0254ee861db3ec38e289d890d2fa2ea19f97a13177b7b7412f7ebc00" {
+	if hash(raw) != "b50eceb5755896f3a5b4f81f71f97e49fd31d26f4acd83e224465ca166eae084" {
 		t.Fatal("fixed source extraction manifest changed")
 	}
 	var manifest struct {
