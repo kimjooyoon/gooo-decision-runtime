@@ -1,0 +1,19 @@
+panic: declared satisfiability req-bound-k18-r0-w0-o0-rare-g0-c1
+        0.70 real         0.17 user         0.11 sys
+            41058304  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+                5265  page reclaims
+                 113  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                 406  signals received
+                 128  voluntary context switches
+                2390  involuntary context switches
+          2404038626  instructions retired
+           672775804  cycles elapsed
+            30736960  peak memory footprint

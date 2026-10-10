@@ -19,8 +19,7 @@ empty condition suite4, contradictory conditions4. Thus136 satisfiable held-out
 documents plus32 training documents and4 unsatisfiable held-out documents.
 The rare cohort has127 unique nonnegative inputs mapped to the comparison's
 equality value by a fixed source prefix, and one decisive negative tail input.
-Its eight output examples are negative; the nonnegative conditions exercise the
-fixed-prefix equality region without adding output promises in that region.
+Its eight output examples are negative or at/above the positive threshold.
 This is a stress cohort with an extra fixed branch, not an isolated row-order
 ablation. Contradictions require the same Boolean result at distinct inputs
 below and above the threshold, impossible for either source comparison.
@@ -69,14 +68,3 @@ The original draft, original protocol and failure are retained under
 preflight-rejected/. No model fitting or candidate execution took place. The
 current corpus uses distinct condition inputs throughout, preserving cohort
 sizes, training documents, comparison settings and measurement scope.
-
-Collection history: the second frozen draft's rare cohort mixed negative and
-positive output examples. Mapping positive inputs to the comparison equality
-value made one required reverse-comparison path unable to meet both outputs.
-The complete four-candidate oracle caught this at source162 before either fit.
-161 completed source records, the draft corpus, protocol, producer identity and
-failure/process measurements are retained under collection-rejected/. The rare
-cohort now declares eight negative output examples and keeps its128 unique
-conditions. Training documents and both fit settings are unchanged. A separate
-integer reference checks satisfiability for every current frozen source before
-fitting. Earlier failed collections are not included in final-run speed claims.

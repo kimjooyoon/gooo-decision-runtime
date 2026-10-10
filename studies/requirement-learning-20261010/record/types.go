@@ -9,7 +9,7 @@ import (
 const Compiler = "0d61324996d7723f4c8109cbb8508de8de3cb72c"
 
 // Frozen after source-only preflight corrections and before any model fitting.
-const CorpusSHA = "890e4b1ee557fd7fc4938ca95e35884893386a8eece5979d2c97e9a2f3ce147f"
+const CorpusSHA = "6e1b0c73c7d539f69953af0658005b8d0609bc4054e30cf57cb8ce766bae6b63"
 
 type Spec struct {
 	ID, Pair, Family, Form, Split                      string

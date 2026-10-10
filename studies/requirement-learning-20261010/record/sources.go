@@ -70,7 +70,7 @@ func Cases(s Spec) []pathplan.TestCase {
 	var cases []pathplan.TestCase
 	inputs := []int64{-9007199254740995, 0, s.K - 1, s.K, s.K + 1, 9007199254740993, 9007199254740995, 18014398509481990}
 	if s.Form == "rare" {
-		inputs[1], inputs[2] = -2, -1
+		inputs = []int64{-9007199254740995, -8, -7, -6, -5, -4, -3, -2}
 	}
 	for _, x := range inputs {
 		cases = append(cases, pathplan.TestCase{Input: x, Expected: Required(s, x)})
