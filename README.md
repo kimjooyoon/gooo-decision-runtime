@@ -58,6 +58,19 @@ time increased. All models, successful and failed choices, and finite searches
 are published. The current compiler release does not load this schema yet.
 [Input layout, APIs and current limits](docs/execution-feedback.md).
 
+### Values carried through assignments
+
+The proposed [384-cell value-flow input](docs/branch-value-flow.md) follows
+assignments and copies through a selected branch to the eventual return. This
+lets the input describe the difference between two branches that both return
+the same local name after giving it different values.
+
+In the [fixed static projection](studies/flow-feature-projection-20261010/README.md),
+the original 128-source collection had 72 pairs with identical v3 inputs but
+disjoint acceptable paths. The additional facts distinguished all 72, with zero
+excluded sources. No new model was trained in that measurement; learning and
+runtime ranking on the 384-cell input remain the next step.
+
 ### Connecting the condition model to finite search
 
 `PreparedPlan.NewConditionSession` now uses the model's additive choice scores
