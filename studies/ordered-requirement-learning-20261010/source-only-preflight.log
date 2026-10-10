@@ -1,0 +1,4 @@
+=== RUN   TestFrozenSourceInputContracts
+--- PASS: TestFrozenSourceInputContracts (0.06s)
+PASS
+ok  	github.com/kimjooyoon/meta-ontology-go/research/ordered-requirement-learning-study	0.658s

@@ -1,0 +1,40 @@
+Ordered requirement study, fixed before fitting
+
+Purpose: measure whether preserving ordered predicate/return expressions helps a
+small Go CPU decision model choose complete Gooo paths. No token generation.
+Compiler: 8a759cba557b6c6e22aeea57040e8e1c69e6ec68, Go1.27.2.
+SDK architecture: accepted166abf15cbcb47df4c82b89f1745f679bf963d2d.
+
+48 newly instantiated Gooo sources use the existing published template generator.
+Train:8 distance sources,constant37,direct,Korean wording,2source reversals x
+2output goals x2condition goals. Evaluation:32 sources,constant53,English wording,
+direct/alias/assignment/rebinding,each with the same factorial goals. Eight more
+English constant53 two-root-branch sources carry128conditions and deliberately
+exceed the ordered representation; measure zero-call deterministic fallback.
+This is a narrow template-based evaluation, not independent natural-language or
+unseen algorithm-family understanding. Each source has2binary choices,4candidates,
+8exact-int64 outputs.40sources have3conditions;8have128conditions.
+
+Freeze corpus bytes and producer commit before fitting. Label each of192complete
+candidates through Gooo checking. Train each model ONCE on the same8rows: original
+384source requirement model, new528source ordered requirement model. Both mean
+pooling,2000epochs,LR0.3,L2=0.0001,seed17. No tuning/restart after observed scores.
+Different widths also change parameter count and initialization; attribute
+measured results to the whole model comparison, not solely to one added channel.
+
+Run48x3=144searches:deterministic,original requirement,new ordered. Exactly88
+model calls expected:48original+40ordered;8ordered declines. Each search predicts
+at most once before its first candidate and retains finite checking afterward.
+Record all initial rankings and candidate outcomes, first valid candidate rate,
+final completeness, output/condition case completeness, regressions, proposal
+pairs, input collision bounds, latency,training loss and CPU/RSS. CPU utilization
+from process CPU time is core-equivalent only; no system-wide utilization claim.
+No native execution or model-free replay performance claim in this SDK study.
+
+The producer requires a clean committed source and compiler, a fixed compressed
+corpus digest and a fresh output directory. Started marker precedes collection;
+fit artifacts/histories written immediately. Preserve every partial failure.
+An independent read-only audit checks exact-int64 template arithmetic, every
+candidate label and progress, all input channels and training-only rows; it
+never fits,predicts,lowers,compiles or executes Gooo. Public material is synthetic.
+No cloud compute or default model replacement. Historical observations untouched.
