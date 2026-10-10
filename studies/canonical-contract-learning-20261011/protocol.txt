@@ -1,0 +1,94 @@
+Canonical branch input and bounded counterexample construction.
+Fixed before original labels, predictions and fits.
+
+Compiler: clean3aaaeea1abd20f7e52a7f86d8a1550882071c267, Go1.27.2.
+SDK base:0ac7eae98ebfde1a1a4ead0bd4e855ac54065cbc.
+The producer must be built from its clean published commit. Its build identity,
+compiler identity, corpus digest and original output directory are recorded.
+Corpus compressed SHA256:
+5a0b422c4f74a5e627252c963d5d2437904b6cd9c9cadb3075bf5a2bcaef9d8a.
+
+Questions:
+1. With the same fresh training corpus, architecture and fit settings, what
+changes when the optional canonical source representation replaces the legacy
+ordered source representation?
+2. When declared examples leave several candidates valid, how often does an
+initially complete body pass a separately fixed probe suite, and how many
+additional source-bound counterexamples resolve the difference?
+
+The 320 documents are generated from three known arithmetic templates. They are
+related source variants, not 320 independent business tasks or general language
+understanding problems. All source text and probe expectations are frozen in
+the corpus before any source candidate is evaluated.
+
+Training64: bound/distance, constants41/-23, two new Korean/English wordings,
+direct returns, both initial return orders, both output and condition goals.
+In-family128: bound/distance, constants67/-43, two other Korean/English wordings,
+direct returns/assignments, both initial orders and goal combinations.
+Excluded-family64: affine arms input+K and input*3, constants67/-43 and the same
+evaluation wordings/forms. Neither fit sees this computation family.
+Sparse64: distance, constants71/-47, evaluation wordings/forms/order/goals. The
+only declared output is inputK ->0 and the only condition is inputK ->false.
+Every initial mask therefore passes the sparse declared requirements, while
+the independent probe goals distinguish the intended four complete masks.
+
+Non-sparse documents have eight authored output cases and three condition cases.
+Every document has16 output probes and three condition probes. Probe outputs
+include near-boundary, exact wide integers and int64 limits, use Go int64 wrap
+semantics, and do not overlap the initially authored output inputs. The condition
+probe atK intentionally retains the equality boundary. Output/condition goals
+come from explicit Go functions Required/RequiredCondition, not a model.
+
+Collect each of1,280 source masks once, retaining generated Gooo/Go and all
+declared/probe outcomes. Collection has8,448 declared output evaluations,
+20,480 output-probe evaluations,3,328 declared condition observations and3,840
+condition-probe observations. These counts exclude subsequent search checks,
+source validation and per-stage selected-body probes. Condition observation
+also evaluates the body output. It is not a claim about total evaluator calls.
+
+Train exactly two fresh FP32 models from the same64 authored training rows:
+legacy InteractionRequirementModel and CanonicalInteractionRequirementModel.
+Each uses19,034weights/76,136tensor bytes, mean pooling, seed31,2,000epochs,
+learning rate0.3,L2=0.0001. No warm start, sweep, early stopping, calibration or
+quantization. Fit legacy then canonical once; save all losses/artifacts and
+reload the written artifact before construction. Only source input format
+differs between these training recipes. Evaluation/probe labels never enter
+fitting, settings selection or another fit. No previous experiment is rerun.
+
+For all320 documents, construct once under fixed, legacy and canonical ordering:
+960 initial searches,640 initial predictions. Each session predicts before its
+first candidate executes, then advances one mask at a time up to four without
+reinference. Report first-candidate declared and probe completeness separately,
+initial completed-body probe completeness, all attempts and durations.
+
+Only the sparse cohort receives automatic counterexamples. After observing the
+selected body's fixed probes, append exactly the first failing output case; if
+all outputs pass, append the first failing condition case. Keep fixed probe order.
+Write the augmented Gooo source, lower it again and open a new session using the
+same saved model (or fixed ordering). Add at most two counterexamples per policy
+per document. Every new session makes at most one initial prediction. No silent
+model update or extra prediction within a session. Maximum384 feedback searches,
+256 additional model predictions. Cases added to one policy do not affect another.
+All initial failures remain in the evidence after a successful repair.
+
+Preserve complete source documents, source arrays for both formats, case rows,
+candidate/probe labels,64 training records, both histories and saved weights,
+all search stages, augmented source, next counterexample and timing. Audit the
+initial sparse inputs against probe labels separately: identical visible inputs
+with opposite hidden goals impose an information bound, not a learned accuracy.
+Compare equivalent source forms and retain every improvement/regression ID.
+
+Use a fresh exclusive output directory. Record any setup/execution failure;
+never retry the original fit/search process after outcomes exist. Tiny regression
+fixtures use K=5 outside this corpus and zero untrained weights to check routing;
+they are not study observations. Preflight on the corpus reads source and features
+only, with zero candidate execution/prediction/fitting.
+
+Report cohort denominators, declared checks, separate probes, before/after
+counterexample completeness, attempts and model calls. Report fit time, initial
+prediction median/p95, whole-process wall/user/system/maxRSS and artifact sizes.
+Runtime measurements share one uncontrolled host with fixed policy order; no
+causal speedup, machine-wide instantaneous CPU increase or customer saving claim.
+This uses the Gooo lowering and Go evaluator. Native compiler/model deployment,
+unbounded correctness, external adoption and payments are outside this evidence.
+No GPU, cloud training, Laya weights, token generation or user-private data.
