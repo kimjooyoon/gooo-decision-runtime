@@ -1,5 +1,8 @@
 # Reading Gooo requirements before choosing a path
 
+[Inspect one decision](../docs/contract-signals.md) with `ExplainInto`: the actual
+case summary, source prefix, joint hidden values and scores from the same pass.
+
 The optional [signed extreme pooling experiment](../docs/contract-pooling.md)
 adds an explicit v2 computation with the same weight layout. The default and
 the v1 description below retain arithmetic mean.

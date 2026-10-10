@@ -36,7 +36,7 @@ type CaseSource interface {
 }
 
 // Model owns 9,746 FP32 weights (38,984 bytes), independent of case count.
-// The lossy eight-cell mean is a ranking hint, never a proof of completeness.
+// The lossy eight-cell summary is a ranking hint, never a proof of completeness.
 type Model struct {
 	weights [ParameterCount]float32
 	extreme bool
@@ -144,6 +144,10 @@ func (m *Model) caseHidden(row *[CaseDim]float32) [PoolDim]float32 {
 }
 
 func (m *Model) forward(inputs [][FeatureDim]float32, cases CaseSource, masks []uint16, w *Workspace) error {
+	return m.forwardTrace(inputs, cases, masks, w, nil)
+}
+
+func (m *Model) forwardTrace(inputs [][FeatureDim]float32, cases CaseSource, masks []uint16, w *Workspace, trace *Explanation) error {
 	var sums [PoolDim]float64
 	count := cases.CaseCount()
 	if count < 1 || count > MaxCases {
@@ -177,6 +181,16 @@ func (m *Model) forward(inputs [][FeatureDim]float32, cases CaseSource, masks []
 			w.pool[h] = float32(sum / float64(count))
 		}
 	}
+	if trace != nil {
+		trace.ChoiceCount, trace.CandidateCount, trace.CaseCount = len(inputs), len(masks), count
+		trace.Pooling, trace.Pool = m.Pooling(), w.pool
+		for h := range PoolDim {
+			trace.Winner[h] = -1
+			if m.extreme {
+				trace.Winner[h] = w.winner[h]
+			}
+		}
+	}
 	for choice, input := range inputs {
 		for h := range HiddenDim {
 			sum := m.weights[hiddenBias+h]
@@ -184,8 +198,14 @@ func (m *Model) forward(inputs [][FeatureDim]float32, cases CaseSource, masks []
 			for j, x := range input {
 				sum += x * m.weights[start+j]
 			}
+			if trace != nil {
+				trace.SourcePrefix[choice][h] = sum
+			}
 			for j, x := range w.pool {
 				sum += x * m.weights[start+FeatureDim+j]
+			}
+			if trace != nil {
+				trace.Joint[choice][h] = sum
 			}
 			w.hidden[choice][h] = activate(sum)
 		}
@@ -208,6 +228,9 @@ func (m *Model) forward(inputs [][FeatureDim]float32, cases CaseSource, masks []
 			w.scores[i] += float64(w.logits[choice][mask>>choice&1])
 		}
 	}
+	if trace != nil {
+		trace.Hidden, trace.OptionScores, trace.CandidateScores = w.hidden, w.logits, w.scores
+	}
 	return nil
 }
 
@@ -215,6 +238,10 @@ func (m *Model) forward(inputs [][FeatureDim]float32, cases CaseSource, masks []
 // describe the supplied finite candidate pool, not correctness probabilities.
 // Ties use the smaller mask. Errors leave both caller destinations unchanged.
 func (m *Model) PredictInto(inputs [][FeatureDim]float32, cases CaseSource, masks []uint16, workspace *Workspace, output *Prediction) error {
+	return m.predict(inputs, cases, masks, workspace, output, nil)
+}
+
+func (m *Model) predict(inputs [][FeatureDim]float32, cases CaseSource, masks []uint16, workspace *Workspace, output *Prediction, trace *Explanation) error {
 	if m == nil || workspace == nil || output == nil {
 		return errors.New("contract model and destinations required")
 	}
@@ -222,7 +249,7 @@ func (m *Model) PredictInto(inputs [][FeatureDim]float32, cases CaseSource, mask
 		return err
 	}
 	var candidate Workspace
-	if err := m.forward(inputs, cases, masks, &candidate); err != nil {
+	if err := m.forwardTrace(inputs, cases, masks, &candidate, trace); err != nil {
 		return err
 	}
 	p, _ := distribution(candidate.scores[:len(masks)], allCandidates(len(masks)))

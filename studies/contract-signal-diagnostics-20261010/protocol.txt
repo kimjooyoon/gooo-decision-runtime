@@ -1,0 +1,40 @@
+Fixed before the first diagnostic observation of the two frozen contract models.
+
+Use all196 sources and their exact384-cell source arrays/all32-cell case rows
+from contract-goals-20261010. Pin sources.jsonl.gz SHA
+773db4e279b497465a92ad2d7df683f0a2898d72365f6f48ac351e5f7036b413.
+Mean model SHA c53ef0386dfc8ee2422b2b9605b609b0c23315905599ecc2f4555c26de514b5f;
+signed pooling model SHA f69944394dbe66b3449c5f87cb5ee51b09a9f34c4a2483e5fc119a005160e8b7.
+Saved mean searches gzip SHA8141bacac8e4af8156ceb1c473294be4bf869d5d887df42b61cc962e3277eff6;
+saved signed searches gzip SHAccdf0b3312c123d7b4c3bc804e9443d43489f38ac024578af7bbb85f25e2b827.
+
+Exactly392 new diagnostic forward calls:196sources*2frozen models. No fitting,
+ablation, parameter edit, source rewriting/lowering, body preparation/execution,
+native execution, external model or old-study rerun. Masks always[0,1,2,3].
+Each ExplainInto call reads every case once. Require its option scores and
+selected mask to equal the already saved original ranking exactly.
+
+Record the actual8-cell case summary, selected case index per coordinate for
+signed pooling (-1 for mean), source+bias FP32 prefix before adding cases,
+joint preactivation, hidden activation, option scores, candidate scores and
+prediction from the same pass. Source prefix and joint preserve the original
+FP32 addition order. Their difference includes rounding, not causal attribution.
+
+For97satisfiable opposite-goal pairs per model, compare identical source prefixes,
+case summaries, joint values, hidden values, option scores, selected masks and
+validity from the frozen acceptable sets. Count hidden coordinates crossing the
+activation boundary between goals, and coordinates for which absolute source+bias
+prefix exceeds absolute joint-minus-prefix suffix (count both documents).
+Record both option-score margins per goal. Keep every pair and failures; do not
+select only successful pairs or suppress contradictory documents from raw traces.
+
+This is diagnostic evidence on a known corpus. Different scores alone do not
+establish goal discrimination. Prefix magnitude alone does not identify a unique
+cause of a wrong choice. No accuracy/speedup gain is claimed from tracing.
+Record whole-process time/RSS and diagnostic call median/p95, including trace
+copy; do not compare these directly to normal prediction latency.
+
+Commit a clean Go1.27.2 producer before its one execution into a fresh exclusive
+directory with start/completion markers. Preserve raw traces and build identity.
+Publish gzip-n with decompressed byte equality and a read-only algebra/record
+audit. Audits may be repaired without replacing or rerunning the observations.
