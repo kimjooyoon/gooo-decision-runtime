@@ -249,15 +249,17 @@ func search(ctx context.Context, args []string, out io.Writer) error {
 
 func run(ctx context.Context, args []string, out io.Writer) error {
 	if len(args) == 0 {
-		return errors.New("use fit or search")
+		return errors.New("use fit, search or explain")
 	}
 	switch args[0] {
 	case "fit":
 		return fit(ctx, args[1:], out)
 	case "search":
 		return search(ctx, args[1:], out)
+	case "explain":
+		return explainChoice(ctx, args[1:], out)
 	}
-	return errors.New("unknown command; use fit or search")
+	return errors.New("unknown command; use fit, search or explain")
 }
 
 func main() {

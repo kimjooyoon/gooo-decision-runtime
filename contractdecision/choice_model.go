@@ -59,12 +59,24 @@ func (m *ChoiceModel) localize(input *[FeatureDim]float32, local *Model) error {
 }
 
 func (m *ChoiceModel) forward(inputs [][FeatureDim]float32, masks []uint16, w *ChoiceWorkspace) error {
+	return m.forwardTrace(inputs, masks, w, nil)
+}
+
+func (m *ChoiceModel) forwardTrace(inputs [][FeatureDim]float32, masks []uint16, w *ChoiceWorkspace, trace *ChoiceExplanation) error {
+	if trace != nil {
+		trace.ChoiceCount, trace.CandidateCount, trace.CaseCount = len(inputs), len(masks), w.cases.count
+		trace.Pooling = m.Pooling()
+	}
 	for i := range inputs {
 		if err := m.localize(&inputs[i], &w.local); err != nil {
 			return err
 		}
 		w.work = Workspace{}
-		if err := w.local.forwardCaptured(&inputs[i], &w.cases, &w.work); err != nil {
+		var row *ChoiceExplanationRow
+		if trace != nil {
+			row = &trace.Choices[i]
+		}
+		if err := w.local.forwardCapturedTrace(&inputs[i], &w.cases, &w.work, row); err != nil {
 			return err
 		}
 		w.logits[i] = w.work.logits[0]
@@ -73,6 +85,9 @@ func (m *ChoiceModel) forward(inputs [][FeatureDim]float32, masks []uint16, w *C
 		for c := range inputs {
 			w.scores[i] += float64(w.logits[c][mask>>c&1])
 		}
+	}
+	if trace != nil {
+		trace.CandidateScores = w.scores
 	}
 	return nil
 }
@@ -90,6 +105,10 @@ func (m *ChoiceModel) prepare(inputs [][FeatureDim]float32, cases CaseSource, ma
 }
 
 func (m *ChoiceModel) PredictInto(inputs [][FeatureDim]float32, cases CaseSource, masks []uint16, workspace *ChoiceWorkspace, output *Prediction) error {
+	return m.predictTrace(inputs, cases, masks, workspace, output, nil)
+}
+
+func (m *ChoiceModel) predictTrace(inputs [][FeatureDim]float32, cases CaseSource, masks []uint16, workspace *ChoiceWorkspace, output *Prediction, trace *ChoiceExplanation) error {
 	if m == nil || workspace == nil || output == nil {
 		return errors.New("choice model and destinations required")
 	}
@@ -97,7 +116,7 @@ func (m *ChoiceModel) PredictInto(inputs [][FeatureDim]float32, cases CaseSource
 	if err := m.prepare(inputs, cases, masks, &next); err != nil {
 		return err
 	}
-	if err := m.forward(inputs, masks, &next); err != nil {
+	if err := m.forwardTrace(inputs, masks, &next, trace); err != nil {
 		return err
 	}
 	probabilities, _ := distribution(next.scores[:len(masks)], allCandidates(len(masks)))
@@ -115,6 +134,10 @@ func (m *ChoiceModel) PredictInto(inputs [][FeatureDim]float32, cases CaseSource
 }
 
 func (m *ChoiceModel) PredictChoicesInto(inputs [][FeatureDim]float32, cases CaseSource, workspace *ChoiceWorkspace, output *ChoicePrediction) error {
+	return m.predictChoicesTrace(inputs, cases, workspace, output, nil)
+}
+
+func (m *ChoiceModel) predictChoicesTrace(inputs [][FeatureDim]float32, cases CaseSource, workspace *ChoiceWorkspace, output *ChoicePrediction, trace *ChoiceExplanation) error {
 	if m == nil || workspace == nil || output == nil {
 		return errors.New("choice model and destinations required")
 	}
@@ -122,7 +145,7 @@ func (m *ChoiceModel) PredictChoicesInto(inputs [][FeatureDim]float32, cases Cas
 	if err := m.prepare(inputs, cases, []uint16{0}, &next); err != nil {
 		return err
 	}
-	if err := m.forward(inputs, nil, &next); err != nil {
+	if err := m.forwardTrace(inputs, nil, &next, trace); err != nil {
 		return err
 	}
 	*workspace, *output = next, ChoicePrediction{Count: len(inputs), Logits: next.logits}
