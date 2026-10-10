@@ -1,5 +1,11 @@
 # Reading Gooo requirements before choosing a path
 
+The optional [choice-specific case model](../docs/choice-conditioned-contract.md)
+reads the source before pooling each choice's cases. All original source and
+case cells are retained; the model has12,818 FP32 parameters. CPU training,
+artifact loading and immediate finite construction are implemented. Corpus
+quality and end-to-end cost remain to be measured.
+
 [Inspect one decision](../docs/contract-signals.md) with `ExplainInto`: the actual
 case summary, source prefix, joint hidden values and scores from the same pass.
 

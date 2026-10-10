@@ -92,6 +92,21 @@ func (s *ContractSession) progress(p SessionProgress) ContractProgress {
 // before any candidate body executes. Nil uses the existing deterministic
 // frontier, including its fallback order. Errors never expose a half-ranked session.
 func (p *PreparedPlan) NewContractSession(ctx context.Context, model *contractdecision.Model, cases []TestCase) (*ContractSession, error) {
+	if model == nil {
+		return p.newContractSession(ctx, cases, "", "", "", nil)
+	}
+	predict := func(source [][contractdecision.FeatureDim]float32, input contractdecision.CaseSource) (contractdecision.ChoicePrediction, error) {
+		var workspace contractdecision.Workspace
+		var result contractdecision.ChoicePrediction
+		err := model.PredictChoicesInto(source, input, &workspace, &result)
+		return result, err
+	}
+	return p.newContractSession(ctx, cases, model.Fingerprint(), model.CaseFeatureVersion(), "contract_fp32", predict)
+}
+
+type contractPredict func([][contractdecision.FeatureDim]float32, contractdecision.CaseSource) (contractdecision.ChoicePrediction, error)
+
+func (p *PreparedPlan) newContractSession(ctx context.Context, cases []TestCase, fingerprint, caseVersion, variant string, predict contractPredict) (*ContractSession, error) {
 	core, err := p.NewSession(ctx, nil, cases, "")
 	if err != nil {
 		return nil, err
@@ -100,13 +115,13 @@ func (p *PreparedPlan) NewContractSession(ctx context.Context, model *contractde
 		Schema: "gooo/contract-path-ranking/v1", PlanSHA: p.sha, CaseSHA: core.caseSHA,
 		CaseCount: len(core.cases), ChoiceCount: len(p.plan.Decisions), Proposed: core.fallbackMask,
 	}}
-	if model == nil {
+	if predict == nil {
 		return s.finish()
 	}
 	r := &s.ranking
-	r.ModelFingerprint = model.Fingerprint()
+	r.ModelFingerprint = fingerprint
 	r.SourceFeatures = decision.RelationalFlowFeatureVersion
-	r.CaseFeatures = model.CaseFeatureVersion()
+	r.CaseFeatures = caseVersion
 	input, err := p.InitialContractInputFor(core.cases, r.CaseFeatures)
 	if err != nil {
 		return nil, err
@@ -126,13 +141,11 @@ func (p *PreparedPlan) NewContractSession(ctx context.Context, model *contractde
 		}
 		r.FeatureSHA[i] = hash(raw[:])
 	}
-	var workspace contractdecision.Workspace
-	var prediction contractdecision.ChoicePrediction
 	if err := ctx.Err(); err != nil {
 		return nil, err
 	}
 	start := time.Now()
-	err = model.PredictChoicesInto(source[:r.ChoiceCount], input, &workspace, &prediction)
+	prediction, err := predict(source[:r.ChoiceCount], input)
 	r.Calls, r.PredictNS = 1, time.Since(start).Nanoseconds()
 	if err != nil {
 		return nil, err
@@ -151,7 +164,7 @@ func (p *PreparedPlan) NewContractSession(ctx context.Context, model *contractde
 	core.queue = core.queue[:0]
 	clear(core.scheduled)
 	core.enqueue(r.Proposed)
-	core.result.Selection.ModelVariant = "contract_fp32"
+	core.result.Selection.ModelVariant = variant
 	core.result.Selection.ModelCalls = 1
 	for i, choice := range p.plan.Decisions {
 		label := choice.Options[r.Proposed>>i&1].Label

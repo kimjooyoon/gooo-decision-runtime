@@ -108,6 +108,7 @@ func fit(ctx context.Context, args []string, out io.Writer) error {
 	pooling := f.String("pooling", contractdecision.MeanPooling, "arithmetic_mean or signed_max_abs")
 	pairedGoals := f.Bool("goal-pairs", false, "pair consecutive training documents with opposite goals (weight 0.5, margin 2)")
 	caseVersion := f.String("case-features", decision.DeclaredCaseFeatureVersion, "declared_integer_case_v1 or source_literal_integer_case_v1")
+	choiceContext := f.Bool("choice-context", false, "condition the case encoder on each source choice before pooling")
 	if err := f.Parse(args); err != nil {
 		return err
 	}
@@ -125,6 +126,9 @@ func fit(ctx context.Context, args []string, out io.Writer) error {
 	}
 	if *pairedGoals && *caseVersion != decision.DeclaredCaseFeatureVersion {
 		return errors.New("goal-pairs currently requires declared_integer_case_v1")
+	}
+	if *choiceContext && (*pairedGoals || *caseVersion != decision.DeclaredCaseFeatureVersion) {
+		return errors.New("choice-context requires original declared cases and no goal-pairs")
 	}
 	if *pooling != contractdecision.MeanPooling && *pooling != contractdecision.ExtremePooling {
 		return errors.New("fit pooling must be arithmetic_mean or signed_max_abs")
@@ -146,7 +150,7 @@ func fit(ctx context.Context, args []string, out io.Writer) error {
 		samples = append(samples, s)
 	}
 	start := time.Now()
-	model, history, pairInfo, err := fitSamples(ctx, samples, options, *pooling, *pairedGoals, *caseVersion)
+	model, history, pairInfo, err := fitSamples(ctx, samples, options, *pooling, *pairedGoals, *choiceContext, *caseVersion)
 	elapsed := time.Since(start).Nanoseconds()
 	if err != nil {
 		return err
@@ -172,6 +176,9 @@ func fit(ctx context.Context, args []string, out io.Writer) error {
 		schema = "gooo/contract-local-fit/v2"
 	}
 	explicitCaseVersion := ""
+	if *choiceContext {
+		schema, explicitCaseVersion = "gooo/choice-conditioned-local-fit/v1", decision.DeclaredCaseFeatureVersion
+	}
 	if *caseVersion != decision.DeclaredCaseFeatureVersion {
 		schema, explicitCaseVersion = "gooo/contract-local-fit/v3", *caseVersion
 	}
@@ -201,18 +208,14 @@ func search(ctx context.Context, args []string, out io.Writer) error {
 	if err != nil {
 		return err
 	}
-	var model *contractdecision.Model
+	var raw []byte
 	if *modelPath != "" {
-		raw, err := read(*modelPath, 512<<10)
-		if err != nil {
-			return err
-		}
-		model, err = contractdecision.Decode(raw)
+		raw, err = read(*modelPath, 512<<10)
 		if err != nil {
 			return err
 		}
 	}
-	s, err := p.NewContractSession(ctx, model, d.TestCases)
+	s, err := sourceContractSession(ctx, p, d.TestCases, raw)
 	if err != nil {
 		return err
 	}
