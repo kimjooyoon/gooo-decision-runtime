@@ -1,0 +1,18 @@
+Fixed before execution: 2026-10-10, condition model bounded search integration.
+Reuse exactly dataset.json from condition-candidate-20261010:
+SHA256 0b3bddcaf1ebd82f5e1153634f44e2f841e6f3944d5432a4c50744a4eb17123b.
+Reuse original published FP32 model with no parameter updates:
+SHA256 a16696ed44c668f38cc2e7ee1dc6ff3f4716649d57e59df7c9490d1c670edc48.
+24 original Gooo contracts; all are variants of the same absolute-value task.
+Three modes per contract, in fixed order: deterministic, initial_model,
+condition_feedback. Each session: empty seed, four total attempts, step one;
+feedback mode allows three explicit reconsiderations. No CI hints.
+Record all 72 searches, actual attempts and model calls, declared condition and
+output results, selected Gooo body/Go digest, and complete ranking receipts.
+Use clean committed producer. One run in a new exclusive destination.
+Use existing typed interpreter candidate validation; native execution zero.
+Run no Fit, gradient updates, original study, or evaluation-based tuning.
+Compare attempts at equal four-candidate budget. Reaching all cases after four
+attempts is finite search coverage, not independent model accuracy.
+Record process wall/user/system time and max RSS with system time utility;
+neural timing uses the actual SDK call receipts. No host CPU utilization claim.
