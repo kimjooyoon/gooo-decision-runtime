@@ -1,0 +1,21 @@
+binary-path-omitted: go1.27.2
+	path	github.com/kimjooyoon/meta-ontology-go/research/branch-features
+	mod	github.com/kimjooyoon/meta-ontology-go/research/branch-features	(devel)	
+	dep	github.com/kimjooyoon/gooo-decision-runtime	v0.2.30-experimental	h1:2QtFERK9TWp7dE1hDydypqTzjmikO/8NxZBa2m5Fj0Y=
+	dep	github.com/kimjooyoon/meta-ontology-go	v0.0.0
+	=>	../../../../meta-ontology-go	(devel)	
+	
+	build	-buildmode=exe
+	build	-compiler=gc
+	build	CGO_ENABLED=1
+	build	CGO_CFLAGS=
+	build	CGO_CPPFLAGS=
+	build	CGO_CXXFLAGS=
+	build	CGO_LDFLAGS=
+	build	GOARCH=arm64
+	build	GOOS=darwin
+	build	GOARM64=v8.0
+	build	vcs=git
+	build	vcs.revision=6a34335cb5fcaa39f59a131a73fc5c32c1679c51
+	build	vcs.time=2026-10-10T03:55:06Z
+	build	vcs.modified=false

@@ -1,0 +1,1 @@
+PASS: identical 1024-byte initial features, disjoint valid masks {0}/{1}, identical predictions; 1/2 proposals satisfy six finite cases. New model calls: 0; new program executions: 0.
