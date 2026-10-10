@@ -46,9 +46,14 @@ Two Gooo-labelled training fixtures have identical outputs and opposite
 condition goals. The regression learns different paths and constructs both
 checked bodies in one attempt. A wrong proposal still continues through the
 finite verifier. The [input audit](docs/decision-input-audit.md) records the
-information available to each model version. Fresh held-out measurements and
-native compiler loading of this new schema are the next steps; public model
-files retain their recorded computation and results.
+information available to each model version. A [fresh 172-document study](studies/requirement-learning-20261010/README.md)
+records first-candidate success of 44/136 satisfiable held-out documents versus
+33/136 for the choice model, with 38 improvements and 26 regressions across all
+documents. Both complete every satisfiable document through finite checking.
+Training first-choice success remains 8/32 and total attempts change 432→431.
+Forty input collisions still hide ordered arithmetic/branch differences. The
+study includes both weights, failures and exact records; native compiler loading
+of this new schema is follow-up work.
 
 The existing choice model's compiler integration was accepted as `dev` source
 `deff13a2`, including its original CI, readiness and compatibility checks.
