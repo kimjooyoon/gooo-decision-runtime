@@ -14,8 +14,63 @@ required. The released interaction weights retain their original input format;
 changing their JSON schema would mislabel their training. A
 [canonical learning study](../studies/canonical-contract-learning-20261011/README.md)
 now publishes both fresh fits, their weak first-choice results and bounded source
-feedback. Its weights are research artifacts. The native compiler adapter remains
-future work.
+feedback. Its weights are research artifacts. The native compiler adapter is
+merged in development source; the public compiler0.6.27 still uses earlier formats.
+
+## Download an existing model
+
+The [public Hub repository](https://huggingface.co/asketeddy/gooo-canonical-decision-tiny-v1)
+provides the subsequent pooling study's original mean/extreme fits, MIT license,
+frozen protocol, synthetic corpus, full construction records and loss histories.
+Download a fixed revision to a new directory with the Hugging Face CLI:
+
+```sh
+hf download asketeddy/gooo-canonical-decision-tiny-v1 \
+  --revision c3d87b2e378125a2fd78aec384ca7a04590b33bc \
+  --local-dir gooo-canonical-model
+```
+
+The payload is about 1.4MiB. On macOS, compare its files with `SHA256SUMS`:
+
+```sh
+(cd gooo-canonical-model && shasum -a 256 -c SHA256SUMS)
+```
+
+Linux users can use `sha256sum -c SHA256SUMS` in the same directory.
+Use either `model-mean.json` or `model-extreme.json` under
+`gooo-canonical-model/result/` as the model path in SDK `search -model` below.
+No new fitting is needed to use the files.
+The loader is `contractdecision.DecodeCanonicalInteractionRequirementConditioned`.
+The Hub files preserve their original bytes; changing schema fields cannot convert
+an older trained model to this input format.
+
+Both models have 19,034 FP32 parameters. On 128 related evaluation documents,
+mean/extreme first choices pass 32/36, with 14 improvements and 10 regressions for
+extreme. The 64 excluded-family documents pass 16 each. Final finite construction
+completes all 256 documents for both models and fixed ordering. The fixed path has
+the lowest total construction time in this study. These are synthetic template
+variants; results and byte sizes have separate scopes from general language
+understanding, process RAM and customer savings. See the
+[complete study](../studies/canonical-pooling-20261011/README.md).
+
+## Native compiler support
+
+The adapter merged in compiler development source
+[`88a2386d`](https://github.com/kimjooyoon/meta-ontology-go/tree/88a2386d7e2001a30671bb315f7242fa548c7baa).
+The public compiler0.6.27 does not accept this schema. Follow the
+[matching compiler guide](https://github.com/kimjooyoon/meta-ontology-go/blob/88a2386d7e2001a30671bb315f7242fa548c7baa/docs/canonical-contract-model.md)
+with a supported source checkout and Go1.27.2, substituting the downloaded model's
+path. `body-context` displays canonical inputs without predicting or running
+candidates; `body-construct --model` ranks and checks the source choices.
+Omitting the model uses deterministic ordering. Unsupported source shapes include
+a reason and retain that ordering without inference; malformed artifacts return
+an error. Saved construction replay does not need the model file.
+
+The retained native observation used the earlier SDK0.2.40 release's canonical
+weights. The Hub pooling weights have original SDK construction observations;
+a separate native end-to-end observation of those two files remains unmeasured.
+Check the compiler's [current status](https://github.com/kimjooyoon/meta-ontology-go/wiki/Current-Status)
+for later release availability.
 
 ## Inspect, fit and use
 
