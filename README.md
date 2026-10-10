@@ -50,9 +50,12 @@ channels and adds the observed input, expected output and actual output as exact
 integer bytes. `NewExecutionSession` and `SearchExecutionBatches` feed committed
 output failures into the next ranking, then compile and evaluate the selected body.
 
-The implementation has regression coverage for output-only failures and exact
-large integers. New Gooo-based training and held-out measurements are pending;
-the current compiler release does not load this schema yet.
+In the [fixed 128-source study](studies/execution-feedback-learning-20261010/README.md),
+Gooo-based CPU training took 0.825s for the output-on model. Output feedback
+reduced four-region search attempts from 62 to 54; first-choice validity stayed
+at 2/16. Across all sources, attempts fell from 220 to 212 while elapsed search
+time increased. All models, successful and failed choices, and finite searches
+are published. The current compiler release does not load this schema yet.
 [Input layout, APIs and current limits](docs/execution-feedback.md).
 
 ### Connecting the condition model to finite search
