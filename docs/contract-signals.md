@@ -31,6 +31,12 @@ uses both frozen models and every original source, retaining correct and wrong
 choices. It compares opposite goals with identical source arrays at each stage.
 The API leaves artifact bytes, model fingerprints and the default model intact.
 
+The recorded producer used Go 1.27.2 on darwin/arm64 with fused FP32
+multiply-add instructions. [Go permits operation fusion](https://go.dev/ref/spec#Floating_point_operators),
+so exact floating-point intermediates may differ on another architecture.
+The record auditor explicitly reconstructs the producer's arithmetic and keeps
+bit-exact comparisons. Source integers and authored output checks remain exact.
+
 The [completed diagnostic](../studies/contract-signal-diagnostics-20261010/README.md)
 found different case summaries, hidden values and scores for all 97 opposite-goal
 pairs in both models. Yet 61 mean-model pairs and 62 signed-pooling pairs kept

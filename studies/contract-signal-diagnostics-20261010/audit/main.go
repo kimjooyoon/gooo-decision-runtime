@@ -99,18 +99,18 @@ func checkTrace(row d.Row, source r.Source, weights [c.ParameterCount]float32) {
 		for h := range 24 {
 			sum := weights[biasBase+h]
 			for j, x := range input {
-				sum += x * weights[sourceBase+h*392+j]
+				sum = fused32(x, weights[sourceBase+h*392+j], sum)
 			}
 			want.SourcePrefix[choice][h] = sum
 			for j, x := range want.Pool {
-				sum += x * weights[sourceBase+h*392+384+j]
+				sum = fused32(x, weights[sourceBase+h*392+384+j], sum)
 			}
 			want.Joint[choice][h], want.Hidden[choice][h] = sum, activation(sum)
 		}
 		for option := range 2 {
 			sum := weights[optionBias+option]
 			for h, x := range want.Hidden[choice] {
-				sum += x * weights[optionBase+option*24+h]
+				sum = fused32(x, weights[optionBase+option*24+h], sum)
 			}
 			want.OptionScores[choice][option] = sum
 		}
@@ -140,7 +140,7 @@ func pool(trace *c.Explanation, source r.Source, weights [c.ParameterCount]float
 		for h := range 8 {
 			sum := weights[256+h]
 			for j, x := range row {
-				sum += x * weights[h*32+j]
+				sum = fused32(x, weights[h*32+j], sum)
 			}
 			v := activation(sum)
 			if trace.Pooling == c.MeanPooling {

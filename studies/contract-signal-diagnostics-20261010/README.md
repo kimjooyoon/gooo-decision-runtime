@@ -87,6 +87,15 @@ prediction or between pooling methods. Rounded CPU time corresponds to about
 
 From the SDK root, verify the saved record without rerunning the experiment:
 
+The first Linux CI attempt exposed a difference between its separately rounded
+multiply/add operations and the recorded darwin/arm64 producer's fused FP32
+instructions. Go allows this [operation fusion](https://go.dev/ref/spec#Floating_point_operators).
+The audit now reconstructs the recorded fused operations explicitly, including
+exact handling of double-rounding midpoints. Intermediate comparisons remain
+bit-exact. The original traces, models and selections were not changed or rerun.
+Tests compare the reconstruction with exact arithmetic across exponent limits,
+subnormals, cancellation, midpoint cases and 4,096 fixed random triples.
+
 ```sh
 go run ./studies/contract-signal-diagnostics-20261010/audit \
   studies/contract-signal-diagnostics-20261010/result studies
