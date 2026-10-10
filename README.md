@@ -55,6 +55,12 @@ Forty input collisions still hide ordered arithmetic/branch differences. The
 study includes both weights, failures and exact records; native compiler loading
 of this new schema is follow-up work.
 
+For source-input development, [`inspect -ordered-source`](docs/declared-condition-input.md#inspect-ordered-calculations)
+shows the predicate and each return's ordered operands in a separate 576-byte
+adjunct. It distinguishes the forty recorded collisions and reports unsupported
+shapes explicitly. Existing models keep their original inputs; a new trained
+consumer and held-out evaluation are follow-up work.
+
 The existing choice model's compiler integration was accepted as `dev` source
 `deff13a2`, including its original CI, readiness and compatibility checks.
 [PR1446](https://github.com/kimjooyoon/meta-ontology-go/pull/1446) prepares
