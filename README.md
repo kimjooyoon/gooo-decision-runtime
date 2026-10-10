@@ -6,26 +6,35 @@ source-bound plan; this library ranks its permitted choices and continues finite
 search using observed failures. Think of it as the small assembly mechanism
 inside the larger language workshop.
 
-**Latest published release: v0.2.36-experimental.** The
-[release](https://github.com/kimjooyoon/gooo-decision-runtime/releases/tag/v0.2.36-experimental)
-contains the declared-case model and checksums: 9,746 parameters and 38,984
-weight bytes. It reads the source and authored input/output examples before
-ranking permitted paths. The [recorded study](studies/contract-goals-20261010/README.md)
-includes successes, regressions and contradictory goals.
+**Latest published release: v0.2.37-experimental.** The
+[release](https://github.com/kimjooyoon/gooo-decision-runtime/releases/tag/v0.2.37-experimental)
+contains the choice-conditioned model (12,818 parameters / 51,272 weight bytes),
+its global-pooling comparator (9,746 parameters / 38,984 weight bytes) and
+checksums. Both read source structure and authored input/output examples before
+ranking permitted paths. The [fresh comparison](studies/choice-context-learning-20261010/README.md)
+records 388 Gooo documents, both fits and all failures. Earlier defaults remain
+available in [v0.2.36](https://github.com/kimjooyoon/gooo-decision-runtime/releases/tag/v0.2.36-experimental).
 Compiler [PR1443](https://github.com/kimjooyoon/meta-ontology-go/pull/1443) connects
 the v5/v6 inputs and explicit computation artifact to the ordinary CLI, with
 actual construction and model-free replay records, and is merged into `dev`.
 The installed compiler 0.6.25 still uses SDK0.2.28. The separate declared-case
 CLI integration is public in [PR1444](https://github.com/kimjooyoon/meta-ontology-go/pull/1444),
-with 20 original command observations and model-free saved replay. It passed the
-original CI, readiness and independent compatibility checks and is merged into
-`dev` at93566df0. The installed compiler remains0.6.25.
+with 20 original command observations and model-free saved replay. Original and
+accepted-source CI, readiness and independent compatibility checks passed; it
+is merged into `dev` at93566df0. The installed compiler remains0.6.25. The new
+choice artifact currently has SDK API/example support; native compiler integration
+is being developed separately.
 
 An optional [choice-specific case encoder](docs/choice-conditioned-contract.md)
 preserves all source and case cells, then lets each source choice influence how
 its cases are summarized. It has12,818 FP32 parameters / 51,272 weight bytes.
-Local CPU fitting and immediate finite construction are implemented; decision
-quality on a fresh corpus and whole-process cost remain to be measured.
+The frozen fresh comparison found 197/388 → 221/388 valid first choices against
+the global model: 87 improvements and 63 regressions. All modes completed 386
+satisfiable contracts and rejected two contradictions. New multiplication
+regressed, and opposite-goal discrimination remains limited. CPU fitting took
+1.725 seconds; initial prediction median was37.584µs. The whole two-model process
+peaked at72.27MiB RSS. Additional parameters and compute are disclosed; fewer
+attempted paths did not make these tiny bodies faster overall.
 
 An optional [signed pooling experiment](studies/contract-pooling-20261010/README.md)
 keeps rare case signals from shrinking in the case average. On the same known
