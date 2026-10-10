@@ -1,0 +1,5 @@
+--- FAIL: TestFrozenSourceInputContracts (1.10s)
+    main_test.go:30: req-bound-k18-r0-w0-o0-rare-g0-c0 assembly source: [req-bound-k18-r0-w0-o0-rare-g0-c0.gooo:4:98-144:2: error parse.unexpected-token: duplicate condition_case input for "comparison"]
+FAIL
+FAIL	github.com/kimjooyoon/meta-ontology-go/research/requirement-learning-study	1.948s
+FAIL
