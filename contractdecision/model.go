@@ -37,10 +37,14 @@ type CaseSource interface {
 
 // Model owns 9,746 FP32 weights (38,984 bytes), independent of case count.
 // The lossy eight-cell mean is a ranking hint, never a proof of completeness.
-type Model struct{ weights [ParameterCount]float32 }
+type Model struct {
+	weights [ParameterCount]float32
+	extreme bool
+}
 
 type Workspace struct {
 	pool   [PoolDim]float32
+	winner [PoolDim]int
 	hidden [MaxChoices][HiddenDim]float32
 	logits [MaxChoices][2]float32
 	scores [MaxCandidates]float64
@@ -62,6 +66,34 @@ func New(weights [ParameterCount]float32) (*Model, error) {
 		return nil, errors.New("finite contract weights required")
 	}
 	return &Model{weights: weights}, nil
+}
+
+// NewForPooling selects an explicit computation contract. Legacy New and Fit
+// retain arithmetic mean. Extreme pooling keeps the signed largest magnitude
+// per learned case coordinate; ties of opposite sign choose the positive value.
+func NewForPooling(weights [ParameterCount]float32, pooling string) (*Model, error) {
+	if pooling != MeanPooling && pooling != ExtremePooling {
+		return nil, errors.New("unsupported contract pooling")
+	}
+	m, err := New(weights)
+	if err == nil {
+		m.extreme = pooling == ExtremePooling
+	}
+	return m, err
+}
+
+func (m *Model) Pooling() string {
+	if m != nil && m.extreme {
+		return ExtremePooling
+	}
+	return MeanPooling
+}
+
+func (m *Model) ArtifactSchema() string {
+	if m != nil && m.extreme {
+		return PoolingSchema
+	}
+	return Schema
 }
 
 func (m *Model) Weights() [ParameterCount]float32 { return m.weights }
@@ -130,11 +162,20 @@ func (m *Model) forward(inputs [][FeatureDim]float32, cases CaseSource, masks []
 			return errors.New("nonfinite case activation")
 		}
 		for h, v := range hidden {
-			sums[h] += float64(v)
+			if m.extreme {
+				old, magnitude := w.pool[h], math.Abs(float64(v))
+				if i == 0 || magnitude > math.Abs(float64(old)) || magnitude == math.Abs(float64(old)) && v > old {
+					w.pool[h], w.winner[h] = v, i
+				}
+			} else {
+				sums[h] += float64(v)
+			}
 		}
 	}
-	for h, sum := range sums {
-		w.pool[h] = float32(sum / float64(count))
+	if !m.extreme {
+		for h, sum := range sums {
+			w.pool[h] = float32(sum / float64(count))
+		}
 	}
 	for choice, input := range inputs {
 		for h := range HiddenDim {

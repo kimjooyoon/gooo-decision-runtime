@@ -1,5 +1,9 @@
 # Reading Gooo requirements before choosing a path
 
+The optional [signed extreme pooling experiment](../docs/contract-pooling.md)
+adds an explicit v2 computation with the same weight layout. The default and
+the v1 description below retain arithmetic mean.
+
 Gooo provides a body plan, its permitted choices and concrete examples of the
 required behavior. This package learns how to rank those choices using the
 examples as an explicit input. It fits and runs entirely in Go on the local CPU.
