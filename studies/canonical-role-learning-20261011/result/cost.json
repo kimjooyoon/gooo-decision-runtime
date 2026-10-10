@@ -1,0 +1,14 @@
+{
+  "schema": "gooo/role-study-local-cost/v1",
+  "scope": "one original complete process, including collection and all three fits",
+  "wall_seconds": 50.62,
+  "user_seconds": 49.39,
+  "system_seconds": 0.34,
+  "maximum_resident_set_bytes": 56672256,
+  "maximum_resident_set_mib": 54.046875,
+  "cpu": "Apple M4",
+  "logical_cpus": 10,
+  "ram_bytes": 17179869184,
+  "instantaneous_machine_utilization_increase": null,
+  "causal_speedup": null
+}

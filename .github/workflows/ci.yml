@@ -26,6 +26,12 @@ jobs:
         run: go vet ./...
       - name: Unit tests
         run: go test ./...
+      - name: Audit retained role-learning observations without model execution
+        run: |
+          root=studies/canonical-role-learning-20261011/result
+          (cd "$root" && sha256sum -c SHA256SUMS)
+          go run ./studies/canonical-role-learning-20261011/audit "$root" > "$RUNNER_TEMP/role-audit.json"
+          cmp "$RUNNER_TEMP/role-audit.json" "$root/audit.json"
       - name: Race tests
         run: go test -race ./...
       - name: Retrieve the immutable complete arithmetic observations

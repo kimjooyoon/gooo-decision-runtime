@@ -29,6 +29,14 @@ these cheap rules. The [download guide](docs/canonical-branch-input.md#download-
 pins the Hub revision and retains failures, training scope and cost alongside the
 weights. These are different fits from the SDK0.2.40 release's paired models.
 
+A subsequent [role-learning study](studies/canonical-role-learning-20261011/README.md)
+compares one joint model with separate comparison/branch models. Both policies
+accept their first body in 30/128 related evaluation documents, versus fixed
+32/128. The split policy doubles model calls and weights without improving that
+result. All three finish the finite checks through four-candidate search. The
+three original fits, failed first choices, local costs and read-only auditor are
+retained; existing defaults remain unchanged.
+
 [SDK0.2.39](https://github.com/kimjooyoon/gooo-decision-runtime/releases/tag/v0.2.39-experimental)
 provides the ordered and interaction requirement models, saved weights and
 example commands. The earlier decision inspection APIs remain available.

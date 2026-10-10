@@ -1,0 +1,590 @@
+{
+  "equivalent_form_pairs": {
+    "fixed": 96,
+    "joint": 96,
+    "split": 96
+  },
+  "event_count": 3448,
+  "files": {
+    "branches-fit-started.json": "65774be0be1053c28e73f4262ab4dab1a3004f484a3ca05a5ec2a35b8fe442a4",
+    "comparison-fit-started.json": "65774be0be1053c28e73f4262ab4dab1a3004f484a3ca05a5ec2a35b8fe442a4",
+    "completed.json": "ef288c6f1a0aaaea514bc426a2f9fc09f1bc896a517b96b20508f8a88d61cc21",
+    "events.jsonl": "d11fe2dbab918cc13a3c848b466614f915caff706c82623f493120aff11566d0",
+    "history-branches.json": "2d91aadb9ff2f156171b5e38574a5a77a0e8d38234a05f415dcd72c65c622888",
+    "history-comparison.json": "d91c2b79250a0d06238a0c9f2b97a9dadcac9eaeebdc803d67cebc882596cf46",
+    "history-joint.json": "141d6e98a433a49c9452e0d1ee0dd9ad81ab0c78901ea95cf8fdfb2fe79dbfe7",
+    "joint-fit-started.json": "65774be0be1053c28e73f4262ab4dab1a3004f484a3ca05a5ec2a35b8fe442a4",
+    "model-branches.json": "6c76f773702bd4c231889335d297ab14a3fbfcf562c1f421f30145d165806e0c",
+    "model-comparison.json": "a43068619544eb0ec16d13393125eb7768b3bdbe5d04827cdca55415a2b11323",
+    "model-info-branches.json": "68a7e78411c3cd3621cb25aea3e41d9d45c3dbfae6f5c0c5b2f9dd1f44fba55d",
+    "model-info-comparison.json": "7751f0be44b48f766b7d71ac32d78d34063f94c918b886d4fb10fa7ea9972d94",
+    "model-info-joint.json": "bdf117e2213491e0d3cd1f19eaf8da081662587747280a39efe19b8aa6d752d4",
+    "model-joint.json": "77699c3d675269b6ca507bf9dbfac826c802d5ebc9ac07f1d5264c89811fa410",
+    "report.json": "3434742b832cbc9f5f23cefede44af98d8efeaed5026358e36f5cf68c61e4789",
+    "searches.jsonl": "d307f492328a9d68599b6ad46a0e88a50571a0600fd76df61b973b4c3092d92f",
+    "sources.jsonl": "4c38d8ce1aeb101e4e464a2ff7c2e3eaec9a9c61272d12e21f63daeb497c3dfa",
+    "split-policy.json": "5fc00cb237cb6bfa44ff0f8912cd887ed3209531c9fbcfab080ecc74e4805ab0",
+    "started.json": "e6ed2e1842885c2265e955656cb89334185bbe5aef89cbbf6ef6ad0a38e852dd",
+    "training.json": "18a745e1678b383f15b018c16c56268e6ca9c2b5964c389d2c364881df2da8ee"
+  },
+  "fits": 3,
+  "goal_pairs": {
+    "condition/in_family/fixed": {
+      "Pairs": 64,
+      "RequiredChanges": [
+        64,
+        64
+      ],
+      "ProposedChanges": [
+        0,
+        0
+      ],
+      "LogitChanges": [
+        0,
+        0
+      ],
+      "BothFirstCorrect": 0,
+      "EitherFirstCorrect": 32
+    },
+    "condition/in_family/joint": {
+      "Pairs": 64,
+      "RequiredChanges": [
+        64,
+        64
+      ],
+      "ProposedChanges": [
+        0,
+        0
+      ],
+      "LogitChanges": [
+        64,
+        64
+      ],
+      "BothFirstCorrect": 0,
+      "EitherFirstCorrect": 30
+    },
+    "condition/in_family/split": {
+      "Pairs": 64,
+      "RequiredChanges": [
+        64,
+        64
+      ],
+      "ProposedChanges": [
+        0,
+        0
+      ],
+      "LogitChanges": [
+        64,
+        64
+      ],
+      "BothFirstCorrect": 0,
+      "EitherFirstCorrect": 30
+    },
+    "condition/train/fixed": {
+      "Pairs": 32,
+      "RequiredChanges": [
+        32,
+        32
+      ],
+      "ProposedChanges": [
+        0,
+        0
+      ],
+      "LogitChanges": [
+        0,
+        0
+      ],
+      "BothFirstCorrect": 0,
+      "EitherFirstCorrect": 16
+    },
+    "condition/train/joint": {
+      "Pairs": 32,
+      "RequiredChanges": [
+        32,
+        32
+      ],
+      "ProposedChanges": [
+        0,
+        1
+      ],
+      "LogitChanges": [
+        32,
+        32
+      ],
+      "BothFirstCorrect": 0,
+      "EitherFirstCorrect": 16
+    },
+    "condition/train/split": {
+      "Pairs": 32,
+      "RequiredChanges": [
+        32,
+        32
+      ],
+      "ProposedChanges": [
+        2,
+        0
+      ],
+      "LogitChanges": [
+        32,
+        32
+      ],
+      "BothFirstCorrect": 0,
+      "EitherFirstCorrect": 18
+    },
+    "condition_with_output_change/unseen_family/fixed": {
+      "Pairs": 32,
+      "RequiredChanges": [
+        32,
+        0
+      ],
+      "ProposedChanges": [
+        0,
+        0
+      ],
+      "LogitChanges": [
+        0,
+        0
+      ],
+      "BothFirstCorrect": 0,
+      "EitherFirstCorrect": 16
+    },
+    "condition_with_output_change/unseen_family/joint": {
+      "Pairs": 32,
+      "RequiredChanges": [
+        32,
+        0
+      ],
+      "ProposedChanges": [
+        0,
+        0
+      ],
+      "LogitChanges": [
+        32,
+        32
+      ],
+      "BothFirstCorrect": 0,
+      "EitherFirstCorrect": 16
+    },
+    "condition_with_output_change/unseen_family/split": {
+      "Pairs": 32,
+      "RequiredChanges": [
+        32,
+        0
+      ],
+      "ProposedChanges": [
+        0,
+        2
+      ],
+      "LogitChanges": [
+        32,
+        32
+      ],
+      "BothFirstCorrect": 0,
+      "EitherFirstCorrect": 18
+    },
+    "output/in_family/fixed": {
+      "Pairs": 64,
+      "RequiredChanges": [
+        0,
+        64
+      ],
+      "ProposedChanges": [
+        0,
+        0
+      ],
+      "LogitChanges": [
+        0,
+        0
+      ],
+      "BothFirstCorrect": 0,
+      "EitherFirstCorrect": 32
+    },
+    "output/in_family/joint": {
+      "Pairs": 64,
+      "RequiredChanges": [
+        0,
+        64
+      ],
+      "ProposedChanges": [
+        0,
+        4
+      ],
+      "LogitChanges": [
+        64,
+        64
+      ],
+      "BothFirstCorrect": 0,
+      "EitherFirstCorrect": 30
+    },
+    "output/in_family/split": {
+      "Pairs": 64,
+      "RequiredChanges": [
+        0,
+        64
+      ],
+      "ProposedChanges": [
+        0,
+        4
+      ],
+      "LogitChanges": [
+        64,
+        64
+      ],
+      "BothFirstCorrect": 0,
+      "EitherFirstCorrect": 30
+    },
+    "output/train/fixed": {
+      "Pairs": 32,
+      "RequiredChanges": [
+        0,
+        32
+      ],
+      "ProposedChanges": [
+        0,
+        0
+      ],
+      "LogitChanges": [
+        0,
+        0
+      ],
+      "BothFirstCorrect": 0,
+      "EitherFirstCorrect": 16
+    },
+    "output/train/joint": {
+      "Pairs": 32,
+      "RequiredChanges": [
+        0,
+        32
+      ],
+      "ProposedChanges": [
+        16,
+        15
+      ],
+      "LogitChanges": [
+        32,
+        32
+      ],
+      "BothFirstCorrect": 1,
+      "EitherFirstCorrect": 15
+    },
+    "output/train/split": {
+      "Pairs": 32,
+      "RequiredChanges": [
+        0,
+        32
+      ],
+      "ProposedChanges": [
+        8,
+        22
+      ],
+      "LogitChanges": [
+        32,
+        32
+      ],
+      "BothFirstCorrect": 4,
+      "EitherFirstCorrect": 14
+    },
+    "output/unseen_family/fixed": {
+      "Pairs": 32,
+      "RequiredChanges": [
+        0,
+        32
+      ],
+      "ProposedChanges": [
+        0,
+        0
+      ],
+      "LogitChanges": [
+        0,
+        0
+      ],
+      "BothFirstCorrect": 0,
+      "EitherFirstCorrect": 16
+    },
+    "output/unseen_family/joint": {
+      "Pairs": 32,
+      "RequiredChanges": [
+        0,
+        32
+      ],
+      "ProposedChanges": [
+        0,
+        0
+      ],
+      "LogitChanges": [
+        32,
+        32
+      ],
+      "BothFirstCorrect": 0,
+      "EitherFirstCorrect": 16
+    },
+    "output/unseen_family/split": {
+      "Pairs": 32,
+      "RequiredChanges": [
+        0,
+        32
+      ],
+      "ProposedChanges": [
+        0,
+        2
+      ],
+      "LogitChanges": [
+        32,
+        32
+      ],
+      "BothFirstCorrect": 2,
+      "EitherFirstCorrect": 16
+    }
+  },
+  "groups": {
+    "fixed/all": {
+      "Documents": 256,
+      "FirstDeclared": 64,
+      "FirstProbe": 64,
+      "FinalDeclared": 256,
+      "FinalProbe": 256,
+      "ComparisonCorrect": 128,
+      "BranchCorrect": 128,
+      "CandidateChecks": 640,
+      "ModelCalls": 0,
+      "SearchNS": 28176550,
+      "PredictionNS": 0
+    },
+    "fixed/in_family": {
+      "Documents": 128,
+      "FirstDeclared": 32,
+      "FirstProbe": 32,
+      "FinalDeclared": 128,
+      "FinalProbe": 128,
+      "ComparisonCorrect": 64,
+      "BranchCorrect": 64,
+      "CandidateChecks": 320,
+      "ModelCalls": 0,
+      "SearchNS": 14300505,
+      "PredictionNS": 0
+    },
+    "fixed/train": {
+      "Documents": 64,
+      "FirstDeclared": 16,
+      "FirstProbe": 16,
+      "FinalDeclared": 64,
+      "FinalProbe": 64,
+      "ComparisonCorrect": 32,
+      "BranchCorrect": 32,
+      "CandidateChecks": 160,
+      "ModelCalls": 0,
+      "SearchNS": 6501877,
+      "PredictionNS": 0
+    },
+    "fixed/unseen_family": {
+      "Documents": 64,
+      "FirstDeclared": 16,
+      "FirstProbe": 16,
+      "FinalDeclared": 64,
+      "FinalProbe": 64,
+      "ComparisonCorrect": 32,
+      "BranchCorrect": 32,
+      "CandidateChecks": 160,
+      "ModelCalls": 0,
+      "SearchNS": 7374168,
+      "PredictionNS": 0
+    },
+    "joint/all": {
+      "Documents": 256,
+      "FirstDeclared": 62,
+      "FirstProbe": 62,
+      "FinalDeclared": 256,
+      "FinalProbe": 256,
+      "ComparisonCorrect": 128,
+      "BranchCorrect": 129,
+      "CandidateChecks": 637,
+      "ModelCalls": 256,
+      "SearchNS": 64159746,
+      "PredictionNS": 27028369
+    },
+    "joint/in_family": {
+      "Documents": 128,
+      "FirstDeclared": 30,
+      "FirstProbe": 30,
+      "FinalDeclared": 128,
+      "FinalProbe": 128,
+      "ComparisonCorrect": 64,
+      "BranchCorrect": 64,
+      "CandidateChecks": 320,
+      "ModelCalls": 128,
+      "SearchNS": 32316040,
+      "PredictionNS": 13472869
+    },
+    "joint/train": {
+      "Documents": 64,
+      "FirstDeclared": 16,
+      "FirstProbe": 16,
+      "FinalDeclared": 64,
+      "FinalProbe": 64,
+      "ComparisonCorrect": 32,
+      "BranchCorrect": 33,
+      "CandidateChecks": 159,
+      "ModelCalls": 64,
+      "SearchNS": 15801410,
+      "PredictionNS": 6897043
+    },
+    "joint/unseen_family": {
+      "Documents": 64,
+      "FirstDeclared": 16,
+      "FirstProbe": 16,
+      "FinalDeclared": 64,
+      "FinalProbe": 64,
+      "ComparisonCorrect": 32,
+      "BranchCorrect": 32,
+      "CandidateChecks": 158,
+      "ModelCalls": 64,
+      "SearchNS": 16042296,
+      "PredictionNS": 6658457
+    },
+    "split/all": {
+      "Documents": 256,
+      "FirstDeclared": 66,
+      "FirstProbe": 66,
+      "FinalDeclared": 256,
+      "FinalProbe": 256,
+      "ComparisonCorrect": 130,
+      "BranchCorrect": 130,
+      "CandidateChecks": 635,
+      "ModelCalls": 512,
+      "SearchNS": 98401420,
+      "PredictionNS": 52648918
+    },
+    "split/in_family": {
+      "Documents": 128,
+      "FirstDeclared": 30,
+      "FirstProbe": 30,
+      "FinalDeclared": 128,
+      "FinalProbe": 128,
+      "ComparisonCorrect": 64,
+      "BranchCorrect": 64,
+      "CandidateChecks": 320,
+      "ModelCalls": 256,
+      "SearchNS": 49593788,
+      "PredictionNS": 26290825
+    },
+    "split/train": {
+      "Documents": 64,
+      "FirstDeclared": 18,
+      "FirstProbe": 18,
+      "FinalDeclared": 64,
+      "FinalProbe": 64,
+      "ComparisonCorrect": 34,
+      "BranchCorrect": 32,
+      "CandidateChecks": 157,
+      "ModelCalls": 128,
+      "SearchNS": 24302253,
+      "PredictionNS": 13333671
+    },
+    "split/unseen_family": {
+      "Documents": 64,
+      "FirstDeclared": 18,
+      "FirstProbe": 18,
+      "FinalDeclared": 64,
+      "FinalProbe": 64,
+      "ComparisonCorrect": 32,
+      "BranchCorrect": 34,
+      "CandidateChecks": 158,
+      "ModelCalls": 128,
+      "SearchNS": 24505379,
+      "PredictionNS": 13024422
+    }
+  },
+  "new_candidate_executions": 0,
+  "new_fits": 0,
+  "new_predictions": 0,
+  "prediction": {
+    "branches": {
+      "Observations": 256,
+      "MedianNS": 102833.5,
+      "P95NS": 111458
+    },
+    "comparison": {
+      "Observations": 256,
+      "MedianNS": 103792,
+      "P95NS": 111166
+    },
+    "joint": {
+      "Observations": 256,
+      "MedianNS": 105062.5,
+      "P95NS": 113125
+    }
+  },
+  "schema": "gooo/canonical-role-audit/v1",
+  "scope": "retained-record validation; goal pairings overlap; no independent oracle execution or causal attribution",
+  "search_count": 768,
+  "source_count": 256,
+  "split_compared_with_joint": {
+    "in_family": {
+      "Documents": 128,
+      "Improvements": [
+        "cr-in_family-bound-k167-w2-direct-r0-g1-c1",
+        "cr-in_family-bound-k167-w2-direct-r1-g0-c1",
+        "cr-in_family-bound-k167-w2-assignment-r0-g1-c1",
+        "cr-in_family-bound-k167-w2-assignment-r1-g0-c1",
+        "cr-in_family-bound-k-97-w2-direct-r0-g1-c1",
+        "cr-in_family-bound-k-97-w2-direct-r1-g0-c1",
+        "cr-in_family-bound-k-97-w2-assignment-r0-g1-c1",
+        "cr-in_family-bound-k-97-w2-assignment-r1-g0-c1"
+      ],
+      "Regressions": [
+        "cr-in_family-bound-k167-w2-direct-r0-g0-c1",
+        "cr-in_family-bound-k167-w2-direct-r1-g1-c1",
+        "cr-in_family-bound-k167-w2-assignment-r0-g0-c1",
+        "cr-in_family-bound-k167-w2-assignment-r1-g1-c1",
+        "cr-in_family-bound-k-97-w2-direct-r0-g0-c1",
+        "cr-in_family-bound-k-97-w2-assignment-r0-g0-c1",
+        "cr-in_family-distance-k-97-w2-direct-r1-g1-c1",
+        "cr-in_family-distance-k-97-w2-assignment-r1-g1-c1"
+      ]
+    },
+    "train": {
+      "Documents": 64,
+      "Improvements": [
+        "cr-train-bound-k113-w1-direct-r0-g0-c1",
+        "cr-train-bound-k113-w1-direct-r1-g1-c0",
+        "cr-train-bound-k-71-w0-direct-r0-g1-c1",
+        "cr-train-bound-k-71-w0-direct-r1-g1-c0",
+        "cr-train-bound-k-71-w1-direct-r0-g1-c0",
+        "cr-train-bound-k-71-w1-direct-r1-g0-c1",
+        "cr-train-distance-k113-w0-direct-r1-g1-c1",
+        "cr-train-distance-k-71-w0-direct-r0-g0-c1",
+        "cr-train-distance-k-71-w1-direct-r0-g0-c0",
+        "cr-train-distance-k-71-w1-direct-r0-g1-c0",
+        "cr-train-distance-k-71-w1-direct-r1-g0-c1"
+      ],
+      "Regressions": [
+        "cr-train-bound-k113-w0-direct-r1-g0-c0",
+        "cr-train-bound-k113-w1-direct-r0-g0-c0",
+        "cr-train-bound-k113-w1-direct-r1-g1-c1",
+        "cr-train-bound-k-71-w1-direct-r0-g0-c0",
+        "cr-train-bound-k-71-w1-direct-r1-g1-c0",
+        "cr-train-distance-k113-w0-direct-r0-g1-c1",
+        "cr-train-distance-k113-w0-direct-r1-g1-c0",
+        "cr-train-distance-k-71-w1-direct-r0-g0-c1",
+        "cr-train-distance-k-71-w1-direct-r0-g1-c1"
+      ]
+    },
+    "unseen_family": {
+      "Documents": 64,
+      "Improvements": [
+        "cr-unseen_family-affine-k-97-w2-direct-r0-g0-c0",
+        "cr-unseen_family-affine-k-97-w2-direct-r1-g0-c0",
+        "cr-unseen_family-affine-k-97-w2-assignment-r0-g0-c0",
+        "cr-unseen_family-affine-k-97-w2-assignment-r1-g0-c0",
+        "cr-unseen_family-affine-k-97-w3-direct-r0-g0-c0",
+        "cr-unseen_family-affine-k-97-w3-assignment-r0-g0-c0"
+      ],
+      "Regressions": [
+        "cr-unseen_family-affine-k-97-w2-direct-r1-g0-c1",
+        "cr-unseen_family-affine-k-97-w2-assignment-r1-g0-c1",
+        "cr-unseen_family-affine-k-97-w3-direct-r0-g0-c1",
+        "cr-unseen_family-affine-k-97-w3-assignment-r0-g0-c1"
+      ]
+    }
+  }
+}
