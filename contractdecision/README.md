@@ -5,7 +5,8 @@ case summary, source prefix, joint hidden values and scores from the same pass.
 
 [Paired-goal training](../docs/contract-goal-pairs.md) can compare two goals for
 the same source while retaining the current inference layout and weight budget.
-The API and local command are implemented; a corpus-level comparison is pending.
+The API and local command are implemented. The first fixed comparison retained
+all regressions: different proposals increased, while first-path validity fell.
 
 The optional [signed extreme pooling experiment](../docs/contract-pooling.md)
 adds an explicit v2 computation with the same weight layout. The default and

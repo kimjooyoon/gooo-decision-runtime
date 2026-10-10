@@ -16,7 +16,8 @@ Compiler [PR1443](https://github.com/kimjooyoon/meta-ontology-go/pull/1443) conn
 the v5/v6 inputs and explicit computation artifact to the ordinary CLI, with
 actual construction and model-free replay records, and is merged into `dev`.
 The installed compiler 0.6.25 still uses SDK0.2.28. The separate declared-case
-CLI integration is in local compiler development.
+CLI integration is public in [PR1444](https://github.com/kimjooyoon/meta-ontology-go/pull/1444),
+with 20 original command observations and model-free saved replay; its CI is in progress.
 
 An optional [signed pooling experiment](studies/contract-pooling-20261010/README.md)
 keeps rare case signals from shrinking in the case average. On the same known
@@ -30,6 +31,13 @@ scores. Every saved selection is reproduced. All 97 opposite-goal pairs have
 different hidden values and scores, even where the selected path stays the
 same. `ExplainInto` exposes these values from one normal prediction so this
 decision behavior can be inspected without another fit or body search.
+
+The [paired-goal comparison](studies/contract-goal-pairs-20261010/README.md) keeps
+the same source arrays and parameter budget while training opposite goals
+together. Same-proposal pairs fell from 62 to 58, but both-valid pairs stayed at
+35 and overall first-path validity fell from 132/196 to 128/196. All regressions
+and the optional `fit -goal-pairs` command are published. The default model stays
+unchanged; the new CPU fit took 679 ms and the measured process peaked at 30.02 MiB.
 
 The earlier shared judge uses 2,072
 parameters across three binary decisions. Its compact FP32 weights occupy 8,288

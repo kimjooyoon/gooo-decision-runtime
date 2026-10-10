@@ -4,8 +4,9 @@ The [recorded diagnostic](../studies/contract-signal-diagnostics-20261010/README
 found that different expected outputs changed the internal scores for all 97
 opposite-goal pairs. The mean model still chose the same path for 61 pairs; the
 signed-pooling model did so for 62. This motivates an optional training objective
-that explicitly compares paired goals. Its effect on those documents has **not
-yet been measured**.
+that explicitly compares paired goals. The [one fixed comparison](../studies/contract-goal-pairs-20261010/README.md)
+now records 10 improved and 14 regressed first decisions. Same-proposal pairs
+fell 62 to 58, while both-valid pairs stayed at 35. The default model is retained.
 
 `contractdecision.FitWithGoalPairs` takes the ordinary training samples, explicit
 pairs of sample indices and a weight/margin configuration. Each pair must have
@@ -71,10 +72,10 @@ fixtures. The command test checks two opposite goals using exact integers beyond
 2^53 through actual candidate execution. Two command-test epochs establish the
 integration, with no first-choice accuracy claim.
 
-The next controlled measurement should keep the original 24 training rows,
-12 explicit pairs, seed, epochs and parameter budget fixed. Compare a single
-new fit against the frozen baseline records, retaining English wording,
-unseen families, all regressions and contradictory goals. Report both-valid and
-same-proposal pair counts alongside first-choice validity, eventual finite
-completion, attempts, latency, fit cost and process memory. The current default
-and the published model weights remain unchanged until such evidence exists.
+The completed comparison kept the original 24 training rows, 12 pairs, seed,
+epochs and parameter budget fixed. All 194 satisfiable documents eventually
+completed, and both contradictions stayed incomplete. First-choice validity
+fell 132/196 to 128/196; outside the original training rows it stayed at 112/170
+for satisfiable documents. Training took 679 ms and the entire measured process
+used at most 30.02 MiB. Future work should judge both individual goals and retain
+regressions, rather than optimize the count of different proposals alone.
