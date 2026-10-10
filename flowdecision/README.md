@@ -32,3 +32,21 @@ representation comparison. The duplicated numerical routines are a maintenance
 cost; shared fixes must be reviewed in all three packages. Consolidation needs
 separate evidence that the published predictions and model identities remain
 unchanged. The prepared search/frontier implementation is shared.
+
+## Inspecting a decision
+
+`Model.ExplainInto` runs one ordinary prediction and returns the hidden
+activations, two option scores for each choice and the supplied candidate
+scores in caller-owned arrays. The prediction uses exactly the `PredictInto`
+path. This optional diagnostic makes inactive hidden paths and identical scores
+visible without changing weights or the normal prediction interface.
+
+The arrays report what the model computed. They do not prove why training
+produced those weights or whether a body satisfies the source cases. The
+explanation is transactional on errors and can be used concurrently with
+separate caller storage. Unused array cells are zero.
+
+The fixed [intent diagnostic protocol](../studies/intent-selection-diagnostics-20261010/protocol.txt)
+compares frozen v5/v6 models on opposite Korean/English intents in32 direct
+Gooo sources, with64 explicitly counted diagnostic forward passes and no fit
+or candidate execution.
