@@ -37,10 +37,20 @@ type InputAudit struct {
 // may be revisited to compare matching hashes byte for byte; no dataset-sized
 // case tensor is retained. The owning compiler supplies the acceptable sets.
 func AuditInputs(ctx context.Context, samples []Sample) (*InputAudit, error) {
+	return auditInputs(ctx, samples, nil)
+}
+
+func auditInputs(ctx context.Context, samples []Sample, conditions []ConditionSource) (*InputAudit, error) {
 	if ctx == nil || len(samples) < 1 || len(samples) > 4096 {
 		return nil, errors.New("input audit requires a context and 1..4096 labelled samples")
 	}
 	report := &InputAudit{Schema: "gooo/decision-input-audit/v1", Samples: len(samples)}
+	if conditions != nil {
+		if len(conditions) != len(samples) {
+			return nil, errors.New("condition audit sources must match sample count")
+		}
+		report.Schema = RequirementInputAuditSchema
+	}
 	buckets := make(map[[32]byte][]int)
 	var counts [][MaxCandidates]int
 	for index, sample := range samples {
@@ -48,12 +58,24 @@ func AuditInputs(ctx context.Context, samples []Sample) (*InputAudit, error) {
 		if err != nil {
 			return nil, fmt.Errorf("sample %d: %w", index, err)
 		}
+		if conditions != nil {
+			key, err = requirementAuditDigest(ctx, key, conditions[index])
+			if err != nil {
+				return nil, fmt.Errorf("sample %d conditions: %w", index, err)
+			}
+		}
 		groupIndex := -1
 		for _, candidate := range buckets[key] {
 			first := report.Groups[candidate].SampleIndices[0]
 			same, err := sameAuditInput(ctx, samples[first], sample)
 			if err != nil {
 				return nil, fmt.Errorf("sample %d comparison: %w", index, err)
+			}
+			if same && conditions != nil {
+				same, err = sameRequirementConditions(ctx, conditions[first], conditions[index])
+				if err != nil {
+					return nil, fmt.Errorf("sample %d condition comparison: %w", index, err)
+				}
 			}
 			if same {
 				groupIndex = candidate

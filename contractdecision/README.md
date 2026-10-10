@@ -1,10 +1,17 @@
 # Reading Gooo requirements before choosing a path
 
+The new [requirement-conditioned model](../docs/requirement-conditioned-contract.md)
+joins source, declared outputs and intermediate Boolean conditions in one
+learned hidden layer. It has13,282 FP32 parameters and supports local Go fitting,
+artifact loading and immediate finite Gooo construction. Fresh held-out quality
+measurement and native compiler artifact loading are the next steps.
+
 The optional [choice-specific case model](../docs/choice-conditioned-contract.md)
 reads the source before pooling each choice's cases. All original source and
 case cells are retained; the model has12,818 FP32 parameters. CPU training,
-artifact loading and immediate finite construction are implemented. Corpus
-quality and end-to-end cost remain to be measured.
+artifact loading and immediate finite construction are implemented. The
+[388-document comparison](../studies/choice-context-learning-20261010/README.md)
+records finite validity and end-to-end cost for that model.
 
 [Inspect one decision](../docs/contract-signals.md) with `ExplainInto`: the actual
 case summary, source prefix, joint hidden values and scores from the same pass.
@@ -18,9 +25,9 @@ both contracts.
 
 [Read source-declared conditions](../docs/declared-condition-input.md) as a
 separate exact Boolean-goal channel. `contract-model inspect` exports source,
-output and condition rows without a model. Existing contract models consume
-the original source/output channels; learning from the new condition rows
-requires a new model computation contract.
+output and condition rows without a model. `fit -requirements` and
+`NewRequirementContractSession` consume that channel. Previously published
+contract models retain their original source/output computation.
 
 [Paired-goal training](../docs/contract-goal-pairs.md) can compare two goals for
 the same source while retaining the current inference layout and weight budget.

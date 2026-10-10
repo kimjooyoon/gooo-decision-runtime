@@ -16,23 +16,26 @@ import (
 // ContractRanking binds a single pre-execution prediction to every declared
 // case and source feature. A declined representation uses declared fallback.
 type ContractRanking struct {
-	Schema           string         `json:"schema"`
-	SHA              string         `json:"ranking_sha256"`
-	PlanSHA          string         `json:"plan_sha256"`
-	CaseSHA          string         `json:"finite_cases_sha256"`
-	ModelFingerprint string         `json:"model_fingerprint,omitempty"`
-	SourceFeatures   string         `json:"source_feature_version,omitempty"`
-	CaseFeatures     string         `json:"case_feature_version,omitempty"`
-	FeatureSHA       [16]string     `json:"source_feature_sha256"`
-	CaseCount        int            `json:"declared_case_count"`
-	ChoiceCount      int            `json:"choice_count"`
-	Logits           [16][2]float32 `json:"choice_logits"`
-	Proposed         uint16         `json:"proposed_mask"`
-	Calls            int            `json:"local_model_predictions"`
-	PredictNS        int64          `json:"predict_ns"`
-	Applied          bool           `json:"ranking_applied"`
-	Declined         bool           `json:"representation_declined"`
-	Error            string         `json:"error,omitempty"`
+	Schema              string         `json:"schema"`
+	SHA                 string         `json:"ranking_sha256"`
+	PlanSHA             string         `json:"plan_sha256"`
+	CaseSHA             string         `json:"finite_cases_sha256"`
+	ModelFingerprint    string         `json:"model_fingerprint,omitempty"`
+	SourceFeatures      string         `json:"source_feature_version,omitempty"`
+	CaseFeatures        string         `json:"case_feature_version,omitempty"`
+	ConditionFeatures   string         `json:"condition_feature_version,omitempty"`
+	ConditionFeatureSHA string         `json:"condition_feature_sha256,omitempty"`
+	ConditionCount      int            `json:"declared_condition_count,omitempty"`
+	FeatureSHA          [16]string     `json:"source_feature_sha256"`
+	CaseCount           int            `json:"declared_case_count"`
+	ChoiceCount         int            `json:"choice_count"`
+	Logits              [16][2]float32 `json:"choice_logits"`
+	Proposed            uint16         `json:"proposed_mask"`
+	Calls               int            `json:"local_model_predictions"`
+	PredictNS           int64          `json:"predict_ns"`
+	Applied             bool           `json:"ranking_applied"`
+	Declined            bool           `json:"representation_declined"`
+	Error               string         `json:"error,omitempty"`
 }
 
 // ContractSession reuses the finite typed frontier and checks every case and
