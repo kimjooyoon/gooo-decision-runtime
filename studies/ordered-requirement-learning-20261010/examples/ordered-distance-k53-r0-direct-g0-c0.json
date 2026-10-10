@@ -1,0 +1,154 @@
+{
+  "schema": "gooo/body-codegen-typed-path-plan/v1",
+  "path_plan": {
+    "schema": "gooo/typed-body-path-plan/v1",
+    "base": {
+      "schema": "gooo/typed-body-plan/v1",
+      "id": "requirements://activity/choose",
+      "name": "Choose",
+      "result_type": "Int",
+      "expressions": [
+        {
+          "kind": "input",
+          "name": "input"
+        },
+        {
+          "kind": "int",
+          "int": 53
+        },
+        {
+          "kind": "binary",
+          "operation": "subtract",
+          "right": 1
+        },
+        {
+          "kind": "int",
+          "int": 53
+        },
+        {
+          "kind": "binary",
+          "operation": "subtract",
+          "left": 3
+        },
+        {
+          "kind": "int",
+          "int": 53
+        },
+        {
+          "kind": "binary",
+          "operation": "less_than",
+          "right": 5
+        }
+      ],
+      "statements": [
+        {
+          "kind": "return",
+          "expr": 2
+        },
+        {
+          "kind": "return",
+          "expr": 4
+        },
+        {
+          "kind": "if",
+          "expr": 6,
+          "then": [
+            0
+          ],
+          "else": [
+            1
+          ]
+        }
+      ],
+      "root": [
+        2
+      ]
+    },
+    "decisions": [
+      {
+        "id": "comparison",
+        "kind": "operand_order",
+        "target": 6,
+        "intent": "작성한 입력에서 비교 결과를 맞춘다. Match the declared comparison results.",
+        "options": [
+          {
+            "label": "layout_forward"
+          },
+          {
+            "label": "layout_reverse",
+            "reverse": true
+          }
+        ],
+        "fallback": "layout_forward"
+      },
+      {
+        "id": "branches",
+        "kind": "branch_layout",
+        "target": 2,
+        "intent": "Choose a route that satisfies both the listed outputs and intermediate conditions.",
+        "options": [
+          {
+            "label": "layout_forward"
+          },
+          {
+            "label": "layout_reverse",
+            "reverse": true
+          }
+        ],
+        "fallback": "layout_forward"
+      }
+    ],
+    "condition_cases": [
+      {
+        "choice_id": "comparison",
+        "input": -9007199254740995,
+        "expected": true
+      },
+      {
+        "choice_id": "comparison",
+        "input": 53,
+        "expected": false
+      },
+      {
+        "choice_id": "comparison",
+        "input": 18014398509481990,
+        "expected": false
+      }
+    ]
+  },
+  "test_cases": [
+    {
+      "input": -9007199254740995,
+      "expected": -9007199254741048
+    },
+    {
+      "input": 0,
+      "expected": -53
+    },
+    {
+      "input": 52,
+      "expected": -1
+    },
+    {
+      "input": 53,
+      "expected": 0
+    },
+    {
+      "input": 54,
+      "expected": -1
+    },
+    {
+      "input": 9007199254740993,
+      "expected": -9007199254740940
+    },
+    {
+      "input": 9007199254740995,
+      "expected": -9007199254740942
+    },
+    {
+      "input": 18014398509481990,
+      "expected": -18014398509481937
+    }
+  ],
+  "max_attempts": 4
+}

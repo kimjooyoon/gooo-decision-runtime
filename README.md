@@ -61,14 +61,21 @@ adjunct. It distinguishes the forty recorded collisions and reports unsupported
 shapes explicitly. [`fit -ordered-requirements`](docs/requirement-conditioned-contract.md#development-retain-calculation-order-during-learning)
 now trains a 17,890-parameter model that reads this adjunct together with the
 original source and both goal streams. Two typed-plan training fixtures learn
-opposite arithmetic layouts; held-out accuracy and resource use remain to be
-measured. Existing model files keep their original inputs.
+opposite arithmetic layouts. A [new 48-document study](studies/ordered-requirement-learning-20261010/README.md)
+finds first-choice success of 11/40 evaluation documents versus 10/40 for the
+original requirement model; all 40 complete through finite checking. Training
+still succeeds first in only 2/8 and loss stays near uniform. The recorded model
+trains in 875ms, predicts at a median 38.083µs and declines eight unsupported
+sources without a call. Both weights and all regressions are public. Existing
+model files keep their original inputs.
 
 The existing choice model's compiler integration was accepted as `dev` source
 `deff13a2`, including its original CI, readiness and compatibility checks.
-[PR1446](https://github.com/kimjooyoon/meta-ontology-go/pull/1446) prepares
-0.6.26 with download, inspection, construction and saved-replay help. The
-currently published compiler remains 0.6.25.
+[PR1446](https://github.com/kimjooyoon/meta-ontology-go/pull/1446) added download,
+inspection, construction and saved-replay help. Compiler
+[0.6.26](https://github.com/kimjooyoon/meta-ontology-go/releases/tag/v0.6.26-dev)
+is published from `8a759cba`, with the actual public macOS arm64 file installed
+and its source, Go1.27.2, SDK0.2.37 and checksums verified.
 
 ## Earlier models and measured comparisons
 

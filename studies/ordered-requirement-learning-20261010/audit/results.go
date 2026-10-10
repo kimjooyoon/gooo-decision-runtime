@@ -24,6 +24,8 @@ type Summary struct {
 	Pairs                                       map[string]Pair
 	Groups                                      map[string]r.Group
 	InputCollisions                             map[string]*contractdecision.InputAudit
+	Interactions                                []InteractionRow
+	DecisionDiagnostics                         map[string]DecisionDiagnostic
 }
 
 func checkModels(root string, report r.Report) {
@@ -32,7 +34,7 @@ func checkModels(root string, report r.Report) {
 		m := report.Models[name]
 		raw := load(root, "model-"+name+".json")
 		parameters := 13282
-		wantSHA := "FROZEN_REQUIREMENT_MODEL_SHA"
+		wantSHA := "8401361db9f0170112baffd6af9148477ab4c4d1ec06a53f96c7bbe680e0eb66"
 		var fp, schema, pooling string
 		if name == "requirements" {
 			model, err := contractdecision.DecodeRequirementConditioned(raw)
@@ -40,7 +42,7 @@ func checkModels(root string, report r.Report) {
 			fp, schema, pooling = model.Fingerprint(), model.ArtifactSchema(), model.Pooling()
 		} else {
 			parameters = 17890
-			wantSHA = "FROZEN_ORDERED_MODEL_SHA"
+			wantSHA = "c74eb1c5f8ca3a79ce43d89137ecb92756ac900807a82d5d56fb45bf1e506aef"
 			model, err := contractdecision.DecodeOrderedRequirementConditioned(raw)
 			must(err)
 			fp, schema, pooling = model.Fingerprint(), model.ArtifactSchema(), model.Pooling()
@@ -209,6 +211,7 @@ func audit(root string) (result Summary, err error) {
 	}
 	compare(&result, sources, byMode)
 	result.InputCollisions = report.InputAudits
+	result.Interactions, result.DecisionDiagnostics = diagnose(sources, byMode)
 	return result, nil
 }
 

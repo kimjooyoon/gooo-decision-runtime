@@ -18,7 +18,7 @@ import (
 	r "github.com/kimjooyoon/gooo-decision-runtime/studies/ordered-requirement-learning-20261010/record"
 )
 
-const producer = "FROZEN_PRODUCER_COMMIT"
+const producer = "74a987d017aecc1bc3f72372c7bd864ffc42c895"
 
 func must(e error) {
 	if e != nil {
