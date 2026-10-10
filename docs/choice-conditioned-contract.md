@@ -73,12 +73,15 @@ invalid model is an error. Public APIs are `NewChoiceConditioned`,
 The artifact `gooo/choice-conditioned-contract/v1` binds the interaction rule,
 pooling, v6 source features, original declared-case v1, activation and both
 weight arrays. Legacy loaders reject it. Existing v1/v2/v3 contract models keep
-their formats and defaults. The ordinary released compiler does not yet load
-this new artifact; the Go example command and SDK session support it.
+their formats and defaults. The Go example command and SDK session support it.
+Native compiler integration and its original command observations are in
+[PR1445](https://github.com/kimjooyoon/meta-ontology-go/pull/1445). Consult the
+[compiler support status](https://github.com/kimjooyoon/meta-ontology-go/wiki/Current-Status)
+when choosing a compiler release.
 
 ## Inspect one decision
 
-The development API adds `ChoiceModel.ExplainChoicesInto` and
+SDK0.2.38 provides `ChoiceModel.ExplainChoicesInto` and
 `ChoiceModel.ExplainInto`. They record the numerical states in the same pass as
 the ordinary prediction. Each caller case is captured once and shared by the
 choice computations. The first method returns all choice logits without
@@ -119,7 +122,7 @@ enumerates zero candidate masks. `predict_ns` includes case capture, prediction
 and recording; file loading and JSON output happen outside that interval.
 Contradictory authored cases remain visible in the output for inspection.
 
-This diagnostic API and command are development additions after SDK0.2.37.
+This diagnostic API and command are available in SDK0.2.38.
 The published weights and original study observations are unchanged. Unit
 fixtures exercise both pooling modes, all 16 choices and 128 cases, exact integer
 goals, ordinary-prediction equivalence, error atomicity and concurrent readers.
