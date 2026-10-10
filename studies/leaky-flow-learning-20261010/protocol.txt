@@ -1,0 +1,41 @@
+Fixed before any study fit. One fresh local CPU fit, changing only the explicit
+activation from ReLU to fixed FP32 negative slope0.01. Keep384->24->2 and9290
+parameters, all v6 source features and the exact16 original training arrays.
+Training-array SHA256 e62fd490c2224aef24c25906e0768e666390d8e4f1b6381258bcb24af64251c4.
+Epochs400, rate0.25, L2=0.0001, seed17, same weight initialization. No tuning,
+repeat fit, seed selection, extra examples, quantization or GPU/cloud job.
+
+Use immutable162-source normalization records gzipSHA
+05fa80975f0e6ea56e0e653fc1207d5894805957cd7a4a54091b67d0e1a7ed40.
+Read original ReLU v6 reportSHA
+2d14177055225af66adc66f28fbf25331f98e013e46c631c9ab5695afadff61f as baseline.
+Do not rerun old fits, predictions, searches, diagnostic study or exhaustive
+oracle. One new model uses schema gooo/flow-candidate-decision/v2 and activation
+leaky_relu_0.01_v1; legacy weights retain their original ReLU semantics.
+The derivative at zero uses the fixed negative slope. Save all400 losses and
+the one model regardless of the outcome.
+
+For each of162 new first judgments, ExplainInto makes exactlyone forward call.
+Save hidden activations, option/candidate scores and prediction. Immediately
+compile/evaluate that selected body on8 output and3 declared condition cases.
+Save the body, Go digest and every failure; compare with the frozen acceptable
+set only after selection. Timing includes the optional trace copy and cannot
+be called the same benchmark as the earlier bare PredictInto timings.
+
+Execute324 new bounded searches: initial-only and feedback for each162 source.
+Budget4,batch1,no seed,at most4 feedback rounds. Save all attempts, progress,
+feedback and final body. Require exact original v6 initial input hashes and
+no repeated candidate execution. No native execution in this study.
+
+Report first-choice valid programs, output/condition completeness, train16,
+representation64, constant-transfer80, controls2 and each source form. Recount
+opposite-intent direct pairs and zero hidden paths from these same first-call
+traces, with no extra diagnostic forward. Count final completion, attempts and
+all model/feedback calls. Preserve parameter count, fit/process time/RSS.
+Separate historical comparison from contemporaneous speed measurement. Finite
+cases do not prove general program correctness or general language understanding.
+
+Commit clean Go1.27.2 producer and protocol before one run into a new directory.
+Keep source/model/build identities and raw observations; preserve partial output
+on failure. Publish gzip-n with decompressed byte comparison, SHA256 manifest
+and read-only recount without new fits, forwards or candidate executions.

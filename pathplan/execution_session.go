@@ -75,7 +75,7 @@ func (m executionRanker) Fingerprint() string {
 }
 func (m executionRanker) schema() string {
 	if m.flow != nil {
-		return flowdecision.Schema
+		return m.flow.ArtifactSchema()
 	}
 	if m.execution != nil {
 		return executiondecision.Schema

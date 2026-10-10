@@ -61,8 +61,18 @@ func Fit(ctx context.Context, samples []Sample, options FitOptions) (*Model, []E
 // FitForFeatures requires samples encoded with the named ABI. Raw arrays do not
 // identify their own representation. It retains the same bounded CPU training.
 func FitForFeatures(ctx context.Context, samples []Sample, options FitOptions, version string) (*Model, []Epoch, error) {
+	return FitForActivation(ctx, samples, options, version, ReLUActivation)
+}
+
+// FitForActivation preserves the bounded full-batch training schedule while
+// explicitly selecting the activation. The leaky slope is fixed at FP32 .01;
+// its derivative at zero uses that slope. Existing training defaults to ReLU.
+func FitForActivation(ctx context.Context, samples []Sample, options FitOptions, version, activation string) (*Model, []Epoch, error) {
 	if !supportedFeatures(version) {
 		return nil, nil, errors.New("unsupported flow training feature version")
+	}
+	if !supportedActivation(activation) {
+		return nil, nil, errors.New("unsupported flow training activation")
 	}
 	if ctx == nil || len(samples) == 0 || len(samples) > 4096 || !validOptions(options) {
 		return nil, nil, errors.New("bounded flow training samples and options required")
@@ -78,7 +88,7 @@ func FitForFeatures(ctx context.Context, samples []Sample, options FitOptions, v
 			return nil, nil, errors.New("acceptable set must name supplied complete candidates")
 		}
 	}
-	m, _ := NewForFeatures(initial(options.Seed), version)
+	m, _ := NewForActivation(initial(options.Seed), version, activation)
 	history := make([]Epoch, 0, options.Epochs)
 	for epoch := range options.Epochs {
 		var gradient [ParameterCount]float64
@@ -130,12 +140,15 @@ func (m *Model) backward(inputs [][FeatureDim]float32, w *Workspace, residual *[
 			}
 		}
 		for h, x := range w.hidden[choice] {
-			if x <= 0 {
+			if x <= 0 && m.Activation() != LeakyReLUActivation {
 				continue
 			}
 			delta := 0.0
 			for option := range 2 {
 				delta += residual[choice][option] * float64(m.weights[w2Start+option*HiddenDim+h])
+			}
+			if x <= 0 {
+				delta *= float64(negativeSlope)
 			}
 			gradient[FeatureDim*HiddenDim+h] += delta
 			for j, v := range input {
