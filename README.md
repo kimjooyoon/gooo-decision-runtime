@@ -37,7 +37,11 @@ completed 162/162 authored case suites; v5 training took 107 ms on the local CPU
 Development source adds an explicit [v6 relation input](docs/relational-flow-model.md)
 for equality and integer ordering among known source atoms. It keeps384 cells
 and the same small network. Its [fixed study protocol](studies/relational-flow-learning-20261010/protocol.txt)
-compares one fresh CPU fit with the saved v5 results.
+compares one fresh CPU fit with the saved v5 results. The
+[observed result](studies/relational-flow-learning-20261010/README.md) regressed
+from101/162 to82/162 first-choice valid candidates; both v6 search modes completed
+162/162 authored case suites. The experiment retains all failures and keeps
+these weights opt-in.
 
 ### Condition candidate model
 

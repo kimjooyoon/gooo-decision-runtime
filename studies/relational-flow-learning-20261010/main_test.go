@@ -6,10 +6,10 @@ func TestOnlyDirectTrainingSamplesAreCopied(t *testing.T) {
 	var v6 [384]float32
 	v6[255] = 3
 	rows := []prepared{
-		{source: source{Split: "future_train", Acceptable: 4}, V6: [][384]float32{v6}},
-		{source: source{Split: "representation_transfer"}},
-		{source: source{Split: "constant_transfer"}},
-		{source: source{Split: "control"}},
+		{Split: "future_train", Acceptable: 4, V6: [][384]float32{v6}},
+		{Split: "representation_transfer"},
+		{Split: "constant_transfer"},
+		{Split: "control"},
 	}
 	a := training(rows)
 	if len(a) != 1 || a[0].Inputs[0] != v6 || a[0].Acceptable != 4 {
