@@ -1,5 +1,10 @@
 # Separate source, intent and observed conditions
 
+This page defines the v1 layout. The opt-in
+[v2 branch return layout](branch-return-features.md) fills its twenty reserved
+cells with static branch roles while preserving cells 0–235 exactly. Each model
+artifact identifies which version its weights consume.
+
 `ConditionFeaturesInto` is an experimental input for a small Gooo decision
 model. It writes a fixed `[256]float32` array (1,024 bytes) from structural source
 fields, the complete Korean/English intent and one typed condition observation.

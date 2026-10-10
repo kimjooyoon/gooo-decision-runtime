@@ -19,7 +19,9 @@ can represent; source evaluation must check the selected complete candidate.
   allocates zero heap objects in the contract test.
 - CPU full-batch training with explicit seed, epochs, learning rate and L2.
 - One closed JSON artifact schema, `gooo/condition-candidate-decision/v1`, bound
-  to `source_intent_condition_channels_v1` and the exact architecture.
+  to an explicit supported feature version and the exact architecture. `New` and
+  `Fit` default to v1; `NewForFeatures` and `FitForFeatures` can select the
+  [v2 branch return channels](../docs/branch-return-features.md).
 - Artifacts in this first implementation use FP32. Earlier ternary path models
   retain their own schema and feature version.
 
@@ -40,8 +42,10 @@ err := model.PredictInto(features, candidateMasks, &work, &prediction)
 // Handle err and check prediction.Selected with the Gooo source contract.
 ```
 
-The module currently provides training, serialization and finite-pool ranking.
-Compiler CLI provider integration and a compressed version are subsequent work.
+The module provides training, serialization, finite-pool ranking and incremental
+source-bound search. Compiler CLI integration for the published v1 model is in
+[compiler PR1441](https://github.com/kimjooyoon/meta-ontology-go/pull/1441).
+Trained v2 weights, their compiler CLI connection and compression remain work.
 The fixed [source-based study](../studies/condition-candidate-20261010/protocol.txt)
 separates initial judgments, observations, new wording and local-variable bodies.
 

@@ -22,7 +22,10 @@ const (
 
 // Model is immutable after construction. It owns 6,218 FP32 values (24,872B).
 // These figures cover weights, not total process RAM or training storage.
-type Model struct{ weights [ParameterCount]float32 }
+type Model struct {
+	weights        [ParameterCount]float32
+	featureVersion string
+}
 
 type Workspace struct {
 	hidden [MaxChoices][HiddenDim]float32
@@ -37,10 +40,34 @@ type Prediction struct {
 }
 
 func New(weights [ParameterCount]float32) (*Model, error) {
+	return NewForFeatures(weights, decision.ConditionChannelFeatureVersion)
+}
+
+// NewForFeatures binds immutable weights to an explicit input representation.
+// Merely relabelling previously trained weights does not train the new channels.
+func NewForFeatures(weights [ParameterCount]float32, version string) (*Model, error) {
+	if !supportedFeatures(version) {
+		return nil, errors.New("unsupported condition feature version")
+	}
 	if !finite(weights[:]) {
 		return nil, errors.New("finite condition model weights required")
 	}
-	return &Model{weights: weights}, nil
+	return &Model{weights: weights, featureVersion: version}, nil
+}
+
+func supportedFeatures(version string) bool {
+	return version == decision.ConditionChannelFeatureVersion || version == decision.ConditionBranchFeatureVersion
+}
+
+// FeatureVersion includes the legacy zero-value model's v1 representation.
+func (m *Model) FeatureVersion() string {
+	if m == nil {
+		return ""
+	}
+	if m.featureVersion == "" {
+		return decision.ConditionChannelFeatureVersion
+	}
+	return m.featureVersion
 }
 
 func (m *Model) Weights() [ParameterCount]float32 { return m.weights }

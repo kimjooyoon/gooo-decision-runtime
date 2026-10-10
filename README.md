@@ -28,8 +28,15 @@ training took 0.172s. Ranking four candidates over two choices had a 7.667µs
 median. New wording scored 2/4 on initial judgments and 12/16 after observations;
 local-variable versions of the same absolute-value problem scored 8/8 and32/32.
 The study retains all120 selected bodies and finite results, including failures.
-This package has its own artifact ABI; general compiler CLI provider integration
-and compression of these new weights are subsequent steps.
+This package has its own artifact ABI. The v1 compiler CLI connection is in
+[PR1441](https://github.com/kimjooyoon/meta-ontology-go/pull/1441); compression of
+these new weights remains work.
+
+The opt-in [v2 branch return inputs](docs/branch-return-features.md) distinguish
+which branch returns an input, literal, local or composed expression. They fill
+twenty reserved cells without increasing the model's dimensions. Tests cover the
+previously saved input collision; trained v2 weights and accuracy measurements
+are still pending.
 
 ### Connecting the condition model to finite search
 
@@ -41,8 +48,8 @@ A nil model preserves declared-fallback search. Calls, skipped calls, rejected
 candidates and cancellation are recorded separately.
 
 See [the API and its limits](docs/condition-search.md). `SearchConditionBatches`
-provides a 64-attempt, 16-feedback-round adapter for local document consumers;
-the new artifact still needs a provider in the general compiler CLI.
+provides a 64-attempt, 16-feedback-round adapter for local document consumers.
+It selects the input version from the frozen model for initial and later calls.
 
 In the [fixed 24-contract search study](studies/condition-search-20261010/README.md),
 deterministic search tried 60 paths, initial ranking tried 35, and condition
