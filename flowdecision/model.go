@@ -57,7 +57,7 @@ func NewForFeatures(weights [ParameterCount]float32, version string) (*Model, er
 }
 
 func supportedFeatures(version string) bool {
-	return version == decision.ExecutionFlowFeatureVersion
+	return version == decision.ExecutionFlowFeatureVersion || version == decision.SemanticFlowFeatureVersion
 }
 
 // FeatureVersion identifies the 384-cell value-flow representation.

@@ -1,0 +1,35 @@
+Fixed before execution. Source representation study, with zero fits/model calls.
+
+Lower160 fresh Gooo sources:32 logical max/min specifications, each expressed as
+direct return, input/constant aliases, branch assignment, copy before overwrite,
+and copy after branch followed by overwrite.32=2 tasks*4 constants(7,13,11,17)*
+2 original arm orientations*2 bilingual wordings. All five forms within one
+group have identical intent, choices, finite output/condition cases and meaning.
+
+Reserve only16 direct forms at constants7/13 as future training rows. Their64
+other forms are representation transfer; the80 forms at constants11/17 are
+constant transfer. No model is trained or called in this study. Include two
+additional fixed control sources: nested branch and arithmetic branch return.
+They must retain their v4 arrays. No source is dropped on a failure.
+
+Each source declares8 exact int64 output cases and3 comparison cases, two
+binary choices and4 candidate masks. Test every mask once for outputs and once
+for conditions:648 candidate records,1296 explicit program compilations across
+the two public APIs,5184 output evaluations and1944 condition observations.
+Source/fallback validation may also compile; it is outside those explicit counts.
+Values include -9007199254740995,9007199254740993,9007199254740995 and
+18014398509481990. Do not route integers through float64.
+
+Record full Gooo source, normalized document, source/plan digests, both initial
+384-cell inputs and digests, source-only normalization context, every candidate
+output/condition row and complete acceptable mask set. Compare each non-direct
+form with its group's direct form:128 pairs. Also count identical-input pairs
+whose acceptable masks are disjoint. No accuracy or speedup inference follows
+from feature equality. The restrictions and raw fallback remain visible.
+
+Producer: clean SDK commit with explicit v5 code, Go1.27.2, compiler source
+c6784f34e4ce9e208e53c361c757e04961233196. Build before observing results. Preserve
+build identity, original start/completion/time logs, all partial records on error.
+Run once, no sampling, retuning, rerun or native execution. Publish gzip-n and
+decompressed byte comparison/checksums. Audit stored facts without executing
+the compiler, model, oracle or body evaluator again.

@@ -24,5 +24,5 @@ func (p *PreparedPlan) SearchFlowBatches(ctx context.Context, model *flowdecisio
 }
 
 func (s *ConditionSession) hasOutputChannel() bool {
-	return s.featureVersion == decision.ExecutionFeatureVersion || s.featureVersion == decision.ExecutionFlowFeatureVersion
+	return s.featureVersion == decision.ExecutionFeatureVersion || s.featureVersion == decision.ExecutionFlowFeatureVersion || s.featureVersion == decision.SemanticFlowFeatureVersion
 }

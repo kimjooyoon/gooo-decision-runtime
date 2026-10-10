@@ -1,0 +1,1 @@
+162 sources, 648 candidate records, 128 matched pairs; 0 -> 128 equal inputs; no model calls.

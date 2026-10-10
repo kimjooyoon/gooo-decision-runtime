@@ -171,7 +171,12 @@ func (s *ConditionSession) receipt() ConditionRanking {
 func (s *ConditionSession) features(inputs *[16][decision.ExecutionFlowFeatureDim]float32, r *ConditionRanking) error {
 	for i, choice := range s.core.prepared.plan.Decisions {
 		width := decision.FeatureDim
-		if s.featureVersion == decision.ExecutionFlowFeatureVersion {
+		if s.featureVersion == decision.SemanticFlowFeatureVersion {
+			width = decision.ExecutionFlowFeatureDim
+			if err := s.input.ExecutionSemanticFlowFeaturesInto(choice.ID, &inputs[i]); err != nil {
+				return err
+			}
+		} else if s.featureVersion == decision.ExecutionFlowFeatureVersion {
 			width = decision.ExecutionFlowFeatureDim
 			if err := s.input.ExecutionFlowFeaturesInto(choice.ID, &inputs[i]); err != nil {
 				return err
