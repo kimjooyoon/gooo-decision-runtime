@@ -68,8 +68,10 @@ the same local name after giving it different values.
 In the [fixed static projection](studies/flow-feature-projection-20261010/README.md),
 the original 128-source collection had 72 pairs with identical v3 inputs but
 disjoint acceptable paths. The additional facts distinguished all 72, with zero
-excluded sources. No new model was trained in that measurement; learning and
-runtime ranking on the 384-cell input remain the next step.
+excluded sources. No new model was trained in that measurement. The separate
+[`flowdecision`](flowdecision/README.md) package supplies 384-cell CPU training
+and finite-search integration; its learned source-level quality remains to be
+measured in a new study.
 
 ### Connecting the condition model to finite search
 

@@ -8,6 +8,7 @@ import (
 	"github.com/kimjooyoon/gooo-decision-runtime/bodyplan"
 	"github.com/kimjooyoon/gooo-decision-runtime/conditiondecision"
 	"github.com/kimjooyoon/gooo-decision-runtime/executiondecision"
+	"github.com/kimjooyoon/gooo-decision-runtime/flowdecision"
 )
 
 // NewExecutionSession uses the v3 output-feedback model and the same finite
@@ -36,50 +37,78 @@ func (s *ConditionSession) ExecutionInput() (*ConditionInput, error) {
 		return nil, ErrSessionBusy
 	}
 	defer s.lock.Unlock()
-	if s.featureVersion != decision.ExecutionFeatureVersion {
+	if !s.hasOutputChannel() {
 		return nil, errors.New("execution model session required")
 	}
 	input := s.input
 	return &input, nil
 }
 
-// Both input ABIs share search behavior while retaining distinct model shapes,
+// The input ABIs share search behavior while retaining distinct model shapes,
 // artifact schemas and fingerprints. This transient adapter is never retained.
 type executionRanker struct {
 	condition *conditiondecision.Model
 	execution *executiondecision.Model
+	flow      *flowdecision.Model
 }
 
-func (m executionRanker) present() bool { return m.condition != nil || m.execution != nil }
+func (m executionRanker) present() bool {
+	return m.condition != nil || m.execution != nil || m.flow != nil
+}
 func (m executionRanker) FeatureVersion() string {
+	if m.flow != nil {
+		return m.flow.FeatureVersion()
+	}
 	if m.execution != nil {
 		return m.execution.FeatureVersion()
 	}
 	return m.condition.FeatureVersion()
 }
 func (m executionRanker) Fingerprint() string {
+	if m.flow != nil {
+		return m.flow.Fingerprint()
+	}
 	if m.execution != nil {
 		return m.execution.Fingerprint()
 	}
 	return m.condition.Fingerprint()
 }
 func (m executionRanker) schema() string {
+	if m.flow != nil {
+		return flowdecision.Schema
+	}
 	if m.execution != nil {
 		return executiondecision.Schema
 	}
 	return conditiondecision.Schema
 }
 func (m executionRanker) variant() string {
+	if m.flow != nil {
+		return "flow_fp32"
+	}
 	if m.execution != nil {
 		return "execution_fp32"
 	}
 	return "condition_fp32"
 }
-func (m executionRanker) predict(inputs [][decision.ExecutionFeatureDim]float32, output *[16][2]float32) error {
+func (m executionRanker) predict(inputs [][decision.ExecutionFlowFeatureDim]float32, output *[16][2]float32) error {
+	if m.flow != nil {
+		var workspace flowdecision.Workspace
+		var prediction flowdecision.ChoicePrediction
+		if err := m.flow.PredictChoicesInto(inputs, &workspace, &prediction); err != nil {
+			return err
+		}
+		*output = prediction.Logits
+		return nil
+	}
 	if m.execution != nil {
+		var prefix [16][decision.ExecutionFeatureDim]float32
+		for i := range inputs {
+			copy(prefix[i][:], inputs[i][:decision.ExecutionFeatureDim])
+		}
 		var workspace executiondecision.Workspace
 		var prediction executiondecision.ChoicePrediction
-		if err := m.execution.PredictChoicesInto(inputs, &workspace, &prediction); err != nil {
+		if err := m.execution.PredictChoicesInto(prefix[:len(inputs)], &workspace, &prediction); err != nil {
 			return err
 		}
 		*output = prediction.Logits

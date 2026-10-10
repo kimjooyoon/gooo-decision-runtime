@@ -76,8 +76,10 @@ pairs with identical inputs and disjoint acceptable path sets. This projection
 distinguished all 72 pairs without excluding a source. That removes an observed
 information loss on this collection; it does not establish a learned accuracy.
 
-Existing model artifacts still require 256 or 320 inputs. There are no trained
-384-input weights or ranking adapter in this change. The next learning study
+Existing model artifacts still require 256 or 320 inputs. The separate
+[`flowdecision`](../flowdecision/README.md) package now provides 384-input CPU
+training and `NewFlowSession` / `SearchFlowBatches` connect it to candidate
+evaluation. It has no published trained weights yet. The next learning study
 should compare fresh models on the same fixed split, report first-choice and
 finite-search results separately, and include assignment/copy/overwrite cases
 outside the training families. It should preserve deterministic continuation

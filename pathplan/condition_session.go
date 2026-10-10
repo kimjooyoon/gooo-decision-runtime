@@ -91,7 +91,7 @@ func (prepared *PreparedPlan) newConditionSession(ctx context.Context, model exe
 		return nil, err
 	}
 	s := &ConditionSession{core: core, input: ConditionInput{prepared: prepared}, modelSchema: model.schema()}
-	if model.execution != nil {
+	if model.execution != nil || model.flow != nil {
 		s.input.caseSHA = core.caseSHA
 	}
 	if err != nil {
@@ -112,7 +112,7 @@ func (prepared *PreparedPlan) newConditionSession(ctx context.Context, model exe
 	if seed != "" {
 		core.result.Selection.SeedSHA256 = hash([]byte(seed))
 	}
-	var inputs [16][decision.ExecutionFeatureDim]float32
+	var inputs [16][decision.ExecutionFlowFeatureDim]float32
 	if err = s.features(&inputs, &r); err != nil {
 		r.Declined = true
 		_, err = s.finish(r, err)
@@ -168,14 +168,21 @@ func (s *ConditionSession) receipt() ConditionRanking {
 	return r
 }
 
-func (s *ConditionSession) features(inputs *[16][decision.ExecutionFeatureDim]float32, r *ConditionRanking) error {
+func (s *ConditionSession) features(inputs *[16][decision.ExecutionFlowFeatureDim]float32, r *ConditionRanking) error {
 	for i, choice := range s.core.prepared.plan.Decisions {
 		width := decision.FeatureDim
-		if s.featureVersion == decision.ExecutionFeatureVersion {
-			width = decision.ExecutionFeatureDim
-			if err := s.input.ExecutionFeaturesInto(choice.ID, &inputs[i]); err != nil {
+		if s.featureVersion == decision.ExecutionFlowFeatureVersion {
+			width = decision.ExecutionFlowFeatureDim
+			if err := s.input.ExecutionFlowFeaturesInto(choice.ID, &inputs[i]); err != nil {
 				return err
 			}
+		} else if s.featureVersion == decision.ExecutionFeatureVersion {
+			width = decision.ExecutionFeatureDim
+			var prefix [decision.ExecutionFeatureDim]float32
+			if err := s.input.ExecutionFeaturesInto(choice.ID, &prefix); err != nil {
+				return err
+			}
+			copy(inputs[i][:], prefix[:])
 		} else {
 			var prefix [decision.FeatureDim]float32
 			if err := s.input.FeaturesIntoVersion(choice.ID, s.featureVersion, &prefix); err != nil {
@@ -183,7 +190,7 @@ func (s *ConditionSession) features(inputs *[16][decision.ExecutionFeatureDim]fl
 			}
 			copy(inputs[i][:], prefix[:])
 		}
-		var raw [decision.ExecutionFeatureDim * 4]byte
+		var raw [decision.ExecutionFlowFeatureDim * 4]byte
 		for j, v := range inputs[i][:width] {
 			binary.LittleEndian.PutUint32(raw[j*4:], math.Float32bits(v))
 		}
@@ -192,7 +199,7 @@ func (s *ConditionSession) features(inputs *[16][decision.ExecutionFeatureDim]fl
 	return nil
 }
 
-func (s *ConditionSession) predict(model executionRanker, inputs [][decision.ExecutionFeatureDim]float32, r *ConditionRanking) error {
+func (s *ConditionSession) predict(model executionRanker, inputs [][decision.ExecutionFlowFeatureDim]float32, r *ConditionRanking) error {
 	var logits [16][2]float32
 	start := time.Now()
 	err := model.predict(inputs, &logits)
@@ -303,7 +310,7 @@ func (s *ConditionSession) Advance(ctx context.Context, budget int) (ConditionPr
 		if attempt.Status != "EVALUATED" && attempt.Status != "CONDITION_REJECTED" {
 			continue
 		}
-		if s.featureVersion == decision.ExecutionFeatureVersion {
+		if s.hasOutputChannel() {
 			s.input.observeExecution(attempt)
 		}
 		s.input.failure, s.input.present = ConditionFailure{}, false
@@ -354,7 +361,7 @@ func (s *ConditionSession) reconsider(ctx context.Context, model executionRanker
 		r.Unnecessary = true
 		return s.finish(r, nil)
 	}
-	var inputs [16][decision.ExecutionFeatureDim]float32
+	var inputs [16][decision.ExecutionFlowFeatureDim]float32
 	if err := s.features(&inputs, &r); err != nil {
 		r.Declined = true
 		return s.finish(r, err)
