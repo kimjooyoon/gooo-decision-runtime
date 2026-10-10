@@ -1,0 +1,4 @@
+# github.com/kimjooyoon/meta-ontology-go/research/multifamily-requirement-learning-study [github.com/kimjooyoon/meta-ontology-go/research/multifamily-requirement-learning-study.test]
+./main.go:87:42: undefined: r.OrderedFeatureSHA
+FAIL	github.com/kimjooyoon/meta-ontology-go/research/multifamily-requirement-learning-study [build failed]
+FAIL

@@ -1,0 +1,73 @@
+ok  	github.com/kimjooyoon/gooo-decision-runtime	0.944s
+ok  	github.com/kimjooyoon/gooo-decision-runtime/bodyplan	0.533s
+ok  	github.com/kimjooyoon/gooo-decision-runtime/conditiondecision	1.208s
+ok  	github.com/kimjooyoon/gooo-decision-runtime/contractdecision	2.474s
+ok  	github.com/kimjooyoon/gooo-decision-runtime/examples/branch-role-fit	1.817s
+ok  	github.com/kimjooyoon/gooo-decision-runtime/examples/condition-fit	2.154s
+?   	github.com/kimjooyoon/gooo-decision-runtime/examples/condition-search	[no test files]
+ok  	github.com/kimjooyoon/gooo-decision-runtime/examples/contract-model	2.989s
+ok  	github.com/kimjooyoon/gooo-decision-runtime/examples/execution-feedback-fit	2.792s
+ok  	github.com/kimjooyoon/gooo-decision-runtime/examples/gooo-path	3.105s
+?   	github.com/kimjooyoon/gooo-decision-runtime/examples/order-prepared	[no test files]
+?   	github.com/kimjooyoon/gooo-decision-runtime/examples/order-replay	[no test files]
+ok  	github.com/kimjooyoon/gooo-decision-runtime/examples/probe-ranking	3.387s
+ok  	github.com/kimjooyoon/gooo-decision-runtime/examples/three-replay	(cached)
+ok  	github.com/kimjooyoon/gooo-decision-runtime/executiondecision	3.162s
+ok  	github.com/kimjooyoon/gooo-decision-runtime/flowdecision	3.160s
+ok  	github.com/kimjooyoon/gooo-decision-runtime/internal/modelfile	(cached)
+ok  	github.com/kimjooyoon/gooo-decision-runtime/internal/strictjson	(cached)
+ok  	github.com/kimjooyoon/gooo-decision-runtime/jointdecision	3.277s
+?   	github.com/kimjooyoon/gooo-decision-runtime/observations/condition-observation-20261010	[no test files]
+ok  	github.com/kimjooyoon/gooo-decision-runtime/orderfacts	2.829s
+ok  	github.com/kimjooyoon/gooo-decision-runtime/orderjudge	2.900s
+ok  	github.com/kimjooyoon/gooo-decision-runtime/orderprepared	3.095s
+ok  	github.com/kimjooyoon/gooo-decision-runtime/pathplan	5.374s
+?   	github.com/kimjooyoon/gooo-decision-runtime/studies/branch-feature-discrimination-20261010	[no test files]
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/branch-role-learning-20261010/audit	3.369s
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/choice-context-learning-20261010/audit	3.814s
+?   	github.com/kimjooyoon/gooo-decision-runtime/studies/choice-context-learning-20261010/freeze	[no test files]
+?   	github.com/kimjooyoon/gooo-decision-runtime/studies/choice-context-learning-20261010/record	[no test files]
+?   	github.com/kimjooyoon/gooo-decision-runtime/studies/condition-candidate-20261010	[no test files]
+?   	github.com/kimjooyoon/gooo-decision-runtime/studies/condition-search-20261010	[no test files]
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/contract-goal-pairs-20261010/audit	3.572s
+?   	github.com/kimjooyoon/gooo-decision-runtime/studies/contract-goal-pairs-20261010/producer	[no test files]
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/contract-goals-20261010/audit	3.565s
+?   	github.com/kimjooyoon/gooo-decision-runtime/studies/contract-goals-20261010/record	[no test files]
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/contract-pooling-20261010/audit	3.559s
+?   	github.com/kimjooyoon/gooo-decision-runtime/studies/contract-pooling-20261010/producer	[no test files]
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/contract-signal-diagnostics-20261010/audit	3.422s
+?   	github.com/kimjooyoon/gooo-decision-runtime/studies/contract-signal-diagnostics-20261010/producer	[no test files]
+?   	github.com/kimjooyoon/gooo-decision-runtime/studies/contract-signal-diagnostics-20261010/record	[no test files]
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/execution-feedback-learning-20261010/audit	3.621s
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/feedback-flow-learning-20261010	3.456s
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/feedback-flow-learning-20261010/audit	3.352s
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/flow-feature-projection-20261010	2.694s
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/flow-feature-projection-20261010/audit	2.429s
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/heldout-repair-20261010	2.703s
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/heldout-repair-20261010/audit	2.849s
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/intent-selection-diagnostics-20261010	2.700s
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/intent-selection-diagnostics-20261010/audit	2.634s
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/interaction-requirement-learning-20261011/audit	3.045s
+?   	github.com/kimjooyoon/gooo-decision-runtime/studies/interaction-requirement-learning-20261011/freeze	[no test files]
+?   	github.com/kimjooyoon/gooo-decision-runtime/studies/interaction-requirement-learning-20261011/record	[no test files]
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/leaky-flow-learning-20261010	3.326s
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/leaky-flow-learning-20261010/audit	3.526s
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/multifamily-requirement-learning-20261011/audit	3.563s
+?   	github.com/kimjooyoon/gooo-decision-runtime/studies/multifamily-requirement-learning-20261011/freeze	[no test files]
+?   	github.com/kimjooyoon/gooo-decision-runtime/studies/multifamily-requirement-learning-20261011/record	[no test files]
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/ordered-requirement-learning-20261010/audit	3.666s
+?   	github.com/kimjooyoon/gooo-decision-runtime/studies/ordered-requirement-learning-20261010/freeze	[no test files]
+?   	github.com/kimjooyoon/gooo-decision-runtime/studies/ordered-requirement-learning-20261010/record	[no test files]
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/relational-flow-learning-20261010	3.581s
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/relational-flow-learning-20261010/audit	3.553s
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/requirement-learning-20261010/audit	3.603s
+?   	github.com/kimjooyoon/gooo-decision-runtime/studies/requirement-learning-20261010/freeze	[no test files]
+?   	github.com/kimjooyoon/gooo-decision-runtime/studies/requirement-learning-20261010/record	[no test files]
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/semantic-flow-learning-20261010	3.540s
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/semantic-flow-learning-20261010/audit	3.658s
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/semantic-flow-normalization-20261010/audit	3.418s
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/source-literal-contract-20261010/audit	3.371s
+?   	github.com/kimjooyoon/gooo-decision-runtime/studies/source-literal-contract-20261010/producer	[no test files]
+?   	github.com/kimjooyoon/gooo-decision-runtime/studies/source-literal-contract-20261010/record	[no test files]
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/value-flow-learning-20261010	3.092s
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/value-flow-learning-20261010/audit	3.004s
