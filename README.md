@@ -6,26 +6,32 @@ source-bound plan; this library ranks its permitted choices and continues finite
 search using observed failures. Think of it as the small assembly mechanism
 inside the larger language workshop.
 
-**Latest published release: v0.2.37-experimental.** The
-[release](https://github.com/kimjooyoon/gooo-decision-runtime/releases/tag/v0.2.37-experimental)
-contains the choice-conditioned model (12,818 parameters / 51,272 weight bytes),
+## Public code, model files and compiler support
+
+[SDK0.2.38](https://github.com/kimjooyoon/gooo-decision-runtime/releases/tag/v0.2.38-experimental)
+provides the decision inspection APIs and example command described below.
+The [SDK0.2.37 model release](https://github.com/kimjooyoon/gooo-decision-runtime/releases/tag/v0.2.37-experimental)
+contains the compatible choice-conditioned model (12,818 parameters / 51,272 weight bytes),
 its global-pooling comparator (9,746 parameters / 38,984 weight bytes) and
 checksums. Both read source structure and authored input/output examples before
 ranking permitted paths. The [fresh comparison](studies/choice-context-learning-20261010/README.md)
 records 388 Gooo documents, both fits and all failures. Earlier defaults remain
 available in [v0.2.36](https://github.com/kimjooyoon/gooo-decision-runtime/releases/tag/v0.2.36-experimental).
-Compiler [PR1443](https://github.com/kimjooyoon/meta-ontology-go/pull/1443) connects
-the v5/v6 inputs and explicit computation artifact to the ordinary CLI, with
-actual construction and model-free replay records, and is merged into `dev`.
-The installed compiler 0.6.25 still uses SDK0.2.28. The separate declared-case
-CLI integration is public in [PR1444](https://github.com/kimjooyoon/meta-ontology-go/pull/1444),
-with 20 original command observations and model-free saved replay. Original and
-accepted-source CI, readiness and independent compatibility checks passed; it
-is merged into `dev` at93566df0. The installed compiler remains0.6.25. The new
-choice artifact's native compiler integration and 15 original command observations
-are public in [PR1445](https://github.com/kimjooyoon/meta-ontology-go/pull/1445).
-Native construction evaluation and saved replay each pass 24/24 authored cases;
-one of the three examples needs more attempts with the model.
+
+The SDK and compiler have separate release versions. Compiler
+[0.6.25](https://github.com/kimjooyoon/meta-ontology-go/releases/tag/v0.6.25-dev)
+uses SDK0.2.28. Later development integrations and their original observations are:
+
+| Compiler source change | Capability and evidence |
+| --- | --- |
+| [PR1443](https://github.com/kimjooyoon/meta-ontology-go/pull/1443) | v5/v6 inputs and explicit computation artifacts, construction and model-free replay |
+| [PR1444](https://github.com/kimjooyoon/meta-ontology-go/pull/1444) | Declared-case models, 20 original CLI commands, accepted `dev` source93566df0 |
+| [PR1445](https://github.com/kimjooyoon/meta-ontology-go/pull/1445) | Choice-conditioned model, 15 original commands, native construction evaluation and saved replay each24/24 |
+
+One of the three PR1445 examples needs more attempts with the model. See the
+compiler's [current release and support status](https://github.com/kimjooyoon/meta-ontology-go/wiki/Current-Status)
+for what a released compiler includes. All SDK releases are listed
+[here](https://github.com/kimjooyoon/gooo-decision-runtime/releases).
 
 An optional [choice-specific case encoder](docs/choice-conditioned-contract.md)
 preserves all source and case cells, then lets each source choice influence how
@@ -38,7 +44,7 @@ regressed, and opposite-goal discrimination remains limited. CPU fitting took
 peaked at72.27MiB RSS. Additional parameters and compute are disclosed; fewer
 attempted paths did not make these tiny bodies faster overall.
 
-The development [decision inspection API and command](docs/choice-conditioned-contract.md#inspect-one-decision)
+The [decision inspection API and command](docs/choice-conditioned-contract.md#inspect-one-decision)
 record each choice's case summary, retained case indices and option scores in
 the same prediction pass. `ChoiceModel.ExplainChoicesInto` keeps all 16 choices
 and 128 cases bounded, and `examples/contract-model explain` connects the trace
