@@ -22,8 +22,10 @@ CLI integration is public in [PR1444](https://github.com/kimjooyoon/meta-ontolog
 with 20 original command observations and model-free saved replay. Original and
 accepted-source CI, readiness and independent compatibility checks passed; it
 is merged into `dev` at93566df0. The installed compiler remains0.6.25. The new
-choice artifact currently has SDK API/example support; native compiler integration
-is being developed separately.
+choice artifact's native compiler integration and 15 original command observations
+are public in [PR1445](https://github.com/kimjooyoon/meta-ontology-go/pull/1445).
+Native construction evaluation and saved replay each pass 24/24 authored cases;
+one of the three examples needs more attempts with the model.
 
 An optional [choice-specific case encoder](docs/choice-conditioned-contract.md)
 preserves all source and case cells, then lets each source choice influence how
@@ -35,6 +37,15 @@ regressed, and opposite-goal discrimination remains limited. CPU fitting took
 1.725 seconds; initial prediction median was37.584µs. The whole two-model process
 peaked at72.27MiB RSS. Additional parameters and compute are disclosed; fewer
 attempted paths did not make these tiny bodies faster overall.
+
+The development [decision inspection API and command](docs/choice-conditioned-contract.md#inspect-one-decision)
+record each choice's case summary, retained case indices and option scores in
+the same prediction pass. `ChoiceModel.ExplainChoicesInto` keeps all 16 choices
+and 128 cases bounded, and `examples/contract-model explain` connects the trace
+to exact Gooo-declared cases and labels. The diagnostic exposes numerical
+states for investigating unresolved goals; ordinary source checks still decide
+whether an assembled body satisfies the contract. The published weights stay
+unchanged.
 
 An optional [signed pooling experiment](studies/contract-pooling-20261010/README.md)
 keeps rare case signals from shrinking in the case average. On the same known

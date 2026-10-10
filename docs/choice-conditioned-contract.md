@@ -76,6 +76,54 @@ weight arrays. Legacy loaders reject it. Existing v1/v2/v3 contract models keep
 their formats and defaults. The ordinary released compiler does not yet load
 this new artifact; the Go example command and SDK session support it.
 
+## Inspect one decision
+
+The development API adds `ChoiceModel.ExplainChoicesInto` and
+`ChoiceModel.ExplainInto`. They record the numerical states in the same pass as
+the ordinary prediction. Each caller case is captured once and shared by the
+choice computations. The first method returns all choice logits without
+enumerating combinations; the second scores the explicitly supplied masks.
+
+```go
+var workspace contractdecision.ChoiceWorkspace
+var prediction contractdecision.ChoicePrediction
+var trace contractdecision.ChoiceExplanation
+err := model.ExplainChoicesInto(sources, cases, &workspace, &prediction, &trace)
+```
+
+The trace includes each choice's source-conditioned case bias, eight-cell case
+summary, pooling indices, source prefix, joint values, hidden activations and
+option scores. Candidate scores are present when masks were supplied. Active
+signed-pooling indices are zero-based rows in the original case list. Mean
+pooling uses `-1` because it combines all rows. Unused storage is zeroed on every
+successful call, and errors preserve all caller destinations.
+
+A pooling index identifies which case supplied one learned coordinate. Multiple
+coordinates and downstream weights jointly determine the scores. The arithmetic
+states support diagnosis; source outputs and condition checks establish whether
+the resulting Gooo program meets the authored contract.
+
+The local example command accepts an existing choice-conditioned artifact and a
+Gooo-derived document:
+
+```sh
+GOWORK=off GOTOOLCHAIN=go1.27.2 go run ./examples/contract-model explain \
+  -model studies/choice-context-learning-20261010/result/model-choice.json \
+  studies/choice-context-learning-20261010/examples/fresh-bound-k9-r1-w0-alias-g0.json
+```
+
+Its JSON links the exact declared int64 cases and choice IDs/labels to their
+source arrays and recorded computation, with model/plan/case hashes. It makes
+one prediction, performs zero candidate executions and training updates, and
+enumerates zero candidate masks. `predict_ns` includes case capture, prediction
+and recording; file loading and JSON output happen outside that interval.
+Contradictory authored cases remain visible in the output for inspection.
+
+This diagnostic API and command are development additions after SDK0.2.37.
+The published weights and original study observations are unchanged. Unit
+fixtures exercise both pooling modes, all 16 choices and 128 cases, exact integer
+goals, ordinary-prediction equivalence, error atomicity and concurrent readers.
+
 ## What is established
 
 - Separate scalar equations agree with inference for both pooling modes.
