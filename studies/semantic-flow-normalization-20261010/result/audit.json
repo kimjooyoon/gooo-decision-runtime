@@ -1,0 +1,12 @@
+{
+  "future_training_direct_sources": 16,
+  "matched_pairs": 128,
+  "new_candidate_tests": 0,
+  "new_model_calls": 0,
+  "new_native_runs": 0,
+  "retained_controls": 2,
+  "sources": 162,
+  "status": "PASS",
+  "v4_equal": 0,
+  "v5_equal": 128
+}

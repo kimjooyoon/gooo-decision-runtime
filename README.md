@@ -23,6 +23,10 @@ Development source adds an explicit [v5 semantic-flow input](docs/semantic-value
 It normalizes eligible direct/copy/assignment forms while preserving the v4
 input for other shapes. Published v4 weights keep their original input contract;
 the new input requires its own training. This change does not relabel old weights.
+The [162-source comparison](studies/semantic-flow-normalization-20261010/README.md)
+found identical v5 inputs for all 128 paired equivalent forms, versus 0 with v4.
+All pairs retained the same acceptable candidate sets; two unsupported controls
+kept their full v4 inputs. This measures representation, with no new model fit.
 
 ### Condition candidate model
 
