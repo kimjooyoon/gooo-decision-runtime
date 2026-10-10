@@ -11,8 +11,11 @@ ranking. Candidate construction and execution still use the original plan.
 
 The SDK API and example command implement this path. A new trained artifact is
 required. The released interaction weights retain their original input format;
-changing their JSON schema would mislabel their training. No canonical model
-quality study or native compiler adapter has been published yet.
+changing their JSON schema would mislabel their training. A
+[canonical learning study](../studies/canonical-contract-learning-20261011/README.md)
+now publishes both fresh fits, their weak first-choice results and bounded source
+feedback. Its weights are research artifacts. The native compiler adapter remains
+future work.
 
 ## Inspect, fit and use
 
@@ -87,7 +90,9 @@ decoder and fingerprint bind that format. The calculation shares the existing
 [interaction equations](interaction-requirement-contract.md), with 19,034 FP32
 weights / 76,136 tensor bytes and the same bounded workspace. The wrapper owns
 one weight array. Process RAM includes additional runtime and source storage.
-No latency, RSS or accuracy measurement for this new format is claimed here.
+The study records first-choice quality, prediction latency and whole-process RSS
+separately. Tensor bytes alone do not describe process memory, and lower candidate
+counts did not imply faster total construction in these small calculations.
 
 Relevant APIs:
 
@@ -122,7 +127,21 @@ extreme integers, independent input prediction, cancellation, contradictory
 requirements, concurrent snapshots, decoding and example-command routing.
 Tiny two-epoch test fits exercise the API and carry no generalization claim.
 
-The next model study needs a separately fixed corpus and evaluation protocol.
+The subsequent study fixed a separate corpus and protocol before execution. Of
+128 new variants in the trained computation families, the first proposal passed
+all requirements in 36 with canonical input and 33 with legacy input. Canonical
+inputs, logits and proposals matched in all 128 direct/assignment pairs across
+the evaluation cohorts, while training performance itself remained weak at 18/64.
+These observations support consistent representation; they do not establish a
+quality advantage suitable for a new default model.
+
+The sparse cohort also shows why a passing source contract needs context: all
+64 initial bodies passed their supplied examples, but only 16 passed separate
+probes. Adding up to two failing probes to the source brought both model and
+fixed ordering to 64/64 on that same probe suite. That is repair of known cases;
+there was no fresh evaluation after feedback. Full records and both fits remain
+in the [study](../studies/canonical-contract-learning-20261011/README.md).
+
 For practical adoption, measure how much work a developer needs to write a
 rule, change it, understand the changed cases and reuse the saved program. Keep
 that effort, repeat use and support burden separate from first-choice accuracy.
