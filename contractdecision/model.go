@@ -38,8 +38,9 @@ type CaseSource interface {
 // Model owns 9,746 FP32 weights (38,984 bytes), independent of case count.
 // The lossy eight-cell summary is a ranking hint, never a proof of completeness.
 type Model struct {
-	weights [ParameterCount]float32
-	extreme bool
+	weights        [ParameterCount]float32
+	extreme        bool
+	sourceLiterals bool
 }
 
 type Workspace struct {
@@ -90,6 +91,9 @@ func (m *Model) Pooling() string {
 }
 
 func (m *Model) ArtifactSchema() string {
+	if m != nil && m.sourceLiterals {
+		return SourceLiteralSchema
+	}
 	if m != nil && m.extreme {
 		return PoolingSchema
 	}
@@ -245,6 +249,9 @@ func (m *Model) predict(inputs [][FeatureDim]float32, cases CaseSource, masks []
 	if m == nil || workspace == nil || output == nil {
 		return errors.New("contract model and destinations required")
 	}
+	if err := validateCaseVersion(cases, m.CaseFeatureVersion()); err != nil {
+		return err
+	}
 	if err := validate(inputs, cases, masks); err != nil {
 		return err
 	}
@@ -271,6 +278,9 @@ func (m *Model) predict(inputs [][FeatureDim]float32, cases CaseSource, masks []
 func (m *Model) PredictChoicesInto(inputs [][FeatureDim]float32, cases CaseSource, workspace *Workspace, output *ChoicePrediction) error {
 	if m == nil || workspace == nil || output == nil {
 		return errors.New("contract model and destinations required")
+	}
+	if err := validateCaseVersion(cases, m.CaseFeatureVersion()); err != nil {
+		return err
 	}
 	if err := validate(inputs, cases, []uint16{0}); err != nil {
 		return err

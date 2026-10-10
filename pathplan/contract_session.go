@@ -106,8 +106,8 @@ func (p *PreparedPlan) NewContractSession(ctx context.Context, model *contractde
 	r := &s.ranking
 	r.ModelFingerprint = model.Fingerprint()
 	r.SourceFeatures = decision.RelationalFlowFeatureVersion
-	r.CaseFeatures = decision.DeclaredCaseFeatureVersion
-	input, err := p.InitialContractInput(core.cases)
+	r.CaseFeatures = model.CaseFeatureVersion()
+	input, err := p.InitialContractInputFor(core.cases, r.CaseFeatures)
 	if err != nil {
 		return nil, err
 	}

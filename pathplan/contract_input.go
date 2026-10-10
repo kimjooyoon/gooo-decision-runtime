@@ -10,9 +10,11 @@ import (
 // features. Cases are goals supplied by the caller, not observed execution.
 // The compiler must bind that caller data to authoritative Gooo source.
 type ContractInput struct {
-	initial ConditionInput
-	cases   [128]TestCase
-	count   int
+	initial      ConditionInput
+	cases        [128]TestCase
+	count        int
+	literals     *[decision.MaxSourceCaseLiterals]int64
+	literalCount int
 }
 
 // InitialContractInput preserves every supplied case, including order and
@@ -67,6 +69,9 @@ func (input *ContractInput) CaseFeaturesInto(index int, output *[decision.Declar
 		return errors.New("declared case index outside bound contract")
 	}
 	c := input.cases[index]
+	if input.literals != nil {
+		return decision.SourceLiteralCaseFeaturesInto(c.Input, c.Expected, input.literals[:input.literalCount], output)
+	}
 	return decision.DeclaredCaseFeaturesInto(c.Input, c.Expected, output)
 }
 

@@ -1,0 +1,41 @@
+Fixed before one fresh comparison of source-relative declared case features.
+
+Same9746FP32 parameters/38984weight bytes/32casecells/8pool/24hidden units,
+signed_max_abs pooling, source-v6 arrays, ordinary candidate objective,
+original24 training source IDs/labels/masks/order,600epochs/LR.3/L2.0001/seed17.
+One fresh fit only. No paired objective, tuning, warm start or extra labels.
+
+Replace12 case cells with relations to every sorted unique Int literal from the
+source base arena. Preserve all16 input/expected byte cells, case presence and
+expected-vs-input comparisons. Exact signed integer checks reject overflow.
+Flags describe source constants and authored goals, with no candidate execution.
+The explicit case ABI is source_literal_integer_case_v1; artifact schema v3.
+Default declared_integer_case_v1 and all old model bytes remain unchanged.
+
+Read frozen contract-goals compressed files:
+sources.jsonl.gz 773db4e279b497465a92ad2d7df683f0a2898d72365f6f48ac351e5f7036b413
+training.json.gz e8e07ad2cbc8ff5adac35b81999000717baef4e0143c93c204dc483cbdcf7d1d
+Compare to frozen contract-pooling unpaired signed model records only:
+searches.jsonl.gz ccdf0b3312c123d7b4c3bc804e9443d43489f38ac024578af7bbb85f25e2b827
+model.json f69944394dbe66b3449c5f87cb5ee51b09a9f34c4a2483e5fc119a005160e8b7
+
+Prepare all196 stored typed documents without compiler source lowering. Confirm
+original v6 arrays and old declared-case rows still match frozen records. Record
+every canonical literal set and every new case row. Fit receives only the24
+original training rows with the new projection; retain old and consumed arrays.
+One new ContractSession per source immediately ranks using artifact case version
+and executes one candidate per step until complete or all4 candidates exhausted.
+196new inference calls/searches,14400training forwards,0feedback/native/GPU/external.
+No rerun of any prior fit/model/search or the original four-mask label oracle.
+
+Record all600losses,weights,196 projections/searches, all regressions, input
+version bindings, first output/condition completeness, eventual finite
+completion, source-split and opposite-goal metrics, fit latency/inference latency,
+whole process time/RSS. Preserve both contradictions and all128case tail examples.
+This known-corpus feature ablation replaces sign/parity/successor hints; it does
+not isolate only added information and is not fresh unseen-language accuracy.
+Timings from separate processes do not establish isolated speedup.
+
+Clean committed Go1.27.2 producer, exclusive output directory, start/completion
+markers; execute once. Preserve failures. Read-only auditors may be repaired;
+never replace or regenerate original observations for an audit.
