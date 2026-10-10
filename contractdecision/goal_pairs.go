@@ -5,6 +5,8 @@ import (
 	"errors"
 	"math"
 	"slices"
+
+	decision "github.com/kimjooyoon/gooo-decision-runtime"
 )
 
 // GoalPair identifies two training samples with identical source arrays and
@@ -30,7 +32,7 @@ func FitWithGoalPairs(ctx context.Context, samples []Sample, options FitOptions,
 	if len(pairs) == 0 || pairOptions.Weight <= 0 {
 		return nil, nil, errors.New("goal-pair training requires pairs and positive weight")
 	}
-	return fit(ctx, samples, options, pooling, pairs, pairOptions)
+	return fit(ctx, samples, options, pooling, pairs, pairOptions, decision.DeclaredCaseFeatureVersion)
 }
 
 func validateGoalPairs(samples []Sample, pairs []GoalPair, options GoalPairOptions) error {

@@ -15,6 +15,7 @@ import (
 
 const Schema = "gooo/contract-candidate-decision/v1"
 const PoolingSchema = "gooo/contract-candidate-decision/v2"
+const SourceLiteralSchema = "gooo/contract-candidate-decision/v3"
 const activation = "leaky_relu_0.01"
 const MeanPooling = "arithmetic_mean"
 const ExtremePooling = "signed_max_abs"
@@ -34,7 +35,7 @@ func (m *Model) Marshal() ([]byte, error) {
 	if m == nil {
 		return nil, errors.New("contract model required")
 	}
-	return json.Marshal(artifact{m.ArtifactSchema(), decision.RelationalFlowFeatureVersion, decision.DeclaredCaseFeatureVersion, [5]int{CaseDim, PoolDim, FeatureDim, HiddenDim, 2}, activation, m.Pooling(), m.weights[:]})
+	return json.Marshal(artifact{m.ArtifactSchema(), decision.RelationalFlowFeatureVersion, m.CaseFeatureVersion(), [5]int{CaseDim, PoolDim, FeatureDim, HiddenDim, 2}, activation, m.Pooling(), m.weights[:]})
 }
 
 func Decode(raw []byte) (*Model, error) {
@@ -53,13 +54,14 @@ func Decode(raw []byte) (*Model, error) {
 	if err := d.Decode(new(any)); err != io.EOF {
 		return nil, errors.New("trailing contract artifact")
 	}
-	validPooling := a.Schema == Schema && a.Pooling == MeanPooling || a.Schema == PoolingSchema && a.Pooling == ExtremePooling
-	if !validPooling || a.SourceFeatures != decision.RelationalFlowFeatureVersion || a.CaseFeatures != decision.DeclaredCaseFeatureVersion || a.Architecture != [5]int{CaseDim, PoolDim, FeatureDim, HiddenDim, 2} || a.Activation != activation || len(a.Weights) != ParameterCount {
+	legacy := (a.Schema == Schema && a.Pooling == MeanPooling || a.Schema == PoolingSchema && a.Pooling == ExtremePooling) && a.CaseFeatures == decision.DeclaredCaseFeatureVersion
+	literal := a.Schema == SourceLiteralSchema && (a.Pooling == MeanPooling || a.Pooling == ExtremePooling) && a.CaseFeatures == decision.SourceLiteralCaseFeatureVersion
+	if !(legacy || literal) || a.SourceFeatures != decision.RelationalFlowFeatureVersion || a.Architecture != [5]int{CaseDim, PoolDim, FeatureDim, HiddenDim, 2} || a.Activation != activation || len(a.Weights) != ParameterCount {
 		return nil, errors.New("contract artifact ABI differs")
 	}
 	var weights [ParameterCount]float32
 	copy(weights[:], a.Weights)
-	return NewForPooling(weights, a.Pooling)
+	return NewForCaseFeatures(weights, a.Pooling, a.CaseFeatures)
 }
 
 func (m *Model) Fingerprint() string {
@@ -67,7 +69,7 @@ func (m *Model) Fingerprint() string {
 		return ""
 	}
 	d := sha256.New()
-	_, _ = d.Write([]byte(m.ArtifactSchema() + "\x00" + decision.RelationalFlowFeatureVersion + "\x00" + decision.DeclaredCaseFeatureVersion + "\x00" + activation + "\x00" + m.Pooling() + "\x00"))
+	_, _ = d.Write([]byte(m.ArtifactSchema() + "\x00" + decision.RelationalFlowFeatureVersion + "\x00" + m.CaseFeatureVersion() + "\x00" + activation + "\x00" + m.Pooling() + "\x00"))
 	var raw [ParameterCount * 4]byte
 	for i, w := range m.weights {
 		binary.LittleEndian.PutUint32(raw[i*4:], math.Float32bits(w))

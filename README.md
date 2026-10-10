@@ -39,6 +39,13 @@ together. Same-proposal pairs fell from 62 to 58, but both-valid pairs stayed at
 and the optional `fit -goal-pairs` command are published. The default model stays
 unchanged; the new CPU fit took 679 ms and the measured process peaked at 30.02 MiB.
 
+A [source-literal case experiment](studies/source-literal-contract-20261010/README.md)
+replaces 12 case cells with exact relations to authored constants, while keeping
+the same model size and training examples. First-path validity fell from
+132/196 to109/196: all23 regressions are retained. Finite construction completed
+all194 satisfiable documents and rejected both contradictions. This optional v3
+profile remains separate from the published default model.
+
 The earlier shared judge uses 2,072
 parameters across three binary decisions. Its compact FP32 weights occupy 8,288
 bytes; ternary files occupy 446 bytes and decode into 2,096 tensor bytes plus

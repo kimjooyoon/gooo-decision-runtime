@@ -13,6 +13,7 @@ import (
 	"os"
 	"time"
 
+	decision "github.com/kimjooyoon/gooo-decision-runtime"
 	"github.com/kimjooyoon/gooo-decision-runtime/contractdecision"
 	"github.com/kimjooyoon/gooo-decision-runtime/pathplan"
 )
@@ -52,10 +53,14 @@ func document(path string) (pathplan.Document, *pathplan.PreparedPlan, error) {
 // Enumerate complete training candidates with the ordinary finite validator.
 // The 64-candidate training cap is explicit; no prefix sampling drops labels.
 func sample(ctx context.Context, d pathplan.Document, p *pathplan.PreparedPlan) (contractdecision.Sample, error) {
+	return sampleFor(ctx, d, p, decision.DeclaredCaseFeatureVersion)
+}
+
+func sampleFor(ctx context.Context, d pathplan.Document, p *pathplan.PreparedPlan, caseVersion string) (contractdecision.Sample, error) {
 	if len(d.Plan.Decisions) > 6 {
 		return contractdecision.Sample{}, errors.New("training labels require at most six binary choices")
 	}
-	input, err := p.InitialContractInput(d.TestCases)
+	input, err := p.InitialContractInputFor(d.TestCases, caseVersion)
 	if err != nil {
 		return contractdecision.Sample{}, err
 	}
@@ -102,6 +107,7 @@ func fit(ctx context.Context, args []string, out io.Writer) error {
 	epochs := f.Int("epochs", 400, "CPU full-batch epochs")
 	pooling := f.String("pooling", contractdecision.MeanPooling, "arithmetic_mean or signed_max_abs")
 	pairedGoals := f.Bool("goal-pairs", false, "pair consecutive training documents with opposite goals (weight 0.5, margin 2)")
+	caseVersion := f.String("case-features", decision.DeclaredCaseFeatureVersion, "declared_integer_case_v1 or source_literal_integer_case_v1")
 	if err := f.Parse(args); err != nil {
 		return err
 	}
@@ -113,6 +119,12 @@ func fit(ctx context.Context, args []string, out io.Writer) error {
 	}
 	if *pairedGoals && f.NArg()%2 != 0 {
 		return errors.New("goal-pairs requires an even number of consecutive training documents")
+	}
+	if *caseVersion != decision.DeclaredCaseFeatureVersion && *caseVersion != decision.SourceLiteralCaseFeatureVersion {
+		return errors.New("fit requires a supported case feature version")
+	}
+	if *pairedGoals && *caseVersion != decision.DeclaredCaseFeatureVersion {
+		return errors.New("goal-pairs currently requires declared_integer_case_v1")
 	}
 	if *pooling != contractdecision.MeanPooling && *pooling != contractdecision.ExtremePooling {
 		return errors.New("fit pooling must be arithmetic_mean or signed_max_abs")
@@ -127,14 +139,14 @@ func fit(ctx context.Context, args []string, out io.Writer) error {
 		if err != nil {
 			return err
 		}
-		s, err := sample(ctx, d, p)
+		s, err := sampleFor(ctx, d, p, *caseVersion)
 		if err != nil {
 			return fmt.Errorf("training document %s: %w", path, err)
 		}
 		samples = append(samples, s)
 	}
 	start := time.Now()
-	model, history, pairInfo, err := fitSamples(ctx, samples, options, *pooling, *pairedGoals)
+	model, history, pairInfo, err := fitSamples(ctx, samples, options, *pooling, *pairedGoals, *caseVersion)
 	elapsed := time.Since(start).Nanoseconds()
 	if err != nil {
 		return err
@@ -159,6 +171,10 @@ func fit(ctx context.Context, args []string, out io.Writer) error {
 	if pairInfo != nil {
 		schema = "gooo/contract-local-fit/v2"
 	}
+	explicitCaseVersion := ""
+	if *caseVersion != decision.DeclaredCaseFeatureVersion {
+		schema, explicitCaseVersion = "gooo/contract-local-fit/v3", *caseVersion
+	}
 	return json.NewEncoder(out).Encode(struct {
 		Schema            string                      `json:"schema"`
 		TrainingDocuments int                         `json:"training_documents"`
@@ -168,7 +184,8 @@ func fit(ctx context.Context, args []string, out io.Writer) error {
 		Fingerprint       string                      `json:"model_fingerprint"`
 		History           []contractdecision.Epoch    `json:"history"`
 		GoalPairs         *goalPairFit                `json:"goal_pairs,omitempty"`
-	}{schema, len(samples), options, elapsed, fmt.Sprintf("%x", sha256.Sum256(raw)), model.Fingerprint(), history, pairInfo})
+		CaseFeatures      string                      `json:"case_feature_version,omitempty"`
+	}{schema, len(samples), options, elapsed, fmt.Sprintf("%x", sha256.Sum256(raw)), model.Fingerprint(), history, pairInfo, explicitCaseVersion})
 }
 
 func search(ctx context.Context, args []string, out io.Writer) error {

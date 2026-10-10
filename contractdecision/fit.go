@@ -4,6 +4,8 @@ import (
 	"context"
 	"errors"
 	"math"
+
+	decision "github.com/kimjooyoon/gooo-decision-runtime"
 )
 
 // Acceptable names complete compiled candidates by index in Masks. The owning
@@ -62,10 +64,10 @@ func Fit(ctx context.Context, samples []Sample, options FitOptions) (*Model, []E
 // Extreme pooling uses the first equal winner for its subgradient; at exact
 // ties training can depend on row order even when inference scores do not.
 func FitForPooling(ctx context.Context, samples []Sample, options FitOptions, pooling string) (*Model, []Epoch, error) {
-	return fit(ctx, samples, options, pooling, nil, GoalPairOptions{})
+	return fit(ctx, samples, options, pooling, nil, GoalPairOptions{}, decision.DeclaredCaseFeatureVersion)
 }
 
-func fit(ctx context.Context, samples []Sample, options FitOptions, pooling string, pairs []GoalPair, pairOptions GoalPairOptions) (*Model, []Epoch, error) {
+func fit(ctx context.Context, samples []Sample, options FitOptions, pooling string, pairs []GoalPair, pairOptions GoalPairOptions, caseVersion string) (*Model, []Epoch, error) {
 	if ctx == nil || len(samples) < 1 || len(samples) > 4096 || !validOptions(options) {
 		return nil, nil, errors.New("bounded contract training inputs required")
 	}
@@ -73,6 +75,9 @@ func fit(ctx context.Context, samples []Sample, options FitOptions, pooling stri
 		return nil, nil, err
 	}
 	for _, s := range samples {
+		if err := validateCaseVersion(s.Cases, caseVersion); err != nil {
+			return nil, nil, err
+		}
 		if err := validate(s.Inputs, s.Cases, s.Masks); err != nil {
 			return nil, nil, err
 		}
@@ -83,7 +88,7 @@ func fit(ctx context.Context, samples []Sample, options FitOptions, pooling stri
 	if err := validateGoalPairs(samples, pairs, pairOptions); err != nil {
 		return nil, nil, err
 	}
-	m, err := NewForPooling(initial(options.Seed), pooling)
+	m, err := NewForCaseFeatures(initial(options.Seed), pooling, caseVersion)
 	if err != nil {
 		return nil, nil, err
 	}

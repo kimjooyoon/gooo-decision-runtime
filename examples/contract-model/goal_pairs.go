@@ -11,9 +11,9 @@ type goalPairFit struct {
 	Options contractdecision.GoalPairOptions `json:"options"`
 }
 
-func fitSamples(ctx context.Context, samples []contractdecision.Sample, options contractdecision.FitOptions, pooling string, paired bool) (*contractdecision.Model, []contractdecision.Epoch, *goalPairFit, error) {
+func fitSamples(ctx context.Context, samples []contractdecision.Sample, options contractdecision.FitOptions, pooling string, paired bool, caseVersion string) (*contractdecision.Model, []contractdecision.Epoch, *goalPairFit, error) {
 	if !paired {
-		model, history, err := contractdecision.FitForPooling(ctx, samples, options, pooling)
+		model, history, err := contractdecision.FitForCaseFeatures(ctx, samples, options, pooling, caseVersion)
 		return model, history, nil, err
 	}
 	info := &goalPairFit{Options: contractdecision.GoalPairOptions{Weight: .5, Margin: 2}}
