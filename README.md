@@ -8,6 +8,16 @@ inside the larger language workshop.
 
 ## Public code, model files and compiler support
 
+[SDK0.2.40](https://github.com/kimjooyoon/gooo-decision-runtime/releases/tag/v0.2.40-experimental)
+provides canonical branch inputs, two paired research models, a Gooo source and
+typed-plan example, provenance and checksums. Supported direct-return and local
+assignment forms expose the same calculation to this separately identified model.
+The [retained study](studies/canonical-contract-learning-20261011/README.md) records
+weak first-choice results: canonical36/128, paired legacy33/128 and fixed32/128 on
+related in-family variants. Existing model defaults remain unchanged. The public
+compiler0.6.27 does not load this canonical schema; use the SDK commands and
+check the compiler's current support status before native integration.
+
 [SDK0.2.39](https://github.com/kimjooyoon/gooo-decision-runtime/releases/tag/v0.2.39-experimental)
 provides the ordered and interaction requirement models, saved weights and
 example commands. The earlier decision inspection APIs remain available.
@@ -38,7 +48,7 @@ compiler's [current release and support status](https://github.com/kimjooyoon/me
 for what a released compiler includes. All SDK releases are listed
 [here](https://github.com/kimjooyoon/gooo-decision-runtime/releases).
 
-## Development: read intermediate requirements
+## Read intermediate requirements with SDK0.2.40
 
 The optional [canonical branch input](docs/canonical-branch-input.md) gives
 equivalent direct-return and assignment bodies the same model input within its
