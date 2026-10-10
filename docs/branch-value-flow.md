@@ -79,8 +79,9 @@ information loss on this collection; it does not establish a learned accuracy.
 Existing model artifacts still require 256 or 320 inputs. The separate
 [`flowdecision`](../flowdecision/README.md) package now provides 384-input CPU
 training and `NewFlowSession` / `SearchFlowBatches` connect it to candidate
-evaluation. It has no published trained weights yet. The next learning study
-should compare fresh models on the same fixed split, report first-choice and
-finite-search results separately, and include assignment/copy/overwrite cases
-outside the training families. It should preserve deterministic continuation
-and account for failures and unresolved static values.
+evaluation. The [paired learning study](../studies/value-flow-learning-20261010/README.md)
+now publishes fresh flow-off/on weights on the same fixed split. First-choice
+validity outside training rose from 54/96 to 73/96, while assignment forms stayed
+at 8/16. All finite modes completed the authored cases. Flow-on feedback added
+calls without reducing attempts. New copy/overwrite families and semantic
+equivalence across surface forms remain useful next experiments.

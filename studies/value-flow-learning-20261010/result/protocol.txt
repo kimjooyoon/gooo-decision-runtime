@@ -1,0 +1,48 @@
+Value-flow learning, proposed fixed protocol. No recorded fit has run yet.
+
+Question: does static assignment/return information improve learned selection
+and finite completion, beyond merely separating source input vectors?
+
+Use the immutable 128-source dataset and 704 contexts from
+execution-feedback-learning-20261010, and the saved static facts from
+flow-feature-projection-20261010. Check their exact file/source/plan digests.
+The original v3 model weights, judgments and searches remain frozen references;
+do not repeat their fitting or original experiment. New model and input ABI:
+gooo/flow-candidate-decision/v1, 384 -> 24 -> 2, 9,290 FP32 parameters.
+
+Make two fresh CPU fits: static-flow-off and static-flow-on. Train each only
+on the original 32 training sources/160 contexts, with the same seed17,
+400 epochs, learning rate0.25 and L2=0.0001. No sweep or retuning after results.
+Both preserve all 320 original source/intent/condition/output cells. Off zeros
+the 64 static cells while training, then explicitly zeros their unused incoming
+weights for runtime. Preserve its pre-pruning artifact and prove that no other
+weight changed. On appends the saved static facts. Do not leak any expected
+output into initial features. Label sets stay complete candidate sets.
+
+For each new model, predict once per saved context and immediately compile and
+evaluate its chosen body using the original Gooo-derived document. Record each
+actual selected body, type result, exact output cases, declared conditions,
+prediction and full input digest. Preserve failures. This gives 1,408 new
+judgments, separate from the frozen v3 judgments.
+
+Run each new model through 128 fresh finite searches with initial ranking only
+and 128 with feedback (512 searches total). Use the complete declared 4/8-path
+budget, step1, at most16 feedback rounds, fixed weights and no sampling seed.
+No candidate repeats within a search. The source checks decide completion.
+Check that the actual first runtime input matches the saved initial projection;
+record every later committed failure and the resulting new ranking. Both old
+models and deterministic reference measurements remain unchanged.
+
+Report training/wording/constants/assignment/new-family separately. Report
+first-choice accuracy, observed-context accuracy, output/condition pass counts,
+finite completion, candidate attempts, model calls, extra feedback calls,
+prediction and whole-process timing and peak RSS. Compare off/on within this
+run; frozen older timings are historical observations, not a controlled speed
+comparison. These related authored variants are not independent general tasks.
+
+Use a clean committed producer and a new output directory; execute this study
+once. Save input digests, producer identity, both artifacts, histories, training
+samples, inputs, judgments, searches, process measurements and completion
+markers. Audit saved records without inference/evaluation/training afterwards.
+No native execution or quantization in this study. Further copy/overwrite or
+unseen source-family experiments require a separate protocol and records.
