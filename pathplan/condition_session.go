@@ -47,6 +47,7 @@ type ConditionRanking struct {
 	Reused             bool             `json:"unchanged_features_reused"`
 	Unnecessary        bool             `json:"ranking_unnecessary"`
 	Declined           bool             `json:"representation_declined"`
+	OutputFailure      *OutputFailure   `json:"output_failure,omitempty"`
 	Error              string           `json:"error,omitempty"`
 }
 
@@ -71,25 +72,33 @@ type ConditionSession struct {
 	observationAttempt int
 	observedMask       uint16
 	featureVersion     string
+	modelSchema        string
 }
 
 // NewConditionSession ranks 1..16 declared binary choices with one neural call.
 // A missing model uses the unchanged declared-fallback search. A source shape
 // outside the feature representation also falls back, with a decline receipt.
 func (prepared *PreparedPlan) NewConditionSession(ctx context.Context, model *conditiondecision.Model, cases []TestCase, seed string) (*ConditionSession, error) {
-	if seed != "" && (model == nil || len(seed) > 512 || !utf8.ValidString(seed)) {
+	return prepared.newConditionSession(ctx, executionRanker{condition: model}, cases, seed)
+}
+
+func (prepared *PreparedPlan) newConditionSession(ctx context.Context, model executionRanker, cases []TestCase, seed string) (*ConditionSession, error) {
+	if seed != "" && (!model.present() || len(seed) > 512 || !utf8.ValidString(seed)) {
 		return nil, errors.New("condition seed requires model and bounded UTF-8")
 	}
 	core, err := prepared.NewSession(ctx, nil, cases, "")
 	if core == nil {
 		return nil, err
 	}
-	s := &ConditionSession{core: core, input: ConditionInput{prepared: prepared}}
+	s := &ConditionSession{core: core, input: ConditionInput{prepared: prepared}, modelSchema: model.schema()}
+	if model.execution != nil {
+		s.input.caseSHA = core.caseSHA
+	}
 	if err != nil {
 		return s, err
 	}
 	r := s.receipt()
-	if model == nil {
+	if !model.present() {
 		r.Unnecessary = true
 		_, err = s.finish(r, nil)
 		return s, err
@@ -99,11 +108,11 @@ func (prepared *PreparedPlan) NewConditionSession(ctx context.Context, model *co
 	if s.featureVersion != decision.ConditionChannelFeatureVersion {
 		r.FeatureVersion = s.featureVersion
 	}
-	core.result.Selection.ModelVariant = "condition_fp32"
+	core.result.Selection.ModelVariant = model.variant()
 	if seed != "" {
 		core.result.Selection.SeedSHA256 = hash([]byte(seed))
 	}
-	var inputs [16][conditiondecision.FeatureDim]float32
+	var inputs [16][decision.ExecutionFeatureDim]float32
 	if err = s.features(&inputs, &r); err != nil {
 		r.Declined = true
 		_, err = s.finish(r, err)
@@ -148,36 +157,50 @@ func (prepared *PreparedPlan) NewConditionSession(ctx context.Context, model *co
 
 func (s *ConditionSession) receipt() ConditionRanking {
 	c := s.core
-	return ConditionRanking{Schema: "gooo/condition-path-ranking/v1", PreviousSHA: s.latest.SHA, FromProgressSHA: c.previous,
+	r := ConditionRanking{Schema: "gooo/condition-path-ranking/v1", PreviousSHA: s.latest.SHA, FromProgressSHA: c.previous,
 		PlanSHA: c.prepared.sha, CaseSHA: c.caseSHA, ModelFingerprint: s.latest.ModelFingerprint, FeatureVersion: s.latest.FeatureVersion, Attempted: c.attempted,
 		ChoiceCount: len(c.prepared.plan.Decisions), ObservationAttempt: s.observationAttempt, ObservedMask: s.observedMask,
 		HasFailure: s.input.present, Failure: s.input.failure}
+	if s.input.hasOutputFailure {
+		failure := s.input.outputFailure
+		r.OutputFailure = &failure
+	}
+	return r
 }
 
-func (s *ConditionSession) features(inputs *[16][conditiondecision.FeatureDim]float32, r *ConditionRanking) error {
+func (s *ConditionSession) features(inputs *[16][decision.ExecutionFeatureDim]float32, r *ConditionRanking) error {
 	for i, choice := range s.core.prepared.plan.Decisions {
-		if err := s.input.FeaturesIntoVersion(choice.ID, s.featureVersion, &inputs[i]); err != nil {
-			return err
+		width := decision.FeatureDim
+		if s.featureVersion == decision.ExecutionFeatureVersion {
+			width = decision.ExecutionFeatureDim
+			if err := s.input.ExecutionFeaturesInto(choice.ID, &inputs[i]); err != nil {
+				return err
+			}
+		} else {
+			var prefix [decision.FeatureDim]float32
+			if err := s.input.FeaturesIntoVersion(choice.ID, s.featureVersion, &prefix); err != nil {
+				return err
+			}
+			copy(inputs[i][:], prefix[:])
 		}
-		var raw [conditiondecision.FeatureDim * 4]byte
-		for j, v := range inputs[i] {
+		var raw [decision.ExecutionFeatureDim * 4]byte
+		for j, v := range inputs[i][:width] {
 			binary.LittleEndian.PutUint32(raw[j*4:], math.Float32bits(v))
 		}
-		r.FeatureSHA[i] = hash(raw[:])
+		r.FeatureSHA[i] = hash(raw[:width*4])
 	}
 	return nil
 }
 
-func (s *ConditionSession) predict(model *conditiondecision.Model, inputs [][conditiondecision.FeatureDim]float32, r *ConditionRanking) error {
-	var workspace conditiondecision.Workspace
-	var prediction conditiondecision.ChoicePrediction
+func (s *ConditionSession) predict(model executionRanker, inputs [][decision.ExecutionFeatureDim]float32, r *ConditionRanking) error {
+	var logits [16][2]float32
 	start := time.Now()
-	err := model.PredictChoicesInto(inputs, &workspace, &prediction)
+	err := model.predict(inputs, &logits)
 	r.Calls, r.PredictNS = 1, time.Since(start).Nanoseconds()
 	if err != nil {
 		return err
 	}
-	r.PredictionValid, r.Logits = true, prediction.Logits
+	r.PredictionValid, r.Logits = true, logits
 	for i := range r.ChoiceCount {
 		if r.Logits[i][1] > r.Logits[i][0] {
 			r.Proposed |= 1 << i
@@ -191,7 +214,7 @@ func (s *ConditionSession) sample(r ConditionRanking, seed string) (uint16, erro
 	for i, choice := range s.core.prepared.plan.Decisions {
 		difference := float64(r.Logits[i][1]) - float64(r.Logits[i][0])
 		p := 1 / (1 + math.Exp(-difference))
-		label, err := sample(s.core.prepared.sha, choice, conditiondecision.Schema, r.ModelFingerprint, seed, [2]float64{1 - p, p})
+		label, err := sample(s.core.prepared.sha, choice, s.modelSchema, r.ModelFingerprint, seed, [2]float64{1 - p, p})
 		if err != nil {
 			return 0, err
 		}
@@ -228,15 +251,15 @@ func (s *ConditionSession) finish(r ConditionRanking, failure error) (ConditionR
 		s.core.feedbackAt = s.core.attempted
 		s.core.feedbackSHA = r.SHA
 	}
-	s.latest = r
+	s.latest = ownedExecutionRanking(r)
 	if r.Applied {
-		s.applied = r
+		s.applied = ownedExecutionRanking(r)
 	}
 	return r, failure
 }
 
 func (s *ConditionSession) progress(p SessionProgress) (ConditionProgress, error) {
-	result := ConditionProgress{Schema: "gooo/condition-path-progress/v1", Search: p, Ranking: s.latest}
+	result := ConditionProgress{Schema: "gooo/condition-path-progress/v1", Search: p, Ranking: ownedExecutionRanking(s.latest)}
 	raw, err := json.Marshal(result)
 	if err != nil {
 		return ConditionProgress{}, err
@@ -280,6 +303,9 @@ func (s *ConditionSession) Advance(ctx context.Context, budget int) (ConditionPr
 		if attempt.Status != "EVALUATED" && attempt.Status != "CONDITION_REJECTED" {
 			continue
 		}
+		if s.featureVersion == decision.ExecutionFeatureVersion {
+			s.input.observeExecution(attempt)
+		}
 		s.input.failure, s.input.present = ConditionFailure{}, false
 		s.observationAttempt = p.Attempted - len(p.NewAttempts) + i + 1
 		s.observedMask = attempt.Mask
@@ -301,6 +327,10 @@ func (s *ConditionSession) Advance(ctx context.Context, budget int) (ConditionPr
 // for at most 16 rounds. Only frontier scores and an unscheduled proposal may
 // change. Unchanged inputs and the last remaining path require no neural call.
 func (s *ConditionSession) Reconsider(ctx context.Context, model *conditiondecision.Model) (ConditionRanking, error) {
+	return s.reconsider(ctx, executionRanker{condition: model})
+}
+
+func (s *ConditionSession) reconsider(ctx context.Context, model executionRanker) (ConditionRanking, error) {
 	if err := searchBounds(ctx, []TestCase{{}}, 1); err != nil {
 		return ConditionRanking{}, err
 	}
@@ -312,7 +342,7 @@ func (s *ConditionSession) Reconsider(ctx context.Context, model *conditiondecis
 	}
 	defer s.lock.Unlock()
 	c := s.core
-	if model == nil || !c.initialized || !c.ranked || model.Fingerprint() != s.latest.ModelFingerprint {
+	if !model.present() || !c.initialized || !c.ranked || model.Fingerprint() != s.latest.ModelFingerprint {
 		return ConditionRanking{}, errors.New("condition feedback requires the successfully initialized original model")
 	}
 	if c.result.Status == "TRAINING_COMPLETE" || c.attempted == c.result.DeclaredCombinations || c.attempted <= c.feedbackAt || c.feedbackRounds >= 16 {
@@ -324,7 +354,7 @@ func (s *ConditionSession) Reconsider(ctx context.Context, model *conditiondecis
 		r.Unnecessary = true
 		return s.finish(r, nil)
 	}
-	var inputs [16][conditiondecision.FeatureDim]float32
+	var inputs [16][decision.ExecutionFeatureDim]float32
 	if err := s.features(&inputs, &r); err != nil {
 		r.Declined = true
 		return s.finish(r, err)

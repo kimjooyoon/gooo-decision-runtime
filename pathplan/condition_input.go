@@ -12,9 +12,12 @@ import (
 // It is reusable across that plan's choices. It retains no mutable caller data.
 // This is model input preparation, not training or candidate acceptance.
 type ConditionInput struct {
-	prepared *PreparedPlan
-	failure  ConditionFailure
-	present  bool
+	prepared         *PreparedPlan
+	failure          ConditionFailure
+	present          bool
+	outputFailure    OutputFailure
+	hasOutputFailure bool
+	caseSHA          string
 }
 
 // InitialConditionInput uses source-authored intents with no candidate outcome.
