@@ -6,15 +6,23 @@ source-bound plan; this library ranks its permitted choices and continues finite
 search using observed failures. Think of it as the small assembly mechanism
 inside the larger language workshop.
 
-**Published model baseline: v0.2.29-experimental.** The
-[release](https://github.com/kimjooyoon/gooo-decision-runtime/releases/tag/v0.2.29-experimental)
-contains the condition model's FP32 artifact and checksum. Existing compiler
-integration uses v0.2.28-experimental and includes the condition-aware feedback
-described below. The shared judge uses 2,072
+**Latest published models: v0.2.33-experimental.** The
+[release](https://github.com/kimjooyoon/gooo-decision-runtime/releases/tag/v0.2.33-experimental)
+contains two384-input value-flow FP32 models and checksums. The flow-on model
+has9,290 parameters/37,160 weight bytes; its JSON is108,446 bytes. Compiler
+[PR1442](https://github.com/kimjooyoon/meta-ontology-go/pull/1442) connects these
+weights to Gooo construction. The installed compiler0.6.25 still uses SDK0.2.28.
+
+The earlier shared judge uses 2,072
 parameters across three binary decisions. Its compact FP32 weights occupy 8,288
 bytes; ternary files occupy 446 bytes and decode into 2,096 tensor bytes plus
 eight scale bytes. A caller owns a 3,200-byte workspace. These array sizes are
 one component of application RAM.
+
+Development source adds an explicit [v5 semantic-flow input](docs/semantic-value-flow.md).
+It normalizes eligible direct/copy/assignment forms while preserving the v4
+input for other shapes. Published v4 weights keep their original input contract;
+the new input requires its own training. This change does not relabel old weights.
 
 ### Condition candidate model
 
