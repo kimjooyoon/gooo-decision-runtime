@@ -65,5 +65,9 @@ The installed ordinary compiler does not load the new v3 artifact yet.
 Tests exercise exact arithmetic against a big-integer reference, all128
 literals/cases, source ownership, concurrent readers, atomic version errors,
 model serialization and immediate source-version-aware construction with large
-integers. A fixed [new study protocol](../studies/source-literal-contract-20261010/protocol.txt)
-will compare one fit on the original training rows against saved unpaired results.
+integers. The [completed one-fit study](../studies/source-literal-contract-20261010/README.md)
+compares the original training rows against saved unpaired results: first-path
+validity fell from132/196 to109/196, with23 regressions and no improvements.
+The profile remains opt-in; it is not a replacement for the published model.
+All194 satisfiable documents still completed through finite validation, and both
+contradictory goals remained incomplete.

@@ -8,6 +8,12 @@ the same source while retaining the current inference layout and weight budget.
 The API and local command are implemented. The first fixed comparison retained
 all regressions: different proposals increased, while first-path validity fell.
 
+An explicit [source-literal case profile](../docs/source-literal-cases.md) adds
+relations to source constants with the same 32-cell case layout. It binds a
+separate v3 artifact and rejects mismatched case readers. The fixed experiment
+fell from132/196 to109/196 first-valid paths; the API is opt-in and the default
+model remains unchanged.
+
 The optional [signed extreme pooling experiment](../docs/contract-pooling.md)
 adds an explicit v2 computation with the same weight layout. The default and
 the v1 description below retain arithmetic mean.
