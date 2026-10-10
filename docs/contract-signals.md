@@ -30,3 +30,10 @@ The [fixed diagnostic protocol](../studies/contract-signal-diagnostics-20261010/
 uses both frozen models and every original source, retaining correct and wrong
 choices. It compares opposite goals with identical source arrays at each stage.
 The API leaves artifact bytes, model fingerprints and the default model intact.
+
+The [completed diagnostic](../studies/contract-signal-diagnostics-20261010/README.md)
+found different case summaries, hidden values and scores for all 97 opposite-goal
+pairs in both models. Yet 61 mean-model pairs and 62 signed-pooling pairs kept
+the same path. All 392 traced calls exactly retained the original saved scores
+and selections. The evidence supports studying how goal-dependent score margins
+are learned; it does not establish a unique cause or an accuracy improvement.
