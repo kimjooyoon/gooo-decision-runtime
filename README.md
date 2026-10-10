@@ -6,12 +6,21 @@ source-bound plan; this library ranks its permitted choices and continues finite
 search using observed failures. Think of it as the small assembly mechanism
 inside the larger language workshop.
 
-**API baseline: v0.2.27-experimental.** The current source also includes the
-condition-aware feedback described below. The shared judge uses 2,072
+**API baseline: v0.2.28-experimental.** It includes the condition-aware feedback
+described below. The shared judge uses 2,072
 parameters across three binary decisions. Its compact FP32 weights occupy 8,288
 bytes; ternary files occupy 446 bytes and decode into 2,096 tensor bytes plus
 eight scale bytes. A caller owns a 3,200-byte workspace. These array sizes are
 one component of application RAM.
+
+### Experimental inputs for the next decision model
+
+`ConditionFeaturesInto` separates source structure, full intent and an observed
+condition into a fixed 1,024-byte array. Expected/actual Boolean roles, unreached
+conditions, candidate choices and exact int64 bytes have dedicated fields.
+Appending feedback leaves source and intent features unchanged. The new feature
+contract requires separately trained weights and is not accepted by current
+model loaders. See [the layout and evaluation criteria](docs/condition-feature-channels.md).
 
 ### Condition-aware model feedback
 
