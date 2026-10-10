@@ -40,7 +40,20 @@ reached 8/8 on the training sources and 6/16 on new wording; v1 scored 4/8 and
 8/16 respectively. Both weights and every selected body/case are published.
 All five finite-search modes completed the authored cases. Condition-only
 feedback supplied no extra neural calls when output values were wrong but the
-declared comparison was right; output-mismatch input is the next concrete gap.
+declared comparison was right. The v3 implementation below adds this missing input.
+
+### Output feedback model
+
+[`executiondecision`](executiondecision/README.md) adds a 320 → 24 → 2 model
+with 7,754 FP32 parameters (31,016 weight bytes). Its input preserves all v2
+channels and adds the observed input, expected output and actual output as exact
+integer bytes. `NewExecutionSession` and `SearchExecutionBatches` feed committed
+output failures into the next ranking, then compile and evaluate the selected body.
+
+The implementation has regression coverage for output-only failures and exact
+large integers. New Gooo-based training and held-out measurements are pending;
+the current compiler release does not load this schema yet.
+[Input layout, APIs and current limits](docs/execution-feedback.md).
 
 ### Connecting the condition model to finite search
 
