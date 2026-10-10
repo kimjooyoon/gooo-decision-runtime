@@ -63,9 +63,12 @@ choice does not bypass any output or authored condition.
   reject output-correct candidates. Missing models use the original order.
 - Busy sessions return immediately; cancelled initialization returns no session.
 
-These are implementation and learning regressions. They do not measure held-out
-language accuracy, training speed, host CPU utilization or end-to-end savings.
-No new trained artifact or independent benchmark is published with this change.
+These tests are implementation and learning regressions. The separate
+[196-document study](../studies/contract-goals-20261010/README.md) now publishes
+one trained artifact, all finite outcomes and local timings. It achieved
+107/170 first-path validity on satisfiable documents outside training, versus
+85/170 with deterministic ordering. It reduced attempts but took longer overall.
+English wording, unseen tasks and rare-tail goals expose incomplete decisions.
 
 ## Limits and the next measurement
 
@@ -77,9 +80,9 @@ The compiler therefore checks the complete original suite after selection.
 Candidate probabilities are relative scores within a supplied pool, not a
 percentage of general correctness or a guarantee of program completeness.
 
-The next fixed study needs paired contracts, held-out expressions and
-Korean/English wording, unsatisfiable goals, rare cases near the 128-case bound,
-and comparison with deterministic search. Report first-choice validity, passed
+Further studies need broader expressions and Korean/English wording, with
+unsatisfiable goals, rare cases near the 128-case bound and deterministic
+comparisons retained. Report first-choice validity, passed
 outputs, passed conditions, eventual finite completion, attempts, call count,
 time and process memory separately. Keep training contracts out of those held-out
 groups and publish incorrect choices as well as successes.

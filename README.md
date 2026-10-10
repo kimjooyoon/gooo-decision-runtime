@@ -82,8 +82,18 @@ encoder alongside source-based choice scores: 9,746 FP32 parameters and 38,984
 weight bytes. `NewContractSession` calls it once before finite validation;
 without a model, search keeps the declared fallback order. A local example can
 fit extracted training documents and search new documents. Paired learning and
-execution tests pass; held-out performance and ordinary compiler CLI integration
-remain unmeasured and unfinished, respectively. Existing weights keep their ABI.
+execution tests pass; the measured study below records the next evaluation.
+Ordinary compiler CLI integration remains work. Existing weights keep their ABI.
+
+The [new 196-document contract study](studies/contract-goals-20261010/README.md)
+now records one fresh local fit and publishes its weights. On 170 satisfiable
+documents outside training, first-path validity was 107/170 versus 85/170 for
+deterministic ordering. All 194 satisfiable contracts eventually completed in
+both modes; two contradictory contracts remained incomplete. Attempts fell
+396→271, while summed session time grew 18.278→27.837ms. The CPU fit took 357ms;
+prediction median was 16.375µs. There were 49 improvements and 21 regressions.
+English wording and the unseen family stayed at 50% first-path validity.
+The ordinary compiler CLI route for this schema remains work.
 
 ### Condition candidate model
 
