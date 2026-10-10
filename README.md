@@ -65,6 +65,14 @@ saved leaky model. This artifact remains a separate experiment. Every initial
 choice passed, leaving post-failure repair quality unmeasured. The 162 sources
 share a small set of task templates; unfamiliar tasks remain future work.
 
+The [held-out failed-start diagnostic](studies/heldout-repair-20261010/README.md)
+then executed 438 wrong starts on 146 evaluation sources. The old model's next
+untried choice passed 346/438; the observation-trained model passed 438/438.
+Against each model's saved initial scores, feedback caused 54 regressions for
+the old model and zero for the new one, with zero additional improvements for
+either. The new model also passed 438/438 before feedback. This establishes
+stability on the panel and leaves additional corrective benefit unmeasured.
+
 ### Condition candidate model
 
 [`conditiondecision`](conditiondecision/README.md) trains a shared 256 → 24 → 2

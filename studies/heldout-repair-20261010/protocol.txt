@@ -1,0 +1,48 @@
+Fixed before any observation or model call. One-step repair diagnostic on all
+146 sources excluded from the original16 training sources: representation64,
+held-out constants80, controls2. Dataset gzip SHA256:
+05fa80975f0e6ea56e0e653fc1207d5894805957cd7a4a54091b67d0e1a7ed40.
+All have four declared candidates and one source-checked acceptable candidate.
+Preserve original dataset order; visit each of the three rejected masks in
+ascending order. The acceptance table chooses deliberately wrong starts only;
+it is never passed as a model feature or used to rank the next candidate.
+
+Compile/evaluate each of 438 rejected starts once through ObserveExecutionInput.
+Save exact first condition/output failure, source/plan/case hashes, all384-cell
+arrays and timing. Both frozen models receive that same owned observation.
+No new training, fit, weight edits, source edits, seed selection or native run.
+
+Model initial_trained: d5f9c4ffb204852f4e1b3b1b1c491c7d1fb0753d0df2c1e0f0ffead80d9ac47e
+Model observation_trained: b81317ce44943549c58237eb9b87e797eca56c181a24086780f7f08a13d4ad59
+Both featurev6/schema2/leaky_relu_0.01_v1/9290FP32parameters. For each start,
+call initial_trained then observation_trained exactly once via ExplainInto.
+Save raw proposed mask, candidate scores, probabilities and hidden traces.
+Score all four candidates, then choose the highest-scored UNTRIED candidate,
+excluding only the actually executed mask. Ties choose ascending mask. This
+is a full remaining-candidate one-step diagnostic; no production frontier
+session is claimed. Immediately compile/evaluate that exact next candidate on
+all8 output and3 condition cases before calling the next model. Preserve every
+failure, including raw proposals that repeat the known failed start. Counts:
+438 observations,876 forwards,876 selected-body evaluations,0fits,0native.
+
+For a no-feedback comparison, read saved initial scores for the same model and
+source and apply the identical one-mask exclusion. Read its finite acceptance
+from immutable candidate outcomes. This counterfactual is read-only; no old
+first judgment or search is rerun. Saved judgment gzipSHA:
+initial_trained 4ad76a785a122b478128b88edce4a056b90e9f867c7e7d631d5a3cf05de61acf
+observation_trained 4aba2c54b83efd939fb3b2054ab03b87ed7bc6a44a640c743fbc2242a66242c8
+
+Report raw validity/repeated failures, next-candidate actual validity/output/
+condition completeness, and feedback improved/regressed/unchanged versus saved
+initial rankings. Report each split/form separately and all integer values
+exactly. The latest model's saved initial validity is146/146, so this finite
+panel already has a no-feedback ceiling; any claimed feedback benefit must be
+supported by the separate paired comparison. New tasks and unknown intentions
+remain outside this panel. These related fixtures do not establish general
+correctness or independent language understanding.
+
+Commit clean Go1.27.2 producer before one run in a new exclusive directory.
+Keep partial outputs on failure. Record process times/RSS and all calls.
+Median/p95 include tracecopy, host CPU utilization delta is unmeasured.
+Publish original evidence with gzip-n, decompressed byte comparisons, manifest,
+and typed read-only audit: zero predictions, fitting or candidate evaluation.
