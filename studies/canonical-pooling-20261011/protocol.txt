@@ -1,0 +1,70 @@
+Canonical requirement pooling comparison. Frozen before original collection,
+fitting or prediction. Original study execution has not started.
+
+Compiler: clean c96aaee02d35f50b591fd930309550f3d85d2691, Go1.27.2.
+SDK implementation base: d3bab76e16d90244d5a64db9e905e6ea6c25000a.
+The producer must be built from its clean public commit. Its build identity,
+compiler identity and compressed corpus SHA256 are recorded before collection.
+Corpus SHA256: 9bde751be7f8c39cb7084868db41a3c372d10923b825e9bf682960a6c51d23c5
+
+Question: with identical canonical source inputs, output and condition cases,
+initial seed, parameter count and update recipe, does changing learned case
+pooling alter first-choice quality or finite construction cost?
+
+Mean pooling averages each of eight learned case channels. Extreme pooling
+retains the activation with largest absolute value in each channel (ties prefer
+the larger signed value). Both are existing supported SDK modes. This compares
+two complete training recipes; their learned weights diverge. It does not
+isolate a pooling-only inference change in one already trained model.
+
+256 source documents, three known arithmetic templates, two binary choices each.
+Training64: bound/distance, constants89/-59, direct returns, Korean/English
+wordings0/1, both initial branch orders and every output/condition goal pair.
+Related evaluation128: bound/distance, constants131/-83, wordings2/3,
+direct/assignment forms and the same order/goal combinations.
+Excluded-family evaluation64: affine arms input+K and input*3, evaluation
+constants/wordings/forms. No affine document enters fitting.
+
+The source generator and oracle functions from the previous canonical study are
+reused without modification. These are new constants and identities in known
+templates, not independent tasks, unseen language descriptions or external users.
+Do not combine this study with earlier denominators or call it a generalization
+improvement over their different documents. There is no sparse/feedback cohort.
+
+Each source contains eight output cases and three intermediate conditions.
+Sixteen separate output probes and three condition probes are fixed alongside
+the source, including int64 limits. The condition at the threshold intentionally
+overlaps. Output-probe inputs do not occur among its authored output cases.
+The ordinary Go template oracle determines all expectations, independently of
+models and candidate labels. Record all 1,024 source masks once, retaining source
+and generated Gooo/Go, both sets of outcomes and the one acceptable mask per source.
+Only authored training outcomes label the64 training rows. Evaluation/probe
+outcomes never enter fitting or change the recipe.
+
+Exactly two fresh canonical FP32 fits: mean first, then extreme, each seed37,
+2,000epochs, learning rate0.3,L2=0.0001,19,034weights/76,136tensor bytes.
+No warm start, optimizer change, sweep, retry, early stopping or quantization.
+Preserve every pre-update loss, partial histories on failure, weights and errors.
+Reload each saved artifact before using it. Do not repeat earlier fits or studies.
+
+Run256 initial constructions per policy in fixed/mean/extreme order:768 sessions,
+512 model predictions. Each predicts once before its first candidate, then
+advances at most four masks without reinference. Preserve every attempt and
+separate probes of the selected body. No counterexample additions or online fit.
+
+Before the original run, regressions may read/lower the frozen source and inspect
+its input features only. They must not collect candidate labels, predict or fit
+on this corpus. Tiny K=5 synthetic fixtures, absent from the corpus, may exercise
+both pooling modes with zero untrained weights, routing and report accounting.
+
+Publish the protocol, corpus and producer before execution. Use one fresh,
+exclusive output directory and durable fit-start markers. Once original outcomes
+exist, any failure ends this experiment; a new question needs a new protocol.
+
+Report every cohort's first declared/probe completeness, final completion,
+candidate counts, all improvements/regressions and paired-form consistency.
+Record fit duration, first-session prediction median/p95, model sizes, whole
+wall/user/system/maxRSS and exact source identities. One shared host and fixed
+order do not establish causal speedups, instantaneous utilization increases,
+customer savings or quantization stability. CPU execution uses Go only.
+This does not change SDK/compiler defaults or publish a new compiler release.
