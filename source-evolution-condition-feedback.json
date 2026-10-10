@@ -1,0 +1,31 @@
+{
+  "base_revision": "c1eec1d5688076eb216f8d7612b11aa4c55cec9f",
+  "changed_extracted_files": [
+    {
+      "after_bytes": 12405,
+      "after_sha256": "58597580ab8eeeab9d09960362fb7ae3a341fc27d2dfbf4e00e575f4177412d1",
+      "before_bytes": 12438,
+      "before_sha256": "f1841e5be8ae1cb1b3c9b291ade82fe996d60a90351eb2c6667f2ac7bde5b901",
+      "path": "pathplan/feedback.go"
+    },
+    {
+      "after_bytes": 5047,
+      "after_sha256": "a5d4eef20feb05fe85c3e8cf4159e76f2abe77ac247f4e0b9202946a09ea9c61",
+      "before_bytes": 4983,
+      "before_sha256": "3ca10c14d351c723c9e099300e2ae4efbfadf6c8e48dd2d17462f44dc0af5e58",
+      "path": "pathplan/joint_feedback.go"
+    },
+    {
+      "after_bytes": 18231,
+      "after_sha256": "41fcac4ec474ab9701289bb0805e8b8a8113db66c1733a2fa3dd87a378a00331",
+      "before_bytes": 17988,
+      "before_sha256": "e595bedb11cd230398e4ff985132a205c511903deec32909af2c7f66482b41d6",
+      "path": "pathplan/session.go"
+    }
+  ],
+  "previous_manifest": "source-provenance-v0.2.27.json",
+  "previous_manifest_sha256": "b50eceb5755896f3a5b4f81f71f97e49fd31d26f4acd83e224465ca166eae084",
+  "reason": "Retain one committed condition counterexample and pass it to the original frozen model during explicit reconsideration.",
+  "schema": "gooo/decision-runtime-source-evolution/v1",
+  "updated_manifest_sha256": "a2a96fa9e1c763971599a2e2ec06e1b81710fb8a24b0bcc9a4f3c984dc6357c5"
+}

@@ -52,38 +52,40 @@ type FixedCoordinate struct {
 }
 
 type FeedbackReceipt struct {
-	Schema             string             `json:"schema"`
-	Round              int                `json:"round"`
-	PreviousSHA        string             `json:"previous_feedback_sha256,omitempty"`
-	SHA                string             `json:"feedback_sha256,omitempty"`
-	FromProgressSHA    string             `json:"from_progress_sha256,omitempty"`
-	PlanSHA            string             `json:"plan_sha256"`
-	CaseSHA            string             `json:"finite_cases_sha256"`
-	MetadataSHA        string             `json:"model_metadata_sha256"`
-	WeightsSHA         string             `json:"model_weights_sha256"`
-	Attempted          int                `json:"prior_attempts"`
-	Passed             int                `json:"prior_selected_passed"`
-	Cases              int                `json:"finite_cases"`
-	TypeRejected       int                `json:"prior_type_rejections"`
-	FirstFailure       *TestResult        `json:"first_selected_failure,omitempty"`
-	CI                 *CIHint            `json:"caller_ci_hint,omitempty"`
-	CIIsAuthority      bool               `json:"ci_hint_is_authority"`
-	Judgments          []FeedbackJudgment `json:"judgments,omitempty"`
-	ModelCalls         int                `json:"new_local_model_predictions"`
-	CumulativeCalls    int                `json:"cumulative_local_model_predictions"`
-	Applied            bool               `json:"frontier_ranking_applied"`
-	AddedMask          bool               `json:"new_proposal_scheduled"`
-	Error              string             `json:"error,omitempty"`
-	ContextDeclined    bool               `json:"context_declined,omitempty"`
-	DeclinedDecision   string             `json:"declined_decision_id,omitempty"`
-	DeclinedBytes      int                `json:"declined_input_bytes,omitempty"`
-	DeclinedInputSHA   string             `json:"declined_input_sha256,omitempty"`
-	DeclinedIntentSHA  string             `json:"declined_intent_sha256,omitempty"`
-	RankingUnnecessary bool               `json:"ranking_unnecessary,omitempty"`
-	FixedCoordinates   []FixedCoordinate  `json:"fixed_coordinates,omitempty"`
-	Scope              string             `json:"scope"`
-	Joint              *JointReceipt      `json:"joint_prediction,omitempty"`
-	Three              *ThreeReceipt      `json:"three_choice_prediction,omitempty"`
+	Schema                string             `json:"schema"`
+	Round                 int                `json:"round"`
+	PreviousSHA           string             `json:"previous_feedback_sha256,omitempty"`
+	SHA                   string             `json:"feedback_sha256,omitempty"`
+	FromProgressSHA       string             `json:"from_progress_sha256,omitempty"`
+	PlanSHA               string             `json:"plan_sha256"`
+	CaseSHA               string             `json:"finite_cases_sha256"`
+	MetadataSHA           string             `json:"model_metadata_sha256"`
+	WeightsSHA            string             `json:"model_weights_sha256"`
+	Attempted             int                `json:"prior_attempts"`
+	Passed                int                `json:"prior_selected_passed"`
+	Cases                 int                `json:"finite_cases"`
+	TypeRejected          int                `json:"prior_type_rejections"`
+	ConditionRejected     int                `json:"prior_condition_rejections,omitempty"`
+	FirstConditionFailure *ConditionFailure  `json:"first_condition_failure,omitempty"`
+	FirstFailure          *TestResult        `json:"first_selected_failure,omitempty"`
+	CI                    *CIHint            `json:"caller_ci_hint,omitempty"`
+	CIIsAuthority         bool               `json:"ci_hint_is_authority"`
+	Judgments             []FeedbackJudgment `json:"judgments,omitempty"`
+	ModelCalls            int                `json:"new_local_model_predictions"`
+	CumulativeCalls       int                `json:"cumulative_local_model_predictions"`
+	Applied               bool               `json:"frontier_ranking_applied"`
+	AddedMask             bool               `json:"new_proposal_scheduled"`
+	Error                 string             `json:"error,omitempty"`
+	ContextDeclined       bool               `json:"context_declined,omitempty"`
+	DeclinedDecision      string             `json:"declined_decision_id,omitempty"`
+	DeclinedBytes         int                `json:"declined_input_bytes,omitempty"`
+	DeclinedInputSHA      string             `json:"declined_input_sha256,omitempty"`
+	DeclinedIntentSHA     string             `json:"declined_intent_sha256,omitempty"`
+	RankingUnnecessary    bool               `json:"ranking_unnecessary,omitempty"`
+	FixedCoordinates      []FixedCoordinate  `json:"fixed_coordinates,omitempty"`
+	Scope                 string             `json:"scope"`
+	Joint                 *JointReceipt      `json:"joint_prediction,omitempty"`
+	Three                 *ThreeReceipt      `json:"three_choice_prediction,omitempty"`
 }
 
 // Reconsider re-ranks only unattempted paths with the original frozen model.
@@ -143,6 +145,7 @@ func (session *Session) reconsider(ctx context.Context, model *decision.Model, c
 		copy := *ci
 		receipt.CI = &copy
 	}
+	session.bindConditionFeedback(&receipt)
 	for _, result := range session.bestCases {
 		if !result.Passed {
 			copy := result
@@ -150,14 +153,7 @@ func (session *Session) reconsider(ctx context.Context, model *decision.Model, c
 			break
 		}
 	}
-	prefix := fmt.Sprintf("feedback: tried=%d passed=%d/%d rejected=%d remaining=%d", session.attempted,
-		receipt.Passed, receipt.Cases, receipt.TypeRejected, session.result.DeclaredCombinations-session.attempted)
-	if receipt.FirstFailure != nil {
-		prefix += fmt.Sprintf(" mismatch=%d:%d:%d", receipt.FirstFailure.Input, receipt.FirstFailure.Actual, receipt.FirstFailure.Expected)
-	}
-	if ci != nil {
-		prefix += " ci=" + ci.Status
-	}
+	prefix := feedbackPrefix(receipt, session.result.DeclaredCombinations-session.attempted)
 	finish := func(failure error) (FeedbackReceipt, error) {
 		if failure != nil {
 			receipt.Error = failure.Error()

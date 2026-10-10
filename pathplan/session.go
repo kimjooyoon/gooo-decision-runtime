@@ -25,32 +25,33 @@ var ErrNoTypedCandidate = errors.New("no typed candidate has been evaluated in t
 // Default sessions rank only at initialization. Explicit Reconsider calls require
 // the original frozen model again; model pointers are never retained here.
 type Session struct {
-	lock            sync.Mutex
-	prepared        *PreparedPlan
-	cases           []TestCase
-	result          SearchResult
-	logWeights      [16][2]float64
-	fallbackMask    uint16
-	ranked          bool
-	queue           searchHeap
-	scheduled       []uint64
-	attempted       int
-	committedBits   [16][2]uint16
-	best            *bodyplan.Program
-	bestPassed      int
-	bestCases       []TestResult
-	caseSHA         string
-	previous        string
-	sequence        int
-	initialized     bool
-	initialError    error
-	feedbackRounds  int
-	feedbackCalls   int
-	feedbackAt      int
-	feedbackSHA     string
-	joint           bool
-	jointLogWeights [8]float64
-	jointInput      string
+	lock                  sync.Mutex
+	prepared              *PreparedPlan
+	cases                 []TestCase
+	result                SearchResult
+	logWeights            [16][2]float64
+	fallbackMask          uint16
+	ranked                bool
+	queue                 searchHeap
+	scheduled             []uint64
+	attempted             int
+	committedBits         [16][2]uint16
+	best                  *bodyplan.Program
+	bestPassed            int
+	bestCases             []TestResult
+	firstConditionFailure *ConditionFailure
+	caseSHA               string
+	previous              string
+	sequence              int
+	initialized           bool
+	initialError          error
+	feedbackRounds        int
+	feedbackCalls         int
+	feedbackAt            int
+	feedbackSHA           string
+	joint                 bool
+	jointLogWeights       [8]float64
+	jointInput            string
 }
 
 type SessionProgress struct {
@@ -272,6 +273,7 @@ func (session *Session) Advance(ctx context.Context, maxNewAttempts int) (Sessio
 			session.result.Evaluated++
 			if attempt.Status == "CONDITION_REJECTED" {
 				session.result.ConditionRejected++
+				session.rememberConditionFailure(attempt)
 			}
 			if attempt.Status == "EVALUATED" && attempt.Passed > session.bestPassed {
 				session.bestPassed, session.best = attempt.Passed, program

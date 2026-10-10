@@ -18,7 +18,7 @@ func feedbackPrefix(r FeedbackReceipt, remaining int) string {
 	if r.CI != nil {
 		text += " ci=" + r.CI.Status
 	}
-	return text
+	return text + conditionFeedbackSuffix(r)
 }
 func (session *Session) newJointFeedback(ci *CIHint) FeedbackReceipt {
 	r := FeedbackReceipt{Schema: "gooo/typed-path-joint-feedback-judgment/v1", Round: session.feedbackRounds + 1, PreviousSHA: session.feedbackSHA, FromProgressSHA: session.previous, PlanSHA: session.prepared.sha, CaseSHA: session.caseSHA, MetadataSHA: session.result.Selection.MetadataSHA256, WeightsSHA: session.result.Selection.WeightsSHA256, Attempted: session.attempted, Passed: session.result.SelectedTrainingPassed, Cases: len(session.cases), TypeRejected: session.result.TypeRejected, Scope: "Observed finite failures condition the original joint model; tests decide acceptance; no online learning or semantic edit authority."}
@@ -26,6 +26,7 @@ func (session *Session) newJointFeedback(ci *CIHint) FeedbackReceipt {
 		copy := *ci
 		r.CI = &copy
 	}
+	session.bindConditionFeedback(&r)
 	for _, c := range session.bestCases {
 		if !c.Passed {
 			copy := c

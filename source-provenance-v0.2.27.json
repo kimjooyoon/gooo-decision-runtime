@@ -341,10 +341,10 @@
       "origin_path": "internal/pathplan/feedback.go",
       "copied_path": "pathplan/feedback.go",
       "origin_sha256": "da2c062e970916d876a4965f5207320c170185795d5c85823dabe1c09616d041",
-      "sha256": "58597580ab8eeeab9d09960362fb7ae3a341fc27d2dfbf4e00e575f4177412d1",
+      "sha256": "f1841e5be8ae1cb1b3c9b291ade82fe996d60a90351eb2c6667f2ac7bde5b901",
       "origin_bytes": 12467,
-      "bytes": 12405,
-      "transformation": "fixed_module_import_relocation_and_gofmt_then_sdk_condition_feedback"
+      "bytes": 12438,
+      "transformation": "fixed_module_import_relocation_and_gofmt"
     },
     {
       "origin_path": "internal/pathplan/feedback_batches.go",
@@ -395,10 +395,10 @@
       "origin_path": "internal/pathplan/joint_feedback.go",
       "copied_path": "pathplan/joint_feedback.go",
       "origin_sha256": "ba3618890ad56677da41f6a2a70776d88f6d6cd18f6154d1d1b9099f09071a86",
-      "sha256": "a5d4eef20feb05fe85c3e8cf4159e76f2abe77ac247f4e0b9202946a09ea9c61",
+      "sha256": "3ca10c14d351c723c9e099300e2ae4efbfadf6c8e48dd2d17462f44dc0af5e58",
       "origin_bytes": 5003,
-      "bytes": 5047,
-      "transformation": "fixed_module_import_relocation_and_gofmt_then_sdk_condition_feedback"
+      "bytes": 4983,
+      "transformation": "fixed_module_import_relocation_and_gofmt"
     },
     {
       "origin_path": "internal/pathplan/joint_test.go",
@@ -473,10 +473,10 @@
       "origin_path": "internal/pathplan/session.go",
       "copied_path": "pathplan/session.go",
       "origin_sha256": "e9e6a1a69de123450bf83c181af618278dcb546092f280cc9cf332a146d1c99d",
-      "sha256": "41fcac4ec474ab9701289bb0805e8b8a8113db66c1733a2fa3dd87a378a00331",
+      "sha256": "e595bedb11cd230398e4ff985132a205c511903deec32909af2c7f66482b41d6",
       "origin_bytes": 18147,
-      "bytes": 18231,
-      "transformation": "fixed_module_import_relocation_and_gofmt_then_sdk_source_condition_contract_v1_then_sdk_condition_feedback",
+      "bytes": 17988,
+      "transformation": "fixed_module_import_relocation_and_gofmt_then_sdk_source_condition_contract_v1",
       "previous_sdk_sha256": "56fc53141e075ed56f316df1b2c13dc3f8166fabac625b804bb46cc3ccb05b19",
       "previous_sdk_bytes": 18098
     },
