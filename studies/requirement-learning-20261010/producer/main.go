@@ -101,8 +101,10 @@ func collect(ctx context.Context, frozen r.FrozenSource) (r.Source, *pathplan.Pr
 			c.Outputs = append(c.Outputs, pathplan.TestResult{Input: test.Input, Expected: test.Expected, Actual: v.Int, Passed: passed})
 			c.Acceptable = c.Acceptable && passed
 		}
-		c.Conditions, err = p.CheckConditions(ctx, choices, d.Plan.ConditionCases)
-		must(err)
+		if len(d.Plan.ConditionCases) > 0 {
+			c.Conditions, err = p.CheckConditions(ctx, choices, d.Plan.ConditionCases)
+			must(err)
+		}
 		for _, v := range c.Conditions {
 			c.Acceptable = c.Acceptable && v.Passed
 		}
@@ -214,7 +216,10 @@ func main() {
 		plans = append(plans, p)
 		report.Sources++
 		report.OracleCandidates += 4
-		report.OracleCompileCalls += 8
+		report.OracleCompileCalls += 4
+		if len(x.Document.Plan.ConditionCases) > 0 {
+			report.OracleCompileCalls += 4
+		}
 		report.OracleOutputEvaluations += 4 * len(x.Document.TestCases)
 		report.OracleConditionObservations += 4 * len(x.Document.Plan.ConditionCases)
 		input, err := p.InitialContractInput(x.Document.TestCases)

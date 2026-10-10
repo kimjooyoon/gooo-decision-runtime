@@ -80,3 +80,11 @@ cohort now declares eight negative output examples and keeps its128 unique
 conditions. Training documents and both fit settings are unchanged. A separate
 integer reference checks satisfiability for every current frozen source before
 fitting. Earlier failed collections are not included in final-run speed claims.
+
+Collector history: the current corpus passed source and arithmetic preflight.
+At source165 its intentionally empty condition suite exposed a collector call
+to CheckConditions, which requires1..128 cases. The164 earlier records and the
+zero-fit failure are retained in empty-collection-failure/. The corpus, labels
+and fit settings stay fixed. The collector now skips this call for zero
+conditions, keeps output checks, and counts1360 actual oracle compile calls.
+A focused regression covers all four empty-suite variants before fitting.
