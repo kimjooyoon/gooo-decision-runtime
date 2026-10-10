@@ -62,6 +62,10 @@ func Fit(ctx context.Context, samples []Sample, options FitOptions) (*Model, []E
 // Extreme pooling uses the first equal winner for its subgradient; at exact
 // ties training can depend on row order even when inference scores do not.
 func FitForPooling(ctx context.Context, samples []Sample, options FitOptions, pooling string) (*Model, []Epoch, error) {
+	return fit(ctx, samples, options, pooling, nil, GoalPairOptions{})
+}
+
+func fit(ctx context.Context, samples []Sample, options FitOptions, pooling string, pairs []GoalPair, pairOptions GoalPairOptions) (*Model, []Epoch, error) {
 	if ctx == nil || len(samples) < 1 || len(samples) > 4096 || !validOptions(options) {
 		return nil, nil, errors.New("bounded contract training inputs required")
 	}
@@ -75,6 +79,9 @@ func FitForPooling(ctx context.Context, samples []Sample, options FitOptions, po
 		if s.Acceptable == 0 || s.Acceptable & ^allCandidates(len(s.Masks)) != 0 {
 			return nil, nil, errors.New("acceptable set must name complete contract candidates")
 		}
+	}
+	if err := validateGoalPairs(samples, pairs, pairOptions); err != nil {
+		return nil, nil, err
 	}
 	m, err := NewForPooling(initial(options.Seed), pooling)
 	if err != nil {
@@ -106,6 +113,13 @@ func FitForPooling(ctx context.Context, samples []Sample, options FitOptions, po
 				}
 			}
 			m.backward(s.Inputs, &frozen, &w, &residual, &gradient)
+		}
+		if len(pairs) != 0 {
+			pairLoss, err := m.goalPairGradient(ctx, samples, pairs, pairOptions, &gradient)
+			if err != nil {
+				return nil, history, err
+			}
+			loss += pairLoss
 		}
 		if err := ctx.Err(); err != nil {
 			return nil, history, err

@@ -1,0 +1,17 @@
+/tmp/gooo-release-0623-20261010.hCOVqV/goal-pairs-producer: go1.27.2
+	path	github.com/kimjooyoon/gooo-decision-runtime/studies/contract-goal-pairs-20261010/producer
+	mod	github.com/kimjooyoon/gooo-decision-runtime	v0.2.36-experimental.0.20261010103031-440b3eeec867	
+	build	-buildmode=exe
+	build	-compiler=gc
+	build	CGO_ENABLED=1
+	build	CGO_CFLAGS=
+	build	CGO_CPPFLAGS=
+	build	CGO_CXXFLAGS=
+	build	CGO_LDFLAGS=
+	build	GOARCH=arm64
+	build	GOOS=darwin
+	build	GOARM64=v8.0
+	build	vcs=git
+	build	vcs.revision=440b3eeec867b7e70abaa46dd710ae1e4c7545ae
+	build	vcs.time=2026-10-10T10:30:31Z
+	build	vcs.modified=false
