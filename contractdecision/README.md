@@ -9,6 +9,13 @@ quality and end-to-end cost remain to be measured.
 [Inspect one decision](../docs/contract-signals.md) with `ExplainInto`: the actual
 case summary, source prefix, joint hidden values and scores from the same pass.
 
+[Audit the training inputs](../docs/decision-input-audit.md) with `AuditInputs`.
+It groups bit-identical model inputs, compares the Gooo-validated acceptable
+candidate sets and reports unavoidable first-choice misses. Local fit receipts
+include the diagnostic. A condition-only goal pair exposes a missing signal in
+the current input representation even though finite Gooo search can complete
+both contracts.
+
 [Paired-goal training](../docs/contract-goal-pairs.md) can compare two goals for
 the same source while retaining the current inference layout and weight budget.
 The API and local command are implemented. The first fixed comparison retained
