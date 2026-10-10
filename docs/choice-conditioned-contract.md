@@ -41,8 +41,10 @@ The model kernel's allocation regression test observes zero heap allocations
 with pre-existing inputs, reader and destinations. The first implementation
 allocated one temporary workspace per call through an interface; a direct read
 of the owned snapshot removed that allocation. Source preparation and artifact
-loading have separate costs. End-to-end inference/training latency and process
-RSS for a fresh corpus have not yet been measured.
+loading have separate costs. A fresh 388-document study measured 37.584 µs
+median initial prediction, 1.725 s CPU fitting and 72.27 MiB maximum RSS for the
+whole two-model experiment. See the [recorded comparison](../studies/choice-context-learning-20261010/README.md)
+for timing scope, parameter differences and regressions.
 
 Training captures each sample once per epoch, scores all choices and recomputes
 each choice once for backpropagation. It uses fixed gradient arrays and retains
@@ -88,10 +90,11 @@ this new artifact; the Go example command and SDK session support it.
   completes construction in one attempt. This is a training fixture.
 - Constructed outputs retain exact large integers, including values above 2^53.
 
-These are implementation tests, not measured general decision quality. The
-[previous literal experiment](../studies/source-literal-contract-20261010/README.md)
-regressed; this new architecture has no corpus improvement claim yet. A next
-comparison must fix fresh Gooo evaluation contracts before fitting, keep them
-outside training, and report the extra parameters and per-choice work alongside
-first-choice validity, output/condition completeness, finite completion and all
-regressions. The previous published default model remains available unchanged.
+The [fresh frozen comparison](../studies/choice-context-learning-20261010/README.md)
+then measured 197/388 → 221/388 valid first choices against a separately fitted
+global-pooling model: 87 improvements, 63 regressions, 238 unchanged. Both models
+used the same 32 training rows; 356 documents stayed outside training. All modes
+completed 386 satisfiable contracts and exhausted two contradictions. The new
+model still chose the same path for 163/193 opposite-goal pairs, and unseen
+multiplication fell from 32/64 to 31/64. Its additional parameters and compute
+are disclosed. The previous published default model remains available unchanged.

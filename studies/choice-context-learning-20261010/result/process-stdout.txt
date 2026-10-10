@@ -1,0 +1,1 @@
+388 Gooo documents, 32 training rows, two CPU fits, 776 model calls, 1164 finite searches.
