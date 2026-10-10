@@ -8,8 +8,10 @@ choice scores; it does not produce text or program tokens.
 `Fit` learns probability mass over supplied acceptable complete masks with
 deterministic full-batch CPU updates. `PredictChoicesInto` uses caller-owned
 arrays for up to 16 choices; `PredictInto` ranks up to 64 explicit masks.
-The closed artifact schema is `gooo/flow-candidate-decision/v1`. Old 256/320-cell
-artifacts cannot be loaded into this model or relabelled as new weights.
+The original ReLU artifact schema is `gooo/flow-candidate-decision/v1`. The
+explicit [negative-slope activation](../docs/flow-activation.md) uses a separate
+v2 computation contract with the same dimensions. Old 256/320-cell artifacts
+cannot be loaded into this model or relabelled as new weights.
 
 `PreparedPlan.NewFlowSession`, `ReconsiderFlow` and `SearchFlowBatches` connect
 the model to the existing finite frontier. Each selected candidate is compiled

@@ -26,6 +26,7 @@ const (
 type Model struct {
 	weights        [ParameterCount]float32
 	featureVersion string
+	activation     string
 }
 
 type Workspace struct {
@@ -47,13 +48,22 @@ func New(weights [ParameterCount]float32) (*Model, error) {
 // NewForFeatures binds immutable weights to an explicit input representation.
 // Merely relabelling previously trained weights does not train the new channels.
 func NewForFeatures(weights [ParameterCount]float32, version string) (*Model, error) {
+	return NewForActivation(weights, version, ReLUActivation)
+}
+
+// NewForActivation binds weights to an explicit feature and computation ABI.
+// Choosing another activation does not retrain previously learned weights.
+func NewForActivation(weights [ParameterCount]float32, version, activation string) (*Model, error) {
 	if !supportedFeatures(version) {
 		return nil, errors.New("unsupported flow feature version")
 	}
 	if !finite(weights[:]) {
 		return nil, errors.New("finite flow model weights required")
 	}
-	return &Model{weights: weights, featureVersion: version}, nil
+	if !supportedActivation(activation) {
+		return nil, errors.New("unsupported flow activation")
+	}
+	return &Model{weights: weights, featureVersion: version, activation: activation}, nil
 }
 
 func supportedFeatures(version string) bool {
@@ -110,7 +120,7 @@ func (m *Model) forward(inputs [][FeatureDim]float32, masks []uint16, w *Workspa
 			for j, x := range input {
 				sum += x * m.weights[h*FeatureDim+j]
 			}
-			w.hidden[choice][h] = max(sum, 0)
+			w.hidden[choice][h] = m.activate(sum)
 		}
 		if !finite(w.hidden[choice][:]) {
 			return errors.New("nonfinite hidden activation")

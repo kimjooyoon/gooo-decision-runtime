@@ -42,7 +42,11 @@ func (m *Model) Fingerprint() string {
 		return ""
 	}
 	digest := sha256.New()
-	_, _ = digest.Write([]byte(Schema + "\x00" + m.FeatureVersion() + "\x00"))
+	identity := Schema + "\x00" + m.FeatureVersion() + "\x00"
+	if m.Activation() == LeakyReLUActivation {
+		identity = ActivationSchema + "\x00" + m.FeatureVersion() + "\x00" + m.Activation() + "\x00"
+	}
+	_, _ = digest.Write([]byte(identity))
 	var raw [ParameterCount * 4]byte
 	for i, w := range m.weights {
 		binary.LittleEndian.PutUint32(raw[i*4:], math.Float32bits(w))

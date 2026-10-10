@@ -1,0 +1,2 @@
+{"fits":1,"judgments":162,"searches":324}
+No previous experiment was rerun.

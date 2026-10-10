@@ -50,6 +50,13 @@ activations were all zero, so opposite intents received the same bias-only
 branch scores. The64 diagnostic forwards and every trace are recorded; no
 new fitting or body execution was performed in that study.
 
+The [separate fixed negative-slope fit](studies/leaky-flow-learning-20261010/README.md)
+keeps the same16 training arrays and9,290 parameters. First-choice validity rose
+from 82/162 to 141/162 against saved ReLU v6 results; 80 sources improved and 21
+regressed. Both bounded searches completed 162/162 suites in 183 attempts each.
+This explicit v2 computation artifact is an SDK experiment awaiting compiler
+CLI integration. Its local CPU fit took133ms.
+
 ### Condition candidate model
 
 [`conditiondecision`](conditiondecision/README.md) trains a shared 256 → 24 → 2
