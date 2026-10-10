@@ -1,5 +1,50 @@
 # Learn from output and intermediate-condition requirements
 
+## Development: retain calculation order during learning
+
+`fit -ordered-requirements` selects a new explicit model that consumes the
+ordered-expression adjunct from [source inspection](declared-condition-input.md#inspect-ordered-calculations).
+Each choice reads 528 source cells: the original 384 followed by 144 ordered
+predicate/then-return/else-return cells. Both the eight-cell query projection
+and the 24-cell joint hidden layer learn from the full source input. All authored
+output and condition rows retain their existing exact integer encodings.
+
+```sh
+go run ./examples/contract-model fit -ordered-requirements -out ordered-model.json \
+  studies/requirement-learning-20261010/examples/req-bound-k6-r1-w0-o0-alias-g0-c0.json \
+  studies/requirement-learning-20261010/examples/req-bound-k6-r1-w0-o0-alias-g0-c1.json
+
+go run ./examples/contract-model search -model ordered-model.json \
+  studies/requirement-learning-20261010/examples/req-bound-k6-r1-w0-o0-alias-g0-c0.json
+```
+
+Documents passed to `fit` become training data. The new artifact is
+`gooo/ordered-requirement-contract/v1`, with 17,890 FP32 parameters and 71,560 weight
+bytes (about 69.9 KiB). Training and inference run in Go on the local CPU. The
+artifact binds its 528-cell source version, both goal versions, architecture,
+pooling and activation. Existing artifacts retain their original computation.
+
+The API is `PreparedPlan.NewOrderedRequirementContractSession(ctx, model, cases)`.
+It makes one prediction before constructing candidates, immediately checks that
+proposal, then retains the original finite search without further predictions.
+A source shape outside the bounded ordered representation is reported as
+declined with zero model calls, and ordinary deterministic search remains
+available. A nil model preserves the original deterministic receipt. Fitting
+reports unsupported source shapes before enumerating their training labels.
+
+`AuditOrderedRequirements` compares all 528 source cells, every output/condition
+row and candidate ordering. The fit report includes this complete input audit.
+Two typed-plan training fixtures with identical old inputs and reversed
+subtraction order learn distinct paths and each complete all declared cases on
+their first proposal. Independent float64 equations, numerical gradients for
+both new source connections, full 128-row readers, concurrent inference and CLI
+artifact loading have regression coverage. These are implementation and
+training-fixture checks; held-out accuracy and deployment resource measurements
+for the new model remain to be collected. Native compiler loading of this schema
+is subsequent integration work.
+
+## Original requirement model
+
 The requirement-conditioned model reads three source-bound inputs: Gooo's
 available choices, every declared integer output case and every declared Boolean
 condition. Its prediction orders the finite candidates. Gooo then compiles each

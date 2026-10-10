@@ -58,8 +58,11 @@ of this new schema is follow-up work.
 For source-input development, [`inspect -ordered-source`](docs/declared-condition-input.md#inspect-ordered-calculations)
 shows the predicate and each return's ordered operands in a separate 576-byte
 adjunct. It distinguishes the forty recorded collisions and reports unsupported
-shapes explicitly. Existing models keep their original inputs; a new trained
-consumer and held-out evaluation are follow-up work.
+shapes explicitly. [`fit -ordered-requirements`](docs/requirement-conditioned-contract.md#development-retain-calculation-order-during-learning)
+now trains a 17,890-parameter model that reads this adjunct together with the
+original source and both goal streams. Two typed-plan training fixtures learn
+opposite arithmetic layouts; held-out accuracy and resource use remain to be
+measured. Existing model files keep their original inputs.
 
 The existing choice model's compiler integration was accepted as `dev` source
 `deff13a2`, including its original CI, readiness and compatibility checks.
