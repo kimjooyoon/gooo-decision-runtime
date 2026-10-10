@@ -1,0 +1,45 @@
+Fixed before observation collection, training or measurement. One fresh local
+CPU fit changes the training contexts only. Keep 384->24->2, 9290 FP32 parameters,
+37160 weight bytes, feature v6, schema v2, leaky_relu_0.01_v1. Epochs 400,
+learning rate 0.25, L2 0.0001, seed 17, same initialization and full-batch loss.
+No tuning, repeat fit, seed selection, quantization, GPU or cloud job.
+
+Frozen source collection gzip SHA256:
+05fa80975f0e6ea56e0e653fc1207d5894805957cd7a4a54091b67d0e1a7ed40
+Original leaky v6 baseline report SHA256:
+296e3398094944fdfc8f04aa131b95f8a57bd34cf63e776f7e8bbfbfa766bb5d
+Read old results; never rerun old fits, searches or exhaustive candidate oracle.
+
+First retain the exact original 16 initial training examples, SHA256:
+e62fd490c2224aef24c25906e0768e666390d8e4f1b6381258bcb24af64251c4
+Their condition/output feedback channels are all zero. For each of those 16
+direct-source rows, visit rejected candidate masks in ascending order. Each row
+has exactly one accepted mask in the immutable complete candidate table.
+Compile/evaluate each of the other three once with ObserveExecutionInput:
+48 actual candidate observations, zero model calls. Keep the first failing
+declared condition and first wrong output from each committed candidate. Encode
+through the public runtime API, preserving source channels and exact int64 atoms.
+Record source, plan, cases, rejected mask, failures, feature hash and sample index.
+Append these 48 samples after the initial 16. All 64 use the unchanged complete
+four-mask label set. Do not infer labels by excluding a failed mask alone.
+Hold out every other source form, held-out constant and both control sources.
+
+Save all 64 arrays, 48 observations, 400 losses and the model, regardless of
+improvement or regression. The initial/observed sample weighting changes from
+16 initial examples to 16+48; this is not an isolated causal proof about feedback.
+Report initial prediction regression independently from search improvement.
+
+Make 162 new ExplainInto first judgments, one forward each. Immediately compile
+and evaluate each selected Gooo body on 8 output and 3 condition cases. Save all
+outputs, conditions, bodies and traces. Then execute 324 new bounded searches:
+initial-only and feedback, 162 each, budget 4, batch 1, no seed, at most 4 feedback
+rounds. Save every attempt, progress and ranking; require initial input identity
+and no repeated candidate execution. No native processes. Count all model calls
+and the 48 collection evaluations separately. Measure per split/form, initial
+validity, output/condition completeness, final completion, attempts and feedback
+cost. Report the historical leaky baseline without rerunning it. Timing includes
+trace copying, and process CPU/RSS is not a host utilization delta.
+
+Commit a clean Go1.27.2 producer before one run in a new directory. Preserve
+partial output on failure. Publish gzip-n, decompressed byte comparison, manifest,
+build identity and a read-only recount with zero fit, prediction or evaluation.
