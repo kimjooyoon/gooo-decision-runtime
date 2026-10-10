@@ -73,6 +73,13 @@ the old model and zero for the new one, with zero additional improvements for
 either. The new model also passed 438/438 before feedback. This establishes
 stability on the panel and leaves additional corrective benefit unmeasured.
 
+The [declared contract input](docs/declared-contract-input.md) now exposes every
+source-authored input/expected-output case as a separate exact 32-cell channel.
+It owns up to 128 integer pairs and reuses 128 bytes of scratch per projected
+case. Initial v6 source inputs remain unchanged. This prepares a dedicated model
+to read the requirements before execution; existing weights do not yet consume
+the new channel.
+
 ### Condition candidate model
 
 [`conditiondecision`](conditiondecision/README.md) trains a shared 256 → 24 → 2
