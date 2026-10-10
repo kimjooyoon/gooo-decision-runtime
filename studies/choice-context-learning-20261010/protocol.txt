@@ -1,0 +1,54 @@
+Fresh choice-conditioned decision study, frozen before either fit.
+
+Authority: 388 complete Gooo sources in corpus.jsonl.gz. Its compressed SHA256
+is pinned by record.CorpusSHA; record.Specs fixes ordered split identities.
+No old corpus observations or old model weights enter training/evaluation.
+
+Training: 32 direct sources, bound/distance/offset/tag families, constants -5
+and 9, both arm orientations and both opposite goals, Korean wording 0.
+Held out: 96 representation (alias, assignment, rebinding); 128 constant
+(-12,21); 64 wording (English and Korean paraphrase); 64 unseen scale family;
+2 rare-tail cases; 2 contradictory contracts. Scale multiplies input by limit
+in one arm. Ordinary documents contain eight exact int64 cases; four special
+documents contain 128 each, with the final case distinguishing the goal or
+contradiction. Every document has three declared comparison conditions.
+There are 193 satisfiable opposite-goal pairs and one contradiction pair.
+New sources are controlled template variations, not independent user projects.
+Wording experiments do not establish open-ended natural-language understanding.
+
+Modes: deterministic zero-model; fresh global case encoder; fresh choice-
+conditioned case encoder. Both learned models use signed_max_abs pooling,
+600 full-batch CPU epochs, learning rate .3, L2 .0001 and seed 17. Same exact
+32 training rows and complete four-mask oracle labels. One fit each; no tuning,
+retry, early stopping, warm start or held-out selection. Global: 9746 FP32
+parameters; choice: 12818 (3072 additional parameters). No fair equal-parameter
+or equal-compute causal attribution is claimed. Choice training recomputes
+the case encoding during backward, increasing work per training row.
+
+Cost: 19200 training sample visits per model; global has one case encoding
+per visit; choice has two choices times forward and backward recomputation,
+76800 case encodings. Evaluation uses 1164 finite searches and 776 initial
+model API calls. Each prediction is made before any candidate is executed.
+No later model feedback, native executable, GPU, network inference or token
+generation. Each search attempts at most four complete Gooo paths, checking
+all declared outputs AND conditions. Contradictions must exhaust without
+acceptance. No case sampling, no removed feature channels, no float64 conversion
+of whole input/output integers. Original generated bodies are saved.
+
+Full oracle collection: 1552 masks, 3104 compile calls including condition
+checks, 14336 output evaluations and 4656 condition observations. Preflight
+only parses/prepares/encodes frozen sources; it performs no fit or candidate
+execution. Committed clean producer and exact clean compiler aa39466774afe64e56ee87f419ea56fb50917abe
+are required. Fresh exclusive result directory, started/completed markers,
+raw observations and partial failures must be preserved. Never rerun a completed
+producer to improve results. Capture wall/user/system/RSS using the host's time
+utility; timings include this machine's concurrent work and fixed mode order.
+
+Report first valid choice, first output/condition completeness, final complete
+contracts, attempts, opposite-goal separation, gains/regressions by split and
+family, parameters, artifact bytes, fit time and initial prediction median/p95.
+First-choice accuracy includes contradictory cases in its denominator; final
+satisfiable coverage separately uses 386. Read-only audit independently checks
+int64 reference equations, frozen source identity, training membership, all
+recorded candidate outputs/conditions, complete search chains and metric counts.
+Audit must not fit, predict, lower, compile or execute Gooo bodies.
