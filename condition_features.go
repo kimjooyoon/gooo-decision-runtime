@@ -5,8 +5,8 @@ import (
 	"unicode/utf8"
 )
 
-// ConditionChannelFeatureVersion identifies an experimental training input.
-// Existing model loaders do not accept this ABI; its weights need new training.
+// ConditionChannelFeatureVersion identifies the v1 condition training input.
+// Earlier path-model loaders retain their own distinct feature contracts.
 const ConditionChannelFeatureVersion = "source_intent_condition_channels_v1"
 
 // ConditionFeedback describes one observation of a declared candidate mask.

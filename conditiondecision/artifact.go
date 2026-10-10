@@ -24,7 +24,7 @@ func (m *Model) Marshal() ([]byte, error) {
 	if m == nil {
 		return nil, errors.New("condition model required")
 	}
-	return json.Marshal(artifact{Schema, decision.ConditionChannelFeatureVersion, [3]int{FeatureDim, HiddenDim, 2}, m.weights[:]})
+	return json.Marshal(artifact{Schema, m.FeatureVersion(), [3]int{FeatureDim, HiddenDim, 2}, m.weights[:]})
 }
 
 func Decode(raw []byte) (*Model, error) {
@@ -43,10 +43,10 @@ func Decode(raw []byte) (*Model, error) {
 	if err := decoder.Decode(new(any)); err != io.EOF {
 		return nil, errors.New("trailing condition model artifact")
 	}
-	if a.Schema != Schema || a.Features != decision.ConditionChannelFeatureVersion || a.Architecture != [3]int{FeatureDim, HiddenDim, 2} || len(a.Weights) != ParameterCount {
+	if a.Schema != Schema || !supportedFeatures(a.Features) || a.Architecture != [3]int{FeatureDim, HiddenDim, 2} || len(a.Weights) != ParameterCount {
 		return nil, errors.New("condition model artifact contract differs")
 	}
 	var weights [ParameterCount]float32
 	copy(weights[:], a.Weights)
-	return New(weights)
+	return NewForFeatures(weights, a.Features)
 }

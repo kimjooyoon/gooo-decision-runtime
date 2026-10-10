@@ -4,6 +4,8 @@ import (
 	"context"
 	"errors"
 	"math"
+
+	decision "github.com/kimjooyoon/gooo-decision-runtime"
 )
 
 // Acceptable is a bit set of indexes in Masks, not independent option labels.
@@ -53,6 +55,15 @@ func validOptions(o FitOptions) bool {
 // Its additive score cannot represent every joint distribution; the compiler
 // must still check the proposed complete candidate. Cancellation returns no model.
 func Fit(ctx context.Context, samples []Sample, options FitOptions) (*Model, []Epoch, error) {
+	return FitForFeatures(ctx, samples, options, decision.ConditionChannelFeatureVersion)
+}
+
+// FitForFeatures requires samples encoded with the named ABI. Raw arrays do not
+// identify their own representation. It retains the same bounded CPU training.
+func FitForFeatures(ctx context.Context, samples []Sample, options FitOptions, version string) (*Model, []Epoch, error) {
+	if !supportedFeatures(version) {
+		return nil, nil, errors.New("unsupported condition training feature version")
+	}
 	if ctx == nil || len(samples) == 0 || len(samples) > 4096 || !validOptions(options) {
 		return nil, nil, errors.New("bounded condition training samples and options required")
 	}
@@ -67,7 +78,7 @@ func Fit(ctx context.Context, samples []Sample, options FitOptions) (*Model, []E
 			return nil, nil, errors.New("acceptable set must name supplied complete candidates")
 		}
 	}
-	m, _ := New(initial(options.Seed))
+	m, _ := NewForFeatures(initial(options.Seed), version)
 	history := make([]Epoch, 0, options.Epochs)
 	for epoch := range options.Epochs {
 		var gradient [ParameterCount]float64

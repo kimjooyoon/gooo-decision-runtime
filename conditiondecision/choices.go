@@ -6,8 +6,6 @@ import (
 	"encoding/hex"
 	"errors"
 	"math"
-
-	decision "github.com/kimjooyoon/gooo-decision-runtime"
 )
 
 // ChoicePrediction exposes the additive factors used by PredictInto. A bounded
@@ -44,7 +42,7 @@ func (m *Model) Fingerprint() string {
 		return ""
 	}
 	digest := sha256.New()
-	_, _ = digest.Write([]byte(Schema + "\x00" + decision.ConditionChannelFeatureVersion + "\x00"))
+	_, _ = digest.Write([]byte(Schema + "\x00" + m.FeatureVersion() + "\x00"))
 	var raw [ParameterCount * 4]byte
 	for i, w := range m.weights {
 		binary.LittleEndian.PutUint32(raw[i*4:], math.Float32bits(w))

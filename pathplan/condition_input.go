@@ -89,6 +89,15 @@ func (input *ConditionInput) Failure() (ConditionFailure, bool) {
 // from the same immutable plan. Callers supply no rewritten intent or condition.
 // Concurrent calls use separate output arrays and share no mutable scratch.
 func (input *ConditionInput) FeaturesInto(id string, output *[decision.FeatureDim]float32) error {
+	return input.FeaturesIntoVersion(id, decision.ConditionChannelFeatureVersion, output)
+}
+
+// FeaturesIntoVersion uses an explicit model ABI and preserves the destination
+// for unsupported versions. FeaturesInto remains byte-for-byte v1.
+func (input *ConditionInput) FeaturesIntoVersion(id, version string, output *[decision.FeatureDim]float32) error {
+	if version != decision.ConditionChannelFeatureVersion && version != decision.ConditionBranchFeatureVersion {
+		return errors.New("unsupported source condition feature version")
+	}
 	if input == nil || input.prepared == nil {
 		return errors.New("source-bound condition input required")
 	}
@@ -116,6 +125,13 @@ func (input *ConditionInput) FeaturesInto(id string, output *[decision.FeatureDi
 		if choice.ID == id {
 			if feedback.Present {
 				feedback.Choice = uint8(i)
+			}
+			if version == decision.ConditionBranchFeatureVersion {
+				roles, err := prepared.BranchReturnRoles(id)
+				if err != nil {
+					return err
+				}
+				return decision.ConditionBranchFeaturesInto(source, roles, choice.Intent, feedback, output)
 			}
 			return decision.ConditionFeaturesInto(source, choice.Intent, feedback, output)
 		}

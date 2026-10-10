@@ -11,6 +11,7 @@ import (
 	"time"
 	"unicode/utf8"
 
+	decision "github.com/kimjooyoon/gooo-decision-runtime"
 	"github.com/kimjooyoon/gooo-decision-runtime/bodyplan"
 	"github.com/kimjooyoon/gooo-decision-runtime/conditiondecision"
 )
@@ -26,6 +27,7 @@ type ConditionRanking struct {
 	PlanSHA            string           `json:"plan_sha256"`
 	CaseSHA            string           `json:"finite_cases_sha256"`
 	ModelFingerprint   string           `json:"model_fingerprint,omitempty"`
+	FeatureVersion     string           `json:"feature_version,omitempty"`
 	Round              int              `json:"feedback_round"`
 	Attempted          int              `json:"prior_attempts"`
 	ChoiceCount        int              `json:"choice_count"`
@@ -68,6 +70,7 @@ type ConditionSession struct {
 	input              ConditionInput
 	observationAttempt int
 	observedMask       uint16
+	featureVersion     string
 }
 
 // NewConditionSession ranks 1..16 declared binary choices with one neural call.
@@ -92,6 +95,10 @@ func (prepared *PreparedPlan) NewConditionSession(ctx context.Context, model *co
 		return s, err
 	}
 	r.ModelFingerprint = model.Fingerprint()
+	s.featureVersion = model.FeatureVersion()
+	if s.featureVersion != decision.ConditionChannelFeatureVersion {
+		r.FeatureVersion = s.featureVersion
+	}
 	core.result.Selection.ModelVariant = "condition_fp32"
 	if seed != "" {
 		core.result.Selection.SeedSHA256 = hash([]byte(seed))
@@ -142,14 +149,14 @@ func (prepared *PreparedPlan) NewConditionSession(ctx context.Context, model *co
 func (s *ConditionSession) receipt() ConditionRanking {
 	c := s.core
 	return ConditionRanking{Schema: "gooo/condition-path-ranking/v1", PreviousSHA: s.latest.SHA, FromProgressSHA: c.previous,
-		PlanSHA: c.prepared.sha, CaseSHA: c.caseSHA, ModelFingerprint: s.latest.ModelFingerprint, Attempted: c.attempted,
+		PlanSHA: c.prepared.sha, CaseSHA: c.caseSHA, ModelFingerprint: s.latest.ModelFingerprint, FeatureVersion: s.latest.FeatureVersion, Attempted: c.attempted,
 		ChoiceCount: len(c.prepared.plan.Decisions), ObservationAttempt: s.observationAttempt, ObservedMask: s.observedMask,
 		HasFailure: s.input.present, Failure: s.input.failure}
 }
 
 func (s *ConditionSession) features(inputs *[16][conditiondecision.FeatureDim]float32, r *ConditionRanking) error {
 	for i, choice := range s.core.prepared.plan.Decisions {
-		if err := s.input.FeaturesInto(choice.ID, &inputs[i]); err != nil {
+		if err := s.input.FeaturesIntoVersion(choice.ID, s.featureVersion, &inputs[i]); err != nil {
 			return err
 		}
 		var raw [conditiondecision.FeatureDim * 4]byte
