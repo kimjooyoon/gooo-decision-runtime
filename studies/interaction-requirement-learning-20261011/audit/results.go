@@ -34,7 +34,7 @@ func checkModels(root string, report r.Report) {
 		m := report.Models[name]
 		raw := load(root, "model-"+name+".json")
 		parameters := 17890
-		wantSHA := "BASELINE_NOT_MEASURED"
+		wantSHA := "9f2901905b0cd663ea61d678a0993e6f6c2abee3aef7689b1d00faa91e3f857d"
 		var fp, schema, pooling string
 		if name == "ordered" {
 			model, err := contractdecision.DecodeOrderedRequirementConditioned(raw)
@@ -42,7 +42,7 @@ func checkModels(root string, report r.Report) {
 			fp, schema, pooling = model.Fingerprint(), model.ArtifactSchema(), model.Pooling()
 		} else {
 			parameters = 19034
-			wantSHA = "INTERACTION_NOT_MEASURED"
+			wantSHA = "4b61fe8d84df77c8dfac6a880eedcddfd8f5f903fa538d1e80532dd77f74b1ac"
 			model, err := contractdecision.DecodeInteractionRequirementConditioned(raw)
 			must(err)
 			fp, schema, pooling = model.Fingerprint(), model.ArtifactSchema(), model.Pooling()

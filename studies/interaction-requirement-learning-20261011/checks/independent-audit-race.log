@@ -1,0 +1,10 @@
+=== RUN   TestOriginalResultsAndIndependentArithmetic
+--- PASS: TestOriginalResultsAndIndependentArithmetic (1.97s)
+=== RUN   TestTamperedCasesLabelsAndReceiptsAreRejected
+--- PASS: TestTamperedCasesLabelsAndReceiptsAreRejected (1.50s)
+=== RUN   TestOriginalModelIdentityIsRequired
+--- PASS: TestOriginalModelIdentityIsRequired (0.14s)
+=== RUN   TestReadableExamplesAreOriginalRecords
+--- PASS: TestReadableExamplesAreOriginalRecords (0.45s)
+PASS
+ok  	github.com/kimjooyoon/gooo-decision-runtime/studies/interaction-requirement-learning-20261011/audit	5.626s

@@ -1,0 +1,19 @@
+package requirements
+namespace requirements
+entity Integer id "requirements://integer"
+activity Choose(Integer) -> Integer computes "let value = input; let limit = 67; let result = input; if value < limit { result = value - limit } else { result = limit - value }; return result" assembling {
+ choice "comparison" operand_order at "0" intent "작성한 입력에서 비교 결과를 맞춘다. Match the declared comparison results."
+ choice "branches" branch_layout at "0" intent "Choose a route that satisfies both the listed outputs and intermediate conditions."
+ case "-9007199254740995" -> "9007199254741062"
+ case "0" -> "67"
+ case "66" -> "1"
+ case "67" -> "0"
+ case "68" -> "1"
+ case "9007199254740993" -> "9007199254740926"
+ case "9007199254740995" -> "9007199254740928"
+ case "18014398509481990" -> "18014398509481923"
+ condition_case "comparison" input "-9007199254740995" -> "true"
+ condition_case "comparison" input "67" -> "false"
+ condition_case "comparison" input "18014398509481990" -> "false"
+ attempts "4"
+}

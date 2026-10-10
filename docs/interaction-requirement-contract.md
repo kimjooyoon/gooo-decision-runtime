@@ -48,8 +48,10 @@ deterministic receipt. Unsupported ordered source shapes return a declined
 receipt with a reason and zero predictions, retaining deterministic search.
 
 This schema is available through the SDK API and example command. Native
-compiler loading, a released model file and held-out evaluation remain follow-up
-work. Compiler 0.6.26 includes the earlier choice-conditioned schema.
+compiler loading and a versioned model release remain follow-up work. A
+[fresh study](../studies/interaction-requirement-learning-20261011/README.md)
+provides saved weights, held-out results and cost measurements. Compiler 0.6.26
+includes the earlier choice-conditioned schema.
 
 ## The small computation
 
@@ -148,11 +150,14 @@ Current regression coverage includes:
   cancellation, atomic errors and strict artifact decoding.
 - CLI fit/save/load/search and deterministic absence/unsupported-source paths.
 
-Held-out accuracy, prediction latency, CPU utilization, native generated-code
-execution and quantization quality for this new model have not been measured.
-The training regression establishes that this particular joint relationship can
-be learned. Broader usefulness still needs a fresh frozen comparison with all
-failures retained.
+The subsequent [80-document frozen study](../studies/interaction-requirement-learning-20261011/README.md)
+reaches 60/64 first-candidate completions on supported evaluation documents,
+versus 20/64 for the ordered comparator; both complete every document through
+finite checking. Four English-intent assignment sources still miss. The same
+single-template scope, all failures and both saved model files are recorded.
+CPU fitting takes 2.024s and prediction median is 98.458µs; total search time is
+slightly longer despite fewer attempts. Native generated-code execution and
+quantization quality for these weights remain unmeasured.
 
 ## Related building blocks
 
@@ -162,4 +167,5 @@ per-element transformations and pooled set representations.
 studies compact higher-order feature interactions. They provide useful context
 for the pooling and interaction ingredients here. Our current experiment asks
 how small learned decisions can work with Gooo's explicit requirements and
-finite checker; its measured scope is the regression coverage above.
+finite checker; the regressions and separately frozen study bound its measured
+scope.

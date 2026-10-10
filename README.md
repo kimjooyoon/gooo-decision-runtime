@@ -41,10 +41,13 @@ The latest [interaction model](docs/interaction-requirement-contract.md) keeps
 each input associated with its requested target and learns small products of
 source, output and condition representations. `fit -interactions` and
 `search -model` use its explicit 19,034-parameter artifact locally in Go
-(76,136 FP32 weight bytes). A fixed eight-goal training regression reaches 8/8
-first-candidate completions, including 48/48 reorderings of the same cases.
-Held-out accuracy and performance are still unmeasured. The guide explains local
-use, the computation, existing release support and the next evaluation needed.
+(76,136 FP32 weight bytes). A [fresh 80-document study](studies/interaction-requirement-learning-20261011/README.md)
+records 60/64 first-candidate successes on supported evaluation sources versus
+20/64 for the ordered model. Four English-intent assignment cases still miss;
+finite checking completes every document. The new fit takes 2.024s on the local
+CPU and prediction median is 98.458µs. Fewer attempts still produce slightly
+longer total search time on these cheap bodies. Both model files, all failures
+and the narrow template-based evaluation scope are public.
 
 The new [requirement-conditioned model](docs/requirement-conditioned-contract.md)
 reads source choices, declared outputs and intermediate Boolean requirements

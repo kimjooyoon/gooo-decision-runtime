@@ -1,0 +1,12 @@
+{
+  "go_version": "go1.27.2",
+  "os": "darwin",
+  "arch": "arm64",
+  "cpu": "Apple M4",
+  "logical_cpus": 10,
+  "physical_memory_bytes": 17179869184,
+  "compute": "local CPU",
+  "gpu_used": false,
+  "system_wide_cpu_sampled": false,
+  "process_measurement": "/usr/bin/time -l; process-time.txt retains the original output"
+}

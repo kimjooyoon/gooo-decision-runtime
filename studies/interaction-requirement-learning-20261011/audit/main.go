@@ -18,7 +18,7 @@ import (
 	r "github.com/kimjooyoon/gooo-decision-runtime/studies/interaction-requirement-learning-20261011/record"
 )
 
-const producer = "PRODUCER_NOT_FROZEN"
+const producer = "be22d1de09d23e8f68ae6ad6f2237281836b9233"
 
 func must(e error) {
 	if e != nil {
