@@ -6,11 +6,50 @@ source-bound plan; this library ranks its permitted choices and continues finite
 search using observed failures. Think of it as the small assembly mechanism
 inside the larger language workshop.
 
-**API version: v0.2.27-experimental.** The shared judge uses 2,072
+**API baseline: v0.2.27-experimental.** The current source also includes the
+condition-aware feedback described below. The shared judge uses 2,072
 parameters across three binary decisions. Its compact FP32 weights occupy 8,288
 bytes; ternary files occupy 446 bytes and decode into 2,096 tensor bytes plus
 eight scale bytes. A caller owns a 3,200-byte workspace. These array sizes are
 one component of application RAM.
+
+### Condition-aware model feedback
+
+An output-correct body can still fail a declared intermediate condition. After a
+committed batch, `Reconsider`, `ReconsiderUnfixed`, `ReconsiderJoint` and
+`ReconsiderThree` now include that reason in the frozen model's next input.
+`FeedbackReceipt` adds two optional fields: `prior_condition_rejections` and
+`first_condition_failure`. The latter holds the first rejected candidate's mask
+and first failing `ConditionResult`, including the exact int64 input, expected
+Boolean, actual observation and final output.
+
+For example, the appended context can contain:
+
+```text
+condition_rejected=1 condition_mask=0 condition_choice="comparison" condition_input=-9007199254740995 condition_expected=false condition_actual=true condition_status=MISMATCH
+```
+
+A skipped condition carries `condition_actual=UNOBSERVED` and
+`condition_status=NOT_REACHED`. It cannot silently become an observed false.
+Only completed candidate evaluations supply this evidence. The session retains
+one counterexample, while callers own the full attempt log. Returned copies
+cannot change later feedback. The model keeps its original weights; the complete
+source input and intent remain present. Feedback enters the existing hashed
+natural-language feature channel, so reliable interpretation still depends on
+the model's training and that channel's capacity.
+
+The existing input bounds apply to the full augmented input. Oversized inputs
+decline inference and leave the frontier unchanged. With one remaining path,
+no ranking call is needed. With no rejected conditions, the previous feedback
+text and JSON fields stay unchanged. Deterministic sessions continue without a
+model; passing the declared output and condition cases still decides acceptance.
+
+Regression coverage checks per-choice, two-choice and three-choice input/feature
+delivery, cancellation, copied receipt ownership, exact large integers,
+unreached predicates and oversized inputs. This establishes evidence delivery;
+new trained accuracy or fewer search attempts require a separate measurement.
+`source-provenance-v0.2.27.json` preserves the previous manifest byte for byte;
+`source-evolution-condition-feedback.json` binds the three evolved runtime files.
 
 ### Source condition cases (v0.2.27)
 
@@ -871,7 +910,8 @@ occurs. Original intent is not truncated to fit context; all inputs must fit the
 `CIHint` accepts a source SHA and PASS/FAIL/UNKNOWN status. It is caller context;
 the SDK does not verify GitHub or grant authority to edit source. Each feedback
 receipt links actual failures, contexts, predictions and previous observations.
-The session retains only counters and the latest digest, with caller-owned logs.
+The session retains counters, the latest digest and, when applicable, one
+condition counterexample, with caller-owned logs.
 
 This extraction pins 24 source/test files to research source
 `5ee0ce493adaa56f0f1f9b8f9811d265ff5601d9`. The previous 20-file manifest is retained
