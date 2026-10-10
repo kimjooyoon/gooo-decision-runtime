@@ -48,8 +48,8 @@ type ConditionResult struct {
 // search receipt. A condition passes only if reached with the declared Boolean
 // value. Skipped conditions stay NOT_REACHED rather than passing as false. The
 // result has at most 128 rows.
-// Existing Search APIs do not consume these cases; callers must explicitly use
-// this result until source-owned constraints are integrated into search.
+// Search consumes Plan.ConditionCases. This method also supports separate
+// caller-supplied diagnostic cases without changing the prepared contract.
 func (prepared *PreparedPlan) CheckConditions(ctx context.Context, choices map[string]string,
 	cases []ConditionCase) ([]ConditionResult, error) {
 	if ctx == nil || len(cases) == 0 || len(cases) > 128 {
@@ -62,12 +62,21 @@ func (prepared *PreparedPlan) CheckConditions(ctx context.Context, choices map[s
 	if err != nil {
 		return nil, err
 	}
+	return prepared.observeConditions(ctx, program, cases)
+}
+
+func (prepared *PreparedPlan) observeConditions(ctx context.Context, program *bodyplan.Program,
+	cases []ConditionCase) ([]ConditionResult, error) {
+	if len(cases) == 0 {
+		return nil, nil
+	}
 	var targets [128]int
 	for i, test := range cases {
-		targets[i], err = prepared.conditionTarget(test.ChoiceID)
+		target, err := prepared.conditionTarget(test.ChoiceID)
 		if err != nil {
 			return nil, err
 		}
+		targets[i] = target
 	}
 	results := make([]ConditionResult, len(cases))
 	for i, test := range cases {

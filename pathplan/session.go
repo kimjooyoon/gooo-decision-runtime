@@ -85,6 +85,7 @@ type SessionProgress struct {
 	FeedbackRounds         int               `json:"feedback_rounds,omitempty"`
 	FeedbackPredictions    int               `json:"feedback_local_model_predictions,omitempty"`
 	LatestFeedbackSHA      string            `json:"latest_feedback_sha256,omitempty"`
+	ConditionRejected      int               `json:"cumulative_condition_rejected_candidates,omitempty"`
 }
 
 // NewSession ranks once, before any candidate tests. Each Advance has its own
@@ -269,10 +270,14 @@ func (session *Session) Advance(ctx context.Context, maxNewAttempts int) (Sessio
 			session.result.TypeRejected++
 		} else {
 			session.result.Evaluated++
-			if attempt.Passed > session.bestPassed {
+			if attempt.Status == "CONDITION_REJECTED" {
+				session.result.ConditionRejected++
+			}
+			if attempt.Status == "EVALUATED" && attempt.Passed > session.bestPassed {
 				session.bestPassed, session.best = attempt.Passed, program
 				session.bestCases = append([]TestResult(nil), attempt.Results...)
 				session.result.SelectedTrainingPassed = attempt.Passed
+				session.result.Selection.Conditions = append([]ConditionResult(nil), attempt.Conditions...)
 				session.result.Selection.Choices = cloneChoices(attempt.Choices)
 				for i := range session.result.Selection.Receipts {
 					receipt := &session.result.Selection.Receipts[i]
@@ -281,7 +286,7 @@ func (session *Session) Advance(ctx context.Context, maxNewAttempts int) (Sessio
 			}
 		}
 		attempts = append(attempts, attempt)
-		if program != nil && attempt.Passed == len(session.cases) {
+		if program != nil && attempt.Status == "EVALUATED" && attempt.Passed == len(session.cases) {
 			session.result.Status = "TRAINING_COMPLETE"
 			break
 		}
@@ -296,6 +301,9 @@ func (session *Session) Advance(ctx context.Context, maxNewAttempts int) (Sessio
 	}
 	if failure == nil && session.best == nil {
 		failure = ErrNoTypedCandidate
+		if session.result.ConditionRejected > 0 {
+			failure = ErrNoConditionCandidate
+		}
 	}
 	progress, err := session.progress(attempts, failure != nil && !errors.Is(failure, ErrNoTypedCandidate))
 	if err != nil {
@@ -308,33 +316,11 @@ func (session *Session) evaluate(ctx context.Context, mask uint16) (SearchAttemp
 	for i, choice := range session.prepared.plan.Decisions {
 		choices[choice.ID] = choice.Options[int(mask>>i&1)].Label
 	}
-	attempt := SearchAttempt{Mask: mask, Choices: choices, Total: len(session.cases), Status: "TYPE_REJECTED"}
-	program, err := assemble(session.prepared.plan, choices)
-	if err != nil {
-		return attempt, nil, nil
-	}
-	attempt.Status, attempt.GoooSHA = "EVALUATED", hash([]byte(program.GoooSource()))
-	for _, test := range session.cases {
-		if err := ctx.Err(); err != nil {
-			return attempt, nil, err
-		}
-		value, err := program.Evaluate(test.Input)
-		if err != nil {
-			return attempt, nil, errors.New("finite session interpreter failed")
-		}
-		passed := value.Int == test.Expected
-		if passed {
-			attempt.Passed++
-		}
-		attempt.Results = append(attempt.Results, TestResult{test.Input, test.Expected, value.Int, passed})
-	}
-	if err := ctx.Err(); err != nil {
-		return attempt, nil, err
-	}
-	return attempt, program, nil
+	return session.prepared.evaluateCandidate(ctx, mask, choices, session.cases)
 }
 func ownedSelection(selection Selection) Selection {
 	selection.Choices = cloneChoices(selection.Choices)
+	selection.Conditions = append([]ConditionResult(nil), selection.Conditions...)
 	selection.Receipts = append([]Receipt(nil), selection.Receipts...)
 	if selection.Joint != nil {
 		copy := *selection.Joint
@@ -348,6 +334,7 @@ func ownedSelection(selection Selection) Selection {
 }
 func (session *Session) progress(attempts []SearchAttempt, interrupted bool) (SessionProgress, error) {
 	progress := SessionProgress{Schema: "gooo/typed-path-session-progress/v1", Sequence: session.sequence + 1, PreviousSHA: session.previous, CaseSHA: session.caseSHA, Status: session.result.Status, Selection: ownedSelection(session.result.Selection), Declared: session.result.DeclaredCombinations, Attempted: session.attempted, Unattempted: session.result.DeclaredCombinations - session.attempted, Evaluated: session.result.Evaluated, TypeRejected: session.result.TypeRejected, SelectedPassed: session.result.SelectedTrainingPassed, Cases: len(session.cases), BestCases: append([]TestResult(nil), session.bestCases...), NewAttempts: attempts, InitialProposals: cloneChoices(session.result.InitialProposals), EligibleProbabilities: append([][2]float64(nil), session.result.EligibleProbabilities...), ModelAbstentions: session.result.ModelAbstentionsObserved, Exhausted: session.attempted == session.result.DeclaredCombinations, Interrupted: interrupted, ScheduledBytes: len(session.scheduled) * 8, FrontierNodes: session.queue.Len(), FrontierStorage: cap(session.queue) * int(unsafe.Sizeof(searchNode{})), Scope: "Fixed finite cases and declared typed paths; not general language accuracy or all-input correctness. Digests link observations, not authorization to mutate source."}
+	progress.ConditionRejected = session.result.ConditionRejected
 	progress.Initialized = session.initialized
 	progress.FeedbackRounds, progress.FeedbackPredictions, progress.LatestFeedbackSHA = session.feedbackRounds, session.feedbackCalls, session.feedbackSHA
 	if session.initialError != nil {
@@ -410,5 +397,5 @@ func (prepared *PreparedPlan) SearchBatches(ctx context.Context, model *decision
 	return result, body, records, nil
 }
 func sessionSearchResult(progress SessionProgress, attempts []SearchAttempt) SearchResult {
-	return SearchResult{Schema: "gooo/typed-path-tdd-search/v1", Status: progress.Status, Selection: progress.Selection, DeclaredCombinations: progress.Declared, Unattempted: progress.Unattempted, Evaluated: progress.Evaluated, TypeRejected: progress.TypeRejected, SelectedTrainingPassed: progress.SelectedPassed, TrainingTotal: progress.Cases, Attempts: attempts, ModelAbstentionsObserved: progress.ModelAbstentions, EligibleProbabilities: progress.EligibleProbabilities, InitialProposals: progress.InitialProposals}
+	return SearchResult{Schema: "gooo/typed-path-tdd-search/v1", Status: progress.Status, Selection: progress.Selection, DeclaredCombinations: progress.Declared, Unattempted: progress.Unattempted, Evaluated: progress.Evaluated, TypeRejected: progress.TypeRejected, ConditionRejected: progress.ConditionRejected, SelectedTrainingPassed: progress.SelectedPassed, TrainingTotal: progress.Cases, Attempts: attempts, ModelAbstentionsObserved: progress.ModelAbstentions, EligibleProbabilities: progress.EligibleProbabilities, InitialProposals: progress.InitialProposals}
 }

@@ -6,13 +6,13 @@ source-bound plan; this library ranks its permitted choices and continues finite
 search using observed failures. Think of it as the small assembly mechanism
 inside the larger language workshop.
 
-**API version: v0.2.26-experimental.** The shared judge uses 2,072
+**API version: v0.2.27-experimental.** The shared judge uses 2,072
 parameters across three binary decisions. Its compact FP32 weights occupy 8,288
 bytes; ternary files occupy 446 bytes and decode into 2,096 tensor bytes plus
 eight scale bytes. A caller owns a 3,200-byte workspace. These array sizes are
 one component of application RAM.
 
-### Intermediate condition observations (unreleased)
+### Source condition cases (v0.2.27)
 
 `bodyplan.Program.ObserveCondition(input, statement)` observes an existing `if`
 condition while running the complete selected body. It uses the ordinary local
@@ -37,14 +37,30 @@ Each row records the final output, observed condition and `MATCH`, `MISMATCH` or
 There are at most 128 cases, with exact int64 inputs and explicit Boolean answers.
 No model calls occur in either API.
 
-These APIs expose a gap seen in the
+`Plan.ConditionCases` makes these examples part of the immutable plan contract.
+Bounded search, incremental batches, feedback, two/three-choice model sessions
+and probe-based resolution retain condition observations for every evaluated
+candidate. A candidate failing a declared condition cannot become the selected
+program, even when its final outputs pass. Its final-case results remain visible
+with `CONDITION_REJECTED`, separately from type rejection. Budgets and initial
+model calls are retained; source constraints do not restart a search. Direct
+`Choose` reports a condition failure for an ineligible one-shot selection.
+
+Probe caches retain only candidates satisfying the original source conditions.
+Subsequent snapshots reference the initial condition observations and report
+reused condition evaluations, with zero new condition executions. The two-update
+whole-candidate profile supports straight-line assignments; `if` conditions are
+outside that existing profile.
+
+These APIs address a gap seen in the
 [Gooo joint-path model study](https://github.com/kimjooyoon/gooo-ecosystem-workbench/tree/b63ea6d74603a89e1a74af2b3dc36c1596742935/models/joint-path-20261010):
 opposite predicates can produce the same final answers after swapping branches.
 The caller supplies the expected predicate values. Counts cover only those
-authored cases. The existing search APIs still select using final-output cases;
-Gooo source syntax, candidate filtering and saved-replay enforcement remain
+authored cases. Gooo source syntax and saved-replay enforcement are compiler
 integration work. Keep final-output scores and intermediate-condition scores
-separate when using this observation API.
+separate. Empty condition suites carry no predicate evidence. The previous
+extraction manifest is preserved in `source-provenance-v0.2.26.json`;
+`source-evolution-condition-cases.json` records the exact SDK-owned changes.
 
 ### Ordered source value graph (v0.2.26)
 

@@ -321,12 +321,10 @@
       "origin_path": "internal/pathplan/diagnosis.go",
       "copied_path": "pathplan/diagnosis.go",
       "origin_sha256": "5f534b569b39defed81c82265f315d81857f321604cd7b61e8b7eeea8b9d1dce",
-      "sha256": "cf98373f442c60f0df827a53926399d49978b3679c5e1a785dd9936bdcc9b9de",
+      "sha256": "d122f5ce1b7affde9e76f22c7857233126ec276fe0c3f620818d34782320acb0",
       "origin_bytes": 9589,
-      "bytes": 9803,
-      "transformation": "fixed_module_import_relocation_and_gofmt_then_sdk_source_condition_contract_v1",
-      "previous_sdk_sha256": "d122f5ce1b7affde9e76f22c7857233126ec276fe0c3f620818d34782320acb0",
-      "previous_sdk_bytes": 9540
+      "bytes": 9540,
+      "transformation": "fixed_module_import_relocation_and_gofmt"
     },
     {
       "origin_path": "internal/pathplan/diagnosis_test.go",
@@ -413,12 +411,10 @@
       "origin_path": "internal/pathplan/pathplan.go",
       "copied_path": "pathplan/pathplan.go",
       "origin_sha256": "b799a82fac1c8f7ab3eeb546e1439c5915b406a050831af9a3a4ac0c8ebc6fdd",
-      "sha256": "5d1250b55c2f6d48891bc1a3b4ea6898a1e2accd3bd673a2088eab0bb7e6504d",
+      "sha256": "20cb516efc4c248c4cfa3497e180e6dfb340dca1b06ffad612ac2476ca9c6eaa",
       "origin_bytes": 14399,
-      "bytes": 14913,
-      "transformation": "fixed_module_import_relocation_and_gofmt_then_sdk_source_condition_contract_v1",
-      "previous_sdk_sha256": "20cb516efc4c248c4cfa3497e180e6dfb340dca1b06ffad612ac2476ca9c6eaa",
-      "previous_sdk_bytes": 14350
+      "bytes": 14350,
+      "transformation": "fixed_module_import_relocation_and_gofmt"
     },
     {
       "origin_path": "internal/pathplan/pathplan_test.go",
@@ -433,12 +429,10 @@
       "origin_path": "internal/pathplan/prepared.go",
       "copied_path": "pathplan/prepared.go",
       "origin_sha256": "1bea56b29572055d31f9f3ac218be45acd9c8849a52bec869c993746218d2b2b",
-      "sha256": "a0ddaa444faccc96763628da2d501c61d91acd58265c5cb3070b901bd0d92595",
+      "sha256": "c55fd81b7f67829251000bf11fe8cdedf3ac61aa0ec5e5abcec16fd592079a3f",
       "origin_bytes": 3777,
-      "bytes": 3867,
-      "transformation": "fixed_module_import_relocation_and_gofmt_then_sdk_source_condition_contract_v1",
-      "previous_sdk_sha256": "c55fd81b7f67829251000bf11fe8cdedf3ac61aa0ec5e5abcec16fd592079a3f",
-      "previous_sdk_bytes": 3757
+      "bytes": 3757,
+      "transformation": "fixed_module_import_relocation_and_gofmt"
     },
     {
       "origin_path": "internal/pathplan/prepared_test.go",
@@ -453,12 +447,10 @@
       "origin_path": "internal/pathplan/search.go",
       "copied_path": "pathplan/search.go",
       "origin_sha256": "602f7a17aa26a9ceecbc3402614f3bdfbd729b7b05b14c3651d4490d414fcfc5",
-      "sha256": "d3f132d32c85747f76389a1c68494cafc4c3b37e560997bfc59c16b9a80e374c",
+      "sha256": "12e1c27b5675fbb32959b4a79992e77e5166ef460c19ad816ffca62566271a36",
       "origin_bytes": 10615,
-      "bytes": 10498,
-      "transformation": "fixed_module_import_relocation_and_gofmt_then_sdk_source_condition_contract_v1",
-      "previous_sdk_sha256": "12e1c27b5675fbb32959b4a79992e77e5166ef460c19ad816ffca62566271a36",
-      "previous_sdk_bytes": 10566
+      "bytes": 10566,
+      "transformation": "fixed_module_import_relocation_and_gofmt"
     },
     {
       "origin_path": "internal/pathplan/search_test.go",
@@ -473,12 +465,10 @@
       "origin_path": "internal/pathplan/session.go",
       "copied_path": "pathplan/session.go",
       "origin_sha256": "e9e6a1a69de123450bf83c181af618278dcb546092f280cc9cf332a146d1c99d",
-      "sha256": "e595bedb11cd230398e4ff985132a205c511903deec32909af2c7f66482b41d6",
+      "sha256": "56fc53141e075ed56f316df1b2c13dc3f8166fabac625b804bb46cc3ccb05b19",
       "origin_bytes": 18147,
-      "bytes": 17988,
-      "transformation": "fixed_module_import_relocation_and_gofmt_then_sdk_source_condition_contract_v1",
-      "previous_sdk_sha256": "56fc53141e075ed56f316df1b2c13dc3f8166fabac625b804bb46cc3ccb05b19",
-      "previous_sdk_bytes": 18098
+      "bytes": 18098,
+      "transformation": "fixed_module_import_relocation_and_gofmt"
     },
     {
       "origin_path": "internal/pathplan/session_test.go",

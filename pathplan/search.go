@@ -24,13 +24,14 @@ type TestResult struct {
 	Passed   bool  `json:"passed"`
 }
 type SearchAttempt struct {
-	Mask    uint16            `json:"choice_mask"`
-	Choices map[string]string `json:"choices"`
-	Status  string            `json:"status"`
-	Passed  int               `json:"training_cases_passed"`
-	Total   int               `json:"training_cases_total"`
-	Results []TestResult      `json:"case_results,omitempty"`
-	GoooSHA string            `json:"gooo_source_sha256,omitempty"`
+	Mask       uint16            `json:"choice_mask"`
+	Choices    map[string]string `json:"choices"`
+	Status     string            `json:"status"`
+	Passed     int               `json:"training_cases_passed"`
+	Total      int               `json:"training_cases_total"`
+	Results    []TestResult      `json:"case_results,omitempty"`
+	GoooSHA    string            `json:"gooo_source_sha256,omitempty"`
+	Conditions []ConditionResult `json:"condition_results,omitempty"`
 }
 type SearchResult struct {
 	Schema                   string            `json:"schema"`
@@ -46,6 +47,7 @@ type SearchResult struct {
 	ModelAbstentionsObserved int               `json:"model_abstentions_observed"`
 	EligibleProbabilities    [][2]float64      `json:"eligible_probabilities,omitempty"`
 	InitialProposals         map[string]string `json:"initial_proposals"`
+	ConditionRejected        int               `json:"condition_rejected_candidates,omitempty"`
 }
 type searchNode struct {
 	mask  uint16
@@ -206,30 +208,20 @@ func (prepared *PreparedPlan) Search(ctx context.Context, model *decision.Model,
 		for i, choice := range plan.Decisions {
 			choices[choice.ID] = choice.Options[int(node.mask>>i&1)].Label
 		}
-		attempt := SearchAttempt{Mask: node.mask, Choices: choices, Total: len(cases), Status: "TYPE_REJECTED"}
-		program, err := assemble(plan, choices)
+		attempt, program, err := prepared.evaluateCandidate(ctx, node.mask, choices, cases)
 		if err != nil {
+			return result, best, err
+		}
+		if program == nil {
 			result.TypeRejected++
 		} else {
-			attempt.Status = "EVALUATED"
-			attempt.GoooSHA = hash([]byte(program.GoooSource()))
 			result.Evaluated++
-			for _, test := range cases {
-				if err := ctx.Err(); err != nil {
-					return result, best, err
-				}
-				value, err := program.Evaluate(test.Input)
-				if err != nil {
-					return result, best, errors.New("finite path interpreter failed")
-				}
-				passed := value.Int == test.Expected
-				if passed {
-					attempt.Passed++
-				}
-				attempt.Results = append(attempt.Results, TestResult{test.Input, test.Expected, value.Int, passed})
+			if attempt.Status == "CONDITION_REJECTED" {
+				result.ConditionRejected++
 			}
-			if attempt.Passed > bestPassed {
+			if attempt.Status == "EVALUATED" && attempt.Passed > bestPassed {
 				bestPassed, best, bestChoices = attempt.Passed, program, cloneChoices(choices)
+				result.Selection.Conditions = append([]ConditionResult(nil), attempt.Conditions...)
 			}
 		}
 		result.Attempts = append(result.Attempts, attempt)
@@ -248,6 +240,9 @@ func (prepared *PreparedPlan) Search(ctx context.Context, model *decision.Model,
 	}
 	result.Unattempted = result.DeclaredCombinations - len(result.Attempts)
 	if best == nil {
+		if result.ConditionRejected > 0 {
+			return result, nil, ErrNoConditionCandidate
+		}
 		return result, nil, errors.New("no typed candidate was evaluated within the search budget")
 	}
 	result.SelectedTrainingPassed = bestPassed

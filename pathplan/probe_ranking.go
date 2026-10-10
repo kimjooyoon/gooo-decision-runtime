@@ -18,24 +18,33 @@ type ProbePartition struct {
 
 // ProbeRanking recommends where an existing oracle could provide useful evidence.
 // COMPLETE means every declared candidate was observed, not semantic completeness.
+type CandidateConditions struct {
+	Mask    uint16            `json:"choice_mask"`
+	Results []ConditionResult `json:"results"`
+}
+
 type ProbeRanking struct {
-	Schema             string           `json:"schema"`
-	Status             string           `json:"status"`
-	PlanSHA256         string           `json:"plan_sha256"`
-	CasesSHA256        string           `json:"cases_sha256"`
-	ProbesSHA256       string           `json:"probe_inputs_sha256"`
-	Declared           int              `json:"declared_combinations"`
-	Observed           int              `json:"observed_combinations"`
-	Unobserved         int              `json:"unobserved_combinations"`
-	TypeRejected       int              `json:"type_rejected_candidates"`
-	CaseRejected       int              `json:"case_rejected_candidates"`
-	SurvivingMasks     []uint16         `json:"surviving_masks"`
-	CandidatePairs     int              `json:"candidate_pairs"`
-	Probes             []ProbePartition `json:"probes"`
-	RecommendedIndex   *int             `json:"recommended_probe_index"`
-	ModelPredictions   int              `json:"model_predictions"`
-	EvaluationAttempts int              `json:"evaluation_attempts"`
-	OutputStorageBytes int              `json:"output_matrix_bytes"`
+	Schema                     string                `json:"schema"`
+	Status                     string                `json:"status"`
+	PlanSHA256                 string                `json:"plan_sha256"`
+	CasesSHA256                string                `json:"cases_sha256"`
+	ProbesSHA256               string                `json:"probe_inputs_sha256"`
+	Declared                   int                   `json:"declared_combinations"`
+	Observed                   int                   `json:"observed_combinations"`
+	Unobserved                 int                   `json:"unobserved_combinations"`
+	TypeRejected               int                   `json:"type_rejected_candidates"`
+	CaseRejected               int                   `json:"case_rejected_candidates"`
+	SurvivingMasks             []uint16              `json:"surviving_masks"`
+	CandidatePairs             int                   `json:"candidate_pairs"`
+	Probes                     []ProbePartition      `json:"probes"`
+	RecommendedIndex           *int                  `json:"recommended_probe_index"`
+	ModelPredictions           int                   `json:"model_predictions"`
+	EvaluationAttempts         int                   `json:"evaluation_attempts"`
+	OutputStorageBytes         int                   `json:"output_matrix_bytes"`
+	ConditionRejected          int                   `json:"condition_rejected_candidates,omitempty"`
+	ConditionEvaluations       int                   `json:"condition_evaluations,omitempty"`
+	ReusedConditionEvaluations int                   `json:"reused_condition_evaluations,omitempty"`
+	ConditionObservations      []CandidateConditions `json:"condition_observations,omitempty"`
 }
 
 // RankProbes evaluates at most 64 ascending choice masks against up to 128
@@ -73,6 +82,16 @@ func (prepared *PreparedPlan) RankProbes(ctx context.Context, cases []TestCase, 
 		if compileErr != nil {
 			r.TypeRejected++
 		} else {
+			conditions, err := prepared.checkProgramConditions(ctx, program)
+			if err != nil {
+				r.Status = "INTERRUPTED"
+				return r, err
+			}
+			if len(conditions) > 0 {
+				r.ConditionObservations = append(r.ConditionObservations, CandidateConditions{Mask: uint16(mask), Results: conditions})
+				r.ConditionEvaluations += len(conditions)
+			}
+			conditionMatch := ConditionsPassed(conditions)
 			matches := true
 			for _, test := range cases {
 				r.EvaluationAttempts++
@@ -83,7 +102,13 @@ func (prepared *PreparedPlan) RankProbes(ctx context.Context, cases []TestCase, 
 				}
 				matches = matches && value == test.Expected
 			}
-			if matches {
+			if !conditionMatch {
+				r.ConditionRejected++
+			}
+			if !matches {
+				r.CaseRejected++
+			}
+			if matches && conditionMatch {
 				row := len(r.SurvivingMasks)
 				for j, input := range probes {
 					r.EvaluationAttempts++
@@ -95,8 +120,6 @@ func (prepared *PreparedPlan) RankProbes(ctx context.Context, cases []TestCase, 
 					outputs[row][j] = value
 				}
 				r.SurvivingMasks = append(r.SurvivingMasks, uint16(mask))
-			} else {
-				r.CaseRejected++
 			}
 		}
 		r.Observed++

@@ -19,6 +19,7 @@ type PreparedPlan struct {
 
 func ownedPlan(plan Plan) Plan {
 	plan.Base = cloneBase(plan.Base)
+	plan.ConditionCases = append([]ConditionCase(nil), plan.ConditionCases...)
 	plan.Decisions = append([]Choice(nil), plan.Decisions...)
 	for i := range plan.Decisions {
 		plan.Decisions[i].Options = append([]Option(nil), plan.Decisions[i].Options...)
@@ -36,7 +37,7 @@ func ownedPlan(plan Plan) Plan {
 func Prepare(plan Plan) (*PreparedPlan, error) {
 	// Check outer limits before copying caller-owned slices.
 	if plan.Schema != Schema || len(plan.Decisions) == 0 || len(plan.Decisions) > 16 ||
-		len(plan.Base.Expressions) > 128 || len(plan.Base.Statements) > 128 {
+		len(plan.Base.Expressions) > 128 || len(plan.Base.Statements) > 128 || len(plan.ConditionCases) > 128 {
 		return nil, errors.New("path plan schema or arena bounds are invalid")
 	}
 	if len(plan.Base.Root) > 128 {
