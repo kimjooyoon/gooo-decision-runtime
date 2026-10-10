@@ -1,0 +1,14 @@
+Exploratory representation check, declared before execution, 2026-10-10.
+Static inspection suggests source feature v1 omits direct branch return roles.
+Use two Gooo sources for max(input, 10): identical comparison, same bilingual
+intent, swapped return arms. Enumerate both branch layouts and all six declared
+cases, including exact int64 values. Inspect initial 256-value feature arrays.
+Use unchanged published FP32 model SHA256
+a16696ed44c668f38cc2e7ee1dc6ff3f4716649d57e59df7c9490d1c670edc48.
+Predict once per source and record actual call time; do not fit or alter weights.
+Record all candidate source bodies and finite outputs even if a hypothesis fails.
+No native process execution. This is an intentionally constructed collision
+probe, not a held-out accuracy benchmark. Exact identical inputs with disjoint
+valid label sets would identify information missing before model inference.
+Compiler checkout must be clean source a263a263c961cf1671df7c21661d1db9018d8b90.
+Runtime uses the public SDK0.2.30 module. The output path must not exist.
