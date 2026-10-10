@@ -15,8 +15,19 @@ assignment forms expose the same calculation to this separately identified model
 The [retained study](studies/canonical-contract-learning-20261011/README.md) records
 weak first-choice results: canonical36/128, paired legacy33/128 and fixed32/128 on
 related in-family variants. Existing model defaults remain unchanged. The public
-compiler0.6.27 does not load this canonical schema; use the SDK commands and
-check the compiler's current support status before native integration.
+compiler0.6.27 does not load this canonical schema. The native adapter is merged
+in development source at `88a2386d`; the [guide](docs/canonical-branch-input.md#native-compiler-support)
+identifies the supported source and commands.
+
+The subsequent [canonical pooling study](studies/canonical-pooling-20261011/README.md)
+and its two original research weight files are also public on
+[Hugging Face](https://huggingface.co/asketeddy/gooo-canonical-decision-tiny-v1).
+Both have 19,034 FP32 parameters / 76,136 weight bytes. On that study's related
+evaluation, mean/extreme first choices pass 32/128 and 36/128, versus fixed 32/128;
+all three finish within four candidates. Fixed ordering is faster overall for
+these cheap rules. The [download guide](docs/canonical-branch-input.md#download-an-existing-model)
+pins the Hub revision and retains failures, training scope and cost alongside the
+weights. These are different fits from the SDK0.2.40 release's paired models.
 
 [SDK0.2.39](https://github.com/kimjooyoon/gooo-decision-runtime/releases/tag/v0.2.39-experimental)
 provides the ordered and interaction requirement models, saved weights and
@@ -42,6 +53,7 @@ integrations and their original observations are:
 | [PR1446](https://github.com/kimjooyoon/meta-ontology-go/pull/1446) | Download, inspect, construct and replay guidance; included in the verified 0.6.26 public binary |
 | [PR1449](https://github.com/kimjooyoon/meta-ontology-go/pull/1449) | Saved-result change reports and the small Go baseline; accepted on `dev` after 0.6.27 |
 | [PR1450](https://github.com/kimjooyoon/meta-ontology-go/pull/1450) | Ordered/interaction model loading and immediate native construction; merged to `dev` at `c8a68c51`, separate from the public 0.6.27 binary |
+| [PR1452](https://github.com/kimjooyoon/meta-ontology-go/pull/1452) | Canonical model loading, source-input inspection, construction and model-free replay; merged to `dev` at `88a2386d`, separate from the public 0.6.27 binary |
 
 One of the three PR1445 examples needs more attempts with the model. See the
 compiler's [current release and support status](https://github.com/kimjooyoon/meta-ontology-go/wiki/Current-Status)
@@ -57,8 +69,8 @@ supported source shapes. `inspect -canonical-source` displays that input;
 and bounded construction. Old artifacts retain their original inputs.
 A [retained-record inspection](studies/canonical-input-inspection-20261011/README.md)
 finds identical arrays in 96/96 paired bodies, versus 32/96 before. It makes zero
-predictions or candidate evaluations. The native compiler adapter for this
-canonical format is a remaining development step.
+predictions or candidate evaluations. The native compiler adapter is merged in
+development source; see the version-specific support table above.
 
 A new [320-document study](studies/canonical-contract-learning-20261011/README.md)
 has now completed one fresh fit for each input format. Canonical/legacy first
