@@ -1,0 +1,1 @@
+{"v5/max/rows":16,"v5/max/valid":12,"v5/min/rows":16,"v5/min/valid":8,"v6/max/all_branch_hidden_zero":8,"v6/max/rows":16,"v6/min/all_branch_hidden_zero":8,"v6/min/rows":16,"v6/min/valid":16}

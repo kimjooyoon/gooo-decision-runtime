@@ -50,3 +50,9 @@ The fixed [intent diagnostic protocol](../studies/intent-selection-diagnostics-2
 compares frozen v5/v6 models on opposite Korean/English intents in32 direct
 Gooo sources, with64 explicitly counted diagnostic forward passes and no fit
 or candidate execution.
+
+The [recorded result](../studies/intent-selection-diagnostics-20261010/README.md)
+found all24 branch activations zero in eight of16 opposite-intent pairs for v6.
+Those branch scores reduced to the learned output biases. v5 had zero such
+pairs. The trace exposes an observed loss of intent distinction; other v6
+failures still had active units and need separate explanation.
