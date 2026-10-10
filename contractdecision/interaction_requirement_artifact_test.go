@@ -29,7 +29,7 @@ func TestInteractionRequirementArtifactBindsBothChannelsAndComputation(t *testin
 			}
 		}
 		for _, field := range []string{"schema", "source_feature_version", "case_feature_version", "condition_feature_version",
-			"architecture", "bounds", "interaction", "case_association", "input_scale", "empty_conditions", "activation", "pooling", "weights_fp32", "unknown"} {
+			"architecture", "bounds", "interaction", "case_association", "input_scale", "empty_conditions", "activation", "numerics", "pooling", "weights_fp32", "unknown"} {
 			var fields map[string]json.RawMessage
 			if err := json.Unmarshal(raw, &fields); err != nil {
 				t.Fatal(err)

@@ -5,6 +5,13 @@ import (
 	"math"
 )
 
+// Make affine accumulation explicit: Go permits an implicit float32 multiply-add
+// to fuse on some architectures. Tiny differences can diverge during fitting.
+// This model uses the same float64 FMA followed by float32 rounding everywhere.
+func interactionAffine(sum, value, weight float32) float32 {
+	return float32(math.FMA(float64(value), float64(weight), float64(sum)))
+}
+
 func interactionTanh(value float32) float32 {
 	if math.IsInf(float64(value), 0) || math.IsNaN(float64(value)) {
 		return value
@@ -52,10 +59,10 @@ func (m *InteractionRequirementModel) interactionCaseHidden(channel, choice int,
 	for h := range PoolDim {
 		sum := m.weights[bias+h]
 		for j, value := range fields {
-			sum += value * m.weights[start+h*width+j]
+			sum = interactionAffine(sum, value, m.weights[start+h*width+j])
 		}
 		if channel == 1 {
-			sum += row[16+choice] * interactionInputScale * m.weights[start+h*width+interactionCaseDim]
+			sum = interactionAffine(sum, row[16+choice]*interactionInputScale, m.weights[start+h*width+interactionCaseDim])
 		}
 		result[h] = interactionTanh(sum)
 	}
@@ -99,7 +106,7 @@ func (m *InteractionRequirementModel) forwardInteractions(inputs [][OrderedFeatu
 		for h := range PoolDim {
 			sum := m.weights[interactionRequirementContextBias+h]
 			for j, value := range input {
-				sum += value * interactionInputScale * m.weights[interactionRequirementContextStart+h*OrderedFeatureDim+j]
+				sum = interactionAffine(sum, value*interactionInputScale, m.weights[interactionRequirementContextStart+h*OrderedFeatureDim+j])
 			}
 			w.context[choice][h] = interactionTanh(sum)
 		}
@@ -115,12 +122,12 @@ func (m *InteractionRequirementModel) forwardInteractions(inputs [][OrderedFeatu
 			sum := m.weights[interactionRequirementHiddenBias+h]
 			start := interactionRequirementHiddenStart + h*interactionRequirementJointDim
 			for j, value := range input {
-				sum += value * m.weights[start+j]
+				sum = interactionAffine(sum, value, m.weights[start+j])
 			}
 			for j := range PoolDim {
 				terms := interactionTerms(w.context[choice][j], w.pool[choice][0][j], w.pool[choice][1][j])
 				for term, value := range terms {
-					sum += value * m.weights[start+OrderedFeatureDim+term*PoolDim+j]
+					sum = interactionAffine(sum, value, m.weights[start+OrderedFeatureDim+term*PoolDim+j])
 				}
 			}
 			w.hidden[choice][h] = activate(sum)
@@ -131,7 +138,7 @@ func (m *InteractionRequirementModel) forwardInteractions(inputs [][OrderedFeatu
 		for option := range 2 {
 			sum := m.weights[interactionRequirementScoreBias+option]
 			for h, value := range w.hidden[choice] {
-				sum += value * m.weights[interactionRequirementScoreStart+option*HiddenDim+h]
+				sum = interactionAffine(sum, value, m.weights[interactionRequirementScoreStart+option*HiddenDim+h])
 			}
 			w.logits[choice][option] = sum
 		}

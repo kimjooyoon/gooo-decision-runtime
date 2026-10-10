@@ -19,6 +19,7 @@ const interactionRequirementInteraction = "source_output_condition_elementwise_d
 const interactionRequirementAssociation = "raw_plus_target_polarity_signed_input_bytes_scale8_v1"
 const interactionRequirementActivation = "tanh_source_cases_leaky_relu_0.01_joint"
 const interactionRequirementEmptyConditions = "zero_pool"
+const interactionRequirementNumerics = "affine_fma64_round_fp32_v1"
 
 type interactionRequirementArtifact struct {
 	Schema            string    `json:"schema"`
@@ -32,6 +33,7 @@ type interactionRequirementArtifact struct {
 	InputScale        float32   `json:"input_scale"`
 	EmptyConditions   string    `json:"empty_conditions"`
 	Activation        string    `json:"activation"`
+	Numerics          string    `json:"numerics"`
 	Pooling           string    `json:"pooling"`
 	Weights           []float32 `json:"weights_fp32"`
 }
@@ -47,7 +49,7 @@ func (m *InteractionRequirementModel) Marshal() ([]byte, error) {
 		CaseFeatures: decision.DeclaredCaseFeatureVersion, ConditionFeatures: decision.DeclaredConditionFeatureVersion,
 		Architecture: []int{OrderedFeatureDim, CaseDim, ConditionDim, interactionCaseDim, interactionCaseDim + 1, PoolDim, interactionTermCount * PoolDim, interactionRequirementJointDim, HiddenDim, 2},
 		Bounds:       []int{MaxChoices, MaxCases, MaxConditions}, Interaction: interactionRequirementInteraction, Association: interactionRequirementAssociation, InputScale: interactionInputScale,
-		EmptyConditions: interactionRequirementEmptyConditions, Activation: interactionRequirementActivation, Pooling: m.Pooling(), Weights: m.weights[:],
+		EmptyConditions: interactionRequirementEmptyConditions, Activation: interactionRequirementActivation, Numerics: interactionRequirementNumerics, Pooling: m.Pooling(), Weights: m.weights[:],
 	})
 }
 
@@ -71,7 +73,7 @@ func DecodeInteractionRequirementConditioned(raw []byte) (*InteractionRequiremen
 		a.CaseFeatures != decision.DeclaredCaseFeatureVersion || a.ConditionFeatures != decision.DeclaredConditionFeatureVersion ||
 		!slices.Equal(a.Architecture, []int{OrderedFeatureDim, CaseDim, ConditionDim, interactionCaseDim, interactionCaseDim + 1, PoolDim, interactionTermCount * PoolDim, interactionRequirementJointDim, HiddenDim, 2}) ||
 		!slices.Equal(a.Bounds, []int{MaxChoices, MaxCases, MaxConditions}) || a.Interaction != interactionRequirementInteraction || a.Association != interactionRequirementAssociation || a.InputScale != interactionInputScale ||
-		a.EmptyConditions != interactionRequirementEmptyConditions || a.Activation != interactionRequirementActivation || len(a.Weights) != InteractionRequirementParameterCount {
+		a.EmptyConditions != interactionRequirementEmptyConditions || a.Activation != interactionRequirementActivation || a.Numerics != interactionRequirementNumerics || len(a.Weights) != InteractionRequirementParameterCount {
 		return nil, errors.New("requirement artifact ABI differs")
 	}
 	var weights [InteractionRequirementParameterCount]float32
@@ -86,7 +88,7 @@ func (m *InteractionRequirementModel) Fingerprint() string {
 	d := sha256.New()
 	d.Write([]byte(InteractionRequirementSchema + "\x00" + OrderedSourceFeatureVersion + "\x00" +
 		decision.DeclaredCaseFeatureVersion + "\x00" + decision.DeclaredConditionFeatureVersion + "\x00" +
-		interactionRequirementInteraction + "\x00" + interactionRequirementAssociation + "\x00" + interactionRequirementEmptyConditions + "\x00" + interactionRequirementActivation + "\x00" + m.Pooling() + "\x00"))
+		interactionRequirementInteraction + "\x00" + interactionRequirementAssociation + "\x00" + interactionRequirementEmptyConditions + "\x00" + interactionRequirementActivation + "\x00" + interactionRequirementNumerics + "\x00" + m.Pooling() + "\x00"))
 	var raw [InteractionRequirementParameterCount * 4]byte
 	for i, value := range m.weights {
 		binary.LittleEndian.PutUint32(raw[i*4:], math.Float32bits(value))

@@ -95,13 +95,35 @@ terms wherever a condition factor appears.
 Bounds are 16 choices, 1–128 output cases and 0–128 condition cases. Prediction
 snapshots each row once and reuses fixed arrays. Training keeps per-sample
 scratch and one reusable gradient array rather than a dataset-sized tensor.
+The fitting API accepts at most 64 explicitly supplied candidate masks per
+sample. The example CLI labels every combination and therefore caps training
+documents at six binary choices; it rejects larger spaces instead of sampling
+away possible labels.
 Readers must remain immutable during a call; concurrent predictions use separate
 workspaces. Intermediate overflow returns an error and preserves caller outputs.
 
 The artifact `gooo/interaction-requirement-contract/v1` records its input
 versions, dimensions, association rule, scale, interaction terms, activation,
-pooling and weights. Its fingerprint binds the computation and weights. Older
+pooling, numeric rule and weights. Its fingerprint binds the computation and weights. Older
 model files keep their original computation.
+
+### A portability failure found by CI
+
+The first revision passed the training regression on macOS arm64 but reached
+only 6/8 on Linux amd64, with loss 0.364236. Both original CI runs retain that
+failure ([PR](https://github.com/kimjooyoon/gooo-decision-runtime/actions/runs/38062871554),
+[push](https://github.com/kimjooyoon/gooo-decision-runtime/actions/runs/38062862480)).
+A local amd64 run reproduced it. Disabling implicit multiply-add fusion in the
+arm64 decision package also reproduced 6/8 and the same reported loss.
+
+The [Go floating-point specification](https://go.dev/ref/spec#Floating_point_operators)
+permits implicit fused operations, which can round differently. This model now
+uses an explicit `float64` `math.FMA` and then rounds to `float32` for each affine
+accumulation. The artifact binds this as `affine_fma64_round_fp32_v1`. A numerical
+regression distinguishes that rule from separately rounding the product.
+With the same examples, seed, 2,000 epochs and assertions, both local arm64 and
+amd64 tests reach 8/8 and pass all 48 case-order checks. Bit-identical trained
+weights across all platforms are outside these assertions.
 
 ## Evidence and limits
 
