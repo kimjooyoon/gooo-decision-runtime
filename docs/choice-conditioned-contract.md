@@ -20,6 +20,12 @@ The source offset enters before the case nonlinearity. The trained model can
 therefore interpret the same goal differently at different source choices.
 Source features already describe local structure, option orientation, intent
 and available value-flow facts. Their existing representation limits remain.
+
+The [input audit](decision-input-audit.md) detects identical numerical inputs
+with incompatible acceptable paths. In a tested condition-only goal pair,
+opposite intermediate Boolean requirements produce identical initial arrays.
+Source-conditioned pooling receives no distinct signal for that pair; Gooo's
+condition checks still distinguish and reject the wrong candidate.
 This computation does not evaluate a candidate body, produce tokens or create
 new operations. Gooo still owns the available choices and checks every declared
 output and condition after selection.

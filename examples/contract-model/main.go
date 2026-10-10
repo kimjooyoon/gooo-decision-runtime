@@ -149,6 +149,10 @@ func fit(ctx context.Context, args []string, out io.Writer) error {
 		}
 		samples = append(samples, s)
 	}
+	audit, err := contractdecision.AuditInputs(ctx, samples)
+	if err != nil {
+		return err
+	}
 	start := time.Now()
 	model, history, pairInfo, err := fitSamples(ctx, samples, options, *pooling, *pairedGoals, *choiceContext, *caseVersion)
 	elapsed := time.Since(start).Nanoseconds()
@@ -183,16 +187,17 @@ func fit(ctx context.Context, args []string, out io.Writer) error {
 		schema, explicitCaseVersion = "gooo/contract-local-fit/v3", *caseVersion
 	}
 	return json.NewEncoder(out).Encode(struct {
-		Schema            string                      `json:"schema"`
-		TrainingDocuments int                         `json:"training_documents"`
-		Options           contractdecision.FitOptions `json:"fit_options"`
-		TrainingNS        int64                       `json:"training_ns"`
-		ModelSHA          string                      `json:"model_sha256"`
-		Fingerprint       string                      `json:"model_fingerprint"`
-		History           []contractdecision.Epoch    `json:"history"`
-		GoalPairs         *goalPairFit                `json:"goal_pairs,omitempty"`
-		CaseFeatures      string                      `json:"case_feature_version,omitempty"`
-	}{schema, len(samples), options, elapsed, fmt.Sprintf("%x", sha256.Sum256(raw)), model.Fingerprint(), history, pairInfo, explicitCaseVersion})
+		Schema            string                       `json:"schema"`
+		TrainingDocuments int                          `json:"training_documents"`
+		Options           contractdecision.FitOptions  `json:"fit_options"`
+		TrainingNS        int64                        `json:"training_ns"`
+		ModelSHA          string                       `json:"model_sha256"`
+		Fingerprint       string                       `json:"model_fingerprint"`
+		History           []contractdecision.Epoch     `json:"history"`
+		GoalPairs         *goalPairFit                 `json:"goal_pairs,omitempty"`
+		CaseFeatures      string                       `json:"case_feature_version,omitempty"`
+		InputAudit        *contractdecision.InputAudit `json:"input_audit"`
+	}{schema, len(samples), options, elapsed, fmt.Sprintf("%x", sha256.Sum256(raw)), model.Fingerprint(), history, pairInfo, explicitCaseVersion, audit})
 }
 
 func search(ctx context.Context, args []string, out io.Writer) error {
