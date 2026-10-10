@@ -31,7 +31,7 @@ integrations and their original observations are:
 | [PR1445](https://github.com/kimjooyoon/meta-ontology-go/pull/1445) | Choice-conditioned model, 15 original commands, native construction evaluation and saved replay each24/24 |
 | [PR1446](https://github.com/kimjooyoon/meta-ontology-go/pull/1446) | Download, inspect, construct and replay guidance; included in the verified 0.6.26 public binary |
 | [PR1449](https://github.com/kimjooyoon/meta-ontology-go/pull/1449) | Saved-result change reports and the small Go baseline; accepted on `dev` after 0.6.27 |
-| [PR1450](https://github.com/kimjooyoon/meta-ontology-go/pull/1450) | Ordered/interaction model loading and immediate native construction; development PR, separate from the public 0.6.27 binary |
+| [PR1450](https://github.com/kimjooyoon/meta-ontology-go/pull/1450) | Ordered/interaction model loading and immediate native construction; merged to `dev` at `c8a68c51`, separate from the public 0.6.27 binary |
 
 One of the three PR1445 examples needs more attempts with the model. See the
 compiler's [current release and support status](https://github.com/kimjooyoon/meta-ontology-go/wiki/Current-Status)
@@ -47,10 +47,20 @@ supported source shapes. `inspect -canonical-source` displays that input;
 and bounded construction. Old artifacts retain their original inputs.
 A [retained-record inspection](studies/canonical-input-inspection-20261011/README.md)
 finds identical arrays in 96/96 paired bodies, versus 32/96 before. It makes zero
-predictions or candidate evaluations. New trained-model quality and native
-compiler support for this format remain unmeasured and unimplemented respectively.
+predictions or candidate evaluations. The native compiler adapter for this
+canonical format is a remaining development step.
 
-The latest completed [broader training study](studies/multifamily-requirement-learning-20261011/README.md)
+A new [320-document study](studies/canonical-contract-learning-20261011/README.md)
+has now completed one fresh fit for each input format. Canonical/legacy first
+choices pass 36/128 and 33/128 evaluation documents, with 15 regressions for the
+canonical model. Both fit poorly even on training documents. In 64 deliberately
+underspecified sources, supplied cases initially pass in 64/64 but separate probes
+pass in only 16/64. Adding at most two recorded counterexamples reaches 64/64 on
+those probes for both models and fixed ordering. This measures bounded repair of
+that suite, with no new held-out evaluation after feedback. Original failures,
+weights, input consistency and costs are public; the model remains optional.
+
+The earlier [broader training study](studies/multifamily-requirement-learning-20261011/README.md)
 keeps the existing 19,034-parameter interaction architecture and expands its
 training to 64 Gooo documents across two rule families and Korean/English intents.
 First-choice success is 117/128 on new instances of trained families, versus
