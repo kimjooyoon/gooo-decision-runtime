@@ -100,6 +100,7 @@ func fit(ctx context.Context, args []string, out io.Writer) error {
 	f := flag.NewFlagSet("fit", flag.ContinueOnError)
 	modelPath := f.String("out", "", "new model JSON path (must not exist)")
 	epochs := f.Int("epochs", 400, "CPU full-batch epochs")
+	pooling := f.String("pooling", contractdecision.MeanPooling, "arithmetic_mean or signed_max_abs")
 	if err := f.Parse(args); err != nil {
 		return err
 	}
@@ -108,6 +109,9 @@ func fit(ctx context.Context, args []string, out io.Writer) error {
 	}
 	if *epochs < 1 || *epochs > 10000 {
 		return errors.New("fit requires 1..10000 epochs")
+	}
+	if *pooling != contractdecision.MeanPooling && *pooling != contractdecision.ExtremePooling {
+		return errors.New("fit pooling must be arithmetic_mean or signed_max_abs")
 	}
 	if _, err := os.Stat(*modelPath); err == nil || !errors.Is(err, os.ErrNotExist) {
 		return errors.New("model output must be a new file")
@@ -126,7 +130,7 @@ func fit(ctx context.Context, args []string, out io.Writer) error {
 		samples = append(samples, s)
 	}
 	start := time.Now()
-	model, history, err := contractdecision.Fit(ctx, samples, options)
+	model, history, err := contractdecision.FitForPooling(ctx, samples, options, *pooling)
 	elapsed := time.Since(start).Nanoseconds()
 	if err != nil {
 		return err

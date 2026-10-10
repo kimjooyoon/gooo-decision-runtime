@@ -55,6 +55,13 @@ func validOptions(o FitOptions) bool {
 // One 16KiB per-sample scratch snapshot binds forward/backward to identical case
 // rows. Training never retains a whole-dataset case tensor or calls a compiler.
 func Fit(ctx context.Context, samples []Sample, options FitOptions) (*Model, []Epoch, error) {
+	return FitForPooling(ctx, samples, options, MeanPooling)
+}
+
+// FitForPooling trains the same parameter layout with an explicit aggregation.
+// Extreme pooling uses the first equal winner for its subgradient; at exact
+// ties training can depend on row order even when inference scores do not.
+func FitForPooling(ctx context.Context, samples []Sample, options FitOptions, pooling string) (*Model, []Epoch, error) {
 	if ctx == nil || len(samples) < 1 || len(samples) > 4096 || !validOptions(options) {
 		return nil, nil, errors.New("bounded contract training inputs required")
 	}
@@ -69,7 +76,10 @@ func Fit(ctx context.Context, samples []Sample, options FitOptions) (*Model, []E
 			return nil, nil, errors.New("acceptable set must name complete contract candidates")
 		}
 	}
-	m, _ := New(initial(options.Seed))
+	m, err := NewForPooling(initial(options.Seed), pooling)
+	if err != nil {
+		return nil, nil, err
+	}
 	history := make([]Epoch, 0, options.Epochs)
 	var frozen frozenCases
 	for epoch := range options.Epochs {
@@ -171,10 +181,16 @@ func (m *Model) backward(inputs [][FeatureDim]float32, cases *frozenCases, w *Wo
 			}
 		}
 	}
-	for _, row := range cases.rows[:cases.count] {
+	for i, row := range cases.rows[:cases.count] {
 		hidden := m.caseHidden(&row)
 		for h, x := range hidden {
 			delta := poolGradient[h] / float64(cases.count)
+			if m.extreme {
+				if w.winner[h] != i {
+					continue
+				}
+				delta = poolGradient[h]
+			}
 			if x <= 0 {
 				delta *= float64(negativeSlope)
 			}

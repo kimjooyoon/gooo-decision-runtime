@@ -1,0 +1,39 @@
+Fixed before one fresh comparison of the case aggregation computation.
+
+Keep the existing v1 mean model, its weights and its complete recorded outcomes
+unchanged. New model: signed_max_abs pooling, schema v2, the same 9,746 FP32
+parameters and 38,984 weight bytes, source v6 and declared-case v1 inputs.
+For each of eight learned case coordinates, select the largest absolute value,
+retaining its sign; equal magnitudes choose the positive value. Exact equal
+values use the first row's training subgradient. Inference reads every row.
+
+Use only the original24 training rows, masks and acceptable sets from the frozen
+196-source contract-goals collection. One fresh fit:600epochs,LR0.3,L2.0001,seed17,
+same initialization and training order. No schedule search, repeated fit, new
+labels, compiler relowering, old-model judgment, or old-study rerun.
+
+Pinned compressed inputs:
+sources.jsonl.gz 773db4e279b497465a92ad2d7df683f0a2898d72365f6f48ac351e5f7036b413
+training.json.gz e8e07ad2cbc8ff5adac35b81999000717baef4e0143c93c204dc483cbdcf7d1d
+saved baseline searches.jsonl.gz 8141bacac8e4af8156ceb1c473294be4bf869d5d887df42b61cc962e3277eff6
+
+For each original source, prepare its stored typed document and confirm the
+initial arrays/case identity still equal the frozen source record. Start one new
+ContractSession with the new model, then advance one immediate candidate per
+step until complete or all4 masks exhausted.196sessions,196forwards,0feedback,
+0native/0GPU/0external-model calls. Keep both contradictions and both rare-tail
+cases. Candidate execution belongs only to these new-model searches; do not
+recompute the four-mask oracle used to label the original dataset.
+
+Save all24 consumed training rows,600 losses, weights,196 initial rankings and
+all chained steps, including wrong outputs. Report train/representation/constant/
+English/unseen-family/rare-tail/contradiction splits separately, paired-goal
+choice discrimination and every improved/regressed/unchanged first selection.
+Compare old means from SAVED records only. This is a controlled change to the
+pooling computation on a known corpus, not fresh held-out language accuracy.
+
+Record latency and whole-process time/RSS; old/new timings are from different
+runs and must not support an isolated speedup claim. Use a clean committed Go1.27.2
+producer, exclusive output directory and start/completion markers. Never restart
+the one-use producer. Read-only audits may be repaired without replacing outcomes.
+Preserve all prior models and the default mean computation.
