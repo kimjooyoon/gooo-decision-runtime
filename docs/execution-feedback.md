@@ -86,9 +86,14 @@ fallback, canceled observations and a wired model that changes a branch after an
 output-only failure. That wired model tests the connection; it is not a learned
 accuracy result. Unit fitting checks the new network separately.
 
-The prior paired study remains unchanged. A new source-based study must train v3
-on separate Gooo programs and compare initial choice, feedback choice, finite
-completion, attempts, calls, time and memory against v2 and deterministic search.
-The current compiler release does not yet load this new schema. SDK release and
-compiler integration follow the new implementation's CI; there is no new public
-v3 trained model or measured generalization claim in this change.
+The [new 128-source study](../studies/execution-feedback-learning-20261010/README.md)
+trains v2, v3 with its output connections disabled, and v3 with output feedback.
+It publishes all three models and all 2,112 judgments and 896 finite searches.
+Output feedback changes four-region attempts from 62 to 54, with higher total
+elapsed search time. First-choice validity and assignment cases show no benefit
+over v2 in this run. The earlier paired study remains unchanged.
+
+SDK0.2.32 publishes the representation and runtime. The current compiler release
+does not yet load this new schema. Integration and richer assignment/literal
+representation remain work; the finite study does not establish broad language
+accuracy or a speedup guarantee.

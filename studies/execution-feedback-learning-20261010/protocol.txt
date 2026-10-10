@@ -1,0 +1,67 @@
+Original output-feedback study. Fix the source producer and this protocol in
+one clean commit before the single measured export and three fresh CPU fits.
+
+128 authored Gooo variants, not independent language tasks:
+  train32: max/min, thresholds -7/13, direct/local returns, both orientations
+           (16); clamp +/-7 or +/-13, four orientations (8); negative/zero/
+           positive codes of magnitude 3 or 9, four orientations (8).
+  wording32: those same forms with one new Korean/English wording per choice.
+  constants32: max/min -17/29; clamp 17/29; code magnitudes 7/11.
+  assignment16: max/min -7/13, branches assign a local result then return it,
+                both orientations and two wordings.
+  new_family16: four-region classification at -k,0,k for k7/13, three branch
+                choices and all eight orientations.
+Every source is lowered using clean meta-ontology-go source
+41f6e4668906c8ccc6798f3d43be34602ec3aa28 and public SDK v0.2.32-experimental.
+This compiler source's original CI may be pending; report its actual status.
+No installed-compiler/native-execution claim follows from this exporter.
+
+112 sources have four complete masks; 16 have eight: 576 candidates and 704
+initial/observed contexts. Only train32's 160 contexts enter fitting. The cases
+include 9007199254740993, +/-9007199254740995 and 18014398509481990. All values
+remain int64. Initial input excludes unseen expected output labels. Observed
+contexts use the actual compiled candidate's first condition/output failures.
+These contexts are correlated. The broader family is only a held-out challenge.
+
+THREE fresh CPU fits: v2 (256->24->2, 6218 FP32), v3 output-off and v3 output-on
+(320->24->2, 7754 FP32 each). Identical fixed options: 400 epochs, seed17,
+learning rate0.25, L2=0.0001, full-batch acceptable-complete-set loss. No old model
+loaded, sweep, evaluation-driven change or post-evaluation retuning.
+
+Output-off ablation: zero every input cell256:320 during fitting. After fitting,
+set all first-layer weights connected to these unused cells to exact zero.
+This fixed transform leaves every training prediction unchanged. Save the fit
+history, both pre-pruning and transformed artifacts, and this rule. During normal runtime search,
+real output observations still arrive, but those weights ignore them. Changed
+feature receipts can therefore cause extra calls with unchanged scores; count
+those calls honestly. Output-on keeps all channels and fitted weights.
+
+Every frozen model judges every context: 2112 predictions. Immediately compile
+and evaluate the selected body after each prediction. Save full chosen bodies,
+exact output/condition results, feature/model/source identities and timings.
+Report initial and observed choice validity, output-case satisfaction and
+condition satisfaction separately by split. Cases with no declared conditions
+do not provide condition-coverage evidence. Relative scores are not calibrated
+correctness probabilities. Count initial disjoint-label feature collisions.
+
+Run 896 finite searches: 128 sources x (deterministic + initial/feedback for each
+of three frozen models). Batch1, budget equals complete masks4/8, feedback
+bound count-1, no sampling. Cases are visible to search. Save every attempt,
+ranking, progress, error and final body. Report completion, attempts, calls,
+feedback/reused calls and elapsed time by split. Compare first proposal and
+completion separately; finishing all finite cases does not prove all-input
+correctness. Holdout source variants may provide feedback during their own
+search, but never enter fitting.
+
+Resource recording: /usr/bin/time -l for original export and original fit/
+prediction/search commands. Record real/user/system time and maximum RSS.
+Prediction timing includes the fixed-shape adapter. Five-minute producer
+deadline. No GPU, token generation, new external base model, native execution
+or host CPU utilization delta. Weight bytes differ from process memory.
+
+One-use evidence: clean same-commit producer builds; fresh exclusive directories;
+started/completed markers; append-only JSONL; original data preserved on error.
+Never repeat a completed measured run. Unit tests may test shape/oracles and
+synthetic fitting, never invoke the measured study run. Later audits recount
+saved data only. Publish deterministic gzip with decompressed byte comparison,
+SHA manifests, both successes and failures, and private-path-free build excerpts.
