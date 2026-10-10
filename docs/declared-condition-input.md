@@ -83,3 +83,40 @@ reads, and exports the opposite-condition pair without changing old inputs.
 These checks establish representation fidelity. The new model's training and
 construction regressions exercise this channel; broader model quality still
 requires fresh held-out observations.
+
+## Inspect ordered calculations
+
+The 172-document study found forty pairs with equal model inputs and different
+acceptable paths. For example, `input - 6` and `6 - input` lost their operand
+order in the existing source projection. Development code now provides a
+separate, source-only view:
+
+```sh
+go run ./examples/contract-model inspect -ordered-source \
+  studies/requirement-learning-20261010/examples/req-bound-k6-r1-w0-o0-alias-g0-c0.json
+```
+
+This opt-in report uses `gooo/contract-input-inspection/v2` and adds
+`ordered_context` and, when available, `ordered_features` to each choice. It
+performs zero model calls, training updates or candidate executions. Ordinary
+`inspect` retains its v1 report. Existing feature arrays retain their bytes.
+
+`PreparedPlan.OrderedBranchContext(choiceID)` returns predicate, then-return and
+else-return expressions after fallback orientation and reaching-write
+substitution. Each expression holds one operation and ordered exact atoms.
+Aliases and assignments preserve the value at each write. Nested arithmetic,
+additional branches, operation holes and other choice kinds have an explicit
+unavailable reason. Gooo can still construct these larger programs.
+
+`decision.OrderedExpressionFeaturesInto` writes 144 FP32 cells (576 bytes) into
+caller-owned storage, using ABI `ordered_predicate_return_expressions_v1`.
+Each expression gets 48 cells: nine operation flags (`value`, `add`, `subtract`,
+`multiply`, `less_than`, `less_equal`, `equal`, `and`, `or`), seven reserved zeros,
+then two 16-cell exact-atom blocks. Atom encoding retains all int64 bits through
+eight byte cells, including integers beyond 2^53. No expression is evaluated,
+simplified or assigned a learned score by this projection.
+
+Regression fixtures check that this adjunct distinguishes all forty recorded
+collisions while the old source arrays stay equal. The released models still
+consume their original inputs. A future trained consumer must explicitly bind
+the new ABI; its effect on learning and unseen programs remains to be measured.
