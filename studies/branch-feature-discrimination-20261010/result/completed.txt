@@ -1,0 +1,1 @@
+Completed once: two initial model calls, four candidate enumerations, no training or native execution.
