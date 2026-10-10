@@ -1,0 +1,36 @@
+Fixed before any fitting or model prediction. Two fresh local CPU decision fits.
+
+Use the immutable 162-source semantic-flow-normalization-20261010 records.
+Do not rerun their exporter, exhaustive oracle or previous learning studies.
+Both models use 384->24->2 FP32, 9290 parameters, epochs400, rate0.25,
+L2=0.0001, seed17. v4 uses saved V4 inputs and v5 saved V5 inputs.
+Fit only the16 future_train direct-return rows, initial contexts only.
+No observed-failure contexts enter training; feedback results are exploratory.
+Store both exact16-row sample arrays, all400 losses, both weight artifacts.
+No tuning, repeat fits, model selection or quantization.
+
+Immediately after each of324 first predictions (2 models*162 sources), compile
+and evaluate that selected candidate with the8 declared output cases and3
+condition cases. Save Gooo body, Go source digest, all results and probability
+distribution, including all failed selections. Compare labels with frozen rows.
+
+Then execute810 actual finite searches:162 sources*5 modes (deterministic,
+v4 initial,v4 feedback,v5 initial,v5 feedback). Budget4, batch1, no seed,
+at most4 feedback rounds. Save all attempts/progress/feedback, durations and
+selected body; assert candidate non-repetition and initial runtime inputs match
+the frozen model-specific arrays. Decisions precede assembly/evaluation in the
+public SearchFlowBatches runtime. Keep partial output on failure.
+
+Report first-choice case completeness, valid selections, attempts, completion,
+model calls, feedback calls, predict latency median/p95, fit time and process
+time/RSS. Separate train16, same-task representation64, constant-transfer80,
+unsupported controls2 and each source form. Count exact distribution and
+selection agreement across128 paired representations for each model.
+Representation transfer shares the underlying training tasks; it is not new
+task generalization. Source cases are finite, not an exhaustive correctness proof.
+No native execution, token generation, GPU/cloud job or host CPU delta claim.
+
+Build clean committed Go1.27.2 producer. Run this study once into a new output
+directory; preserve start/completion markers, binary/build hashes and raw logs.
+Publish gzip-n with decompressed byte comparisons. Audit saved observations
+without new model predictions, fitting or candidate execution.
