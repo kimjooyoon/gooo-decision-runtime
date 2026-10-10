@@ -1,0 +1,11 @@
+Condition decision model study C1, declared before training.
+Goal: learn local candidate ranking from authored Korean/English intent, typed Gooo source features and separately observed conditions.
+Model: CPU Go 256->24->2 shared MLP, 6218 FP32 parameters. Rank complete masks with additive choice scores; train on probability mass of full source-valid candidate sets. This factorization cannot model arbitrary joint distributions.
+Source dataset: 24 authored Gooo contracts. Direct less-than/reversed-less-than families used for training. Local-variable variants withheld as different structures. Two authored wording sets used for training; third wording set withheld. Two opposite expected intermediate conditions per family/wording keep identical absolute-value outputs.
+Splits: train=8 programs; wording=4; structure=8; both=4. Each program has initial context plus observations of masks0..3. Count initial and observed contexts separately. Labels are derived only by compiling full masks and checking all source output and condition cases, never hand-coded target masks.
+Training: fixed seed17, 400 epochs, learning_rate0.25, L2=0.0001, all train contexts, one full-batch CPU fit. No evaluation sample passed to Fit; no tuning on evaluation outcomes. Record unfavorable results.
+Evaluate: finite source-valid top mask, source output passed/total, condition passed/total, probability mass on valid candidates, model predictions and fixed-mask0 baseline, separately by split and initial/observed context. No new native execution or broad language-accuracy claim.
+Artifact: explicit new condition-candidate schema and feature ABI; FP32 only in this first study. Existing 2759B ternary model unchanged. No token/code generation and no external pretrained weights.
+Measure training duration, whole command wall/user/sys time and maximum RSS. These are process measurements, not whole-machine CPU utilization or model-only RAM.
+Original compiler used for lowering: 3ff6dec5cbd91e050439bce6e695cde890eb3d5b (unmerged PR1440 candidate; accepted source comparison can follow separately).
+Each of the120 predictions is immediately compiled into a selected Gooo/Go body and its finite output/condition cases are replayed with the typed interpreter. Record generated Gooo and Go digest. This is not a native executable run.
