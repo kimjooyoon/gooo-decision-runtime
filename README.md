@@ -44,6 +44,11 @@ See [the API and its limits](docs/condition-search.md). `SearchConditionBatches`
 provides a 64-attempt, 16-feedback-round adapter for local document consumers;
 the new artifact still needs a provider in the general compiler CLI.
 
+In the [fixed 24-contract search study](studies/condition-search-20261010/README.md),
+deterministic search tried 60 paths, initial ranking tried 35, and condition
+feedback tried 28. All three completed the same authored cases. These are reused
+absolute-value variants; fewer paths did not make every subgroup faster.
+
 ### Separate inputs for the condition model
 
 `ConditionFeaturesInto` separates source structure, full intent and an observed

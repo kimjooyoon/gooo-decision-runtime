@@ -1,0 +1,30 @@
+{
+  "Status": "PASS",
+  "Rows": 72,
+  "NewPredictions": 0,
+  "NewProgramExecutions": 0,
+  "NewTrainingCalls": 0,
+  "Totals": {
+    "condition_feedback": {
+      "Programs": 24,
+      "Complete": 24,
+      "Attempts": 28,
+      "Calls": 28,
+      "FeedbackCalls": 4
+    },
+    "deterministic": {
+      "Programs": 24,
+      "Complete": 24,
+      "Attempts": 60,
+      "Calls": 0,
+      "FeedbackCalls": 0
+    },
+    "initial_model": {
+      "Programs": 24,
+      "Complete": 24,
+      "Attempts": 35,
+      "Calls": 24,
+      "FeedbackCalls": 0
+    }
+  }
+}
