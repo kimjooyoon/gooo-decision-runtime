@@ -17,10 +17,13 @@ and checked before its failure can influence another ranking. A nil model
 continues deterministically. Scope declines, cancellation, model identity and
 the session's nonblocking locks retain their existing contracts.
 
-There are no published trained v4 weights or source-level learned quality
-measurements yet. The preceding static projection established which information
-was missing from the old input. Synthetic training and wired routing tests only
-establish numerical connectivity and runtime behavior.
+The [fixed paired learning study](../studies/value-flow-learning-20261010/README.md)
+publishes two freshly trained artifacts and every selected body. Adding static
+flow increased first-choice validity on the 96 sources outside training from
+54 to 73. Assignment-form first choices stayed at 8/16, and their observed-context
+judgments regressed. All four finite-search modes completed the authored cases.
+The flow-on model's feedback added 23 calls without reducing attempts. These
+related source variants give limited evidence, with recorded regressions.
 
 The fixed-dimension mathematical implementation is derived from
 `executiondecision` at revision `6df5978f8825c1ad1343ac4b4f766c6f8a489ef4`.

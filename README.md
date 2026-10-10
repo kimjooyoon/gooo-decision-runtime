@@ -70,8 +70,12 @@ the original 128-source collection had 72 pairs with identical v3 inputs but
 disjoint acceptable paths. The additional facts distinguished all 72, with zero
 excluded sources. No new model was trained in that measurement. The separate
 [`flowdecision`](flowdecision/README.md) package supplies 384-cell CPU training
-and finite-search integration; its learned source-level quality remains to be
-measured in a new study.
+and finite-search integration. In the
+[paired fresh learning study](studies/value-flow-learning-20261010/README.md),
+first-choice validity outside training rose from 54/96 with flow disabled to
+73/96 with it enabled. Assignment forms stayed at 8/16. All four search modes
+completed the authored cases; flow-on feedback added 23 calls without saving
+attempts. Both trained models and the individual regressions are published.
 
 ### Connecting the condition model to finite search
 
