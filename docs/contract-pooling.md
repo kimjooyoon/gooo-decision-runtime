@@ -41,6 +41,13 @@ contradictory goals, rare cases, every split and process costs. The original fit
 and observations are not rerun. Results on this known corpus measure this
 specific change, not broad language understanding.
 
+The [completed study](../studies/contract-pooling-20261010/README.md) records
+107/170 → 112/170 first-path validity outside training on that known corpus,
+11 improvements and four regressions overall. Both rare-tail cases passed on
+first selection, but same-proposal opposite-goal pairs rose from 61 to 62.
+English-wording transfers remained 12/24. These mixed results keep the new
+computation an explicit option.
+
 ## Research context
 
 [Deep Sets](https://arxiv.org/abs/1703.06114) studies neural operations on sets

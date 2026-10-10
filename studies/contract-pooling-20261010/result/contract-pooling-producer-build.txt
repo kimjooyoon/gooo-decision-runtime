@@ -1,0 +1,14 @@
+/tmp/gooo-release-0623-20261010.hCOVqV/contract-pooling-producer: go1.27.2
+	path	github.com/kimjooyoon/gooo-decision-runtime/studies/contract-pooling-20261010/producer
+	mod	github.com/kimjooyoon/gooo-decision-runtime	v0.2.36-experimental.0.20261010093757-3193c960c61d	
+	build	-buildmode=exe
+	build	-compiler=gc
+	build	-trimpath=true
+	build	CGO_ENABLED=1
+	build	GOARCH=arm64
+	build	GOOS=darwin
+	build	GOARM64=v8.0
+	build	vcs=git
+	build	vcs.revision=3193c960c61d315c51e7fea27f4b82bc02b34086
+	build	vcs.time=2026-10-10T09:37:57Z
+	build	vcs.modified=false

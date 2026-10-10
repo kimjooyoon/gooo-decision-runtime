@@ -6,14 +6,23 @@ source-bound plan; this library ranks its permitted choices and continues finite
 search using observed failures. Think of it as the small assembly mechanism
 inside the larger language workshop.
 
-**Latest published release: v0.2.35-experimental.** The
-[release](https://github.com/kimjooyoon/gooo-decision-runtime/releases/tag/v0.2.35-experimental)
-contains the v6 ReLU and fixed negative-slope models and checksums. Each uses
-384 inputs, 9,290 parameters and 37,160 weight bytes; the leaky JSON is 108,562 bytes.
+**Latest published release: v0.2.36-experimental.** The
+[release](https://github.com/kimjooyoon/gooo-decision-runtime/releases/tag/v0.2.36-experimental)
+contains the declared-case model and checksums: 9,746 parameters and 38,984
+weight bytes. It reads the source and authored input/output examples before
+ranking permitted paths. The [recorded study](studies/contract-goals-20261010/README.md)
+includes successes, regressions and contradictory goals.
 Compiler [PR1443](https://github.com/kimjooyoon/meta-ontology-go/pull/1443) connects
 the v5/v6 inputs and explicit computation artifact to the ordinary CLI, with
-actual construction and model-free replay records. The installed compiler
-0.6.25 still uses SDK0.2.28.
+actual construction and model-free replay records, and is merged into `dev`.
+The installed compiler 0.6.25 still uses SDK0.2.28. The separate declared-case
+CLI integration is in local compiler development.
+
+An optional [signed pooling experiment](studies/contract-pooling-20261010/README.md)
+keeps rare case signals from shrinking in the case average. On the same known
+corpus, first-choice validity outside training rose from 107/170 to 112/170;
+four documents regressed and opposite-goal discrimination remained limited.
+The public v1 model and default mean pooling keep their existing computation.
 
 The earlier shared judge uses 2,072
 parameters across three binary decisions. Its compact FP32 weights occupy 8,288
