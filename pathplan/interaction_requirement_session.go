@@ -17,7 +17,7 @@ func (p *PreparedPlan) NewInteractionRequirementContractSession(ctx context.Cont
 	if model == nil {
 		return p.newContractSession(ctx, cases, "", "", "", nil)
 	}
-	return p.newInteractionRequirementSession(ctx, model, cases, false)
+	return p.newInteractionRequirementSession(ctx, model, cases, orderedInteractionSource)
 }
 
 // NewCanonicalInteractionRequirementContractSession uses source-resolved
@@ -27,8 +27,26 @@ func (p *PreparedPlan) NewCanonicalInteractionRequirementContractSession(ctx con
 	if model == nil {
 		return p.newContractSession(ctx, cases, "", "", "", nil)
 	}
-	return p.newInteractionRequirementSession(ctx, model, cases, true)
+	return p.newInteractionRequirementSession(ctx, model, cases, canonicalInteractionSource)
 }
+
+// NewSourceRelativeRequirementContractSession loads the source-relative input
+// contract into the ordinary finite frontier. It predicts once before any body
+// execution. Nil and unsupported source shapes retain deterministic traversal.
+func (p *PreparedPlan) NewSourceRelativeRequirementContractSession(ctx context.Context, model *contractdecision.SourceRelativeRequirementModel, cases []TestCase) (*ContractSession, error) {
+	if model == nil {
+		return p.newContractSession(ctx, cases, "", "", "", nil)
+	}
+	return p.newInteractionRequirementSession(ctx, model, cases, relativeInteractionSource)
+}
+
+type interactionSource uint8
+
+const (
+	orderedInteractionSource interactionSource = iota
+	canonicalInteractionSource
+	relativeInteractionSource
+)
 
 type interactionRequirementModel interface {
 	Fingerprint() string
@@ -38,15 +56,17 @@ type interactionRequirementModel interface {
 	PredictChoicesInto([][contractdecision.OrderedFeatureDim]float32, contractdecision.CaseSource, contractdecision.ConditionSource, *contractdecision.InteractionRequirementWorkspace, *contractdecision.ChoicePrediction) error
 }
 
-func (p *PreparedPlan) newInteractionRequirementSession(ctx context.Context, model interactionRequirementModel, cases []TestCase, canonical bool) (*ContractSession, error) {
+func (p *PreparedPlan) newInteractionRequirementSession(ctx context.Context, model interactionRequirementModel, cases []TestCase, sourceKind interactionSource) (*ContractSession, error) {
 	s, err := p.newContractSession(ctx, cases, "", "", "", nil)
 	if err != nil {
 		return s, err
 	}
 	r := &s.ranking
 	r.Schema, r.SHA = "gooo/interaction-requirement-path-ranking/v1", ""
-	if canonical {
+	if sourceKind == canonicalInteractionSource {
 		r.Schema = "gooo/canonical-interaction-requirement-path-ranking/v1"
+	} else if sourceKind == relativeInteractionSource {
+		r.Schema = "gooo/source-relative-requirement-path-ranking/v1"
 	}
 	r.ModelFingerprint = model.Fingerprint()
 	r.SourceFeatures, r.CaseFeatures = model.SourceFeatureVersion(), model.CaseFeatureVersion()
@@ -65,8 +85,10 @@ func (p *PreparedPlan) newInteractionRequirementSession(ctx context.Context, mod
 			return nil, err
 		}
 		features := input.OrderedSourceFeaturesInto
-		if canonical {
+		if sourceKind == canonicalInteractionSource {
 			features = input.CanonicalOrderedSourceFeaturesInto
+		} else if sourceKind == relativeInteractionSource {
+			features = input.SourceRelativeOrderedSourceFeaturesInto
 		}
 		if err := features(choice.ID, &source[i]); err != nil {
 			r.Declined, r.Error = true, err.Error()
@@ -90,8 +112,10 @@ func (p *PreparedPlan) newInteractionRequirementSession(ctx context.Context, mod
 		return nil, err
 	}
 	s.applyInteractionRequirement(prediction, p)
-	if canonical {
+	if sourceKind == canonicalInteractionSource {
 		s.core.result.Selection.ModelVariant = "canonical_interaction_requirement_contract_fp32"
+	} else if sourceKind == relativeInteractionSource {
+		s.core.result.Selection.ModelVariant = "source_relative_requirement_contract_fp32"
 	}
 	return s.finish()
 }

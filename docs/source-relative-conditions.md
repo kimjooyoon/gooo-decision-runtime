@@ -11,8 +11,10 @@ of the learned representation.
 
 `ContractInput.SourceRelativeConditions(choiceID)` now returns exact relation
 counts and a separate 16-cell input array. This is an experimental input API.
-The study below consumes this version through a separate research model adapter.
-Existing production models, features and candidate ordering retain their current behavior.
+The study below consumes this version through a separate research artifact.
+The current SDK checkout also provides a matching loader and construction
+session: [use the relative model](source-relative-runtime.md). Existing model
+formats retain their own inputs and ordering.
 
 ## Inspect a Gooo-derived plan
 
