@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"os"
 	"path/filepath"
+	"reflect"
 	"strings"
 	"testing"
 	"time"
@@ -22,6 +23,14 @@ func TestSourceRelativeV2CLIInspectImmediateSearchAndDeterministicUse(t *testing
 	doc.Plan.Base.Expressions[3].Operation = "divide"
 	doc.Plan.Base.Expressions[4].Operation = "add"
 	doc.TestCases = []pathplan.TestCase{{Input: -4, Expected: 0}, {Input: 13, Expected: 26}, {Input: 20, Expected: 33}}
+	demo, err := os.ReadFile("testdata/source-relative-v2-division.json")
+	if err != nil {
+		t.Fatal(err)
+	}
+	declared, err := pathplan.DecodeDocument(demo)
+	if err != nil || !reflect.DeepEqual(declared, doc) {
+		t.Fatal("demo document differs from its authored SDK fixture", err)
+	}
 	dir := t.TempDir()
 	name := saveDocument(t, dir, "division.json", doc)
 	var out bytes.Buffer

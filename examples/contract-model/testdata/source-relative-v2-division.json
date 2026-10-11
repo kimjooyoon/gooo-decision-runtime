@@ -1,0 +1,100 @@
+{
+  "schema": "gooo/body-codegen-typed-path-plan/v1",
+  "path_plan": {
+    "schema": "gooo/typed-body-path-plan/v1",
+    "base": {
+      "schema": "gooo/typed-body-plan/v1",
+      "id": "declared-contract",
+      "name": "DeclaredContract",
+      "result_type": "Int",
+      "expressions": [
+        {
+          "kind": "input",
+          "name": "input"
+        },
+        {
+          "kind": "int",
+          "int": 13
+        },
+        {
+          "kind": "binary",
+          "operation": "less_than",
+          "right": 1
+        },
+        {
+          "kind": "binary",
+          "operation": "divide",
+          "right": 1
+        },
+        {
+          "kind": "binary",
+          "operation": "add",
+          "left": 1
+        }
+      ],
+      "statements": [
+        {
+          "kind": "return",
+          "expr": 3
+        },
+        {
+          "kind": "return",
+          "expr": 4
+        },
+        {
+          "kind": "if",
+          "expr": 2,
+          "then": [
+            0
+          ],
+          "else": [
+            1
+          ]
+        }
+      ],
+      "root": [
+        2
+      ]
+    },
+    "decisions": [
+      {
+        "id": "branches",
+        "kind": "branch_layout",
+        "target": 2,
+        "intent": "return required value / 요구한 값 반환",
+        "options": [
+          {
+            "label": "layout_forward"
+          },
+          {
+            "label": "layout_reverse",
+            "reverse": true
+          }
+        ],
+        "fallback": "layout_forward"
+      }
+    ],
+    "condition_cases": [
+      {
+        "choice_id": "branches",
+        "input": -4,
+        "expected": true
+      }
+    ]
+  },
+  "test_cases": [
+    {
+      "input": -4,
+      "expected": 0
+    },
+    {
+      "input": 13,
+      "expected": 26
+    },
+    {
+      "input": 20,
+      "expected": 33
+    }
+  ],
+  "max_attempts": 2
+}
