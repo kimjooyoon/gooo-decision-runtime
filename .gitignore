@@ -3,3 +3,4 @@ coverage.out
 *.bin
 /.replay-reference/
 /.order-reference/
+/.source-relative-compiler/
