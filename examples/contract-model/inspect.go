@@ -23,13 +23,14 @@ type inspectedCondition struct {
 }
 
 type inspectedSourceChoice struct {
-	ID                string                                         `json:"id"`
-	Options           [2]string                                      `json:"options"`
-	Features          [decision.ExecutionFlowFeatureDim]float32      `json:"features"`
-	OrderedContext    *pathplan.OrderedBranchContext                 `json:"ordered_context,omitempty"`
-	OrderedFeatures   *[decision.OrderedExpressionFeatureDim]float32 `json:"ordered_features,omitempty"`
-	CanonicalContext  *pathplan.CanonicalOrderedBranchContext        `json:"canonical_context,omitempty"`
-	CanonicalFeatures *[contractdecision.OrderedFeatureDim]float32   `json:"canonical_features,omitempty"`
+	ID                 string                                         `json:"id"`
+	Options            [2]string                                      `json:"options"`
+	Features           [decision.ExecutionFlowFeatureDim]float32      `json:"features"`
+	OrderedContext     *pathplan.OrderedBranchContext                 `json:"ordered_context,omitempty"`
+	OrderedFeatures    *[decision.OrderedExpressionFeatureDim]float32 `json:"ordered_features,omitempty"`
+	CanonicalContext   *pathplan.CanonicalOrderedBranchContext        `json:"canonical_context,omitempty"`
+	CanonicalFeatures  *[contractdecision.OrderedFeatureDim]float32   `json:"canonical_features,omitempty"`
+	ConditionRelations *pathplan.SourceRelativeConditionContext       `json:"condition_relations,omitempty"`
 }
 
 type contractInputInspection struct {
@@ -60,6 +61,7 @@ func inspectInput(ctx context.Context, args []string, out io.Writer) error {
 	f := flag.NewFlagSet("inspect", flag.ContinueOnError)
 	ordered := f.Bool("ordered-source", false, "include ordered predicate and return expressions for input development")
 	canonical := f.Bool("canonical-source", false, "include the complete canonical source input; no prediction or body execution")
+	relations := f.Bool("condition-relations", false, "include source-relative declared condition counts; no model or candidate execution")
 	if err := f.Parse(args); err != nil {
 		return err
 	}
@@ -91,6 +93,10 @@ func inspectInput(ctx context.Context, args []string, out io.Writer) error {
 		report.Schema = "gooo/contract-input-inspection/v3"
 		report.CanonicalFeatureFormat = contractdecision.CanonicalOrderedSourceFeatureVersion
 		report.Scope += "; canonical source input requires its own explicitly trained model"
+	}
+	if *relations {
+		report.Schema = "gooo/contract-input-inspection/v4"
+		report.Scope += "; source-relative condition features have no trained consumer in this release"
 	}
 	for i, choice := range doc.Plan.Decisions {
 		report.Choices[i].ID, report.Choices[i].Options = choice.ID, [2]string{choice.Options[0].Label, choice.Options[1].Label}
@@ -124,6 +130,13 @@ func inspectInput(ctx context.Context, args []string, out io.Writer) error {
 				}
 				report.Choices[i].CanonicalFeatures = features
 			}
+		}
+		if *relations {
+			view, err := input.SourceRelativeConditions(choice.ID)
+			if err != nil {
+				return err
+			}
+			report.Choices[i].ConditionRelations = &view
 		}
 	}
 	for i, row := range doc.TestCases {

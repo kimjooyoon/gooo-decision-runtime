@@ -162,6 +162,12 @@ Relevant APIs:
 - `PreparedPlan.NewCanonicalInteractionRequirementContractSession`
 - `AuditCanonicalRequirements`
 
+The separate experimental [source-relative condition input](source-relative-conditions.md)
+exposes exact comparison-relation/Boolean-goal counts through
+`ContractInput.SourceRelativeConditions` and `inspect -condition-relations`.
+It has its own feature version and no fitted consumer yet; the models described
+above continue using their original inputs.
+
 Source resolution uses one root branch, known input/integer/Boolean atoms, and
 at most one operation in each predicate or return expression. Nested arithmetic,
 nested branches, operation holes and other choice kinds return an explicit
