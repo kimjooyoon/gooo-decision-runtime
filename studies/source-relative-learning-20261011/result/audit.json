@@ -1,0 +1,1620 @@
+{
+  "compared_with_baseline": {
+    "fixed/in_family": {
+      "Documents": 128,
+      "Improvements": [
+        "sr-in_family-bound-k257-w2-direct-r0-g0-c0",
+        "sr-in_family-bound-k257-w2-direct-r1-g1-c0",
+        "sr-in_family-bound-k257-w2-assignment-r0-g0-c0",
+        "sr-in_family-bound-k257-w2-assignment-r1-g1-c0",
+        "sr-in_family-bound-k257-w3-direct-r0-g0-c0",
+        "sr-in_family-bound-k257-w3-direct-r1-g1-c0",
+        "sr-in_family-bound-k257-w3-assignment-r0-g0-c0",
+        "sr-in_family-bound-k257-w3-assignment-r1-g1-c0",
+        "sr-in_family-bound-k-149-w2-direct-r0-g0-c0",
+        "sr-in_family-bound-k-149-w2-direct-r1-g1-c0",
+        "sr-in_family-bound-k-149-w2-assignment-r0-g0-c0",
+        "sr-in_family-bound-k-149-w2-assignment-r1-g1-c0",
+        "sr-in_family-bound-k-149-w3-direct-r0-g0-c0",
+        "sr-in_family-bound-k-149-w3-direct-r1-g1-c0",
+        "sr-in_family-bound-k-149-w3-assignment-r0-g0-c0",
+        "sr-in_family-bound-k-149-w3-assignment-r1-g1-c0",
+        "sr-in_family-distance-k257-w2-direct-r0-g0-c0",
+        "sr-in_family-distance-k257-w2-direct-r1-g1-c0",
+        "sr-in_family-distance-k257-w2-assignment-r0-g0-c0",
+        "sr-in_family-distance-k257-w2-assignment-r1-g1-c0",
+        "sr-in_family-distance-k257-w3-direct-r0-g0-c0",
+        "sr-in_family-distance-k257-w3-direct-r1-g1-c0",
+        "sr-in_family-distance-k257-w3-assignment-r0-g0-c0",
+        "sr-in_family-distance-k257-w3-assignment-r1-g1-c0",
+        "sr-in_family-distance-k-149-w2-direct-r0-g0-c0",
+        "sr-in_family-distance-k-149-w2-direct-r1-g1-c0",
+        "sr-in_family-distance-k-149-w2-assignment-r0-g0-c0",
+        "sr-in_family-distance-k-149-w2-assignment-r1-g1-c0",
+        "sr-in_family-distance-k-149-w3-direct-r0-g0-c0",
+        "sr-in_family-distance-k-149-w3-direct-r1-g1-c0",
+        "sr-in_family-distance-k-149-w3-assignment-r0-g0-c0",
+        "sr-in_family-distance-k-149-w3-assignment-r1-g1-c0"
+      ],
+      "Regressions": [
+        "sr-in_family-bound-k257-w2-direct-r0-g0-c1",
+        "sr-in_family-bound-k257-w2-assignment-r0-g0-c1",
+        "sr-in_family-bound-k257-w3-direct-r1-g0-c1",
+        "sr-in_family-bound-k257-w3-direct-r1-g1-c1",
+        "sr-in_family-bound-k257-w3-assignment-r1-g0-c1",
+        "sr-in_family-bound-k257-w3-assignment-r1-g1-c1",
+        "sr-in_family-bound-k-149-w2-direct-r0-g0-c1",
+        "sr-in_family-bound-k-149-w2-direct-r1-g0-c1",
+        "sr-in_family-bound-k-149-w2-assignment-r0-g0-c1",
+        "sr-in_family-bound-k-149-w2-assignment-r1-g0-c1",
+        "sr-in_family-bound-k-149-w3-direct-r0-g1-c1",
+        "sr-in_family-bound-k-149-w3-direct-r1-g0-c1",
+        "sr-in_family-bound-k-149-w3-assignment-r0-g1-c1",
+        "sr-in_family-bound-k-149-w3-assignment-r1-g0-c1",
+        "sr-in_family-distance-k257-w2-direct-r0-g0-c1",
+        "sr-in_family-distance-k257-w2-direct-r1-g1-c1",
+        "sr-in_family-distance-k257-w2-assignment-r0-g0-c1",
+        "sr-in_family-distance-k257-w2-assignment-r1-g1-c1",
+        "sr-in_family-distance-k257-w3-direct-r0-g0-c1",
+        "sr-in_family-distance-k257-w3-direct-r1-g0-c1",
+        "sr-in_family-distance-k257-w3-direct-r1-g1-c1",
+        "sr-in_family-distance-k257-w3-assignment-r0-g0-c1",
+        "sr-in_family-distance-k257-w3-assignment-r1-g0-c1",
+        "sr-in_family-distance-k257-w3-assignment-r1-g1-c1",
+        "sr-in_family-distance-k-149-w2-direct-r0-g0-c1",
+        "sr-in_family-distance-k-149-w2-direct-r1-g1-c1",
+        "sr-in_family-distance-k-149-w2-assignment-r0-g0-c1",
+        "sr-in_family-distance-k-149-w2-assignment-r1-g1-c1",
+        "sr-in_family-distance-k-149-w3-direct-r0-g1-c1",
+        "sr-in_family-distance-k-149-w3-direct-r1-g0-c1",
+        "sr-in_family-distance-k-149-w3-assignment-r0-g1-c1",
+        "sr-in_family-distance-k-149-w3-assignment-r1-g0-c1"
+      ]
+    },
+    "fixed/missing_conditions": {
+      "Documents": 16,
+      "Improvements": [
+        "sr-missing_conditions-k257-direct-r0-g0",
+        "sr-missing_conditions-k257-direct-r1-g1",
+        "sr-missing_conditions-k257-assignment-r0-g0",
+        "sr-missing_conditions-k257-assignment-r1-g1",
+        "sr-missing_conditions-k-149-direct-r1-g1",
+        "sr-missing_conditions-k-149-assignment-r1-g1"
+      ],
+      "Regressions": [
+        "sr-missing_conditions-k257-direct-r1-g0",
+        "sr-missing_conditions-k257-direct-r0-g1",
+        "sr-missing_conditions-k257-assignment-r1-g0",
+        "sr-missing_conditions-k257-assignment-r0-g1",
+        "sr-missing_conditions-k-149-direct-r0-g1",
+        "sr-missing_conditions-k-149-assignment-r0-g1"
+      ]
+    },
+    "fixed/train": {
+      "Documents": 64,
+      "Improvements": [
+        "sr-train-bound-k211-w0-direct-r0-g0-c0",
+        "sr-train-bound-k211-w0-direct-r1-g1-c0",
+        "sr-train-bound-k211-w1-direct-r1-g1-c0",
+        "sr-train-bound-k-131-w0-direct-r0-g0-c0",
+        "sr-train-bound-k-131-w0-direct-r1-g1-c0",
+        "sr-train-bound-k-131-w1-direct-r0-g0-c0",
+        "sr-train-distance-k211-w0-direct-r0-g0-c0",
+        "sr-train-distance-k211-w1-direct-r0-g0-c0",
+        "sr-train-distance-k211-w1-direct-r1-g1-c0",
+        "sr-train-distance-k-131-w0-direct-r0-g0-c0",
+        "sr-train-distance-k-131-w1-direct-r0-g0-c0",
+        "sr-train-distance-k-131-w1-direct-r1-g1-c0"
+      ],
+      "Regressions": [
+        "sr-train-bound-k211-w0-direct-r1-g0-c0",
+        "sr-train-bound-k211-w1-direct-r1-g1-c1",
+        "sr-train-distance-k211-w0-direct-r0-g1-c1",
+        "sr-train-distance-k-131-w0-direct-r0-g1-c1",
+        "sr-train-distance-k-131-w1-direct-r0-g0-c1",
+        "sr-train-distance-k-131-w1-direct-r0-g1-c1",
+        "sr-train-distance-k-131-w1-direct-r1-g1-c1"
+      ]
+    },
+    "fixed/unsatisfiable_conditions": {
+      "Documents": 16,
+      "Improvements": null,
+      "Regressions": null
+    },
+    "fixed/unseen_family": {
+      "Documents": 64,
+      "Improvements": [
+        "sr-unseen_family-affine-k257-w2-direct-r0-g0-c0",
+        "sr-unseen_family-affine-k257-w2-direct-r1-g1-c0",
+        "sr-unseen_family-affine-k257-w2-assignment-r0-g0-c0",
+        "sr-unseen_family-affine-k257-w2-assignment-r1-g1-c0",
+        "sr-unseen_family-affine-k257-w3-direct-r0-g0-c0",
+        "sr-unseen_family-affine-k257-w3-direct-r1-g1-c0",
+        "sr-unseen_family-affine-k257-w3-assignment-r0-g0-c0",
+        "sr-unseen_family-affine-k257-w3-assignment-r1-g1-c0",
+        "sr-unseen_family-affine-k-149-w2-direct-r0-g0-c0",
+        "sr-unseen_family-affine-k-149-w2-direct-r1-g1-c0",
+        "sr-unseen_family-affine-k-149-w2-assignment-r0-g0-c0",
+        "sr-unseen_family-affine-k-149-w2-assignment-r1-g1-c0",
+        "sr-unseen_family-affine-k-149-w3-direct-r0-g0-c0",
+        "sr-unseen_family-affine-k-149-w3-direct-r1-g1-c0",
+        "sr-unseen_family-affine-k-149-w3-assignment-r0-g0-c0",
+        "sr-unseen_family-affine-k-149-w3-assignment-r1-g1-c0"
+      ],
+      "Regressions": [
+        "sr-unseen_family-affine-k257-w2-direct-r0-g1-c1",
+        "sr-unseen_family-affine-k257-w2-direct-r1-g0-c1",
+        "sr-unseen_family-affine-k257-w2-assignment-r0-g1-c1",
+        "sr-unseen_family-affine-k257-w2-assignment-r1-g0-c1",
+        "sr-unseen_family-affine-k257-w3-direct-r0-g1-c1",
+        "sr-unseen_family-affine-k257-w3-assignment-r0-g1-c1",
+        "sr-unseen_family-affine-k-149-w2-direct-r0-g1-c0",
+        "sr-unseen_family-affine-k-149-w2-direct-r1-g0-c1",
+        "sr-unseen_family-affine-k-149-w2-assignment-r0-g1-c0",
+        "sr-unseen_family-affine-k-149-w2-assignment-r1-g0-c1",
+        "sr-unseen_family-affine-k-149-w3-direct-r0-g0-c1",
+        "sr-unseen_family-affine-k-149-w3-direct-r1-g1-c1",
+        "sr-unseen_family-affine-k-149-w3-assignment-r0-g0-c1",
+        "sr-unseen_family-affine-k-149-w3-assignment-r1-g1-c1"
+      ]
+    },
+    "relative/in_family": {
+      "Documents": 128,
+      "Improvements": [
+        "sr-in_family-bound-k257-w2-direct-r0-g0-c0",
+        "sr-in_family-bound-k257-w2-direct-r1-g1-c0",
+        "sr-in_family-bound-k257-w2-direct-r1-g1-c1",
+        "sr-in_family-bound-k257-w2-assignment-r0-g0-c0",
+        "sr-in_family-bound-k257-w2-assignment-r1-g1-c0",
+        "sr-in_family-bound-k257-w2-assignment-r1-g1-c1",
+        "sr-in_family-bound-k257-w3-direct-r0-g0-c0",
+        "sr-in_family-bound-k257-w3-direct-r0-g0-c1",
+        "sr-in_family-bound-k257-w3-direct-r1-g1-c0",
+        "sr-in_family-bound-k257-w3-assignment-r0-g0-c0",
+        "sr-in_family-bound-k257-w3-assignment-r0-g0-c1",
+        "sr-in_family-bound-k257-w3-assignment-r1-g1-c0",
+        "sr-in_family-bound-k-149-w2-direct-r0-g0-c0",
+        "sr-in_family-bound-k-149-w2-direct-r1-g1-c0",
+        "sr-in_family-bound-k-149-w2-direct-r1-g1-c1",
+        "sr-in_family-bound-k-149-w2-assignment-r0-g0-c0",
+        "sr-in_family-bound-k-149-w2-assignment-r1-g1-c0",
+        "sr-in_family-bound-k-149-w2-assignment-r1-g1-c1",
+        "sr-in_family-bound-k-149-w3-direct-r0-g0-c0",
+        "sr-in_family-bound-k-149-w3-direct-r0-g0-c1",
+        "sr-in_family-bound-k-149-w3-direct-r1-g1-c0",
+        "sr-in_family-bound-k-149-w3-direct-r1-g1-c1",
+        "sr-in_family-bound-k-149-w3-assignment-r0-g0-c0",
+        "sr-in_family-bound-k-149-w3-assignment-r0-g0-c1",
+        "sr-in_family-bound-k-149-w3-assignment-r1-g1-c0",
+        "sr-in_family-bound-k-149-w3-assignment-r1-g1-c1",
+        "sr-in_family-distance-k257-w2-direct-r0-g0-c0",
+        "sr-in_family-distance-k257-w2-direct-r1-g1-c0",
+        "sr-in_family-distance-k257-w2-assignment-r0-g0-c0",
+        "sr-in_family-distance-k257-w2-assignment-r1-g1-c0",
+        "sr-in_family-distance-k257-w3-direct-r0-g0-c0",
+        "sr-in_family-distance-k257-w3-direct-r1-g1-c0",
+        "sr-in_family-distance-k257-w3-assignment-r0-g0-c0",
+        "sr-in_family-distance-k257-w3-assignment-r1-g1-c0",
+        "sr-in_family-distance-k-149-w2-direct-r0-g0-c0",
+        "sr-in_family-distance-k-149-w2-direct-r1-g1-c0",
+        "sr-in_family-distance-k-149-w2-assignment-r0-g0-c0",
+        "sr-in_family-distance-k-149-w2-assignment-r1-g1-c0",
+        "sr-in_family-distance-k-149-w3-direct-r0-g0-c0",
+        "sr-in_family-distance-k-149-w3-direct-r0-g0-c1",
+        "sr-in_family-distance-k-149-w3-direct-r1-g1-c0",
+        "sr-in_family-distance-k-149-w3-direct-r1-g1-c1",
+        "sr-in_family-distance-k-149-w3-assignment-r0-g0-c0",
+        "sr-in_family-distance-k-149-w3-assignment-r0-g0-c1",
+        "sr-in_family-distance-k-149-w3-assignment-r1-g1-c0",
+        "sr-in_family-distance-k-149-w3-assignment-r1-g1-c1"
+      ],
+      "Regressions": [
+        "sr-in_family-bound-k257-w3-direct-r1-g0-c1",
+        "sr-in_family-bound-k257-w3-assignment-r1-g0-c1",
+        "sr-in_family-bound-k-149-w2-direct-r1-g0-c1",
+        "sr-in_family-bound-k-149-w2-assignment-r1-g0-c1",
+        "sr-in_family-bound-k-149-w3-direct-r0-g1-c1",
+        "sr-in_family-bound-k-149-w3-direct-r1-g0-c1",
+        "sr-in_family-bound-k-149-w3-assignment-r0-g1-c1",
+        "sr-in_family-bound-k-149-w3-assignment-r1-g0-c1",
+        "sr-in_family-distance-k257-w3-direct-r1-g0-c1",
+        "sr-in_family-distance-k257-w3-assignment-r1-g0-c1",
+        "sr-in_family-distance-k-149-w3-direct-r0-g1-c1",
+        "sr-in_family-distance-k-149-w3-direct-r1-g0-c1",
+        "sr-in_family-distance-k-149-w3-assignment-r0-g1-c1",
+        "sr-in_family-distance-k-149-w3-assignment-r1-g0-c1"
+      ]
+    },
+    "relative/missing_conditions": {
+      "Documents": 16,
+      "Improvements": [
+        "sr-missing_conditions-k257-direct-r0-g0",
+        "sr-missing_conditions-k257-direct-r1-g1",
+        "sr-missing_conditions-k257-assignment-r0-g0",
+        "sr-missing_conditions-k257-assignment-r1-g1",
+        "sr-missing_conditions-k-149-direct-r1-g1",
+        "sr-missing_conditions-k-149-assignment-r1-g1"
+      ],
+      "Regressions": [
+        "sr-missing_conditions-k257-direct-r1-g0",
+        "sr-missing_conditions-k257-direct-r0-g1",
+        "sr-missing_conditions-k257-assignment-r1-g0",
+        "sr-missing_conditions-k257-assignment-r0-g1",
+        "sr-missing_conditions-k-149-direct-r0-g0",
+        "sr-missing_conditions-k-149-direct-r0-g1",
+        "sr-missing_conditions-k-149-assignment-r0-g0",
+        "sr-missing_conditions-k-149-assignment-r0-g1"
+      ]
+    },
+    "relative/train": {
+      "Documents": 64,
+      "Improvements": [
+        "sr-train-bound-k211-w0-direct-r0-g0-c0",
+        "sr-train-bound-k211-w0-direct-r0-g0-c1",
+        "sr-train-bound-k211-w0-direct-r1-g1-c0",
+        "sr-train-bound-k211-w0-direct-r1-g1-c1",
+        "sr-train-bound-k211-w1-direct-r0-g0-c1",
+        "sr-train-bound-k211-w1-direct-r1-g1-c0",
+        "sr-train-bound-k-131-w0-direct-r0-g0-c0",
+        "sr-train-bound-k-131-w0-direct-r0-g0-c1",
+        "sr-train-bound-k-131-w0-direct-r1-g1-c0",
+        "sr-train-bound-k-131-w0-direct-r1-g1-c1",
+        "sr-train-bound-k-131-w1-direct-r0-g0-c0",
+        "sr-train-bound-k-131-w1-direct-r0-g0-c1",
+        "sr-train-bound-k-131-w1-direct-r1-g1-c1",
+        "sr-train-distance-k211-w0-direct-r0-g0-c0",
+        "sr-train-distance-k211-w0-direct-r0-g0-c1",
+        "sr-train-distance-k211-w0-direct-r1-g1-c1",
+        "sr-train-distance-k211-w1-direct-r0-g0-c0",
+        "sr-train-distance-k211-w1-direct-r0-g0-c1",
+        "sr-train-distance-k211-w1-direct-r1-g1-c0",
+        "sr-train-distance-k211-w1-direct-r1-g1-c1",
+        "sr-train-distance-k-131-w0-direct-r0-g0-c0",
+        "sr-train-distance-k-131-w0-direct-r0-g0-c1",
+        "sr-train-distance-k-131-w0-direct-r1-g1-c1",
+        "sr-train-distance-k-131-w1-direct-r0-g0-c0",
+        "sr-train-distance-k-131-w1-direct-r1-g1-c0"
+      ],
+      "Regressions": [
+        "sr-train-bound-k211-w0-direct-r1-g0-c0",
+        "sr-train-distance-k211-w0-direct-r0-g1-c1",
+        "sr-train-distance-k-131-w0-direct-r0-g1-c1",
+        "sr-train-distance-k-131-w1-direct-r0-g1-c1"
+      ]
+    },
+    "relative/unsatisfiable_conditions": {
+      "Documents": 16,
+      "Improvements": null,
+      "Regressions": null
+    },
+    "relative/unseen_family": {
+      "Documents": 64,
+      "Improvements": [
+        "sr-unseen_family-affine-k257-w2-direct-r0-g0-c0",
+        "sr-unseen_family-affine-k257-w2-direct-r1-g1-c0",
+        "sr-unseen_family-affine-k257-w2-assignment-r0-g0-c0",
+        "sr-unseen_family-affine-k257-w2-assignment-r1-g1-c0",
+        "sr-unseen_family-affine-k257-w3-direct-r0-g0-c0",
+        "sr-unseen_family-affine-k257-w3-direct-r1-g0-c1",
+        "sr-unseen_family-affine-k257-w3-direct-r1-g1-c0",
+        "sr-unseen_family-affine-k257-w3-assignment-r0-g0-c0",
+        "sr-unseen_family-affine-k257-w3-assignment-r1-g0-c1",
+        "sr-unseen_family-affine-k257-w3-assignment-r1-g1-c0",
+        "sr-unseen_family-affine-k-149-w2-direct-r0-g0-c0",
+        "sr-unseen_family-affine-k-149-w2-direct-r0-g1-c1",
+        "sr-unseen_family-affine-k-149-w2-direct-r1-g1-c0",
+        "sr-unseen_family-affine-k-149-w2-assignment-r0-g0-c0",
+        "sr-unseen_family-affine-k-149-w2-assignment-r0-g1-c1",
+        "sr-unseen_family-affine-k-149-w2-assignment-r1-g1-c0",
+        "sr-unseen_family-affine-k-149-w3-direct-r0-g0-c0",
+        "sr-unseen_family-affine-k-149-w3-direct-r0-g1-c1",
+        "sr-unseen_family-affine-k-149-w3-direct-r1-g0-c1",
+        "sr-unseen_family-affine-k-149-w3-direct-r1-g1-c0",
+        "sr-unseen_family-affine-k-149-w3-assignment-r0-g0-c0",
+        "sr-unseen_family-affine-k-149-w3-assignment-r0-g1-c1",
+        "sr-unseen_family-affine-k-149-w3-assignment-r1-g0-c1",
+        "sr-unseen_family-affine-k-149-w3-assignment-r1-g1-c0"
+      ],
+      "Regressions": [
+        "sr-unseen_family-affine-k-149-w2-direct-r0-g1-c0",
+        "sr-unseen_family-affine-k-149-w2-assignment-r0-g1-c0",
+        "sr-unseen_family-affine-k-149-w3-direct-r0-g0-c1",
+        "sr-unseen_family-affine-k-149-w3-direct-r1-g1-c1",
+        "sr-unseen_family-affine-k-149-w3-assignment-r0-g0-c1",
+        "sr-unseen_family-affine-k-149-w3-assignment-r1-g1-c1"
+      ]
+    },
+    "rule/in_family": {
+      "Documents": 128,
+      "Improvements": [
+        "sr-in_family-bound-k257-w2-direct-r0-g0-c0",
+        "sr-in_family-bound-k257-w2-direct-r0-g1-c1",
+        "sr-in_family-bound-k257-w2-direct-r1-g0-c1",
+        "sr-in_family-bound-k257-w2-direct-r1-g1-c0",
+        "sr-in_family-bound-k257-w2-assignment-r0-g0-c0",
+        "sr-in_family-bound-k257-w2-assignment-r0-g1-c1",
+        "sr-in_family-bound-k257-w2-assignment-r1-g0-c1",
+        "sr-in_family-bound-k257-w2-assignment-r1-g1-c0",
+        "sr-in_family-bound-k257-w3-direct-r0-g0-c0",
+        "sr-in_family-bound-k257-w3-direct-r0-g1-c1",
+        "sr-in_family-bound-k257-w3-direct-r1-g1-c0",
+        "sr-in_family-bound-k257-w3-assignment-r0-g0-c0",
+        "sr-in_family-bound-k257-w3-assignment-r0-g1-c1",
+        "sr-in_family-bound-k257-w3-assignment-r1-g1-c0",
+        "sr-in_family-bound-k-149-w2-direct-r0-g0-c0",
+        "sr-in_family-bound-k-149-w2-direct-r0-g1-c1",
+        "sr-in_family-bound-k-149-w2-direct-r1-g1-c0",
+        "sr-in_family-bound-k-149-w2-assignment-r0-g0-c0",
+        "sr-in_family-bound-k-149-w2-assignment-r0-g1-c1",
+        "sr-in_family-bound-k-149-w2-assignment-r1-g1-c0",
+        "sr-in_family-bound-k-149-w3-direct-r0-g0-c0",
+        "sr-in_family-bound-k-149-w3-direct-r1-g1-c0",
+        "sr-in_family-bound-k-149-w3-assignment-r0-g0-c0",
+        "sr-in_family-bound-k-149-w3-assignment-r1-g1-c0",
+        "sr-in_family-distance-k257-w2-direct-r0-g0-c0",
+        "sr-in_family-distance-k257-w2-direct-r0-g1-c1",
+        "sr-in_family-distance-k257-w2-direct-r1-g0-c1",
+        "sr-in_family-distance-k257-w2-direct-r1-g1-c0",
+        "sr-in_family-distance-k257-w2-assignment-r0-g0-c0",
+        "sr-in_family-distance-k257-w2-assignment-r0-g1-c1",
+        "sr-in_family-distance-k257-w2-assignment-r1-g0-c1",
+        "sr-in_family-distance-k257-w2-assignment-r1-g1-c0",
+        "sr-in_family-distance-k257-w3-direct-r0-g0-c0",
+        "sr-in_family-distance-k257-w3-direct-r0-g1-c1",
+        "sr-in_family-distance-k257-w3-direct-r1-g1-c0",
+        "sr-in_family-distance-k257-w3-assignment-r0-g0-c0",
+        "sr-in_family-distance-k257-w3-assignment-r0-g1-c1",
+        "sr-in_family-distance-k257-w3-assignment-r1-g1-c0",
+        "sr-in_family-distance-k-149-w2-direct-r0-g0-c0",
+        "sr-in_family-distance-k-149-w2-direct-r0-g1-c1",
+        "sr-in_family-distance-k-149-w2-direct-r1-g0-c1",
+        "sr-in_family-distance-k-149-w2-direct-r1-g1-c0",
+        "sr-in_family-distance-k-149-w2-assignment-r0-g0-c0",
+        "sr-in_family-distance-k-149-w2-assignment-r0-g1-c1",
+        "sr-in_family-distance-k-149-w2-assignment-r1-g0-c1",
+        "sr-in_family-distance-k-149-w2-assignment-r1-g1-c0",
+        "sr-in_family-distance-k-149-w3-direct-r0-g0-c0",
+        "sr-in_family-distance-k-149-w3-direct-r1-g1-c0",
+        "sr-in_family-distance-k-149-w3-assignment-r0-g0-c0",
+        "sr-in_family-distance-k-149-w3-assignment-r1-g1-c0"
+      ],
+      "Regressions": [
+        "sr-in_family-bound-k257-w2-direct-r0-g0-c1",
+        "sr-in_family-bound-k257-w2-assignment-r0-g0-c1",
+        "sr-in_family-bound-k257-w3-direct-r1-g1-c1",
+        "sr-in_family-bound-k257-w3-assignment-r1-g1-c1",
+        "sr-in_family-bound-k-149-w2-direct-r0-g0-c1",
+        "sr-in_family-bound-k-149-w2-assignment-r0-g0-c1",
+        "sr-in_family-distance-k257-w2-direct-r0-g0-c1",
+        "sr-in_family-distance-k257-w2-direct-r1-g1-c1",
+        "sr-in_family-distance-k257-w2-assignment-r0-g0-c1",
+        "sr-in_family-distance-k257-w2-assignment-r1-g1-c1",
+        "sr-in_family-distance-k257-w3-direct-r0-g0-c1",
+        "sr-in_family-distance-k257-w3-direct-r1-g1-c1",
+        "sr-in_family-distance-k257-w3-assignment-r0-g0-c1",
+        "sr-in_family-distance-k257-w3-assignment-r1-g1-c1",
+        "sr-in_family-distance-k-149-w2-direct-r0-g0-c1",
+        "sr-in_family-distance-k-149-w2-direct-r1-g1-c1",
+        "sr-in_family-distance-k-149-w2-assignment-r0-g0-c1",
+        "sr-in_family-distance-k-149-w2-assignment-r1-g1-c1"
+      ]
+    },
+    "rule/missing_conditions": {
+      "Documents": 16,
+      "Improvements": [
+        "sr-missing_conditions-k257-direct-r0-g0",
+        "sr-missing_conditions-k257-direct-r1-g1",
+        "sr-missing_conditions-k257-assignment-r0-g0",
+        "sr-missing_conditions-k257-assignment-r1-g1",
+        "sr-missing_conditions-k-149-direct-r1-g1",
+        "sr-missing_conditions-k-149-assignment-r1-g1"
+      ],
+      "Regressions": [
+        "sr-missing_conditions-k257-direct-r1-g0",
+        "sr-missing_conditions-k257-direct-r0-g1",
+        "sr-missing_conditions-k257-assignment-r1-g0",
+        "sr-missing_conditions-k257-assignment-r0-g1",
+        "sr-missing_conditions-k-149-direct-r0-g1",
+        "sr-missing_conditions-k-149-assignment-r0-g1"
+      ]
+    },
+    "rule/train": {
+      "Documents": 64,
+      "Improvements": [
+        "sr-train-bound-k211-w0-direct-r0-g0-c0",
+        "sr-train-bound-k211-w0-direct-r0-g1-c1",
+        "sr-train-bound-k211-w0-direct-r1-g0-c1",
+        "sr-train-bound-k211-w0-direct-r1-g1-c0",
+        "sr-train-bound-k211-w1-direct-r0-g1-c1",
+        "sr-train-bound-k211-w1-direct-r1-g0-c1",
+        "sr-train-bound-k211-w1-direct-r1-g1-c0",
+        "sr-train-bound-k-131-w0-direct-r0-g0-c0",
+        "sr-train-bound-k-131-w0-direct-r0-g1-c1",
+        "sr-train-bound-k-131-w0-direct-r1-g0-c1",
+        "sr-train-bound-k-131-w0-direct-r1-g1-c0",
+        "sr-train-bound-k-131-w1-direct-r0-g0-c0",
+        "sr-train-bound-k-131-w1-direct-r0-g1-c1",
+        "sr-train-bound-k-131-w1-direct-r1-g0-c1",
+        "sr-train-distance-k211-w0-direct-r0-g0-c0",
+        "sr-train-distance-k211-w0-direct-r1-g0-c1",
+        "sr-train-distance-k211-w1-direct-r0-g0-c0",
+        "sr-train-distance-k211-w1-direct-r0-g1-c1",
+        "sr-train-distance-k211-w1-direct-r1-g0-c1",
+        "sr-train-distance-k211-w1-direct-r1-g1-c0",
+        "sr-train-distance-k-131-w0-direct-r0-g0-c0",
+        "sr-train-distance-k-131-w0-direct-r1-g0-c1",
+        "sr-train-distance-k-131-w1-direct-r0-g0-c0",
+        "sr-train-distance-k-131-w1-direct-r1-g0-c1",
+        "sr-train-distance-k-131-w1-direct-r1-g1-c0"
+      ],
+      "Regressions": [
+        "sr-train-bound-k211-w0-direct-r1-g0-c0",
+        "sr-train-bound-k211-w1-direct-r1-g1-c1",
+        "sr-train-distance-k-131-w1-direct-r0-g0-c1",
+        "sr-train-distance-k-131-w1-direct-r1-g1-c1"
+      ]
+    },
+    "rule/unsatisfiable_conditions": {
+      "Documents": 16,
+      "Improvements": null,
+      "Regressions": null
+    },
+    "rule/unseen_family": {
+      "Documents": 64,
+      "Improvements": [
+        "sr-unseen_family-affine-k257-w2-direct-r0-g0-c0",
+        "sr-unseen_family-affine-k257-w2-direct-r0-g0-c1",
+        "sr-unseen_family-affine-k257-w2-direct-r1-g1-c0",
+        "sr-unseen_family-affine-k257-w2-direct-r1-g1-c1",
+        "sr-unseen_family-affine-k257-w2-assignment-r0-g0-c0",
+        "sr-unseen_family-affine-k257-w2-assignment-r0-g0-c1",
+        "sr-unseen_family-affine-k257-w2-assignment-r1-g1-c0",
+        "sr-unseen_family-affine-k257-w2-assignment-r1-g1-c1",
+        "sr-unseen_family-affine-k257-w3-direct-r0-g0-c0",
+        "sr-unseen_family-affine-k257-w3-direct-r0-g0-c1",
+        "sr-unseen_family-affine-k257-w3-direct-r1-g1-c0",
+        "sr-unseen_family-affine-k257-w3-direct-r1-g1-c1",
+        "sr-unseen_family-affine-k257-w3-assignment-r0-g0-c0",
+        "sr-unseen_family-affine-k257-w3-assignment-r0-g0-c1",
+        "sr-unseen_family-affine-k257-w3-assignment-r1-g1-c0",
+        "sr-unseen_family-affine-k257-w3-assignment-r1-g1-c1",
+        "sr-unseen_family-affine-k-149-w2-direct-r0-g0-c0",
+        "sr-unseen_family-affine-k-149-w2-direct-r0-g0-c1",
+        "sr-unseen_family-affine-k-149-w2-direct-r1-g1-c0",
+        "sr-unseen_family-affine-k-149-w2-direct-r1-g1-c1",
+        "sr-unseen_family-affine-k-149-w2-assignment-r0-g0-c0",
+        "sr-unseen_family-affine-k-149-w2-assignment-r0-g0-c1",
+        "sr-unseen_family-affine-k-149-w2-assignment-r1-g1-c0",
+        "sr-unseen_family-affine-k-149-w2-assignment-r1-g1-c1",
+        "sr-unseen_family-affine-k-149-w3-direct-r0-g0-c0",
+        "sr-unseen_family-affine-k-149-w3-direct-r1-g1-c0",
+        "sr-unseen_family-affine-k-149-w3-assignment-r0-g0-c0",
+        "sr-unseen_family-affine-k-149-w3-assignment-r1-g1-c0"
+      ],
+      "Regressions": [
+        "sr-unseen_family-affine-k257-w2-direct-r0-g1-c1",
+        "sr-unseen_family-affine-k257-w2-direct-r1-g0-c1",
+        "sr-unseen_family-affine-k257-w2-assignment-r0-g1-c1",
+        "sr-unseen_family-affine-k257-w2-assignment-r1-g0-c1",
+        "sr-unseen_family-affine-k257-w3-direct-r0-g1-c1",
+        "sr-unseen_family-affine-k257-w3-assignment-r0-g1-c1",
+        "sr-unseen_family-affine-k-149-w2-direct-r0-g1-c0",
+        "sr-unseen_family-affine-k-149-w2-direct-r1-g0-c1",
+        "sr-unseen_family-affine-k-149-w2-assignment-r0-g1-c0",
+        "sr-unseen_family-affine-k-149-w2-assignment-r1-g0-c1"
+      ]
+    }
+  },
+  "equivalent_form_pairs": {
+    "baseline": 112,
+    "fixed": 112,
+    "relative": 112,
+    "rule": 112
+  },
+  "event_count": 4772,
+  "files": {
+    "baseline-fit-started.json": "65774be0be1053c28e73f4262ab4dab1a3004f484a3ca05a5ec2a35b8fe442a4",
+    "completed.json": "d675efe36421e200681f080c9b01b43d9d696a926bc9424f6078a9b76ff90e45",
+    "events.jsonl": "2ffbc29d220ddf3bb8bb6698e5f1a2d62cee7134b70d848f2f3a8653fee356a6",
+    "history-baseline.json": "fcba028a1823b4e2ecfc41b7cfbfae519b74329ea3a6eefc60b5d5086e5f1415",
+    "history-relative.json": "279e0672b824e3b9260a05c33a5296dd12a889cd208fc6e9593072e61a40984e",
+    "model-baseline.json": "bbc60ea44f6f75b592f9dd6978e88ee8c8819054a3139c16a58dda2e22657170",
+    "model-info-baseline.json": "3a02fb7e6c3448ce6a16489a0e31b4a2fc745e7995000abc1f1a14897b5f8c08",
+    "model-info-relative.json": "3decc2dd04caf84fd7bbac2fc610cfb11ff29c56114aa2e730addb4b13b6faa9",
+    "model-relative.json": "cae32bdad17ab818498c6099066918cd9c9c591eb118afe1bc6a7ef82dc83cc4",
+    "relative-fit-started.json": "65774be0be1053c28e73f4262ab4dab1a3004f484a3ca05a5ec2a35b8fe442a4",
+    "report.json": "f8a649cf032b47e09b194f60930591266fd539029207e41651079345d5aa5d77",
+    "searches.jsonl": "e70ea33eaa20ae46eaa338b42c09efe0598cf96ca2b0dae4427776bd0fbf73c2",
+    "sources.jsonl": "92a4325335bf37b1ffa303cbab171d4dbd950eeb17871de16a135e22fb83cf95",
+    "started.json": "bf4a6cb042cda64a220c7a91ee81947453c499d85d63932422c0c4d1c4fa9cec",
+    "training.json": "4cb0a2ee28f175893ad4292849773672bea23dee10776893a4c6886954c8a431"
+  },
+  "fits": 2,
+  "goal_pairs": {
+    "condition/in_family/baseline": {
+      "Pairs": 64,
+      "RequiredChanges": [
+        64,
+        64
+      ],
+      "ProposedChanges": [
+        0,
+        2
+      ],
+      "LogitChanges": [
+        64,
+        64
+      ],
+      "BothFirstCorrect": 0,
+      "EitherFirstCorrect": 32
+    },
+    "condition/in_family/fixed": {
+      "Pairs": 64,
+      "RequiredChanges": [
+        64,
+        64
+      ],
+      "ProposedChanges": [
+        0,
+        0
+      ],
+      "LogitChanges": [
+        0,
+        0
+      ],
+      "BothFirstCorrect": 0,
+      "EitherFirstCorrect": 32
+    },
+    "condition/in_family/relative": {
+      "Pairs": 64,
+      "RequiredChanges": [
+        64,
+        64
+      ],
+      "ProposedChanges": [
+        64,
+        64
+      ],
+      "LogitChanges": [
+        64,
+        64
+      ],
+      "BothFirstCorrect": 32,
+      "EitherFirstCorrect": 32
+    },
+    "condition/in_family/rule": {
+      "Pairs": 64,
+      "RequiredChanges": [
+        64,
+        64
+      ],
+      "ProposedChanges": [
+        64,
+        0
+      ],
+      "LogitChanges": [
+        64,
+        0
+      ],
+      "BothFirstCorrect": 0,
+      "EitherFirstCorrect": 64
+    },
+    "condition/train/baseline": {
+      "Pairs": 32,
+      "RequiredChanges": [
+        32,
+        32
+      ],
+      "ProposedChanges": [
+        1,
+        0
+      ],
+      "LogitChanges": [
+        32,
+        32
+      ],
+      "BothFirstCorrect": 0,
+      "EitherFirstCorrect": 11
+    },
+    "condition/train/fixed": {
+      "Pairs": 32,
+      "RequiredChanges": [
+        32,
+        32
+      ],
+      "ProposedChanges": [
+        0,
+        0
+      ],
+      "LogitChanges": [
+        0,
+        0
+      ],
+      "BothFirstCorrect": 0,
+      "EitherFirstCorrect": 16
+    },
+    "condition/train/relative": {
+      "Pairs": 32,
+      "RequiredChanges": [
+        32,
+        32
+      ],
+      "ProposedChanges": [
+        32,
+        32
+      ],
+      "LogitChanges": [
+        32,
+        32
+      ],
+      "BothFirstCorrect": 16,
+      "EitherFirstCorrect": 16
+    },
+    "condition/train/rule": {
+      "Pairs": 32,
+      "RequiredChanges": [
+        32,
+        32
+      ],
+      "ProposedChanges": [
+        32,
+        0
+      ],
+      "LogitChanges": [
+        32,
+        0
+      ],
+      "BothFirstCorrect": 0,
+      "EitherFirstCorrect": 32
+    },
+    "condition_with_output_change/unseen_family/baseline": {
+      "Pairs": 32,
+      "RequiredChanges": [
+        32,
+        0
+      ],
+      "ProposedChanges": [
+        0,
+        4
+      ],
+      "LogitChanges": [
+        32,
+        32
+      ],
+      "BothFirstCorrect": 0,
+      "EitherFirstCorrect": 14
+    },
+    "condition_with_output_change/unseen_family/fixed": {
+      "Pairs": 32,
+      "RequiredChanges": [
+        32,
+        0
+      ],
+      "ProposedChanges": [
+        0,
+        0
+      ],
+      "LogitChanges": [
+        0,
+        0
+      ],
+      "BothFirstCorrect": 0,
+      "EitherFirstCorrect": 16
+    },
+    "condition_with_output_change/unseen_family/relative": {
+      "Pairs": 32,
+      "RequiredChanges": [
+        32,
+        0
+      ],
+      "ProposedChanges": [
+        32,
+        32
+      ],
+      "LogitChanges": [
+        32,
+        32
+      ],
+      "BothFirstCorrect": 0,
+      "EitherFirstCorrect": 32
+    },
+    "condition_with_output_change/unseen_family/rule": {
+      "Pairs": 32,
+      "RequiredChanges": [
+        32,
+        0
+      ],
+      "ProposedChanges": [
+        32,
+        0
+      ],
+      "LogitChanges": [
+        32,
+        0
+      ],
+      "BothFirstCorrect": 16,
+      "EitherFirstCorrect": 16
+    },
+    "output/in_family/baseline": {
+      "Pairs": 64,
+      "RequiredChanges": [
+        0,
+        64
+      ],
+      "ProposedChanges": [
+        0,
+        14
+      ],
+      "LogitChanges": [
+        64,
+        64
+      ],
+      "BothFirstCorrect": 4,
+      "EitherFirstCorrect": 28
+    },
+    "output/in_family/fixed": {
+      "Pairs": 64,
+      "RequiredChanges": [
+        0,
+        64
+      ],
+      "ProposedChanges": [
+        0,
+        0
+      ],
+      "LogitChanges": [
+        0,
+        0
+      ],
+      "BothFirstCorrect": 0,
+      "EitherFirstCorrect": 32
+    },
+    "output/in_family/relative": {
+      "Pairs": 64,
+      "RequiredChanges": [
+        0,
+        64
+      ],
+      "ProposedChanges": [
+        0,
+        0
+      ],
+      "LogitChanges": [
+        64,
+        64
+      ],
+      "BothFirstCorrect": 0,
+      "EitherFirstCorrect": 64
+    },
+    "output/in_family/rule": {
+      "Pairs": 64,
+      "RequiredChanges": [
+        0,
+        64
+      ],
+      "ProposedChanges": [
+        0,
+        0
+      ],
+      "LogitChanges": [
+        0,
+        0
+      ],
+      "BothFirstCorrect": 0,
+      "EitherFirstCorrect": 64
+    },
+    "output/train/baseline": {
+      "Pairs": 32,
+      "RequiredChanges": [
+        0,
+        32
+      ],
+      "ProposedChanges": [
+        15,
+        16
+      ],
+      "LogitChanges": [
+        32,
+        32
+      ],
+      "BothFirstCorrect": 1,
+      "EitherFirstCorrect": 10
+    },
+    "output/train/fixed": {
+      "Pairs": 32,
+      "RequiredChanges": [
+        0,
+        32
+      ],
+      "ProposedChanges": [
+        0,
+        0
+      ],
+      "LogitChanges": [
+        0,
+        0
+      ],
+      "BothFirstCorrect": 0,
+      "EitherFirstCorrect": 16
+    },
+    "output/train/relative": {
+      "Pairs": 32,
+      "RequiredChanges": [
+        0,
+        32
+      ],
+      "ProposedChanges": [
+        0,
+        0
+      ],
+      "LogitChanges": [
+        32,
+        32
+      ],
+      "BothFirstCorrect": 0,
+      "EitherFirstCorrect": 32
+    },
+    "output/train/rule": {
+      "Pairs": 32,
+      "RequiredChanges": [
+        0,
+        32
+      ],
+      "ProposedChanges": [
+        0,
+        0
+      ],
+      "LogitChanges": [
+        0,
+        0
+      ],
+      "BothFirstCorrect": 0,
+      "EitherFirstCorrect": 32
+    },
+    "output/unseen_family/baseline": {
+      "Pairs": 32,
+      "RequiredChanges": [
+        0,
+        32
+      ],
+      "ProposedChanges": [
+        0,
+        4
+      ],
+      "LogitChanges": [
+        32,
+        32
+      ],
+      "BothFirstCorrect": 0,
+      "EitherFirstCorrect": 14
+    },
+    "output/unseen_family/fixed": {
+      "Pairs": 32,
+      "RequiredChanges": [
+        0,
+        32
+      ],
+      "ProposedChanges": [
+        0,
+        0
+      ],
+      "LogitChanges": [
+        0,
+        0
+      ],
+      "BothFirstCorrect": 0,
+      "EitherFirstCorrect": 16
+    },
+    "output/unseen_family/relative": {
+      "Pairs": 32,
+      "RequiredChanges": [
+        0,
+        32
+      ],
+      "ProposedChanges": [
+        0,
+        0
+      ],
+      "LogitChanges": [
+        32,
+        32
+      ],
+      "BothFirstCorrect": 0,
+      "EitherFirstCorrect": 32
+    },
+    "output/unseen_family/rule": {
+      "Pairs": 32,
+      "RequiredChanges": [
+        0,
+        32
+      ],
+      "ProposedChanges": [
+        0,
+        0
+      ],
+      "LogitChanges": [
+        0,
+        0
+      ],
+      "BothFirstCorrect": 0,
+      "EitherFirstCorrect": 32
+    }
+  },
+  "groups": {
+    "baseline/all": {
+      "Documents": 288,
+      "FirstDeclared": 65,
+      "FirstProbe": 57,
+      "FinalDeclared": 272,
+      "ResultProbe": 272,
+      "ZeroValidPalette": 16,
+      "MultipleValidPalette": 16,
+      "UniqueRoleDocuments": 256,
+      "ComparisonCorrect": 129,
+      "BranchCorrect": 130,
+      "CandidateChecks": 726,
+      "ModelCalls": 288,
+      "PartialDocuments": 16,
+      "ResultPassed": 3104,
+      "ResultTotal": 3120,
+      "RuleBucketChecks": 0,
+      "RelationRows": 0,
+      "SearchNS": 98629509,
+      "PreparationNS": 15407624,
+      "PredictionNS": 31769546,
+      "RuleNS": 0,
+      "ProbeNS": 6431795
+    },
+    "baseline/in_family": {
+      "Documents": 128,
+      "FirstDeclared": 32,
+      "FirstProbe": 32,
+      "FinalDeclared": 128,
+      "ResultProbe": 128,
+      "ZeroValidPalette": 0,
+      "MultipleValidPalette": 0,
+      "UniqueRoleDocuments": 128,
+      "ComparisonCorrect": 64,
+      "BranchCorrect": 66,
+      "CandidateChecks": 318,
+      "ModelCalls": 128,
+      "PartialDocuments": 0,
+      "ResultPassed": 1408,
+      "ResultTotal": 1408,
+      "RuleBucketChecks": 0,
+      "RelationRows": 0,
+      "SearchNS": 40109423,
+      "PreparationNS": 6283829,
+      "PredictionNS": 13839172,
+      "RuleNS": 0,
+      "ProbeNS": 2698962
+    },
+    "baseline/missing_conditions": {
+      "Documents": 16,
+      "FirstDeclared": 8,
+      "FirstProbe": 0,
+      "FinalDeclared": 16,
+      "ResultProbe": 0,
+      "ZeroValidPalette": 0,
+      "MultipleValidPalette": 16,
+      "UniqueRoleDocuments": 0,
+      "ComparisonCorrect": 0,
+      "BranchCorrect": 0,
+      "CandidateChecks": 24,
+      "ModelCalls": 16,
+      "PartialDocuments": 0,
+      "ResultPassed": 128,
+      "ResultTotal": 128,
+      "RuleBucketChecks": 0,
+      "RelationRows": 0,
+      "SearchNS": 7193791,
+      "PreparationNS": 1106666,
+      "PredictionNS": 2105665,
+      "RuleNS": 0,
+      "ProbeNS": 443415
+    },
+    "baseline/train": {
+      "Documents": 64,
+      "FirstDeclared": 11,
+      "FirstProbe": 11,
+      "FinalDeclared": 64,
+      "ResultProbe": 64,
+      "ZeroValidPalette": 0,
+      "MultipleValidPalette": 0,
+      "UniqueRoleDocuments": 64,
+      "ComparisonCorrect": 33,
+      "BranchCorrect": 32,
+      "CandidateChecks": 158,
+      "ModelCalls": 64,
+      "PartialDocuments": 0,
+      "ResultPassed": 704,
+      "ResultTotal": 704,
+      "RuleBucketChecks": 0,
+      "RelationRows": 0,
+      "SearchNS": 19809919,
+      "PreparationNS": 3366960,
+      "PredictionNS": 6610496,
+      "RuleNS": 0,
+      "ProbeNS": 1079705
+    },
+    "baseline/unsatisfiable_conditions": {
+      "Documents": 16,
+      "FirstDeclared": 0,
+      "FirstProbe": 0,
+      "FinalDeclared": 0,
+      "ResultProbe": 16,
+      "ZeroValidPalette": 16,
+      "MultipleValidPalette": 0,
+      "UniqueRoleDocuments": 0,
+      "ComparisonCorrect": 0,
+      "BranchCorrect": 0,
+      "CandidateChecks": 64,
+      "ModelCalls": 16,
+      "PartialDocuments": 16,
+      "ResultPassed": 160,
+      "ResultTotal": 176,
+      "RuleBucketChecks": 0,
+      "RelationRows": 0,
+      "SearchNS": 6135915,
+      "PreparationNS": 791460,
+      "PredictionNS": 1847544,
+      "RuleNS": 0,
+      "ProbeNS": 322293
+    },
+    "baseline/unseen_family": {
+      "Documents": 64,
+      "FirstDeclared": 14,
+      "FirstProbe": 14,
+      "FinalDeclared": 64,
+      "ResultProbe": 64,
+      "ZeroValidPalette": 0,
+      "MultipleValidPalette": 0,
+      "UniqueRoleDocuments": 64,
+      "ComparisonCorrect": 32,
+      "BranchCorrect": 32,
+      "CandidateChecks": 162,
+      "ModelCalls": 64,
+      "PartialDocuments": 0,
+      "ResultPassed": 704,
+      "ResultTotal": 704,
+      "RuleBucketChecks": 0,
+      "RelationRows": 0,
+      "SearchNS": 25380461,
+      "PreparationNS": 3858709,
+      "PredictionNS": 7366669,
+      "RuleNS": 0,
+      "ProbeNS": 1887420
+    },
+    "fixed/all": {
+      "Documents": 288,
+      "FirstDeclared": 72,
+      "FirstProbe": 80,
+      "FinalDeclared": 272,
+      "ResultProbe": 280,
+      "ZeroValidPalette": 16,
+      "MultipleValidPalette": 16,
+      "UniqueRoleDocuments": 256,
+      "ComparisonCorrect": 128,
+      "BranchCorrect": 128,
+      "CandidateChecks": 728,
+      "ModelCalls": 0,
+      "PartialDocuments": 16,
+      "ResultPassed": 3104,
+      "ResultTotal": 3120,
+      "RuleBucketChecks": 0,
+      "RelationRows": 0,
+      "SearchNS": 36213955,
+      "PreparationNS": 0,
+      "PredictionNS": 0,
+      "RuleNS": 0,
+      "ProbeNS": 6049082
+    },
+    "fixed/in_family": {
+      "Documents": 128,
+      "FirstDeclared": 32,
+      "FirstProbe": 32,
+      "FinalDeclared": 128,
+      "ResultProbe": 128,
+      "ZeroValidPalette": 0,
+      "MultipleValidPalette": 0,
+      "UniqueRoleDocuments": 128,
+      "ComparisonCorrect": 64,
+      "BranchCorrect": 64,
+      "CandidateChecks": 320,
+      "ModelCalls": 0,
+      "PartialDocuments": 0,
+      "ResultPassed": 1408,
+      "ResultTotal": 1408,
+      "RuleBucketChecks": 0,
+      "RelationRows": 0,
+      "SearchNS": 15741881,
+      "PreparationNS": 0,
+      "PredictionNS": 0,
+      "RuleNS": 0,
+      "ProbeNS": 2649336
+    },
+    "fixed/missing_conditions": {
+      "Documents": 16,
+      "FirstDeclared": 8,
+      "FirstProbe": 8,
+      "FinalDeclared": 16,
+      "ResultProbe": 8,
+      "ZeroValidPalette": 0,
+      "MultipleValidPalette": 16,
+      "UniqueRoleDocuments": 0,
+      "ComparisonCorrect": 0,
+      "BranchCorrect": 0,
+      "CandidateChecks": 24,
+      "ModelCalls": 0,
+      "PartialDocuments": 0,
+      "ResultPassed": 128,
+      "ResultTotal": 128,
+      "RuleBucketChecks": 0,
+      "RelationRows": 0,
+      "SearchNS": 930413,
+      "PreparationNS": 0,
+      "PredictionNS": 0,
+      "RuleNS": 0,
+      "ProbeNS": 385415
+    },
+    "fixed/train": {
+      "Documents": 64,
+      "FirstDeclared": 16,
+      "FirstProbe": 16,
+      "FinalDeclared": 64,
+      "ResultProbe": 64,
+      "ZeroValidPalette": 0,
+      "MultipleValidPalette": 0,
+      "UniqueRoleDocuments": 64,
+      "ComparisonCorrect": 32,
+      "BranchCorrect": 32,
+      "CandidateChecks": 160,
+      "ModelCalls": 0,
+      "PartialDocuments": 0,
+      "ResultPassed": 704,
+      "ResultTotal": 704,
+      "RuleBucketChecks": 0,
+      "RelationRows": 0,
+      "SearchNS": 7455705,
+      "PreparationNS": 0,
+      "PredictionNS": 0,
+      "RuleNS": 0,
+      "ProbeNS": 1119333
+    },
+    "fixed/unsatisfiable_conditions": {
+      "Documents": 16,
+      "FirstDeclared": 0,
+      "FirstProbe": 8,
+      "FinalDeclared": 0,
+      "ResultProbe": 16,
+      "ZeroValidPalette": 16,
+      "MultipleValidPalette": 0,
+      "UniqueRoleDocuments": 0,
+      "ComparisonCorrect": 0,
+      "BranchCorrect": 0,
+      "CandidateChecks": 64,
+      "ModelCalls": 0,
+      "PartialDocuments": 16,
+      "ResultPassed": 160,
+      "ResultTotal": 176,
+      "RuleBucketChecks": 0,
+      "RelationRows": 0,
+      "SearchNS": 2937291,
+      "PreparationNS": 0,
+      "PredictionNS": 0,
+      "RuleNS": 0,
+      "ProbeNS": 325918
+    },
+    "fixed/unseen_family": {
+      "Documents": 64,
+      "FirstDeclared": 16,
+      "FirstProbe": 16,
+      "FinalDeclared": 64,
+      "ResultProbe": 64,
+      "ZeroValidPalette": 0,
+      "MultipleValidPalette": 0,
+      "UniqueRoleDocuments": 64,
+      "ComparisonCorrect": 32,
+      "BranchCorrect": 32,
+      "CandidateChecks": 160,
+      "ModelCalls": 0,
+      "PartialDocuments": 0,
+      "ResultPassed": 704,
+      "ResultTotal": 704,
+      "RuleBucketChecks": 0,
+      "RelationRows": 0,
+      "SearchNS": 9148665,
+      "PreparationNS": 0,
+      "PredictionNS": 0,
+      "RuleNS": 0,
+      "ProbeNS": 1569080
+    },
+    "relative/all": {
+      "Documents": 288,
+      "FirstDeclared": 134,
+      "FirstProbe": 136,
+      "FinalDeclared": 272,
+      "ResultProbe": 280,
+      "ZeroValidPalette": 16,
+      "MultipleValidPalette": 16,
+      "UniqueRoleDocuments": 256,
+      "ComparisonCorrect": 256,
+      "BranchCorrect": 128,
+      "CandidateChecks": 542,
+      "ModelCalls": 288,
+      "PartialDocuments": 16,
+      "ResultPassed": 3104,
+      "ResultTotal": 3120,
+      "RuleBucketChecks": 0,
+      "RelationRows": 1632,
+      "SearchNS": 84688035,
+      "PreparationNS": 20535913,
+      "PredictionNS": 31678867,
+      "RuleNS": 0,
+      "ProbeNS": 6614989
+    },
+    "relative/in_family": {
+      "Documents": 128,
+      "FirstDeclared": 64,
+      "FirstProbe": 64,
+      "FinalDeclared": 128,
+      "ResultProbe": 128,
+      "ZeroValidPalette": 0,
+      "MultipleValidPalette": 0,
+      "UniqueRoleDocuments": 128,
+      "ComparisonCorrect": 128,
+      "BranchCorrect": 64,
+      "CandidateChecks": 228,
+      "ModelCalls": 128,
+      "PartialDocuments": 0,
+      "ResultPassed": 1408,
+      "ResultTotal": 1408,
+      "RuleBucketChecks": 0,
+      "RelationRows": 768,
+      "SearchNS": 33944872,
+      "PreparationNS": 8541998,
+      "PredictionNS": 13658413,
+      "RuleNS": 0,
+      "ProbeNS": 2963871
+    },
+    "relative/missing_conditions": {
+      "Documents": 16,
+      "FirstDeclared": 6,
+      "FirstProbe": 0,
+      "FinalDeclared": 16,
+      "ResultProbe": 8,
+      "ZeroValidPalette": 0,
+      "MultipleValidPalette": 16,
+      "UniqueRoleDocuments": 0,
+      "ComparisonCorrect": 0,
+      "BranchCorrect": 0,
+      "CandidateChecks": 26,
+      "ModelCalls": 16,
+      "PartialDocuments": 0,
+      "ResultPassed": 128,
+      "ResultTotal": 128,
+      "RuleBucketChecks": 0,
+      "RelationRows": 0,
+      "SearchNS": 7522375,
+      "PreparationNS": 1122043,
+      "PredictionNS": 1794124,
+      "RuleNS": 0,
+      "ProbeNS": 452498
+    },
+    "relative/train": {
+      "Documents": 64,
+      "FirstDeclared": 32,
+      "FirstProbe": 32,
+      "FinalDeclared": 64,
+      "ResultProbe": 64,
+      "ZeroValidPalette": 0,
+      "MultipleValidPalette": 0,
+      "UniqueRoleDocuments": 64,
+      "ComparisonCorrect": 64,
+      "BranchCorrect": 32,
+      "CandidateChecks": 112,
+      "ModelCalls": 64,
+      "PartialDocuments": 0,
+      "ResultPassed": 704,
+      "ResultTotal": 704,
+      "RuleBucketChecks": 0,
+      "RelationRows": 384,
+      "SearchNS": 16642579,
+      "PreparationNS": 4356876,
+      "PredictionNS": 6896623,
+      "RuleNS": 0,
+      "ProbeNS": 1127415
+    },
+    "relative/unsatisfiable_conditions": {
+      "Documents": 16,
+      "FirstDeclared": 0,
+      "FirstProbe": 8,
+      "FinalDeclared": 0,
+      "ResultProbe": 16,
+      "ZeroValidPalette": 16,
+      "MultipleValidPalette": 0,
+      "UniqueRoleDocuments": 0,
+      "ComparisonCorrect": 0,
+      "BranchCorrect": 0,
+      "CandidateChecks": 64,
+      "ModelCalls": 16,
+      "PartialDocuments": 16,
+      "ResultPassed": 160,
+      "ResultTotal": 176,
+      "RuleBucketChecks": 0,
+      "RelationRows": 96,
+      "SearchNS": 6270834,
+      "PreparationNS": 1421664,
+      "PredictionNS": 1838667,
+      "RuleNS": 0,
+      "ProbeNS": 315832
+    },
+    "relative/unseen_family": {
+      "Documents": 64,
+      "FirstDeclared": 32,
+      "FirstProbe": 32,
+      "FinalDeclared": 64,
+      "ResultProbe": 64,
+      "ZeroValidPalette": 0,
+      "MultipleValidPalette": 0,
+      "UniqueRoleDocuments": 64,
+      "ComparisonCorrect": 64,
+      "BranchCorrect": 32,
+      "CandidateChecks": 112,
+      "ModelCalls": 64,
+      "PartialDocuments": 0,
+      "ResultPassed": 704,
+      "ResultTotal": 704,
+      "RuleBucketChecks": 0,
+      "RelationRows": 384,
+      "SearchNS": 20307375,
+      "PreparationNS": 5093332,
+      "PredictionNS": 7491040,
+      "RuleNS": 0,
+      "ProbeNS": 1755373
+    },
+    "rule/all": {
+      "Documents": 288,
+      "FirstDeclared": 136,
+      "FirstProbe": 144,
+      "FinalDeclared": 272,
+      "ResultProbe": 280,
+      "ZeroValidPalette": 16,
+      "MultipleValidPalette": 16,
+      "UniqueRoleDocuments": 256,
+      "ComparisonCorrect": 256,
+      "BranchCorrect": 128,
+      "CandidateChecks": 472,
+      "ModelCalls": 0,
+      "PartialDocuments": 16,
+      "ResultPassed": 3104,
+      "ResultTotal": 3120,
+      "RuleBucketChecks": 1632,
+      "RelationRows": 816,
+      "SearchNS": 25589330,
+      "PreparationNS": 2234040,
+      "PredictionNS": 0,
+      "RuleNS": 11912,
+      "ProbeNS": 6099996
+    },
+    "rule/in_family": {
+      "Documents": 128,
+      "FirstDeclared": 64,
+      "FirstProbe": 64,
+      "FinalDeclared": 128,
+      "ResultProbe": 128,
+      "ZeroValidPalette": 0,
+      "MultipleValidPalette": 0,
+      "UniqueRoleDocuments": 128,
+      "ComparisonCorrect": 128,
+      "BranchCorrect": 64,
+      "CandidateChecks": 192,
+      "ModelCalls": 0,
+      "PartialDocuments": 0,
+      "ResultPassed": 1408,
+      "ResultTotal": 1408,
+      "RuleBucketChecks": 768,
+      "RelationRows": 384,
+      "SearchNS": 10368249,
+      "PreparationNS": 851088,
+      "PredictionNS": 0,
+      "RuleNS": 4504,
+      "ProbeNS": 2604536
+    },
+    "rule/missing_conditions": {
+      "Documents": 16,
+      "FirstDeclared": 8,
+      "FirstProbe": 8,
+      "FinalDeclared": 16,
+      "ResultProbe": 8,
+      "ZeroValidPalette": 0,
+      "MultipleValidPalette": 16,
+      "UniqueRoleDocuments": 0,
+      "ComparisonCorrect": 0,
+      "BranchCorrect": 0,
+      "CandidateChecks": 24,
+      "ModelCalls": 0,
+      "PartialDocuments": 0,
+      "ResultPassed": 128,
+      "ResultTotal": 128,
+      "RuleBucketChecks": 0,
+      "RelationRows": 0,
+      "SearchNS": 1291417,
+      "PreparationNS": 185041,
+      "PredictionNS": 0,
+      "RuleNS": 790,
+      "ProbeNS": 512247
+    },
+    "rule/train": {
+      "Documents": 64,
+      "FirstDeclared": 32,
+      "FirstProbe": 32,
+      "FinalDeclared": 64,
+      "ResultProbe": 64,
+      "ZeroValidPalette": 0,
+      "MultipleValidPalette": 0,
+      "UniqueRoleDocuments": 64,
+      "ComparisonCorrect": 64,
+      "BranchCorrect": 32,
+      "CandidateChecks": 96,
+      "ModelCalls": 0,
+      "PartialDocuments": 0,
+      "ResultPassed": 704,
+      "ResultTotal": 704,
+      "RuleBucketChecks": 384,
+      "RelationRows": 192,
+      "SearchNS": 4568126,
+      "PreparationNS": 563245,
+      "PredictionNS": 0,
+      "RuleNS": 2618,
+      "ProbeNS": 1090796
+    },
+    "rule/unsatisfiable_conditions": {
+      "Documents": 16,
+      "FirstDeclared": 0,
+      "FirstProbe": 8,
+      "FinalDeclared": 0,
+      "ResultProbe": 16,
+      "ZeroValidPalette": 16,
+      "MultipleValidPalette": 0,
+      "UniqueRoleDocuments": 0,
+      "ComparisonCorrect": 0,
+      "BranchCorrect": 0,
+      "CandidateChecks": 64,
+      "ModelCalls": 0,
+      "PartialDocuments": 16,
+      "ResultPassed": 160,
+      "ResultTotal": 176,
+      "RuleBucketChecks": 96,
+      "RelationRows": 48,
+      "SearchNS": 3264207,
+      "PreparationNS": 118166,
+      "PredictionNS": 0,
+      "RuleNS": 667,
+      "ProbeNS": 320125
+    },
+    "rule/unseen_family": {
+      "Documents": 64,
+      "FirstDeclared": 32,
+      "FirstProbe": 32,
+      "FinalDeclared": 64,
+      "ResultProbe": 64,
+      "ZeroValidPalette": 0,
+      "MultipleValidPalette": 0,
+      "UniqueRoleDocuments": 64,
+      "ComparisonCorrect": 64,
+      "BranchCorrect": 32,
+      "CandidateChecks": 96,
+      "ModelCalls": 0,
+      "PartialDocuments": 0,
+      "ResultPassed": 704,
+      "ResultTotal": 704,
+      "RuleBucketChecks": 384,
+      "RelationRows": 192,
+      "SearchNS": 6097331,
+      "PreparationNS": 516500,
+      "PredictionNS": 0,
+      "RuleNS": 3333,
+      "ProbeNS": 1572292
+    }
+  },
+  "latencies": {
+    "baseline": {
+      "Observations": 288,
+      "MedianNS": 106625,
+      "P95NS": 133333
+    },
+    "baseline/construction": {
+      "Observations": 288,
+      "MedianNS": 302124.5,
+      "P95NS": 590500
+    },
+    "baseline/preparation": {
+      "Observations": 288,
+      "MedianNS": 47125,
+      "P95NS": 64833
+    },
+    "baseline/probe": {
+      "Observations": 288,
+      "MedianNS": 19166.5,
+      "P95NS": 29208
+    },
+    "baseline/rule": {
+      "Observations": 288,
+      "MedianNS": 0,
+      "P95NS": 0
+    },
+    "fixed/construction": {
+      "Observations": 288,
+      "MedianNS": 113062,
+      "P95NS": 230750
+    },
+    "fixed/preparation": {
+      "Observations": 288,
+      "MedianNS": 0,
+      "P95NS": 0
+    },
+    "fixed/probe": {
+      "Observations": 288,
+      "MedianNS": 19333,
+      "P95NS": 29500
+    },
+    "fixed/rule": {
+      "Observations": 288,
+      "MedianNS": 0,
+      "P95NS": 0
+    },
+    "relative": {
+      "Observations": 288,
+      "MedianNS": 107292,
+      "P95NS": 116625
+    },
+    "relative/construction": {
+      "Observations": 288,
+      "MedianNS": 245646,
+      "P95NS": 485250
+    },
+    "relative/preparation": {
+      "Observations": 288,
+      "MedianNS": 61187.5,
+      "P95NS": 89750
+    },
+    "relative/probe": {
+      "Observations": 288,
+      "MedianNS": 19146,
+      "P95NS": 29334
+    },
+    "relative/rule": {
+      "Observations": 288,
+      "MedianNS": 0,
+      "P95NS": 0
+    },
+    "rule/construction": {
+      "Observations": 288,
+      "MedianNS": 79688,
+      "P95NS": 208583
+    },
+    "rule/preparation": {
+      "Observations": 288,
+      "MedianNS": 6542,
+      "P95NS": 13375
+    },
+    "rule/probe": {
+      "Observations": 288,
+      "MedianNS": 19104.5,
+      "P95NS": 26709
+    },
+    "rule/rule": {
+      "Observations": 288,
+      "MedianNS": 42,
+      "P95NS": 83
+    }
+  },
+  "new_candidate_executions": 0,
+  "new_fits": 0,
+  "new_predictions": 0,
+  "schema": "gooo/source-relative-learning-audit/v1",
+  "scope": "retained-record validation; paired groups overlap; no independent oracle execution or causal attribution",
+  "search_count": 1152,
+  "source_count": 288
+}

@@ -1,0 +1,11 @@
+{
+  "schema": "gooo/source-relative-audit-correction/v1",
+  "original_observation": "completed once; no repeat",
+  "original_auditor_revision": "53698ee2b342b6015e6363d876e2103dc32230ff",
+  "original_audit_error": "policy preparation/rule timing differs",
+  "cause": "Auditor incorrectly required every rule interval to be strictly positive. Host clock returned 0ns for 55 of 288 intervals, including 49 with populated bucket checks.",
+  "correction": "Accept nonnegative rule durations; preserve original times and all 1632 bucket checks. Non-rule policies must still report zero rule duration. Added regression fixtures.",
+  "new_fits": 0,
+  "new_predictions": 0,
+  "new_candidate_executions": 0
+}

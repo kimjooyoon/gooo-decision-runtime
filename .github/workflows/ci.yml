@@ -32,8 +32,30 @@ jobs:
           (cd "$root" && sha256sum -c SHA256SUMS)
           go run ./studies/canonical-role-learning-20261011/audit "$root" > "$RUNNER_TEMP/role-audit.json"
           cmp "$RUNNER_TEMP/role-audit.json" "$root/audit.json"
+      - name: Audit retained source-relative observations without model execution
+        run: |
+          root=studies/source-relative-learning-20261011/result
+          (cd "$root" && sha256sum -c SHA256SUMS)
+          go run ./studies/source-relative-learning-20261011/audit "$root" > "$RUNNER_TEMP/relative-audit.json"
+          cmp "$RUNNER_TEMP/relative-audit.json" "$root/audit.json"
       - name: Race tests
         run: go test -race ./...
+      - name: Retrieve pinned compiler for source-relative producer fixtures
+        uses: actions/checkout@v7
+        with:
+          repository: kimjooyoon/meta-ontology-go
+          ref: 67ee67c7cf0cdeb22f4caead87144dfb19f29d54
+          path: .source-relative-compiler
+          persist-credentials: false
+      - name: Check source-relative producer without original model execution
+        run: |
+          cd studies/source-relative-learning-20261011/producer
+          cp go.mod "$RUNNER_TEMP/source-relative.mod"
+          go mod edit -modfile="$RUNNER_TEMP/source-relative.mod" \
+            -replace="github.com/kimjooyoon/meta-ontology-go=$GITHUB_WORKSPACE/.source-relative-compiler" \
+            -replace="github.com/kimjooyoon/gooo-decision-runtime=$GITHUB_WORKSPACE"
+          go vet -modfile="$RUNNER_TEMP/source-relative.mod" ./...
+          go test -race -modfile="$RUNNER_TEMP/source-relative.mod" ./...
       - name: Retrieve the immutable complete arithmetic observations
         uses: actions/checkout@v7
         with:

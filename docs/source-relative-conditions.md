@@ -1,6 +1,6 @@
 # Relate declared conditions to the source predicate
 
-The next small-model experiment needs to retain which Boolean goal belongs to
+The source-relative study retains which Boolean goal belongs to
 which side of a source comparison. For `x < 167`, the cases `166 → true` and
 `168 → true` express different goals. Averaging their raw integer/Boolean cells
 can obscure that relationship. The earlier
@@ -11,8 +11,8 @@ of the learned representation.
 
 `ContractInput.SourceRelativeConditions(choiceID)` now returns exact relation
 counts and a separate 16-cell input array. This is an experimental input API.
-There is no fitted model or construction policy consuming this version yet.
-Existing models, features and candidate ordering retain their current behavior.
+The study below consumes this version through a separate research model adapter.
+Existing production models, features and candidate ordering retain their current behavior.
 
 ## Inspect a Gooo-derived plan
 
@@ -82,9 +82,18 @@ rejects duplicate inputs for one `if`, including aliases of its choice ID.
 Zero rows means no supplied condition evidence. A histogram never establishes
 that a program passed those goals or that a condition was reached in execution.
 
-A future fit must declare this input version and use fresh, frozen training and
-evaluation records. Compare changed-goal response, first and final finite
-completion, candidate count, and total construction time with both fixed ordering
-and a deterministic relation-based rule. Record the cost of input preparation.
-These features make a narrow source relationship explicit; whether learning
-adds useful decisions beyond that rule remains an open experimental question.
+A fit must declare this input version and use fresh, frozen training and
+evaluation records. The follow-up compares changed-goal response, first and final
+finite completion, candidate counts and construction costs with fixed ordering
+and a deterministic rule. These features make a narrow source relationship explicit.
+
+## Measured follow-up
+
+The [288-document study](../studies/source-relative-learning-20261011) now compares
+this input with the existing representation at the same model size and fitting
+budget. Related first-body completion rises from32/128 to64/128. A small
+deterministic relation rule also reaches64/128 with fewer candidate checks and
+lower observed construction cost. Missing and inconsistent conditions retain
+separate completion/probe counts and partial bodies. The study publishes all
+weights and records with a separate research artifact schema; current compiler
+and runtime defaults are unchanged.

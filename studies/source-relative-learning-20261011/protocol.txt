@@ -1,0 +1,104 @@
+Source-relative condition study. This protocol, source-only corpus and producer
+are frozen in the first public commit before original collection, fitting or
+prediction. The original observation has not started at that commit.
+
+Question: at equal model size and fitting budget, do sixteen source-relative
+condition cells improve decisions and finite construction? A deterministic
+relation rule is a competing policy with its real preparation work counted.
+The earlier separate-role study changed scores but neither first-choice bit on
+64 related condition-only pairs. Equal raw condition means did not establish a
+learned-activation collision. This study compares input recipes, not a causal
+explanation of that earlier failure.
+
+Compiler: clean 67ee67c7cf0cdeb22f4caead87144dfb19f29d54, Go1.27.2.
+Its tree equals released ee24a413d311b0be117bb8a7e260bd1ca35994bd. Original
+PR1454 CI38097293433, suite103221793596, attempt1 and v5 proof passed before
+this freeze. The snapshot was normally merged as 50fa474aee0ccb62f5d5e1b2e00cf14f765d2f6e.
+SDK base: eb013ff65478fb883f13f0c8feb88834793953b8, accepted CI38098231748 passed.
+Compressed corpus SHA256:
+c7b0bdb60dbc34a30bbe9a2effbdc1ee1607ceb2d990d6303a63b6e77b43f9f6.
+Build the publicly committed clean producer and record its revision. Original
+execution writes one fresh exclusive output directory. Never repeat a failed
+original observation; retain its failure and define a new follow-up if needed.
+
+288 Gooo documents, two binary choices, four masks. Templates and Korean/English
+wordings reuse the canonical-contract study; new constants do not constitute
+new language understanding or 288 independent programming tasks.
+Train64: bound/distance, constants211/-131, wording0/1, direct form.
+Related128: bound/distance, constants257/-149, wording2/3, direct/assignment.
+Excluded-family64: affine arms, evaluation constants/forms/wordings.
+All contain both initial layouts and every output/condition goal combination.
+Each has8 authored outputs,3 authored Boolean conditions,16 separate output
+probes and3 condition probes. Authored/probe output inputs are disjoint; the
+threshold condition intentionally overlaps. Goal pairs and equivalent forms
+overlap other summaries and their denominators must not be added.
+
+32 further diagnostic documents, excluded from fitting: bound family, wording2,
+evaluation constants, both forms, both output goals, both initial layouts.
+16 remove all authored conditions, preserving condition-goal0 probe conditions.
+16 require a true strict comparison at equality, preserving the normal probes.
+The collector records every actual accepted mask, including zero and multiple
+acceptance; only training sources must have exactly one accepted mask.
+Missing conditions are zero observations, never invented passing conditions.
+
+Source collection lowers each document and evaluates four masks once, keeping
+Gooo/Go bodies, exact declared/probe outputs and conditions. Only64 training
+sources' authored acceptance masks enter fitting. Probe/held-out labels do not
+enter either fit. Frozen source writing/preflight performs no candidate runs,
+fits or predictions. Unit fixtures use constant5, absent from the corpus.
+
+Exactly two fresh joint mean-pooling FP32 fits, baseline then relative.
+Each:19034 parameters,76136 raw weight bytes,seed37,2000 epochs,LR0.3,L2.0001.
+Baseline uses existing canonical528-cell source rows and separate output and
+condition rows. Relative adds the SDK's16-cell relation vector at [192:208],
+leaving [208:384] zero. This vector counts exact int64 source operand relations
+against declared Boolean goals. It encodes domain knowledge without reading
+accepted masks. Both use the same numerical kernel and optimization equations.
+The relative artifact has its own schema/features/fingerprint; old decoders
+must reject it. No relabeling old weights, warm start, hyperparameter search,
+extra epochs, or checkpoint selection. Retain all pre-update losses and partial
+histories. Reload both saved models before construction.
+
+All four policies share the same sorted four-mask frontier and budget4:
+fixed: numeric order0,1,2,3; no model or relation work.
+rule: compare each orientation against each populated relation bucket; score
+matching declared conditions; branch scores tie. Count actual bucket operator
+checks, up to6, plus separately count prepared relation rows. This is a partial
+source evaluator with real preparation cost, not free preprocessing.
+baseline: one prediction from the fresh canonical joint model.
+relative: one prediction from the fresh relative joint model.
+Scores are additive across choices, descending sum then ascending numeric mask
+for ties. No candidate pruning or reinference after outcomes. Each construction
+rebuilds its actual inputs from the prepared plan and declared arrays. The
+source-collection copies are used for fitting/auditing, not reused to hide
+construction preparation cost. Relative prepares each of two choice contexts;
+rule only the comparison context. These row counts can overlap source cases.
+
+1152 constructions,576 model calls,2 fits if the observation completes.
+Preserve ranking before the first body and every attempt before continuing.
+Compile through the Gooo-derived typed SDK plan; check all authored requirements.
+Stop at first complete body or after all4. If exhausted, retain the candidate
+with most passing authored observations, first encountered tie. Report PARTIAL
+with passed/total counts, mask, bodies and failures. Probe this retained body
+separately, including partial results. A partial result may pass probes while
+still failing an authored condition. Never turn that into authored completion.
+
+Report first/final authored completion, first/result probe completion, unique
+palette per-choice correctness with its own denominator, ambiguous/zero-mask
+counts, partial results, candidates/model calls/rule checks, relative-versus-
+baseline improvements and regressions, changed-goal decision response, and
+direct/assignment consistency. Paired goal-response analysis uses the256 main
+documents; diagnostic output comparisons are reported through cohort summaries.
+
+Construction timings include actual input preparation, hashing/audit equality
+checks, rule/model prediction, sorting, event writes, compilation and authored
+checks. Exclude initial lowering/collection,fits,and separate probes. Record
+these components, fit times, whole process wall/user/system/maxRSS, host model,
+logical CPU count and physical RAM. CPU percentage from user+system over wall
+is process-average utilization of one logical core, not a sampled host CPU rise.
+Single run, fixed policy order, one host and one seed establish no causal speedup.
+No native Go deployment, quantization quality, default upgrade, all-input
+correctness, percentage of natural-language intent, customer savings or adoption
+claim follows. Read-only audits inspect retained records without new prediction,
+fit, compilation or candidate execution. CI runs fixtures and source preflight;
+the original study executes locally only once.
