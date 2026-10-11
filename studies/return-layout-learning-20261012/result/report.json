@@ -1,0 +1,128 @@
+{
+  "arch": "arm64",
+  "artifact_json_bytes": 222227,
+  "corpus_sha256": "sha256:1bd6cb3e1dde489e49017097c88aa7a627b80b000b7e478ad0c0d3d626d87f71",
+  "feature_version": "canonical_branch_intent_ordered_condition_relations_v2",
+  "fit_cpu_ns": 727273000,
+  "fit_cpu_wall_ratio": 0.987800198351613,
+  "fit_wall_ns": 736255167,
+  "fits": 1,
+  "go": "go1.27.2",
+  "model_fingerprint": "8570dd8c6a2aef2676dfc027740d869797a8a11733bd7e07cdd501dc21e4a0bc",
+  "model_predictions": 100,
+  "model_schema": "gooo/source-relative-condition-research-model/v2",
+  "native_executions": 0,
+  "options": {
+    "epochs": 100,
+    "learning_rate": 0.01,
+    "l2": 0.00001,
+    "seed": 20261012
+  },
+  "os": "darwin",
+  "parameter_count": 19034,
+  "resident_weight_bytes": 76136,
+  "rusage_peak_rss_native_units": 18317312,
+  "schema": "gooo/return-layout-learning-observation/v1",
+  "scope": "100 fresh source documents in 25 sibling groups; one held-out prediction each; first selection and saved-observation checked completion separate; scores are finite-pool rankings, not correctness probabilities; no general natural-language or native execution claim",
+  "splits": {
+    "heldout": {
+      "First": {
+        "Documents": 20,
+        "Complete": 12,
+        "OutputMatches": 72,
+        "Outputs": 120,
+        "ConditionMatches": 60,
+        "Conditions": 60,
+        "ProbeMatches": 96,
+        "Probes": 160
+      },
+      "Checked": {
+        "Documents": 20,
+        "Complete": 20,
+        "OutputMatches": 120,
+        "Outputs": 120,
+        "ConditionMatches": 60,
+        "Conditions": 60,
+        "ProbeMatches": 160,
+        "Probes": 160
+      },
+      "FixedOrder": {
+        "Documents": 20,
+        "Complete": 5,
+        "OutputMatches": 60,
+        "Outputs": 120,
+        "ConditionMatches": 40,
+        "Conditions": 60,
+        "ProbeMatches": 80,
+        "Probes": 160
+      },
+      "CheckedAttempts": 28
+    },
+    "train": {
+      "First": {
+        "Documents": 60,
+        "Complete": 32,
+        "OutputMatches": 195,
+        "Outputs": 360,
+        "ConditionMatches": 180,
+        "Conditions": 180,
+        "ProbeMatches": 257,
+        "Probes": 480
+      },
+      "Checked": {
+        "Documents": 60,
+        "Complete": 60,
+        "OutputMatches": 360,
+        "Outputs": 360,
+        "ConditionMatches": 180,
+        "Conditions": 180,
+        "ProbeMatches": 480,
+        "Probes": 480
+      },
+      "FixedOrder": {
+        "Documents": 60,
+        "Complete": 15,
+        "OutputMatches": 184,
+        "Outputs": 360,
+        "ConditionMatches": 120,
+        "Conditions": 180,
+        "ProbeMatches": 242,
+        "Probes": 480
+      },
+      "CheckedAttempts": 88
+    },
+    "validation": {
+      "First": {
+        "Documents": 20,
+        "Complete": 11,
+        "OutputMatches": 66,
+        "Outputs": 120,
+        "ConditionMatches": 60,
+        "Conditions": 60,
+        "ProbeMatches": 88,
+        "Probes": 160
+      },
+      "Checked": {
+        "Documents": 20,
+        "Complete": 20,
+        "OutputMatches": 120,
+        "Outputs": 120,
+        "ConditionMatches": 60,
+        "Conditions": 60,
+        "ProbeMatches": 160,
+        "Probes": 160
+      },
+      "FixedOrder": {
+        "Documents": 20,
+        "Complete": 5,
+        "OutputMatches": 60,
+        "Outputs": 120,
+        "ConditionMatches": 40,
+        "Conditions": 60,
+        "ProbeMatches": 80,
+        "Probes": 160
+      },
+      "CheckedAttempts": 29
+    }
+  }
+}

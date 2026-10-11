@@ -1,0 +1,114 @@
+{
+  "contract_groups": 25,
+  "corpus_sha256": "sha256:1bd6cb3e1dde489e49017097c88aa7a627b80b000b7e478ad0c0d3d626d87f71",
+  "model_fingerprint": "8570dd8c6a2aef2676dfc027740d869797a8a11733bd7e07cdd501dc21e4a0bc",
+  "new_candidate_executions": 0,
+  "new_fits": 0,
+  "new_predictions": 0,
+  "original_fits": 1,
+  "original_predictions": 100,
+  "schema": "gooo/return-layout-retained-audit/v1",
+  "scope": "current V2 source/requirement encoders compared with frozen arrays; original numerical predictions and interpreted outcomes read, not re-executed",
+  "source_documents": 100,
+  "splits": {
+    "heldout": {
+      "First": {
+        "Documents": 20,
+        "Complete": 12,
+        "OutputMatches": 72,
+        "Outputs": 120,
+        "ConditionMatches": 60,
+        "Conditions": 60,
+        "ProbeMatches": 96,
+        "Probes": 160
+      },
+      "Checked": {
+        "Documents": 20,
+        "Complete": 20,
+        "OutputMatches": 120,
+        "Outputs": 120,
+        "ConditionMatches": 60,
+        "Conditions": 60,
+        "ProbeMatches": 160,
+        "Probes": 160
+      },
+      "FixedOrder": {
+        "Documents": 20,
+        "Complete": 5,
+        "OutputMatches": 60,
+        "Outputs": 120,
+        "ConditionMatches": 40,
+        "Conditions": 60,
+        "ProbeMatches": 80,
+        "Probes": 160
+      },
+      "CheckedAttempts": 28
+    },
+    "train": {
+      "First": {
+        "Documents": 60,
+        "Complete": 32,
+        "OutputMatches": 195,
+        "Outputs": 360,
+        "ConditionMatches": 180,
+        "Conditions": 180,
+        "ProbeMatches": 257,
+        "Probes": 480
+      },
+      "Checked": {
+        "Documents": 60,
+        "Complete": 60,
+        "OutputMatches": 360,
+        "Outputs": 360,
+        "ConditionMatches": 180,
+        "Conditions": 180,
+        "ProbeMatches": 480,
+        "Probes": 480
+      },
+      "FixedOrder": {
+        "Documents": 60,
+        "Complete": 15,
+        "OutputMatches": 184,
+        "Outputs": 360,
+        "ConditionMatches": 120,
+        "Conditions": 180,
+        "ProbeMatches": 242,
+        "Probes": 480
+      },
+      "CheckedAttempts": 88
+    },
+    "validation": {
+      "First": {
+        "Documents": 20,
+        "Complete": 11,
+        "OutputMatches": 66,
+        "Outputs": 120,
+        "ConditionMatches": 60,
+        "Conditions": 60,
+        "ProbeMatches": 88,
+        "Probes": 160
+      },
+      "Checked": {
+        "Documents": 20,
+        "Complete": 20,
+        "OutputMatches": 120,
+        "Outputs": 120,
+        "ConditionMatches": 60,
+        "Conditions": 60,
+        "ProbeMatches": 160,
+        "Probes": 160
+      },
+      "FixedOrder": {
+        "Documents": 20,
+        "Complete": 5,
+        "OutputMatches": 60,
+        "Outputs": 120,
+        "ConditionMatches": 40,
+        "Conditions": 60,
+        "ProbeMatches": 80,
+        "Probes": 160
+      },
+      "CheckedAttempts": 29
+    }
+  }
+}

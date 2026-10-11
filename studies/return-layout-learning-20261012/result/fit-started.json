@@ -1,0 +1,10 @@
+{
+  "corpus_sha256": "sha256:1bd6cb3e1dde489e49017097c88aa7a627b80b000b7e478ad0c0d3d626d87f71",
+  "options": {
+    "epochs": 100,
+    "learning_rate": 0.01,
+    "l2": 0.00001,
+    "seed": 20261012
+  },
+  "training_documents": 60
+}

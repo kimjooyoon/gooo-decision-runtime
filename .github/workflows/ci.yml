@@ -40,6 +40,12 @@ jobs:
           cmp "$RUNNER_TEMP/relative-audit.json" "$root/audit.json"
       - name: Race tests
         run: go test -race ./...
+      - name: Audit retained V2 return-layout observations without model execution
+        run: |
+          root=studies/return-layout-learning-20261012/result
+          (cd "$root" && sha256sum -c SHA256SUMS)
+          go run ./studies/return-layout-learning-20261012/audit "$root" > "$RUNNER_TEMP/layout-audit.json"
+          cmp "$RUNNER_TEMP/layout-audit.json" "$root/audit.json"
       - name: Retrieve pinned compiler for source-relative producer fixtures
         uses: actions/checkout@v7
         with:

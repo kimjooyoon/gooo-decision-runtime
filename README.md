@@ -14,22 +14,26 @@ The models, training and runtime are implemented in Go.
 
 | What you want to do | Start here |
 | --- | --- |
-| Write a `.gooo` rule and construct its body | [Compiler guide for 0.6.28](https://github.com/kimjooyoon/meta-ontology-go/blob/ee24a413d311b0be117bb8a7e260bd1ca35994bd/docs/canonical-contract-model.md) |
+| Write a `.gooo` rule and construct its body | [Compiler guide for public 0.6.32](https://github.com/kimjooyoon/meta-ontology-go/blob/83928fa4538245abe33b08549da47f8cbdc50ed2/docs/source-relative-contract-model.md) |
 | Read model inputs or load a research model | [Canonical branch input and model guide](docs/canonical-branch-input.md) |
 | Specify intermediate Boolean requirements | [Declared condition input](docs/declared-condition-input.md) |
 | Search finite condition and branch choices | [Condition search](docs/condition-search.md) |
-| Inspect the first failure and a saved result | [Compiler construction reports](https://github.com/kimjooyoon/meta-ontology-go/blob/ee24a413d311b0be117bb8a7e260bd1ca35994bd/docs/construction-results.md) |
+| Inspect the first failure and a saved result | [Compiler construction reports](https://github.com/kimjooyoon/meta-ontology-go/blob/83928fa4538245abe33b08549da47f8cbdc50ed2/docs/construction-results.md) |
 | Understand model inputs, identities and provenance | [Decision input audit](docs/decision-input-audit.md) |
 | Inspect how Boolean goals relate to a source comparison | [Experimental relation input](docs/source-relative-conditions.md) |
 | Use the source-relative research weights in the SDK | [Loader, input inspection and construction](docs/source-relative-runtime.md) |
+| Use the new V2 return-layout model and integer division | [V2 source contract and recorded results](docs/source-relative-v2-runtime.md) |
 | Compare a learned decision with a simple rule and partial results | [Source-relative study: 288 documents](studies/source-relative-learning-20261011) |
 | Find an older API or experiment | [Detailed research and release history](RESEARCH.md) |
 
 ## Versions and model files
 
-- **Go SDK:** [v0.2.40-experimental](https://github.com/kimjooyoon/gooo-decision-runtime/releases/tag/v0.2.40-experimental).
-- **Compiler:** [0.6.28-dev](https://github.com/kimjooyoon/meta-ontology-go/releases/tag/v0.6.28-dev),
-  including SDK0.2.40 and the canonical model loader. Both are development releases.
+- **Go SDK release source:** [v0.2.42-experimental](https://github.com/kimjooyoon/gooo-decision-runtime/releases/tag/v0.2.42-experimental),
+  with the explicit V2 API. Publication follows the checks for this source change.
+  Earlier SDK0.2.41 loads the V1 relation artifact.
+- **Published compiler:** [0.6.32-dev](https://github.com/kimjooyoon/meta-ontology-go/releases/tag/v0.6.32-dev),
+  including SDK0.2.41 and the V1 relation model loader. Both are development releases.
+  The V2 compiler adapter has local prototype evidence linked in its guide.
 - **Toolchain:** Go1.27.2. Native construction needs it; reading a saved compiler
   report needs neither Go nor model weights.
 - **Research weights:** [Gooo Canonical Decision Tiny v1 on Hugging Face](https://huggingface.co/asketeddy/gooo-canonical-decision-tiny-v1).
@@ -40,7 +44,7 @@ The models, training and runtime are implemented in Go.
 Install the library in your Go application:
 
 ```sh
-go get github.com/kimjooyoon/gooo-decision-runtime@v0.2.40-experimental
+go get github.com/kimjooyoon/gooo-decision-runtime@v0.2.42-experimental
 ```
 
 The core packages are `bodyplan` for typed bodies, `pathplan` for source-owned

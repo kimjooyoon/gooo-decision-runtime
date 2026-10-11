@@ -1,0 +1,13 @@
+{
+  "schema": "gooo/return-layout-retained-files/v1",
+  "prefit_hf_revision": "567eae921fcf58c24e52023dee93cc625ac77a75",
+  "result_hf_revision": "ece9b3a7934fa5aae5ca7faecb3bc035a05ba917",
+  "training_sdk_source": "889869fc553c6849194894dd6a47c7a91b9d9b27",
+  "corpus_uncompressed_sha256": "1bd6cb3e1dde489e49017097c88aa7a627b80b000b7e478ad0c0d3d626d87f71",
+  "model_sha256": "8570dd8c6a2aef2676dfc027740d869797a8a11733bd7e07cdd501dc21e4a0bc",
+  "corpus_transform": "gzip -n compression of the original pre-fit JSON, preserving decompressed bytes exactly",
+  "fit_files": "Original fit-started, history, model, observations and report files copied byte-for-byte; no additional fit or prediction",
+  "audit": "Current SDK source/requirement encoding and retained-result validation, with no new model or candidate execution",
+  "independent_groups": {"train":15,"validation":5,"heldout":5},
+  "documents": {"train":60,"validation":20,"heldout":20}
+}
