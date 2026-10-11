@@ -31,6 +31,24 @@ error, while generated Go retains its ordinary runtime fault behavior.
 
 ## Go APIs
 
+The development `contract-model` example now offers a V2 route. From a checkout
+including this CLI change, inspect a Gooo-derived typed path document and search:
+
+```sh
+GOWORK=off GOTOOLCHAIN=go1.27.2 go run ./examples/contract-model inspect \
+  -source-relative-v2-source path-to-document.json
+GOWORK=off GOTOOLCHAIN=go1.27.2 go run ./examples/contract-model search \
+  -model model-source-relative-v2.json path-to-document.json
+GOWORK=off GOTOOLCHAIN=go1.27.2 go run ./examples/contract-model search path-to-document.json
+```
+
+Inspection exports only the explicit V2 input, source explanations and all declared
+requirements, with zero model/candidate/training calls. An unavailable context
+retains its reason and omits the model array. V1/V2 inspection flags cannot be
+mixed. The model artifact chooses the search input ABI; an incompatible supplied
+artifact returns an error. Omitting it keeps deterministic search.
+This example adapter is a source development addition after the SDK0.2.42 tag.
+
 Given a source-bound `prepared *pathplan.PreparedPlan`, declared cases and model bytes:
 
 ```go
