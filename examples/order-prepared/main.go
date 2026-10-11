@@ -22,6 +22,8 @@ import (
 	"github.com/kimjooyoon/gooo-decision-runtime/pathplan"
 )
 
+var compatibilityOnly bool
+
 type input struct {
 	Task                       struct{ ID, Group string } `json:"task"`
 	SourceSHA, PlanSHA, Intent string
@@ -105,6 +107,10 @@ func save(path string, value any) {
 // output serialization are outside the wall interval. They can still perturb
 // the process, so these measurements are not a production latency distribution.
 func measure(fn func()) cost {
+	if compatibilityOnly {
+		fn()
+		return cost{}
+	}
 	var before, after runtime.MemStats
 	runtime.ReadMemStats(&before)
 	start := time.Now()
@@ -117,6 +123,11 @@ func measure(fn func()) cost {
 func outcome(search pathplan.SearchResult, program *bodyplan.Program, receipt *orderjudge.SearchReceipt, err error) result {
 	must(err)
 	require(program != nil && receipt != nil, "missing selected program")
+	if compatibilityOnly {
+		r := *receipt
+		r.PredictNS = 0
+		receipt = &r
+	}
 	return result{search, receipt, program.GoooSource(), program.GoSource()}
 }
 
@@ -131,8 +142,10 @@ func main() {
 	dir := flag.String("input", "", "decoded immutable initial study")
 	out := flag.String("output", "", "fresh output directory")
 	repeats := flag.Int("repeats", 5, "1..20 alternating paired rounds")
+	flag.BoolVar(&compatibilityOnly, "compatibility-only", false, "check all paired semantic results without performance or residency collection")
 	flag.Parse()
 	require(*dir != "" && *out != "" && flag.NArg() == 0 && *repeats >= 1 && *repeats <= 20, "bounded arguments required")
+	require(!compatibilityOnly || *repeats == 1, "compatibility-only requires exactly one semantic round")
 	_, err := os.Stat(*out)
 	require(os.IsNotExist(err), "fresh output required")
 	must(os.MkdirAll(*out, 0755))
@@ -241,8 +254,10 @@ func main() {
 	}
 	require(requests == 64 && searches == 64*2*2*3*(*repeats) && predictions == searches/2, "actual counts differ")
 	var residencyRecords []residency
-	for trial := 0; trial < 3; trial++ {
-		residencyRecords = append(residencyRecords, resident(ctx, nil, plans, "deterministic", trial), resident(ctx, model, plans, "model", trial))
+	if !compatibilityOnly {
+		for trial := 0; trial < 3; trial++ {
+			residencyRecords = append(residencyRecords, resident(ctx, nil, plans, "deterministic", trial), resident(ctx, model, plans, "model", trial))
+		}
 	}
 	runtime.KeepAlive(records)
 	runtime.KeepAlive(preparations)
@@ -252,6 +267,7 @@ func main() {
 	info, ok := debug.ReadBuildInfo()
 	require(ok, "build metadata required")
 	save(filepath.Join(*out, "manifest.json"), map[string]any{
+		"compatibility_only": compatibilityOnly, "performance_measured": !compatibilityOnly,
 		"schema": "gooo/order-prepared-replay/v1", "requests": requests, "repeats": *repeats, "searches": searches, "actual_model_predictions": predictions,
 		"training_updates": 0, "native_runs": 0, "dataset_sha256": metadata.DatasetSHA, "weights_sha256": digest(weights),
 		"resident_memory_scope": "Three post-GC live-heap observations per arm, before result serialization with two collections before each baseline. 64 prepared requests plus one owned model, including private program objects. Inputs and replay records kept alive across each observation. Process heap deltas may include runtime noise.",

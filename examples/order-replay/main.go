@@ -68,6 +68,7 @@ func require(ok bool, what string) {
 func main() {
 	dir := flag.String("input", "", "decoded original fit evidence")
 	out := flag.String("output", "", "fresh replay directory")
+	compatibilityOnly := flag.Bool("compatibility-only", false, "check numerical/search records without collecting search timings")
 	flag.Parse()
 	require(*dir != "" && *out != "" && flag.NArg() == 0, "input and output required")
 	_, err := os.Stat(*out)
@@ -156,9 +157,15 @@ func main() {
 				budget int
 				unique bool
 			}{{1, false}, {8, false}, {8, true}} {
-				start := time.Now()
+				var start time.Time
+				if !*compatibilityOnly {
+					start = time.Now()
+				}
 				search, program, ranking, err := orderjudge.Search(ctx, e.Plan, active, cases, config.budget, config.unique)
-				ns := time.Since(start).Nanoseconds()
+				ns := int64(0)
+				if !*compatibilityOnly {
+					ns = time.Since(start).Nanoseconds()
+				}
 				must(err)
 				require(program != nil && ranking.Descriptors == r.Descriptors, "candidate descriptors differ")
 				if arm == "model" {
@@ -197,6 +204,11 @@ func main() {
 				for _, a := range ranking.Aliases {
 					require(ranking.Descriptors[a.Mask] == ranking.Descriptors[a.EvaluatedAs] && r.Observed[a.Mask] == r.Observed[a.EvaluatedAs], "alias evidence differs")
 				}
+				if *compatibilityOnly && ranking != nil {
+					copyRanking := *ranking
+					copyRanking.PredictNS = 0
+					ranking = &copyRanking
+				}
 				records = append(records, record{r.Task.ID, r.Task.Group, arm, config.budget, config.unique, ns, search, ranking, value})
 			}
 		}
@@ -223,6 +235,7 @@ func main() {
 	build, ok := debug.ReadBuildInfo()
 	require(ok, "build information required")
 	save(filepath.Join(*out, "manifest.json"), map[string]any{"schema": "gooo/order-judge-runtime-replay/v1",
+		"compatibility_only": *compatibilityOnly, "performance_measured": !*compatibilityOnly,
 		"go_version": build.GoVersion, "build_settings": build.Settings,
 		"requests": len(rows), "searches": len(records), "actual_model_predictions": len(rows) * 3,
 		"baseline_sdk_searches": len(rows) * 2, "native_runs": 0, "training_updates": 0,

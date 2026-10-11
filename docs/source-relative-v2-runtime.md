@@ -82,3 +82,14 @@ observations; they are not repeated for SDK release checks.
 The model reads structured Gooo source and required examples. Korean and English
 descriptions accompany them; general prose comprehension is not measured. Token
 generation, GPU training and 1.58-bit quantization are outside this recorded fit.
+
+## Release compatibility checks
+
+CI retains every original feature/hidden/logit/probability-bit comparison, full
+ranked mask comparison and finite search/program comparison for the earlier SDK
+models. Those existing checks use `--compatibility-only`: collector wall timings,
+allocation counters and heap-residency trials are disabled. Prepared compatibility
+uses one semantic round. Ordinary internal execution receipts still identify the
+model calls, and their incidental timing fields are excluded from comparisons.
+The V2 retained reader additionally compares all100 frozen source/requirement
+arrays with current encoders and validates original result counts without inference.

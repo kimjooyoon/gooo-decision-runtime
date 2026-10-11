@@ -21,6 +21,8 @@ import (
 
 const manifestSHA = "ce4ad854c0d7fcb3e7fa049658f40ea4b0393a9bff39a2ef21f64d83f221bc3a"
 
+var compatibilityOnly bool
+
 var arms = []string{"positioned-original", "positioned-varied", "bag-original", "bag-varied"}
 var variants = []string{"fp32", "ptq_ternary", "qat_ternary"}
 var forms = []string{"original", "task-prefix", "complete-suffix"}
@@ -47,30 +49,32 @@ type frozenRow struct {
 	Lanes [4]observation `json:"lanes"`
 }
 type report struct {
-	Schema        string         `json:"schema"`
-	Status        string         `json:"status"`
-	Source        string         `json:"sdk_source_revision"`
-	Provenance    pin            `json:"sdk_extraction_manifest"`
-	Manifest      string         `json:"reference_manifest_sha256"`
-	Go            string         `json:"go_version"`
-	Platform      string         `json:"platform"`
-	Rows          int            `json:"complete_input_rows"`
-	Calls         int            `json:"actual_model_predictions"`
-	Updates       int            `json:"optimizer_updates"`
-	Conditions    map[string]int `json:"matched_predictions_by_condition"`
-	Models        map[string]pin `json:"model_files"`
-	Journals      map[string]pin `json:"frozen_journals"`
-	Phase         string         `json:"phase"`
-	LastCondition string         `json:"last_condition"`
-	LastView      string         `json:"last_view_id"`
-	Wall          float64        `json:"wall_seconds"`
-	Scope         string         `json:"scope"`
+	Schema            string         `json:"schema"`
+	Status            string         `json:"status"`
+	Source            string         `json:"sdk_source_revision"`
+	Provenance        pin            `json:"sdk_extraction_manifest"`
+	Manifest          string         `json:"reference_manifest_sha256"`
+	Go                string         `json:"go_version"`
+	Platform          string         `json:"platform"`
+	Rows              int            `json:"complete_input_rows"`
+	Calls             int            `json:"actual_model_predictions"`
+	Updates           int            `json:"optimizer_updates"`
+	Conditions        map[string]int `json:"matched_predictions_by_condition"`
+	Models            map[string]pin `json:"model_files"`
+	Journals          map[string]pin `json:"frozen_journals"`
+	Phase             string         `json:"phase"`
+	LastCondition     string         `json:"last_condition"`
+	LastView          string         `json:"last_view_id"`
+	Wall              float64        `json:"wall_seconds"`
+	CompatibilityOnly bool           `json:"compatibility_only"`
+	Scope             string         `json:"scope"`
 }
 
 func main() {
 	bundle := flag.String("bundle", "", "closed full-input-separate-arithmetic-20261003 bundle")
 	source := flag.String("source-revision", "", "exact clean SDK source")
 	output := flag.String("output", "", "fresh result JSON")
+	flag.BoolVar(&compatibilityOnly, "compatibility-only", false, "check original numerical outputs without collecting performance observations")
 	flag.Parse()
 	if flag.NArg() != 0 {
 		fmt.Fprintln(os.Stderr, "unexpected arguments")
@@ -110,9 +114,15 @@ func replay(root, source, output string) (failure error) {
 	r := report{Schema: "gooo/sdk-full-input-replay/v1", Status: "FAILED", Source: source, Provenance: provenance, Manifest: manifestSHA,
 		Go: runtime.Version(), Platform: runtime.GOOS + "/" + runtime.GOARCH, Conditions: map[string]int{}, Models: map[string]pin{}, Journals: map[string]pin{},
 		Scope: "Complete frozen explicit-arithmetic lanes replayed by the SDK. Exact feature/hidden/logit/probability bits and full rankings; known authored development inputs; zero training or native generation. Synthetic unit predictions are separate."}
-	started := time.Now()
+	r.CompatibilityOnly = compatibilityOnly
+	var started time.Time
+	if !compatibilityOnly {
+		started = time.Now()
+	}
 	defer func() {
-		r.Wall = time.Since(started).Seconds()
+		if !compatibilityOnly {
+			r.Wall = time.Since(started).Seconds()
+		}
 		raw, e := json.MarshalIndent(r, "", "  ")
 		if e == nil {
 			var f *os.File
