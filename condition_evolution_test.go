@@ -15,17 +15,20 @@ func TestConditionEvolutionRetainsExactPreviousExtractionManifest(t *testing.T) 
 		{"condition-cases", "source-provenance-v0.2.26.json", "source-provenance-v0.2.27.json",
 			"source-evolution-condition-cases.json", "d7d92dea081de1a44a606e6b426c318ba1ec5820",
 			"88a2268e0254ee861db3ec38e289d890d2fa2ea19f97a13177b7b7412f7ebc00"},
-		{"condition-feedback", "source-provenance-v0.2.27.json", "source-provenance.json",
+		{"condition-feedback", "source-provenance-v0.2.27.json", "source-provenance-v0.2.41.json",
 			"source-evolution-condition-feedback.json", "c1eec1d5688076eb216f8d7612b11aa4c55cec9f",
 			"b50eceb5755896f3a5b4f81f71f97e49fd31d26f4acd83e224465ca166eae084"},
+		{"fixed-integer-division", "source-provenance-v0.2.41.json", "source-provenance.json",
+			"source-evolution-division-v0.2.42.json", "84410b0a3d4ef0632f4a522732f72d8eeaa1834a",
+			"a2a96fa9e1c763971599a2e2ec06e1b81710fb8a24b0bcc9a4f3c984dc6357c5"},
 	} {
 		t.Run(edge.name, func(t *testing.T) {
-			checkConditionEvolution(t, edge.before, edge.after, edge.evolution, edge.base, edge.beforeSHA)
+			checkSourceEvolution(t, edge.before, edge.after, edge.evolution, edge.base, edge.beforeSHA, 69)
 		})
 	}
 }
 
-func checkConditionEvolution(t *testing.T, before, after, record, base, beforeSHA string) {
+func checkSourceEvolution(t *testing.T, before, after, record, base, beforeSHA string, expectedFiles int) {
 	t.Helper()
 	type entry struct {
 		Path        string `json:"copied_path"`
@@ -53,8 +56,8 @@ func checkConditionEvolution(t *testing.T, before, after, record, base, beforeSH
 		t.Fatal("historical extraction manifest changed")
 	}
 	var old, current manifest
-	if json.Unmarshal(oldRaw, &old) != nil || json.Unmarshal(newRaw, &current) != nil || len(old.Files) != 69 ||
-		len(current.Files) != 69 || old.Origin != current.Origin {
+	if json.Unmarshal(oldRaw, &old) != nil || json.Unmarshal(newRaw, &current) != nil || len(old.Files) != expectedFiles ||
+		len(current.Files) != expectedFiles || old.Origin != current.Origin {
 		t.Fatal("extraction history changed")
 	}
 	var evolution struct {
@@ -105,4 +108,10 @@ func checkConditionEvolution(t *testing.T, before, after, record, base, beforeSH
 			t.Fatal("unrecorded extraction change", prior.Path)
 		}
 	}
+}
+
+func TestOrderCompatibilityEvolutionRetainsExactPreviousExtraction(t *testing.T) {
+	checkSourceEvolution(t, "source-provenance-order-judge-v0.2.41.json", "source-provenance-order-judge-v1.json",
+		"source-evolution-order-compatibility-v0.2.42.json", "84410b0a3d4ef0632f4a522732f72d8eeaa1834a",
+		"410778ab5059c8fbe2cffcc30d316a9f3a818795ba157ecc205f1b550c90a859", 12)
 }

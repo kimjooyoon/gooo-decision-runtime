@@ -81,8 +81,11 @@
       "origin_path": "cmd/order-judge-replay/main.go",
       "copied_path": "examples/order-replay/main.go",
       "origin_sha256": "50dcadbb523fe6c408d002bf5941637ed555f37438c9aeef5ad9decd30ee09f3",
-      "sha256": "156f4f92b92b73cb9c851194ab0c2afede10772e050ba2bcf561b631add3256b",
-      "bytes": 8659
+      "sha256": "c9f520dc1a2d1c31bd2d079c14a73ad0719daecc6ab1ea875616cf83bf1bb427",
+      "bytes": 9130,
+      "transformation": "fixed_module_import_relocation_and_gofmt_then_sdk_compatibility_only_collector",
+      "previous_sdk_sha256": "156f4f92b92b73cb9c851194ab0c2afede10772e050ba2bcf561b631add3256b",
+      "previous_sdk_bytes": 8659
     }
   ],
   "origin_repository": "github.com/kimjooyoon/gooo-neural-decision-experiments",

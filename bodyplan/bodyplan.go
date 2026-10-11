@@ -49,6 +49,7 @@ var operations = map[string]string{
 	"add":        "+",
 	"subtract":   "-",
 	"multiply":   "*",
+	"divide":     "/",
 	"less_than":  "<",
 	"less_equal": "<=",
 	"equal":      "==",
@@ -1028,6 +1029,11 @@ func evalExpression(program *Program, scopeID, index int, input int64, slots *[m
 			return Value{Type: decision.TypeInt, Int: left.Int - right.Int}, nil
 		case "multiply":
 			return Value{Type: decision.TypeInt, Int: left.Int * right.Int}, nil
+		case "divide":
+			if right.Int == 0 {
+				return Value{}, errors.New("integer division by zero")
+			}
+			return Value{Type: decision.TypeInt, Int: left.Int / right.Int}, nil
 		case "less_than":
 			return Value{Type: decision.TypeBool, Bool: left.Int < right.Int}, nil
 		case "less_equal":

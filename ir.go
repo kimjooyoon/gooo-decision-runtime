@@ -29,7 +29,7 @@ type TypedBinaryIR struct {
 	ResultType ValueType  `json:"result_type"`
 }
 
-// BuildTypedBinary translates a classifier label to a closed, typed IR node.
+// BuildTypedBinary translates a closed operation to a typed IR node.
 // It never accepts or emits a source expression.
 func BuildTypedBinary(operation string, left, right Identifier) (TypedBinaryIR, error) {
 	if !validIdentifier(left.Name) || !validIdentifier(right.Name) {
@@ -40,7 +40,7 @@ func BuildTypedBinary(operation string, left, right Identifier) (TypedBinaryIR, 
 	}
 	var result ValueType
 	switch operation {
-	case "add", "subtract", "multiply":
+	case "add", "subtract", "multiply", "divide":
 		if left.Type != TypeInt || right.Type != TypeInt {
 			return TypedBinaryIR{}, fmt.Errorf("%s requires Int operands", operation)
 		}
@@ -90,6 +90,8 @@ func AssembleGoExpression(ir TypedBinaryIR) (string, error) {
 		operator = "-"
 	case "multiply":
 		operator = "*"
+	case "divide":
+		operator = "/"
 	case "less_than":
 		operator = "<"
 	case "less_equal":

@@ -14,7 +14,7 @@ func TestWholeCandidateSourceMatchesPinnedOrigin(t *testing.T) {
 		t.Fatal(err)
 	}
 	digest := func(b []byte) string { return fmt.Sprintf("%x", sha256.Sum256(b)) }
-	if digest(raw) != "410778ab5059c8fbe2cffcc30d316a9f3a818795ba157ecc205f1b550c90a859" {
+	if digest(raw) != "6e957c281e7591aa66172f8b49585621dc6b4e22735fbc4563feaf54d5b6f200" {
 		t.Fatal("candidate extraction manifest changed")
 	}
 	var m struct {

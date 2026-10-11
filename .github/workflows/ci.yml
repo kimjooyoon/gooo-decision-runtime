@@ -40,6 +40,12 @@ jobs:
           cmp "$RUNNER_TEMP/relative-audit.json" "$root/audit.json"
       - name: Race tests
         run: go test -race ./...
+      - name: Audit retained V2 return-layout observations without model execution
+        run: |
+          root=studies/return-layout-learning-20261012/result
+          (cd "$root" && sha256sum -c SHA256SUMS)
+          go run ./studies/return-layout-learning-20261012/audit "$root" > "$RUNNER_TEMP/layout-audit.json"
+          cmp "$RUNNER_TEMP/layout-audit.json" "$root/audit.json"
       - name: Retrieve pinned compiler for source-relative producer fixtures
         uses: actions/checkout@v7
         with:
@@ -67,6 +73,7 @@ jobs:
       - name: Replay every explicit model using the public SDK
         run: |
           go run ./examples/three-replay \
+            --compatibility-only \
             --bundle .replay-reference/publication/full-input-separate-arithmetic-20261003 \
             --source-revision "$GITHUB_SHA" --output "$RUNNER_TEMP/sdk-full-input-replay.json"
       - uses: actions/upload-artifact@v7
@@ -89,7 +96,7 @@ jobs:
           unzip -q "$root/initial.zip" -d "$RUNNER_TEMP/order-initial"
           unzip -q "$root/runtime.zip" -d "$RUNNER_TEMP/order-original"
           go build -trimpath -o "$RUNNER_TEMP/order-sdk-replay" ./examples/order-replay
-          "$RUNNER_TEMP/order-sdk-replay" --input "$RUNNER_TEMP/order-initial" --output "$RUNNER_TEMP/order-sdk"
+          "$RUNNER_TEMP/order-sdk-replay" --compatibility-only --input "$RUNNER_TEMP/order-initial" --output "$RUNNER_TEMP/order-sdk"
           jq -S 'map(del(.SearchNS) | .Ranking |= del(.predict_ns))' "$RUNNER_TEMP/order-original/records.json" > "$RUNNER_TEMP/order-original.json"
           jq -S 'map(del(.SearchNS) | .Ranking |= del(.predict_ns))' "$RUNNER_TEMP/order-sdk/records.json" > "$RUNNER_TEMP/order-sdk.json"
           cmp "$RUNNER_TEMP/order-original.json" "$RUNNER_TEMP/order-sdk.json"
@@ -102,7 +109,7 @@ jobs:
       - name: Replay prepared candidates against every original search record
         run: |
           go build -trimpath -o "$RUNNER_TEMP/order-prepared-replay" ./examples/order-prepared
-          "$RUNNER_TEMP/order-prepared-replay" --input "$RUNNER_TEMP/order-initial" \
+          "$RUNNER_TEMP/order-prepared-replay" --compatibility-only --input "$RUNNER_TEMP/order-initial" \
             --output "$RUNNER_TEMP/order-prepared" --repeats 1
       - uses: actions/upload-artifact@v7
         if: always()

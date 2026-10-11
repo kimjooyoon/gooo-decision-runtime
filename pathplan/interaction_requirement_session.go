@@ -46,6 +46,7 @@ const (
 	orderedInteractionSource interactionSource = iota
 	canonicalInteractionSource
 	relativeInteractionSource
+	relativeV2InteractionSource
 )
 
 type interactionRequirementModel interface {
@@ -67,6 +68,8 @@ func (p *PreparedPlan) newInteractionRequirementSession(ctx context.Context, mod
 		r.Schema = "gooo/canonical-interaction-requirement-path-ranking/v1"
 	} else if sourceKind == relativeInteractionSource {
 		r.Schema = "gooo/source-relative-requirement-path-ranking/v1"
+	} else if sourceKind == relativeV2InteractionSource {
+		r.Schema = "gooo/source-relative-requirement-path-ranking/v2"
 	}
 	r.ModelFingerprint = model.Fingerprint()
 	r.SourceFeatures, r.CaseFeatures = model.SourceFeatureVersion(), model.CaseFeatureVersion()
@@ -89,6 +92,8 @@ func (p *PreparedPlan) newInteractionRequirementSession(ctx context.Context, mod
 			features = input.CanonicalOrderedSourceFeaturesInto
 		} else if sourceKind == relativeInteractionSource {
 			features = input.SourceRelativeOrderedSourceFeaturesInto
+		} else if sourceKind == relativeV2InteractionSource {
+			features = input.SourceRelativeV2FeaturesInto
 		}
 		if err := features(choice.ID, &source[i]); err != nil {
 			r.Declined, r.Error = true, err.Error()
@@ -116,6 +121,8 @@ func (p *PreparedPlan) newInteractionRequirementSession(ctx context.Context, mod
 		s.core.result.Selection.ModelVariant = "canonical_interaction_requirement_contract_fp32"
 	} else if sourceKind == relativeInteractionSource {
 		s.core.result.Selection.ModelVariant = "source_relative_requirement_contract_fp32"
+	} else if sourceKind == relativeV2InteractionSource {
+		s.core.result.Selection.ModelVariant = "source_relative_v2_requirement_contract_fp32"
 	}
 	return s.finish()
 }

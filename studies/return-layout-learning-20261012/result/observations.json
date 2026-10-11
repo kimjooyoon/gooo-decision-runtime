@@ -1,0 +1,3402 @@
+[
+  {
+    "ID": "layout-00-0",
+    "Split": "train",
+    "FirstMask": 0,
+    "CheckedMask": 0,
+    "PredictNS": 98542,
+    "Probabilities": [
+      0.4772573,
+      0.18528506,
+      0.243085,
+      0.094372615
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-00-1",
+    "Split": "train",
+    "FirstMask": 1,
+    "CheckedMask": 1,
+    "PredictNS": 94250,
+    "Probabilities": [
+      0.13522433,
+      0.41586673,
+      0.11015133,
+      0.33875763
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-00-2",
+    "Split": "train",
+    "FirstMask": 0,
+    "CheckedMask": 2,
+    "PredictNS": 94125,
+    "Probabilities": [
+      0.40966377,
+      0.16350622,
+      0.30506968,
+      0.12176032
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 0,
+      "OutputMatches": 0,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 1,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 2
+  },
+  {
+    "ID": "layout-00-3",
+    "Split": "train",
+    "FirstMask": 3,
+    "CheckedMask": 3,
+    "PredictNS": 94250,
+    "Probabilities": [
+      0.08923606,
+      0.27899167,
+      0.15310328,
+      0.47866902
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-01-0",
+    "Split": "train",
+    "FirstMask": 0,
+    "CheckedMask": 0,
+    "PredictNS": 95333,
+    "Probabilities": [
+      0.4359165,
+      0.17428556,
+      0.27846408,
+      0.11133386
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-01-1",
+    "Split": "train",
+    "FirstMask": 3,
+    "CheckedMask": 1,
+    "PredictNS": 94708,
+    "Probabilities": [
+      0.09128015,
+      0.33947435,
+      0.12062745,
+      0.44861805
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 0,
+      "OutputMatches": 0,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 0,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 2
+  },
+  {
+    "ID": "layout-01-2",
+    "Split": "train",
+    "FirstMask": 0,
+    "CheckedMask": 2,
+    "PredictNS": 94708,
+    "Probabilities": [
+      0.41830164,
+      0.1719438,
+      0.2903894,
+      0.119365185
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 0,
+      "OutputMatches": 0,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 0,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 2
+  },
+  {
+    "ID": "layout-01-3",
+    "Split": "train",
+    "FirstMask": 1,
+    "CheckedMask": 3,
+    "PredictNS": 94209,
+    "Probabilities": [
+      0.10626351,
+      0.39764953,
+      0.10461317,
+      0.39147377
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 0,
+      "OutputMatches": 0,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 0,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 2
+  },
+  {
+    "ID": "layout-02-0",
+    "Split": "train",
+    "FirstMask": 0,
+    "CheckedMask": 0,
+    "PredictNS": 94167,
+    "Probabilities": [
+      0.49936372,
+      0.18142885,
+      0.23413976,
+      0.08506767
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-02-1",
+    "Split": "train",
+    "FirstMask": 1,
+    "CheckedMask": 1,
+    "PredictNS": 94167,
+    "Probabilities": [
+      0.13322382,
+      0.43372744,
+      0.10175903,
+      0.3312897
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-02-2",
+    "Split": "train",
+    "FirstMask": 0,
+    "CheckedMask": 2,
+    "PredictNS": 93875,
+    "Probabilities": [
+      0.4464822,
+      0.1672622,
+      0.28099033,
+      0.10526525
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 0,
+      "OutputMatches": 1,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 0,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 2
+  },
+  {
+    "ID": "layout-02-3",
+    "Split": "train",
+    "FirstMask": 3,
+    "CheckedMask": 3,
+    "PredictNS": 94083,
+    "Probabilities": [
+      0.0837442,
+      0.28141353,
+      0.14559287,
+      0.4892494
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-03-0",
+    "Split": "train",
+    "FirstMask": 0,
+    "CheckedMask": 0,
+    "PredictNS": 93833,
+    "Probabilities": [
+      0.42123836,
+      0.17840597,
+      0.28124198,
+      0.119113676
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-03-1",
+    "Split": "train",
+    "FirstMask": 3,
+    "CheckedMask": 1,
+    "PredictNS": 93958,
+    "Probabilities": [
+      0.107105434,
+      0.37664002,
+      0.114303224,
+      0.4019513
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 0,
+      "OutputMatches": 1,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 0,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 2
+  },
+  {
+    "ID": "layout-03-2",
+    "Split": "train",
+    "FirstMask": 0,
+    "CheckedMask": 2,
+    "PredictNS": 93875,
+    "Probabilities": [
+      0.43035084,
+      0.17438163,
+      0.28128755,
+      0.11397999
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 0,
+      "OutputMatches": 1,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 0,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 2
+  },
+  {
+    "ID": "layout-03-3",
+    "Split": "train",
+    "FirstMask": 3,
+    "CheckedMask": 3,
+    "PredictNS": 93958,
+    "Probabilities": [
+      0.07039859,
+      0.25896665,
+      0.1433416,
+      0.52729315
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-04-0",
+    "Split": "train",
+    "FirstMask": 0,
+    "CheckedMask": 0,
+    "PredictNS": 94042,
+    "Probabilities": [
+      0.4533486,
+      0.16529283,
+      0.2794646,
+      0.10189398
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-04-1",
+    "Split": "train",
+    "FirstMask": 3,
+    "CheckedMask": 1,
+    "PredictNS": 94459,
+    "Probabilities": [
+      0.099161334,
+      0.3200485,
+      0.1373821,
+      0.44340804
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 0,
+      "OutputMatches": 0,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 0,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 2
+  },
+  {
+    "ID": "layout-04-2",
+    "Split": "train",
+    "FirstMask": 0,
+    "CheckedMask": 2,
+    "PredictNS": 93791,
+    "Probabilities": [
+      0.49344388,
+      0.17202666,
+      0.24805231,
+      0.08647713
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 0,
+      "OutputMatches": 0,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 0,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 2
+  },
+  {
+    "ID": "layout-04-3",
+    "Split": "train",
+    "FirstMask": 1,
+    "CheckedMask": 3,
+    "PredictNS": 94167,
+    "Probabilities": [
+      0.14131567,
+      0.43951693,
+      0.10198278,
+      0.31718463
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 0,
+      "OutputMatches": 0,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 0,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 2
+  },
+  {
+    "ID": "layout-05-0",
+    "Split": "train",
+    "FirstMask": 0,
+    "CheckedMask": 0,
+    "PredictNS": 94625,
+    "Probabilities": [
+      0.47353506,
+      0.18866222,
+      0.24156159,
+      0.09624112
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-05-1",
+    "Split": "train",
+    "FirstMask": 1,
+    "CheckedMask": 1,
+    "PredictNS": 93833,
+    "Probabilities": [
+      0.13728505,
+      0.42035186,
+      0.1089057,
+      0.33345738
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-05-2",
+    "Split": "train",
+    "FirstMask": 0,
+    "CheckedMask": 2,
+    "PredictNS": 94417,
+    "Probabilities": [
+      0.40898985,
+      0.16541125,
+      0.30303848,
+      0.12256044
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 0,
+      "OutputMatches": 0,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 0,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 2
+  },
+  {
+    "ID": "layout-05-3",
+    "Split": "train",
+    "FirstMask": 3,
+    "CheckedMask": 3,
+    "PredictNS": 93833,
+    "Probabilities": [
+      0.08646526,
+      0.27736878,
+      0.15118502,
+      0.48498094
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-06-0",
+    "Split": "train",
+    "FirstMask": 0,
+    "CheckedMask": 0,
+    "PredictNS": 94583,
+    "Probabilities": [
+      0.43935505,
+      0.1842788,
+      0.26515296,
+      0.11121318
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-06-1",
+    "Split": "train",
+    "FirstMask": 3,
+    "CheckedMask": 1,
+    "PredictNS": 94292,
+    "Probabilities": [
+      0.09663211,
+      0.36143953,
+      0.11432204,
+      0.4276063
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 0,
+      "OutputMatches": 0,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 0,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 2
+  },
+  {
+    "ID": "layout-06-2",
+    "Split": "train",
+    "FirstMask": 0,
+    "CheckedMask": 2,
+    "PredictNS": 94333,
+    "Probabilities": [
+      0.42236224,
+      0.18034227,
+      0.27841607,
+      0.11887944
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 0,
+      "OutputMatches": 0,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 0,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 2
+  },
+  {
+    "ID": "layout-06-3",
+    "Split": "train",
+    "FirstMask": 1,
+    "CheckedMask": 3,
+    "PredictNS": 94125,
+    "Probabilities": [
+      0.10910893,
+      0.40708965,
+      0.10226115,
+      0.38154027
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 0,
+      "OutputMatches": 0,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 0,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 2
+  },
+  {
+    "ID": "layout-07-0",
+    "Split": "train",
+    "FirstMask": 0,
+    "CheckedMask": 0,
+    "PredictNS": 94041,
+    "Probabilities": [
+      0.49138013,
+      0.17431392,
+      0.24676697,
+      0.08753899
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-07-1",
+    "Split": "train",
+    "FirstMask": 1,
+    "CheckedMask": 1,
+    "PredictNS": 94125,
+    "Probabilities": [
+      0.12764421,
+      0.40299848,
+      0.11290224,
+      0.3564551
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-07-2",
+    "Split": "train",
+    "FirstMask": 0,
+    "CheckedMask": 2,
+    "PredictNS": 93834,
+    "Probabilities": [
+      0.4408156,
+      0.16230863,
+      0.2900713,
+      0.106804475
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 0,
+      "OutputMatches": 0,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 0,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 2
+  },
+  {
+    "ID": "layout-07-3",
+    "Split": "train",
+    "FirstMask": 3,
+    "CheckedMask": 3,
+    "PredictNS": 93875,
+    "Probabilities": [
+      0.08276598,
+      0.2699481,
+      0.15188862,
+      0.4953973
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-08-0",
+    "Split": "train",
+    "FirstMask": 0,
+    "CheckedMask": 0,
+    "PredictNS": 93750,
+    "Probabilities": [
+      0.42750242,
+      0.17674339,
+      0.2799951,
+      0.115759075
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-08-1",
+    "Split": "train",
+    "FirstMask": 1,
+    "CheckedMask": 1,
+    "PredictNS": 93875,
+    "Probabilities": [
+      0.111367956,
+      0.410737,
+      0.101937726,
+      0.3759573
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-08-2",
+    "Split": "train",
+    "FirstMask": 0,
+    "CheckedMask": 2,
+    "PredictNS": 94208,
+    "Probabilities": [
+      0.43236554,
+      0.17533356,
+      0.27911413,
+      0.1131868
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 0,
+      "OutputMatches": 0,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 0,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 2
+  },
+  {
+    "ID": "layout-08-3",
+    "Split": "train",
+    "FirstMask": 3,
+    "CheckedMask": 3,
+    "PredictNS": 93709,
+    "Probabilities": [
+      0.07575834,
+      0.27806452,
+      0.1383554,
+      0.50782174
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-09-0",
+    "Split": "train",
+    "FirstMask": 0,
+    "CheckedMask": 0,
+    "PredictNS": 93917,
+    "Probabilities": [
+      0.44516918,
+      0.16272716,
+      0.28714183,
+      0.104961835
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-09-1",
+    "Split": "train",
+    "FirstMask": 3,
+    "CheckedMask": 1,
+    "PredictNS": 93750,
+    "Probabilities": [
+      0.09099148,
+      0.29140103,
+      0.14696161,
+      0.47064587
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 0,
+      "OutputMatches": 0,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 0,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 2
+  },
+  {
+    "ID": "layout-09-2",
+    "Split": "train",
+    "FirstMask": 0,
+    "CheckedMask": 2,
+    "PredictNS": 93500,
+    "Probabilities": [
+      0.49360874,
+      0.1708774,
+      0.24923407,
+      0.08627981
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 0,
+      "OutputMatches": 0,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 0,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 2
+  },
+  {
+    "ID": "layout-09-3",
+    "Split": "train",
+    "FirstMask": 1,
+    "CheckedMask": 3,
+    "PredictNS": 93875,
+    "Probabilities": [
+      0.13798542,
+      0.43196738,
+      0.10411432,
+      0.3259329
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 0,
+      "OutputMatches": 0,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 0,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 2
+  },
+  {
+    "ID": "layout-10-0",
+    "Split": "train",
+    "FirstMask": 0,
+    "CheckedMask": 0,
+    "PredictNS": 93666,
+    "Probabilities": [
+      0.47095123,
+      0.17399487,
+      0.25926673,
+      0.09578716
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-10-1",
+    "Split": "train",
+    "FirstMask": 1,
+    "CheckedMask": 1,
+    "PredictNS": 93500,
+    "Probabilities": [
+      0.13003106,
+      0.4095384,
+      0.11095934,
+      0.3494712
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-10-2",
+    "Split": "train",
+    "FirstMask": 0,
+    "CheckedMask": 2,
+    "PredictNS": 93916,
+    "Probabilities": [
+      0.40398127,
+      0.15402298,
+      0.319994,
+      0.12200177
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 0,
+      "OutputMatches": 0,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 0,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 2
+  },
+  {
+    "ID": "layout-10-3",
+    "Split": "train",
+    "FirstMask": 3,
+    "CheckedMask": 3,
+    "PredictNS": 93916,
+    "Probabilities": [
+      0.08386218,
+      0.27068523,
+      0.15267088,
+      0.49278173
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-11-0",
+    "Split": "train",
+    "FirstMask": 0,
+    "CheckedMask": 0,
+    "PredictNS": 94750,
+    "Probabilities": [
+      0.4308879,
+      0.16870546,
+      0.28774562,
+      0.112661
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-11-1",
+    "Split": "train",
+    "FirstMask": 3,
+    "CheckedMask": 1,
+    "PredictNS": 94458,
+    "Probabilities": [
+      0.08795831,
+      0.33194754,
+      0.121513195,
+      0.45858097
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 0,
+      "OutputMatches": 0,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 0,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 2
+  },
+  {
+    "ID": "layout-11-2",
+    "Split": "train",
+    "FirstMask": 0,
+    "CheckedMask": 2,
+    "PredictNS": 94292,
+    "Probabilities": [
+      0.40860403,
+      0.1676906,
+      0.3004153,
+      0.123290084
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 0,
+      "OutputMatches": 0,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 0,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 2
+  },
+  {
+    "ID": "layout-11-3",
+    "Split": "train",
+    "FirstMask": 3,
+    "CheckedMask": 3,
+    "PredictNS": 94375,
+    "Probabilities": [
+      0.10017254,
+      0.37484223,
+      0.11071046,
+      0.41427475
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-12-0",
+    "Split": "train",
+    "FirstMask": 0,
+    "CheckedMask": 0,
+    "PredictNS": 93917,
+    "Probabilities": [
+      0.4990756,
+      0.16942532,
+      0.24748373,
+      0.084015355
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-12-1",
+    "Split": "train",
+    "FirstMask": 1,
+    "CheckedMask": 1,
+    "PredictNS": 93834,
+    "Probabilities": [
+      0.13668765,
+      0.41725156,
+      0.11006804,
+      0.33599275
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-12-2",
+    "Split": "train",
+    "FirstMask": 0,
+    "CheckedMask": 2,
+    "PredictNS": 93417,
+    "Probabilities": [
+      0.46911302,
+      0.16490719,
+      0.2707893,
+      0.095190495
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 0,
+      "OutputMatches": 0,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 0,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 2
+  },
+  {
+    "ID": "layout-12-3",
+    "Split": "train",
+    "FirstMask": 3,
+    "CheckedMask": 3,
+    "PredictNS": 96459,
+    "Probabilities": [
+      0.09724256,
+      0.3056324,
+      0.144129,
+      0.45299605
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-13-0",
+    "Split": "train",
+    "FirstMask": 0,
+    "CheckedMask": 0,
+    "PredictNS": 94083,
+    "Probabilities": [
+      0.41430992,
+      0.17209043,
+      0.29222092,
+      0.12137875
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-13-1",
+    "Split": "train",
+    "FirstMask": 3,
+    "CheckedMask": 1,
+    "PredictNS": 94000,
+    "Probabilities": [
+      0.10503756,
+      0.37472153,
+      0.11390057,
+      0.40634033
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 0,
+      "OutputMatches": 0,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 0,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 2
+  },
+  {
+    "ID": "layout-13-2",
+    "Split": "train",
+    "FirstMask": 0,
+    "CheckedMask": 2,
+    "PredictNS": 94208,
+    "Probabilities": [
+      0.42714497,
+      0.17033339,
+      0.2877679,
+      0.11475374
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 0,
+      "OutputMatches": 0,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 0,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 2
+  },
+  {
+    "ID": "layout-13-3",
+    "Split": "train",
+    "FirstMask": 3,
+    "CheckedMask": 3,
+    "PredictNS": 94083,
+    "Probabilities": [
+      0.071938895,
+      0.26334614,
+      0.14262152,
+      0.5220935
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-14-0",
+    "Split": "train",
+    "FirstMask": 0,
+    "CheckedMask": 0,
+    "PredictNS": 94583,
+    "Probabilities": [
+      0.45822263,
+      0.16243643,
+      0.28006133,
+      0.09927961
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-14-1",
+    "Split": "train",
+    "FirstMask": 3,
+    "CheckedMask": 1,
+    "PredictNS": 94708,
+    "Probabilities": [
+      0.09968664,
+      0.31109896,
+      0.14298652,
+      0.44622788
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 0,
+      "OutputMatches": 0,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 0,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 2
+  },
+  {
+    "ID": "layout-14-2",
+    "Split": "train",
+    "FirstMask": 0,
+    "CheckedMask": 2,
+    "PredictNS": 93958,
+    "Probabilities": [
+      0.5018181,
+      0.16912489,
+      0.24611147,
+      0.08294554
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 0,
+      "OutputMatches": 0,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 0,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 2
+  },
+  {
+    "ID": "layout-14-3",
+    "Split": "train",
+    "FirstMask": 1,
+    "CheckedMask": 3,
+    "PredictNS": 97833,
+    "Probabilities": [
+      0.1458588,
+      0.44159085,
+      0.10243278,
+      0.31011757
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 0,
+      "OutputMatches": 0,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 0,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 2
+  },
+  {
+    "ID": "layout-15-0",
+    "Split": "validation",
+    "FirstMask": 0,
+    "CheckedMask": 0,
+    "PredictNS": 94375,
+    "Probabilities": [
+      0.46331874,
+      0.19330822,
+      0.24228546,
+      0.10108759
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-15-1",
+    "Split": "validation",
+    "FirstMask": 1,
+    "CheckedMask": 1,
+    "PredictNS": 93958,
+    "Probabilities": [
+      0.125758,
+      0.4145492,
+      0.10699478,
+      0.352698
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-15-2",
+    "Split": "validation",
+    "FirstMask": 0,
+    "CheckedMask": 2,
+    "PredictNS": 94083,
+    "Probabilities": [
+      0.4015942,
+      0.16606578,
+      0.30586132,
+      0.12647867
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 0,
+      "OutputMatches": 0,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 0,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 2
+  },
+  {
+    "ID": "layout-15-3",
+    "Split": "validation",
+    "FirstMask": 3,
+    "CheckedMask": 3,
+    "PredictNS": 105875,
+    "Probabilities": [
+      0.07874439,
+      0.27135053,
+      0.14617857,
+      0.5037265
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-16-0",
+    "Split": "validation",
+    "FirstMask": 0,
+    "CheckedMask": 0,
+    "PredictNS": 106667,
+    "Probabilities": [
+      0.4364465,
+      0.17861947,
+      0.2731465,
+      0.11178755
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-16-1",
+    "Split": "validation",
+    "FirstMask": 3,
+    "CheckedMask": 1,
+    "PredictNS": 106291,
+    "Probabilities": [
+      0.089994766,
+      0.3365188,
+      0.12100618,
+      0.45248026
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 0,
+      "OutputMatches": 0,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 0,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 2
+  },
+  {
+    "ID": "layout-16-2",
+    "Split": "validation",
+    "FirstMask": 0,
+    "CheckedMask": 2,
+    "PredictNS": 108458,
+    "Probabilities": [
+      0.42078552,
+      0.176457,
+      0.28376165,
+      0.118995845
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 0,
+      "OutputMatches": 0,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 0,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 2
+  },
+  {
+    "ID": "layout-16-3",
+    "Split": "validation",
+    "FirstMask": 1,
+    "CheckedMask": 3,
+    "PredictNS": 106083,
+    "Probabilities": [
+      0.111229666,
+      0.4115177,
+      0.101549335,
+      0.37570328
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 0,
+      "OutputMatches": 0,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 0,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 2
+  },
+  {
+    "ID": "layout-17-0",
+    "Split": "validation",
+    "FirstMask": 0,
+    "CheckedMask": 0,
+    "PredictNS": 105334,
+    "Probabilities": [
+      0.4969757,
+      0.17048761,
+      0.24759813,
+      0.084938586
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-17-1",
+    "Split": "validation",
+    "FirstMask": 1,
+    "CheckedMask": 1,
+    "PredictNS": 105125,
+    "Probabilities": [
+      0.15301727,
+      0.4344318,
+      0.107460245,
+      0.3050907
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-17-2",
+    "Split": "validation",
+    "FirstMask": 0,
+    "CheckedMask": 2,
+    "PredictNS": 104875,
+    "Probabilities": [
+      0.45486057,
+      0.16498685,
+      0.2789661,
+      0.10118648
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 0,
+      "OutputMatches": 0,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 0,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 2
+  },
+  {
+    "ID": "layout-17-3",
+    "Split": "validation",
+    "FirstMask": 3,
+    "CheckedMask": 3,
+    "PredictNS": 105166,
+    "Probabilities": [
+      0.103389405,
+      0.29937991,
+      0.15330692,
+      0.44392374
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-18-0",
+    "Split": "validation",
+    "FirstMask": 0,
+    "CheckedMask": 0,
+    "PredictNS": 105459,
+    "Probabilities": [
+      0.43142295,
+      0.1703632,
+      0.28548113,
+      0.112732716
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-18-1",
+    "Split": "validation",
+    "FirstMask": 1,
+    "CheckedMask": 1,
+    "PredictNS": 94333,
+    "Probabilities": [
+      0.110735014,
+      0.39518198,
+      0.10814479,
+      0.3859382
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-18-2",
+    "Split": "validation",
+    "FirstMask": 0,
+    "CheckedMask": 2,
+    "PredictNS": 93916,
+    "Probabilities": [
+      0.439321,
+      0.17104492,
+      0.2804456,
+      0.10918848
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 0,
+      "OutputMatches": 0,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 0,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 2
+  },
+  {
+    "ID": "layout-18-3",
+    "Split": "validation",
+    "FirstMask": 3,
+    "CheckedMask": 3,
+    "PredictNS": 93958,
+    "Probabilities": [
+      0.08023281,
+      0.28691873,
+      0.13829497,
+      0.4945535
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-19-0",
+    "Split": "validation",
+    "FirstMask": 0,
+    "CheckedMask": 0,
+    "PredictNS": 93916,
+    "Probabilities": [
+      0.4598837,
+      0.16757098,
+      0.27305165,
+      0.0994937
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-19-1",
+    "Split": "validation",
+    "FirstMask": 3,
+    "CheckedMask": 1,
+    "PredictNS": 94916,
+    "Probabilities": [
+      0.09563744,
+      0.31333998,
+      0.13820784,
+      0.45281473
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 0,
+      "OutputMatches": 0,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 0,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 2
+  },
+  {
+    "ID": "layout-19-2",
+    "Split": "validation",
+    "FirstMask": 0,
+    "CheckedMask": 2,
+    "PredictNS": 93250,
+    "Probabilities": [
+      0.50478333,
+      0.1760959,
+      0.23658651,
+      0.082534246
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 0,
+      "OutputMatches": 0,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 0,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 2
+  },
+  {
+    "ID": "layout-19-3",
+    "Split": "validation",
+    "FirstMask": 1,
+    "CheckedMask": 3,
+    "PredictNS": 96250,
+    "Probabilities": [
+      0.14205632,
+      0.4494846,
+      0.09808991,
+      0.3103692
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 0,
+      "OutputMatches": 0,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 0,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 2
+  },
+  {
+    "ID": "layout-20-0",
+    "Split": "heldout",
+    "FirstMask": 0,
+    "CheckedMask": 0,
+    "PredictNS": 94791,
+    "Probabilities": [
+      0.5009041,
+      0.17826164,
+      0.23662442,
+      0.08420985
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-20-1",
+    "Split": "heldout",
+    "FirstMask": 1,
+    "CheckedMask": 1,
+    "PredictNS": 94125,
+    "Probabilities": [
+      0.15383847,
+      0.45295528,
+      0.09968833,
+      0.29351795
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-20-2",
+    "Split": "heldout",
+    "FirstMask": 0,
+    "CheckedMask": 2,
+    "PredictNS": 94334,
+    "Probabilities": [
+      0.43882906,
+      0.16281807,
+      0.29055038,
+      0.107802466
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 0,
+      "OutputMatches": 0,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 0,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 2
+  },
+  {
+    "ID": "layout-20-3",
+    "Split": "heldout",
+    "FirstMask": 3,
+    "CheckedMask": 3,
+    "PredictNS": 93792,
+    "Probabilities": [
+      0.11990867,
+      0.35830936,
+      0.13083191,
+      0.39095005
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-21-0",
+    "Split": "heldout",
+    "FirstMask": 0,
+    "CheckedMask": 0,
+    "PredictNS": 94542,
+    "Probabilities": [
+      0.44054413,
+      0.1685003,
+      0.28279248,
+      0.108163096
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-21-1",
+    "Split": "heldout",
+    "FirstMask": 3,
+    "CheckedMask": 1,
+    "PredictNS": 100125,
+    "Probabilities": [
+      0.085147575,
+      0.29923087,
+      0.13637258,
+      0.47924897
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 0,
+      "OutputMatches": 0,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 0,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 2
+  },
+  {
+    "ID": "layout-21-2",
+    "Split": "heldout",
+    "FirstMask": 0,
+    "CheckedMask": 2,
+    "PredictNS": 94500,
+    "Probabilities": [
+      0.4181474,
+      0.16936302,
+      0.29358023,
+      0.11890935
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 0,
+      "OutputMatches": 0,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 0,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 2
+  },
+  {
+    "ID": "layout-21-3",
+    "Split": "heldout",
+    "FirstMask": 3,
+    "CheckedMask": 3,
+    "PredictNS": 94250,
+    "Probabilities": [
+      0.110628635,
+      0.3670736,
+      0.120956294,
+      0.4013415
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-22-0",
+    "Split": "heldout",
+    "FirstMask": 0,
+    "CheckedMask": 0,
+    "PredictNS": 95917,
+    "Probabilities": [
+      0.5021697,
+      0.17382611,
+      0.24068947,
+      0.08331469
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-22-1",
+    "Split": "heldout",
+    "FirstMask": 1,
+    "CheckedMask": 1,
+    "PredictNS": 93958,
+    "Probabilities": [
+      0.13096084,
+      0.42919296,
+      0.1028336,
+      0.33701262
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-22-2",
+    "Split": "heldout",
+    "FirstMask": 0,
+    "CheckedMask": 2,
+    "PredictNS": 94000,
+    "Probabilities": [
+      0.45561594,
+      0.16580474,
+      0.27756846,
+      0.10101088
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 0,
+      "OutputMatches": 0,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 0,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 2
+  },
+  {
+    "ID": "layout-22-3",
+    "Split": "heldout",
+    "FirstMask": 3,
+    "CheckedMask": 3,
+    "PredictNS": 96208,
+    "Probabilities": [
+      0.087415375,
+      0.291831,
+      0.14308222,
+      0.4776714
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-23-0",
+    "Split": "heldout",
+    "FirstMask": 0,
+    "CheckedMask": 0,
+    "PredictNS": 93583,
+    "Probabilities": [
+      0.42880738,
+      0.18314749,
+      0.27190995,
+      0.11613519
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-23-1",
+    "Split": "heldout",
+    "FirstMask": 1,
+    "CheckedMask": 1,
+    "PredictNS": 93625,
+    "Probabilities": [
+      0.124252744,
+      0.43379304,
+      0.098404154,
+      0.34355006
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-23-2",
+    "Split": "heldout",
+    "FirstMask": 0,
+    "CheckedMask": 2,
+    "PredictNS": 94000,
+    "Probabilities": [
+      0.4389887,
+      0.176904,
+      0.27377945,
+      0.11032786
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 0,
+      "OutputMatches": 0,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 0,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 2
+  },
+  {
+    "ID": "layout-23-3",
+    "Split": "heldout",
+    "FirstMask": 3,
+    "CheckedMask": 3,
+    "PredictNS": 93708,
+    "Probabilities": [
+      0.08707724,
+      0.31716403,
+      0.12833184,
+      0.4674269
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-24-0",
+    "Split": "heldout",
+    "FirstMask": 0,
+    "CheckedMask": 0,
+    "PredictNS": 93417,
+    "Probabilities": [
+      0.44955796,
+      0.16870555,
+      0.27757204,
+      0.10416442
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 1
+  },
+  {
+    "ID": "layout-24-1",
+    "Split": "heldout",
+    "FirstMask": 3,
+    "CheckedMask": 1,
+    "PredictNS": 93875,
+    "Probabilities": [
+      0.094301134,
+      0.298176,
+      0.14597054,
+      0.46155235
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 0,
+      "OutputMatches": 0,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 0,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 2
+  },
+  {
+    "ID": "layout-24-2",
+    "Split": "heldout",
+    "FirstMask": 0,
+    "CheckedMask": 2,
+    "PredictNS": 93167,
+    "Probabilities": [
+      0.4975586,
+      0.17521554,
+      0.24200402,
+      0.08522186
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 0,
+      "OutputMatches": 0,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 0,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 2
+  },
+  {
+    "ID": "layout-24-3",
+    "Split": "heldout",
+    "FirstMask": 1,
+    "CheckedMask": 3,
+    "PredictNS": 93834,
+    "Probabilities": [
+      0.13842244,
+      0.4330899,
+      0.10378132,
+      0.32470632
+    ],
+    "First": {
+      "Documents": 1,
+      "Complete": 0,
+      "OutputMatches": 0,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 0,
+      "Probes": 8
+    },
+    "Checked": {
+      "Documents": 1,
+      "Complete": 1,
+      "OutputMatches": 6,
+      "Outputs": 6,
+      "ConditionMatches": 3,
+      "Conditions": 3,
+      "ProbeMatches": 8,
+      "Probes": 8
+    },
+    "Attempts": 2
+  }
+]
