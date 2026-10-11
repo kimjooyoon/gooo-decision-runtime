@@ -32,6 +32,12 @@ jobs:
           (cd "$root" && sha256sum -c SHA256SUMS)
           go run ./studies/canonical-role-learning-20261011/audit "$root" > "$RUNNER_TEMP/role-audit.json"
           cmp "$RUNNER_TEMP/role-audit.json" "$root/audit.json"
+      - name: Audit retained source-relative observations without model execution
+        run: |
+          root=studies/source-relative-learning-20261011/result
+          (cd "$root" && sha256sum -c SHA256SUMS)
+          go run ./studies/source-relative-learning-20261011/audit "$root" > "$RUNNER_TEMP/relative-audit.json"
+          cmp "$RUNNER_TEMP/relative-audit.json" "$root/audit.json"
       - name: Race tests
         run: go test -race ./...
       - name: Retrieve pinned compiler for source-relative producer fixtures

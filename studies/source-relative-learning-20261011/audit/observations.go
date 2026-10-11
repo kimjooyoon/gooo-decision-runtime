@@ -120,7 +120,7 @@ func auditSearch(s r.Source, row r.Search, report r.Report) {
 	}
 	require(row.Logits == scores && row.Order == order(scores), "ranking differs")
 	require(row.NS > 0 && row.ProbeNS > 0 && row.PreparationNS >= 0 && row.RuleNS >= 0 && row.NS >= row.PreparationNS+row.PredictionNS+row.RuleNS, "timing bounds differ")
-	require((row.Mode == "fixed") == (row.PreparationNS == 0) && (row.Mode == "rule") == (row.RuleNS > 0), "policy preparation/rule timing differs")
+	auditPolicyTiming(row)
 	require(len(row.Attempts) > 0 && len(row.Attempts) <= 4, "attempt budget differs")
 	bestScore, bestTotal, bestMask := -1, 0, uint16(0)
 	for i, a := range row.Attempts {
@@ -145,6 +145,18 @@ func auditSearch(s r.Source, row r.Search, report r.Report) {
 	require(row.ResultState == state && row.ResultMask == bestMask && row.ResultPassed == bestScore && row.ResultTotal == bestTotal, "best partial result differs")
 	require(reflect.DeepEqual(row.Probe, s.Candidates[bestMask].Probe), "probe influenced result selection")
 	observed(row.Probe)
+}
+
+func auditPolicyTiming(row r.Search) {
+	// An interval may round to zero at the host clock's resolution. The rule's
+	// nonzero bucket-check count still records work; never interpret 0ns as free.
+	require(row.PreparationNS >= 0 && row.RuleNS >= 0, "negative policy timing")
+	if row.Mode == "fixed" {
+		require(row.PreparationNS == 0, "fixed policy recorded preparation")
+	}
+	if row.Mode != "rule" {
+		require(row.RuleNS == 0, "non-rule policy recorded rule time")
+	}
 }
 func aggregate(groups map[string]r.Group, s r.Source, row r.Search) {
 	first := row.Attempts[0]

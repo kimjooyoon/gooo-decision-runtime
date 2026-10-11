@@ -1,0 +1,15 @@
+{
+  "schema": "gooo/source-relative-local-cost/v1",
+  "producer": "53698ee2b342b6015e6363d876e2103dc32230ff",
+  "host": "Apple M4",
+  "logical_cpus": 10,
+  "physical_ram_bytes": 17179869184,
+  "wall_seconds": 32.57,
+  "user_seconds": 32.03,
+  "system_seconds": 0.24,
+  "max_rss_bytes": 66682880,
+  "max_rss_mib": 63.59375,
+  "average_one_core_percent": 99.07890696960393,
+  "instantaneous_host_cpu_increase_measured": false,
+  "scope": "one original process: source collection, two fresh CPU fits, four policies, records and probes; compilation/build time excluded"
+}

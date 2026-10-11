@@ -78,3 +78,10 @@ func TestRankEventPrecedesEveryCandidate(t *testing.T) {
 	write(events[:2])
 	panics(t, func() { checkEvents(lines[event](dir, "events.jsonl"), records) })
 }
+
+func TestZeroDurationStillAllowsRecordedRuleWork(t *testing.T) {
+	auditPolicyTiming(r.Search{Mode: "rule", RuleBucketChecks: 6, RuleNS: 0, PreparationNS: 100})
+	panics(t, func() { auditPolicyTiming(r.Search{Mode: "rule", RuleNS: -1}) })
+	panics(t, func() { auditPolicyTiming(r.Search{Mode: "baseline", RuleNS: 1}) })
+	panics(t, func() { auditPolicyTiming(r.Search{Mode: "fixed", PreparationNS: 1}) })
+}

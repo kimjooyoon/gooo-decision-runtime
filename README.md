@@ -21,6 +21,7 @@ The models, training and runtime are implemented in Go.
 | Inspect the first failure and a saved result | [Compiler construction reports](https://github.com/kimjooyoon/meta-ontology-go/blob/ee24a413d311b0be117bb8a7e260bd1ca35994bd/docs/construction-results.md) |
 | Understand model inputs, identities and provenance | [Decision input audit](docs/decision-input-audit.md) |
 | Inspect how Boolean goals relate to a source comparison | [Experimental relation input](docs/source-relative-conditions.md) |
+| Compare a learned decision with a simple rule and partial results | [Source-relative study: 288 documents](studies/source-relative-learning-20261011) |
 | Find an older API or experiment | [Detailed research and release history](RESEARCH.md) |
 
 ## Versions and model files
