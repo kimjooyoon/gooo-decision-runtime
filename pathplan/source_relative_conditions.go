@@ -33,6 +33,14 @@ type SourceRelativeConditionContext struct {
 // differing Boolean goals. Prepare retains its duplicate-input rejection.
 // No body is compiled/evaluated and no model is loaded or called by this method.
 func (input *ContractInput) SourceRelativeConditions(id string) (SourceRelativeConditionContext, error) {
+	return input.sourceRelativeConditions(id, false)
+}
+
+func (input *ContractInput) SourceRelativeV2Conditions(id string) (SourceRelativeConditionContext, error) {
+	return input.sourceRelativeConditions(id, true)
+}
+
+func (input *ContractInput) sourceRelativeConditions(id string, v2 bool) (SourceRelativeConditionContext, error) {
 	out := SourceRelativeConditionContext{Schema: SourceRelativeConditionSchema,
 		FeatureVersion: SourceRelativeConditionFeatureVersion, ChoiceID: id}
 	if input == nil || input.initial.prepared == nil {
@@ -40,7 +48,7 @@ func (input *ContractInput) SourceRelativeConditions(id string) (SourceRelativeC
 	}
 	p := input.initial.prepared
 	out.PlanSHA256 = p.sha
-	view, err := p.CanonicalOrderedBranchContext(id)
+	view, err := p.canonicalOrderedBranchContext(id, v2)
 	if err != nil {
 		return out, err
 	}

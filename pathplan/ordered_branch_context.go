@@ -19,7 +19,20 @@ type OrderedBranchContext struct {
 }
 
 func (p *PreparedPlan) OrderedBranchContext(id string) (OrderedBranchContext, error) {
+	return p.orderedBranchContext(id, false)
+}
+
+func (p *PreparedPlan) OrderedBranchContextV2(id string) (OrderedBranchContext, error) {
+	return p.orderedBranchContext(id, true)
+}
+
+func (p *PreparedPlan) orderedBranchContext(id string, v2 bool) (OrderedBranchContext, error) {
 	out := OrderedBranchContext{Schema: OrderedBranchContextSchema, Reason: "SINGLE_ROOT_BRANCH_REQUIRED"}
+	encode := decision.OrderedExpressionFeaturesInto
+	if v2 {
+		out.Schema = "gooo/ordered-branch-context/v2"
+		encode = decision.OrderedExpressionV2FeaturesInto
+	}
 	if _, err := p.SourceFeatures(id); err != nil {
 		return out, err
 	}
@@ -50,7 +63,7 @@ func (p *PreparedPlan) OrderedBranchContext(id string) (OrderedBranchContext, er
 		expressions[0], expressions[1+arm] = trace.predicate, value
 	}
 	var features [decision.OrderedExpressionFeatureDim]float32
-	if err := decision.OrderedExpressionFeaturesInto(expressions, &features); err != nil {
+	if err := encode(expressions, &features); err != nil {
 		out.Reason = "KNOWN_ATOMS_AND_ONE_OPERATION_PER_EXPRESSION_REQUIRED"
 		return out, nil
 	}

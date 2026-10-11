@@ -22,8 +22,19 @@ type CanonicalOrderedBranchContext struct {
 }
 
 func (p *PreparedPlan) CanonicalOrderedBranchContext(id string) (CanonicalOrderedBranchContext, error) {
+	return p.canonicalOrderedBranchContext(id, false)
+}
+
+func (p *PreparedPlan) CanonicalOrderedBranchContextV2(id string) (CanonicalOrderedBranchContext, error) {
+	return p.canonicalOrderedBranchContext(id, true)
+}
+
+func (p *PreparedPlan) canonicalOrderedBranchContext(id string, v2 bool) (CanonicalOrderedBranchContext, error) {
 	result := CanonicalOrderedBranchContext{Schema: CanonicalOrderedBranchContextSchema}
-	view, err := p.OrderedBranchContext(id)
+	view, err := p.orderedBranchContext(id, v2)
+	if v2 {
+		result.Schema = "gooo/canonical-ordered-branch-context/v2"
+	}
 	if err != nil {
 		return result, err
 	}
