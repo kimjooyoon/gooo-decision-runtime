@@ -15,7 +15,7 @@ changing their JSON schema would mislabel their training. A
 [canonical learning study](../studies/canonical-contract-learning-20261011/README.md)
 now publishes both fresh fits, their weak first-choice results and bounded source
 feedback. Its weights are research artifacts. The native compiler adapter is
-merged in development source; the public compiler0.6.27 still uses earlier formats.
+included in the public compiler0.6.28 development prerelease with SDK0.2.40.
 
 ## Download an existing model
 
@@ -45,8 +45,8 @@ The Hub files preserve their original bytes; changing schema fields cannot conve
 an older trained model to this input format.
 
 Both models have 19,034 FP32 parameters. On 128 related evaluation documents,
-mean/extreme first choices pass 32/36, with 14 improvements and 10 regressions for
-extreme. The 64 excluded-family documents pass 16 each. Final finite construction
+mean accepts its first choice in 32/128 and extreme in 36/128, with 14 improvements
+and 10 regressions for extreme. Both accept 16/64 excluded-family first choices. Final finite construction
 completes all 256 documents for both models and fixed ordering. The fixed path has
 the lowest total construction time in this study. These are synthetic template
 variants; results and byte sizes have separate scopes from general language
@@ -55,11 +55,11 @@ understanding, process RAM and customer savings. See the
 
 ## Native compiler support
 
-The adapter merged in compiler development source
-[`88a2386d`](https://github.com/kimjooyoon/meta-ontology-go/tree/88a2386d7e2001a30671bb315f7242fa548c7baa).
-The public compiler0.6.27 does not accept this schema. Follow the
-[matching compiler guide](https://github.com/kimjooyoon/meta-ontology-go/blob/88a2386d7e2001a30671bb315f7242fa548c7baa/docs/canonical-contract-model.md)
-with a supported source checkout and Go1.27.2, substituting the downloaded model's
+Use the public [compiler0.6.28 development prerelease](https://github.com/kimjooyoon/meta-ontology-go/releases/tag/v0.6.28-dev),
+built from [`ee24a413`](https://github.com/kimjooyoon/meta-ontology-go/tree/ee24a413d311b0be117bb8a7e260bd1ca35994bd)
+with SDK0.2.40. Earlier compiler0.6.27 does not accept this schema. Follow the
+[matching compiler guide](https://github.com/kimjooyoon/meta-ontology-go/blob/ee24a413d311b0be117bb8a7e260bd1ca35994bd/docs/canonical-contract-model.md)
+with the release's source examples and Go1.27.2 for native construction, substituting the downloaded model's
 path. `body-context` displays canonical inputs without predicting or running
 candidates; `body-construct --model` ranks and checks the source choices.
 Omitting the model uses deterministic ordering. Unsupported source shapes include
@@ -69,6 +69,10 @@ an error. Saved construction replay does not need the model file.
 The retained native observation used the earlier SDK0.2.40 release's canonical
 weights. The Hub pooling weights have original SDK construction observations;
 a separate native end-to-end observation of those two files remains unmeasured.
+The actual 0.6.28 macOS ARM64 release file loaded the Hub extreme model through
+`body-context` with zero predictions and zero candidate executions. This verifies
+loading/input compatibility only. Its saved-report reader also matched six
+retained text/Markdown/JSON outputs without new construction or inference.
 Check the compiler's [current status](https://github.com/kimjooyoon/meta-ontology-go/wiki/Current-Status)
 for later release availability.
 
