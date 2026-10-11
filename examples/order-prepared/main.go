@@ -266,13 +266,19 @@ func main() {
 	save(filepath.Join(*out, "preparations.json"), preparations)
 	info, ok := debug.ReadBuildInfo()
 	require(ok, "build metadata required")
+	residencyScope := "Three post-GC live-heap observations per arm, before result serialization with two collections before each baseline. 64 prepared requests plus one owned model, including private program objects. Inputs and replay records kept alive across each observation. Process heap deltas may include runtime noise."
+	scope := "Paired SDK interpreter measurements on already observed development requests. Per-operation process allocation deltas; counter reads and serialization outside wall intervals. No compiler CLI or native timing."
+	if compatibilityOnly {
+		residencyScope = "UNMEASURED_COMPATIBILITY_ONLY"
+		scope = "All original/per-call/retained numerical search and selected-program comparisons; one semantic round, no collector timing, allocation or residency measurements."
+	}
 	save(filepath.Join(*out, "manifest.json"), map[string]any{
 		"compatibility_only": compatibilityOnly, "performance_measured": !compatibilityOnly,
 		"schema": "gooo/order-prepared-replay/v1", "requests": requests, "repeats": *repeats, "searches": searches, "actual_model_predictions": predictions,
 		"training_updates": 0, "native_runs": 0, "dataset_sha256": metadata.DatasetSHA, "weights_sha256": digest(weights),
-		"resident_memory_scope": "Three post-GC live-heap observations per arm, before result serialization with two collections before each baseline. 64 prepared requests plus one owned model, including private program objects. Inputs and replay records kept alive across each observation. Process heap deltas may include runtime noise.",
+		"resident_memory_scope": residencyScope,
 		"go_version":            info.GoVersion, "build_settings": info.Settings, "goos": runtime.GOOS, "goarch": runtime.GOARCH,
 		"semantic_comparison": "Complete search, score/ranking, descriptors, aliases and selected Gooo/Go; only Ranking.predict_ns removed.",
-		"scope":               "Paired SDK interpreter measurements on already observed development requests. Per-operation process allocation deltas; counter reads and serialization outside wall intervals. No compiler CLI or native timing."})
+		"scope":               scope})
 	fmt.Printf("PASS: %d requests, %d searches, %d predictions, all semantic records identical\n", requests, searches, predictions)
 }

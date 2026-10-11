@@ -1,0 +1,24 @@
+{
+  "base_revision": "84410b0a3d4ef0632f4a522732f72d8eeaa1834a",
+  "changed_extracted_files": [
+    {
+      "after_bytes": 41816,
+      "after_sha256": "96965bab7e4307c5813db3d551cdcf0920e72692969d9f78244ac07c5896f44a",
+      "before_bytes": 41620,
+      "before_sha256": "a586c4776dd5dc2017ad938d1dd8b237294ddedd08f62f3bfe0c04c5d919a10e",
+      "path": "bodyplan/bodyplan.go"
+    },
+    {
+      "after_bytes": 3660,
+      "after_sha256": "260637e263dfbb399669db9d66c04ae870da736be6e57b574a1f28f4830504fc",
+      "before_bytes": 3625,
+      "before_sha256": "14b259d00a581fe8924f973befa0149052f1f8dacb1f2f5fa03eef1eea24312d",
+      "path": "ir.go"
+    }
+  ],
+  "previous_manifest": "source-provenance-v0.2.41.json",
+  "previous_manifest_sha256": "a2a96fa9e1c763971599a2e2ec06e1b81710fb8a24b0bcc9a4f3c984dc6357c5",
+  "reason": "SDK-owned fixed Integer division or compatibility-only collector extension; original source IDs, paths and origin hashes remain unchanged.",
+  "schema": "gooo/decision-runtime-source-evolution/v1",
+  "updated_manifest_sha256": "abcb4d27d07caccf1735500f207ea4032bcd51e1ad4669409ebb7b37da68943a"
+}

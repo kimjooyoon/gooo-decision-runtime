@@ -1,0 +1,17 @@
+{
+  "base_revision": "84410b0a3d4ef0632f4a522732f72d8eeaa1834a",
+  "changed_extracted_files": [
+    {
+      "after_bytes": 9130,
+      "after_sha256": "c9f520dc1a2d1c31bd2d079c14a73ad0719daecc6ab1ea875616cf83bf1bb427",
+      "before_bytes": 8659,
+      "before_sha256": "156f4f92b92b73cb9c851194ab0c2afede10772e050ba2bcf561b631add3256b",
+      "path": "examples/order-replay/main.go"
+    }
+  ],
+  "previous_manifest": "source-provenance-order-judge-v0.2.41.json",
+  "previous_manifest_sha256": "410778ab5059c8fbe2cffcc30d316a9f3a818795ba157ecc205f1b550c90a859",
+  "reason": "SDK-owned fixed Integer division or compatibility-only collector extension; original source IDs, paths and origin hashes remain unchanged.",
+  "schema": "gooo/decision-runtime-source-evolution/v1",
+  "updated_manifest_sha256": "6e957c281e7591aa66172f8b49585621dc6b4e22735fbc4563feaf54d5b6f200"
+}

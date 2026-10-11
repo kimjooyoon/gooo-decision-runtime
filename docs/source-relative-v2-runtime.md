@@ -93,3 +93,11 @@ uses one semantic round. Ordinary internal execution receipts still identify the
 model calls, and their incidental timing fields are excluded from comparisons.
 The V2 retained reader additionally compares all100 frozen source/requirement
 arrays with current encoders and validates original result counts without inference.
+
+Original extraction receipts remain byte-identical in
+`source-provenance-v0.2.41.json` and
+`source-provenance-order-judge-v0.2.41.json`. The division and compatibility
+source-evolution records bind their before/after hashes and sizes to SDK base
+`84410b0a3d4ef0632f4a522732f72d8eeaa1834a`. Origin paths and origin hashes stay
+the same; the current copied bytes are recorded as explicit SDK extensions.
+The source tests check all current files and every unchanged historical entry.
