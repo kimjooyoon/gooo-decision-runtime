@@ -31,6 +31,7 @@ type inspectedSourceChoice struct {
 	CanonicalContext   *pathplan.CanonicalOrderedBranchContext        `json:"canonical_context,omitempty"`
 	CanonicalFeatures  *[contractdecision.OrderedFeatureDim]float32   `json:"canonical_features,omitempty"`
 	ConditionRelations *pathplan.SourceRelativeConditionContext       `json:"condition_relations,omitempty"`
+	RelativeFeatures   *[contractdecision.OrderedFeatureDim]float32   `json:"source_relative_features,omitempty"`
 }
 
 type contractInputInspection struct {
@@ -42,6 +43,7 @@ type contractInputInspection struct {
 	ConditionFeatureFormat string                  `json:"condition_feature_version"`
 	OrderedFeatureFormat   string                  `json:"ordered_feature_version,omitempty"`
 	CanonicalFeatureFormat string                  `json:"canonical_feature_version,omitempty"`
+	RelativeFeatureFormat  string                  `json:"source_relative_feature_version,omitempty"`
 	Choices                []inspectedSourceChoice `json:"source_choices"`
 	Outputs                []inspectedOutput       `json:"declared_outputs"`
 	Conditions             []inspectedCondition    `json:"declared_conditions"`
@@ -62,6 +64,7 @@ func inspectInput(ctx context.Context, args []string, out io.Writer) error {
 	ordered := f.Bool("ordered-source", false, "include ordered predicate and return expressions for input development")
 	canonical := f.Bool("canonical-source", false, "include the complete canonical source input; no prediction or body execution")
 	relations := f.Bool("condition-relations", false, "include source-relative declared condition counts; no model or candidate execution")
+	relative := f.Bool("source-relative-source", false, "include the full source-relative model input and condition relations; no prediction or body execution")
 	if err := f.Parse(args); err != nil {
 		return err
 	}
@@ -96,7 +99,12 @@ func inspectInput(ctx context.Context, args []string, out io.Writer) error {
 	}
 	if *relations {
 		report.Schema = "gooo/contract-input-inspection/v4"
-		report.Scope += "; source-relative condition features have no trained consumer in this release"
+		report.Scope += "; source-relative condition features are versioned separately from canonical source arrays"
+	}
+	if *relative {
+		report.Schema = "gooo/contract-input-inspection/v5"
+		report.RelativeFeatureFormat = contractdecision.SourceRelativeOrderedSourceFeatureVersion
+		report.Scope += "; source-relative input requires its matching research artifact schema"
 	}
 	for i, choice := range doc.Plan.Decisions {
 		report.Choices[i].ID, report.Choices[i].Options = choice.ID, [2]string{choice.Options[0].Label, choice.Options[1].Label}
@@ -131,12 +139,19 @@ func inspectInput(ctx context.Context, args []string, out io.Writer) error {
 				report.Choices[i].CanonicalFeatures = features
 			}
 		}
-		if *relations {
+		if *relations || *relative {
 			view, err := input.SourceRelativeConditions(choice.ID)
 			if err != nil {
 				return err
 			}
 			report.Choices[i].ConditionRelations = &view
+			if *relative && view.Available {
+				features := new([contractdecision.OrderedFeatureDim]float32)
+				if err := input.SourceRelativeOrderedSourceFeaturesInto(choice.ID, features); err != nil {
+					return err
+				}
+				report.Choices[i].RelativeFeatures = features
+			}
 		}
 	}
 	for i, row := range doc.TestCases {

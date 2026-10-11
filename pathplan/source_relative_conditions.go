@@ -7,7 +7,7 @@ import (
 )
 
 const SourceRelativeConditionSchema = "gooo/source-relative-condition-context/v1"
-const SourceRelativeConditionFeatureVersion = "canonical_predicate_condition_relations_v1"
+const SourceRelativeConditionFeatureVersion = decision.SourceRelativeConditionFeatureVersion
 const SourceRelativeConditionFeatureDim = 16
 
 // SourceRelativeConditionContext relates declared Boolean goals to the resolved
