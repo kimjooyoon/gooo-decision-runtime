@@ -31,11 +31,13 @@ The models, training and runtime are implemented in Go.
 - **Published Go SDK:** [v0.2.42-experimental](https://github.com/kimjooyoon/gooo-decision-runtime/releases/tag/v0.2.42-experimental),
   with the explicit V2 API and its model asset.
   Earlier SDK0.2.41 loads the V1 relation artifact.
-- **Published compiler:** [0.6.32-dev](https://github.com/kimjooyoon/meta-ontology-go/releases/tag/v0.6.32-dev),
-  including SDK0.2.41 and the V1 relation model loader. Both are development releases.
-  The V2 adapter is in [accepted compiler source](https://github.com/kimjooyoon/meta-ontology-go/commit/2fdc206d3c1b39cbc18fadcb9e8e51f3abf3476f).
-  [Release preparation](https://github.com/kimjooyoon/meta-ontology-go/pull/1480)
-  is still under CI; the published 0.6.32 binary uses V1.
+- **V1 compiler release:** [0.6.32-dev](https://github.com/kimjooyoon/meta-ontology-go/releases/tag/v0.6.32-dev),
+  including SDK0.2.41 and the V1 relation model loader.
+- **V2 compiler source:** [accepted 0.6.33 source](https://github.com/kimjooyoon/meta-ontology-go/commit/44118d5fa5130912493862d389c28dec67f8e034),
+  including SDK0.2.42. [PR1480](https://github.com/kimjooyoon/meta-ontology-go/pull/1480)
+  records its integration checks. Find available binaries and their exact source
+  in the [compiler releases](https://github.com/kimjooyoon/meta-ontology-go/releases).
+  The SDK and compiler releases are experimental.
 - **Toolchain:** Go1.27.2. Native construction needs it; reading a saved compiler
   report needs neither Go nor model weights.
 - **Research weights:** [Gooo Canonical Decision Tiny v1 on Hugging Face](https://huggingface.co/asketeddy/gooo-canonical-decision-tiny-v1).

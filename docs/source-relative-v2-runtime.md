@@ -7,8 +7,10 @@ Finite checks decide acceptance. The session retains no model for later steps.
 
 SDK0.2.42 publishes the V2 library API and model asset. The example command
 adapter below is a source addition after that tag. Earlier SDK0.2.41 and compiler
-0.6.32 load the V1 model. The V2 compiler connection is accepted in source and
-is being checked for the next public compiler release.
+0.6.32 load the V1 model. The V2 connection is in
+[accepted compiler0.6.33 source](https://github.com/kimjooyoon/meta-ontology-go/commit/44118d5fa5130912493862d389c28dec67f8e034).
+The [compiler releases](https://github.com/kimjooyoon/meta-ontology-go/releases)
+identify available binaries and their source-bound platform evidence.
 
 ## Identity and arrays
 
