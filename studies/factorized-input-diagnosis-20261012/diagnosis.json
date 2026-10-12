@@ -1,0 +1,364 @@
+{
+  "candidate_executions": 0,
+  "corpus_sha256": "9d98229364e904a0ff397aaa324d751cf3e82ae012311d7faa43d428f76e5cdc",
+  "native_executions": 0,
+  "new_fits": 0,
+  "new_model_calls": 0,
+  "observed_rows_read": 6144,
+  "profiles": {
+    "v2-full": {
+      "all_inputs": {
+        "rows": 2048,
+        "unique_raw_inputs": 1024,
+        "conflicting_groups": 0,
+        "rows_in_conflicting_groups": 0,
+        "cross_split_input_groups": 0,
+        "raw_input_shared_choice_upper_bound_rows": 2048
+      },
+      "evaluation_families": [
+        {
+          "family": 2,
+          "ordered_operations": [
+            "add",
+            "multiply"
+          ],
+          "rows": 128,
+          "goal_contracts": 4,
+          "first_complete_rows": 66,
+          "all_conditions_but_incomplete_rows": 62,
+          "contracts_with_every_variant_first_complete": 0,
+          "correct_first_choice_by_required_mask": [
+            18,
+            2,
+            14,
+            32
+          ],
+          "rows_by_required_mask": [
+            32,
+            32,
+            32,
+            32
+          ]
+        },
+        {
+          "family": 4,
+          "ordered_operations": [
+            "subtract",
+            "add"
+          ],
+          "rows": 128,
+          "goal_contracts": 4,
+          "first_complete_rows": 72,
+          "all_conditions_but_incomplete_rows": 54,
+          "contracts_with_every_variant_first_complete": 0,
+          "correct_first_choice_by_required_mask": [
+            22,
+            0,
+            18,
+            32
+          ],
+          "rows_by_required_mask": [
+            32,
+            32,
+            32,
+            32
+          ]
+        },
+        {
+          "family": 11,
+          "ordered_operations": [
+            "multiply",
+            "divide"
+          ],
+          "rows": 128,
+          "goal_contracts": 4,
+          "first_complete_rows": 64,
+          "all_conditions_but_incomplete_rows": 64,
+          "contracts_with_every_variant_first_complete": 0,
+          "correct_first_choice_by_required_mask": [
+            18,
+            0,
+            18,
+            28
+          ],
+          "rows_by_required_mask": [
+            32,
+            32,
+            32,
+            32
+          ]
+        },
+        {
+          "family": 13,
+          "ordered_operations": [
+            "divide",
+            "subtract"
+          ],
+          "rows": 128,
+          "goal_contracts": 4,
+          "first_complete_rows": 52,
+          "all_conditions_but_incomplete_rows": 76,
+          "contracts_with_every_variant_first_complete": 0,
+          "correct_first_choice_by_required_mask": [
+            18,
+            0,
+            2,
+            32
+          ],
+          "rows_by_required_mask": [
+            32,
+            32,
+            32,
+            32
+          ]
+        }
+      ],
+      "evaluation_inputs": {
+        "rows": 512,
+        "unique_raw_inputs": 256,
+        "conflicting_groups": 0,
+        "rows_in_conflicting_groups": 0,
+        "cross_split_input_groups": 0,
+        "raw_input_shared_choice_upper_bound_rows": 512
+      },
+      "observations_sha256": "2d21286f0ba755355db419fb208ecbb6c704cdde197640d9f5dcccc01d2f7b41"
+    },
+    "v3-full": {
+      "all_inputs": {
+        "rows": 2048,
+        "unique_raw_inputs": 1024,
+        "conflicting_groups": 0,
+        "rows_in_conflicting_groups": 0,
+        "cross_split_input_groups": 0,
+        "raw_input_shared_choice_upper_bound_rows": 2048
+      },
+      "evaluation_families": [
+        {
+          "family": 2,
+          "ordered_operations": [
+            "add",
+            "multiply"
+          ],
+          "rows": 128,
+          "goal_contracts": 4,
+          "first_complete_rows": 54,
+          "all_conditions_but_incomplete_rows": 54,
+          "contracts_with_every_variant_first_complete": 0,
+          "correct_first_choice_by_required_mask": [
+            18,
+            2,
+            14,
+            20
+          ],
+          "rows_by_required_mask": [
+            32,
+            32,
+            32,
+            32
+          ]
+        },
+        {
+          "family": 4,
+          "ordered_operations": [
+            "subtract",
+            "add"
+          ],
+          "rows": 128,
+          "goal_contracts": 4,
+          "first_complete_rows": 54,
+          "all_conditions_but_incomplete_rows": 52,
+          "contracts_with_every_variant_first_complete": 0,
+          "correct_first_choice_by_required_mask": [
+            8,
+            0,
+            16,
+            30
+          ],
+          "rows_by_required_mask": [
+            32,
+            32,
+            32,
+            32
+          ]
+        },
+        {
+          "family": 11,
+          "ordered_operations": [
+            "multiply",
+            "divide"
+          ],
+          "rows": 128,
+          "goal_contracts": 4,
+          "first_complete_rows": 56,
+          "all_conditions_but_incomplete_rows": 60,
+          "contracts_with_every_variant_first_complete": 0,
+          "correct_first_choice_by_required_mask": [
+            24,
+            4,
+            10,
+            18
+          ],
+          "rows_by_required_mask": [
+            32,
+            32,
+            32,
+            32
+          ]
+        },
+        {
+          "family": 13,
+          "ordered_operations": [
+            "divide",
+            "subtract"
+          ],
+          "rows": 128,
+          "goal_contracts": 4,
+          "first_complete_rows": 56,
+          "all_conditions_but_incomplete_rows": 54,
+          "contracts_with_every_variant_first_complete": 0,
+          "correct_first_choice_by_required_mask": [
+            16,
+            4,
+            4,
+            32
+          ],
+          "rows_by_required_mask": [
+            32,
+            32,
+            32,
+            32
+          ]
+        }
+      ],
+      "evaluation_inputs": {
+        "rows": 512,
+        "unique_raw_inputs": 256,
+        "conflicting_groups": 0,
+        "rows_in_conflicting_groups": 0,
+        "cross_split_input_groups": 0,
+        "raw_input_shared_choice_upper_bound_rows": 512
+      },
+      "observations_sha256": "b9d26913fb4e2f3ada33aa29aaf12b7308691a395a66e8f64538784acbcea54c"
+    },
+    "v3-prose-neutral": {
+      "all_inputs": {
+        "rows": 2048,
+        "unique_raw_inputs": 256,
+        "conflicting_groups": 0,
+        "rows_in_conflicting_groups": 0,
+        "cross_split_input_groups": 0,
+        "raw_input_shared_choice_upper_bound_rows": 2048
+      },
+      "evaluation_families": [
+        {
+          "family": 2,
+          "ordered_operations": [
+            "add",
+            "multiply"
+          ],
+          "rows": 128,
+          "goal_contracts": 4,
+          "first_complete_rows": 56,
+          "all_conditions_but_incomplete_rows": 72,
+          "contracts_with_every_variant_first_complete": 0,
+          "correct_first_choice_by_required_mask": [
+            16,
+            0,
+            8,
+            32
+          ],
+          "rows_by_required_mask": [
+            32,
+            32,
+            32,
+            32
+          ]
+        },
+        {
+          "family": 4,
+          "ordered_operations": [
+            "subtract",
+            "add"
+          ],
+          "rows": 128,
+          "goal_contracts": 4,
+          "first_complete_rows": 72,
+          "all_conditions_but_incomplete_rows": 56,
+          "contracts_with_every_variant_first_complete": 0,
+          "correct_first_choice_by_required_mask": [
+            8,
+            0,
+            32,
+            32
+          ],
+          "rows_by_required_mask": [
+            32,
+            32,
+            32,
+            32
+          ]
+        },
+        {
+          "family": 11,
+          "ordered_operations": [
+            "multiply",
+            "divide"
+          ],
+          "rows": 128,
+          "goal_contracts": 4,
+          "first_complete_rows": 72,
+          "all_conditions_but_incomplete_rows": 56,
+          "contracts_with_every_variant_first_complete": 0,
+          "correct_first_choice_by_required_mask": [
+            32,
+            0,
+            8,
+            32
+          ],
+          "rows_by_required_mask": [
+            32,
+            32,
+            32,
+            32
+          ]
+        },
+        {
+          "family": 13,
+          "ordered_operations": [
+            "divide",
+            "subtract"
+          ],
+          "rows": 128,
+          "goal_contracts": 4,
+          "first_complete_rows": 64,
+          "all_conditions_but_incomplete_rows": 64,
+          "contracts_with_every_variant_first_complete": 0,
+          "correct_first_choice_by_required_mask": [
+            16,
+            0,
+            16,
+            32
+          ],
+          "rows_by_required_mask": [
+            32,
+            32,
+            32,
+            32
+          ]
+        }
+      ],
+      "evaluation_inputs": {
+        "rows": 512,
+        "unique_raw_inputs": 64,
+        "conflicting_groups": 0,
+        "rows_in_conflicting_groups": 0,
+        "cross_split_input_groups": 0,
+        "raw_input_shared_choice_upper_bound_rows": 512
+      },
+      "observations_sha256": "d533cfe1163a2db278b0772f9950a62e4ee0b45a513be3b491dfa6bd6470cfb3"
+    }
+  },
+  "schema": "gooo/frozen-input-diagnosis/v1",
+  "scope": "Raw float32 input identity and stored first outcomes only; no hidden-layer/pooling audit or population accuracy claim. Sibling variants share 64 contracts; evaluation has 16 contracts across 4 held operator-pair families.",
+  "source_rows": 2048
+}
