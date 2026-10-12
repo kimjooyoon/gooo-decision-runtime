@@ -28,12 +28,14 @@ The models, training and runtime are implemented in Go.
 
 ## Versions and model files
 
-- **Go SDK release source:** [v0.2.42-experimental](https://github.com/kimjooyoon/gooo-decision-runtime/releases/tag/v0.2.42-experimental),
-  with the explicit V2 API. Publication follows the checks for this source change.
+- **Published Go SDK:** [v0.2.42-experimental](https://github.com/kimjooyoon/gooo-decision-runtime/releases/tag/v0.2.42-experimental),
+  with the explicit V2 API and its model asset.
   Earlier SDK0.2.41 loads the V1 relation artifact.
 - **Published compiler:** [0.6.32-dev](https://github.com/kimjooyoon/meta-ontology-go/releases/tag/v0.6.32-dev),
   including SDK0.2.41 and the V1 relation model loader. Both are development releases.
-  The V2 compiler adapter has local prototype evidence linked in its guide.
+  The V2 adapter is in [accepted compiler source](https://github.com/kimjooyoon/meta-ontology-go/commit/2fdc206d3c1b39cbc18fadcb9e8e51f3abf3476f).
+  [Release preparation](https://github.com/kimjooyoon/meta-ontology-go/pull/1480)
+  is still under CI; the published 0.6.32 binary uses V1.
 - **Toolchain:** Go1.27.2. Native construction needs it; reading a saved compiler
   report needs neither Go nor model weights.
 - **Research weights:** [Gooo Canonical Decision Tiny v1 on Hugging Face](https://huggingface.co/asketeddy/gooo-canonical-decision-tiny-v1).
@@ -51,6 +53,28 @@ The core packages are `bodyplan` for typed bodies, `pathplan` for source-owned
 choices and finite search, and `contractdecision` for models that read source and
 requirements. Earlier specialized model packages remain available. The compiler
 owns the binding between `.gooo` declarations, semantic IDs and a prepared plan.
+
+## Try the bundled V2 example
+
+The following example adapter is a checkout addition after the SDK0.2.42 tag.
+Its [division document](examples/contract-model/testdata/README.md) has three
+output examples, one Boolean requirement and two possible return placements.
+It is an authored SDK fixture; the compiler source guide covers `.gooo` binding.
+
+```sh
+GOWORK=off GOTOOLCHAIN=go1.27.2 go run ./examples/contract-model inspect \
+  -source-relative-v2-source examples/contract-model/testdata/source-relative-v2-division.json
+
+GOWORK=off GOTOOLCHAIN=go1.27.2 go run ./examples/contract-model search \
+  examples/contract-model/testdata/source-relative-v2-division.json
+```
+
+The first command shows the 528-cell V2 input and all declared requirements with
+zero model calls. The second constructs a body in deterministic order. To use
+the released research weights, follow the [pinned download and V2 search guide](docs/source-relative-v2-runtime.md).
+That route predicts once, then checks candidates; later search steps use no model.
+An incompatible supplied artifact returns an error. Keep the selected-check
+counts separate from the model's first-choice result.
 
 ## Load and predict
 

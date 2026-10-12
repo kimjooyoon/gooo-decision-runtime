@@ -5,9 +5,10 @@ ordered expression representation. Source-owned comparison/branch choices,
 declared output cases and Boolean conditions enter one initial prediction.
 Finite checks decide acceptance. The session retains no model for later steps.
 
-This is the SDK0.2.42 release source. Earlier SDK0.2.41 and compiler
-0.6.32 load the V1 model. The V2 compiler connection was checked locally
-with the new division example and is being integrated into a public release.
+SDK0.2.42 publishes the V2 library API and model asset. The example command
+adapter below is a source addition after that tag. Earlier SDK0.2.41 and compiler
+0.6.32 load the V1 model. The V2 compiler connection is accepted in source and
+is being checked for the next public compiler release.
 
 ## Identity and arrays
 
