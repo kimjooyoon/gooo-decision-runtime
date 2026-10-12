@@ -7,7 +7,7 @@ the accompanying description should leave the initial decision stable.
 
 Think of a form with a description and concrete examples. This profile keeps
 the description in the source record, and gives the small model the examples
-and the available switches. It is a checkout addition after SDK0.2.44; public
+and the available switches. It is published in SDK0.2.45; public
 Gooo0.6.34 has the ordinary V3 adapter and requires a subsequent update to load
 this explicit profile.
 
@@ -97,3 +97,8 @@ contract completes every sibling variant on the first choice. Exact raw inputs
 have no conflicting accepted-mask groups; internal representation loss remains
 unmeasured. The Go reader uses saved arrays and outcomes with zero new model or
 candidate calls.
+
+The [V4 SDK input contract](source-relative-v4-runtime.md) preserves separate
+then/else literal relationships for a future fit. It has its own artifact schema;
+its quality has not yet been measured and the published neutral weights above
+retain their original V3 meaning.

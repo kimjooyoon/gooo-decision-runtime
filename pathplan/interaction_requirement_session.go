@@ -49,6 +49,7 @@ const (
 	relativeV2InteractionSource
 	relativeV3InteractionSource
 	relativeV3ProseNeutralInteractionSource
+	relativeV4InteractionSource
 )
 
 type interactionRequirementModel interface {
@@ -76,6 +77,8 @@ func (p *PreparedPlan) newInteractionRequirementSession(ctx context.Context, mod
 		r.Schema = "gooo/source-relative-requirement-path-ranking/v3"
 	} else if sourceKind == relativeV3ProseNeutralInteractionSource {
 		r.Schema = "gooo/source-relative-v3-prose-neutral-path-ranking/v1"
+	} else if sourceKind == relativeV4InteractionSource {
+		r.Schema = "gooo/source-relative-branch-output-path-ranking/v4"
 	}
 	r.ModelFingerprint = model.Fingerprint()
 	r.SourceFeatures, r.CaseFeatures = model.SourceFeatureVersion(), model.CaseFeatureVersion()
@@ -104,6 +107,8 @@ func (p *PreparedPlan) newInteractionRequirementSession(ctx context.Context, mod
 			features = input.SourceRelativeV3FeaturesInto
 		} else if sourceKind == relativeV3ProseNeutralInteractionSource {
 			features = input.SourceRelativeV3ProseNeutralFeaturesInto
+		} else if sourceKind == relativeV4InteractionSource {
+			features = input.SourceRelativeV4FeaturesInto
 		}
 		if err := features(choice.ID, &source[i]); err != nil {
 			r.Declined, r.Error = true, err.Error()
@@ -137,6 +142,8 @@ func (p *PreparedPlan) newInteractionRequirementSession(ctx context.Context, mod
 		s.core.result.Selection.ModelVariant = "source_relative_v3_requirement_contract_fp32"
 	} else if sourceKind == relativeV3ProseNeutralInteractionSource {
 		s.core.result.Selection.ModelVariant = "source_relative_v3_prose_neutral_contract_fp32"
+	} else if sourceKind == relativeV4InteractionSource {
+		s.core.result.Selection.ModelVariant = "source_relative_v4_branch_output_contract_fp32"
 	}
 	return s.finish()
 }
