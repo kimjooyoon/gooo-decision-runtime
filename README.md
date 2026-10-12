@@ -114,6 +114,13 @@ executing its program. Preserve full JSON stdout for this last command; individu
 
 ## Supported decisions and completeness
 
+[Source-relative V3](docs/source-relative-v3-runtime.md) adds explicit relationships
+between declared integer outputs, predicate operand ranges and resolved source
+constants. It reuses the 528-cell input and19,034-parameter numerical model with
+a distinct artifact identity. The Go example exposes zero-call inspection and
+one-call finite search. Its fresh zero-weight regressions establish API behavior;
+fitted V3 quality and the public compiler adapter remain pending.
+
 The canonical model input currently supports one root branch, comparison operand
 order and branch layout, with at most one operation in each predicate or return
 expression. Supported direct returns and local assignments expose the same

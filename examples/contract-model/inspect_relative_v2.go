@@ -16,6 +16,7 @@ type relativeV2Choice struct {
 	Features  *[528]float32                           `json:"source_relative_features,omitempty"`
 	Source    pathplan.CanonicalOrderedBranchContext  `json:"canonical_context"`
 	Relations pathplan.SourceRelativeConditionContext `json:"condition_relations"`
+	Outputs   *pathplan.SourceRelativeOutputContext   `json:"output_relations,omitempty"`
 }
 type relativeV2Inspection struct {
 	Schema              string               `json:"schema"`
@@ -34,6 +35,10 @@ type relativeV2Inspection struct {
 }
 
 func inspectRelativeV2(ctx context.Context, doc pathplan.Document, prepared *pathplan.PreparedPlan, out io.Writer) error {
+	return inspectRelativeSource(ctx, doc, prepared, out, false)
+}
+
+func inspectRelativeSource(ctx context.Context, doc pathplan.Document, prepared *pathplan.PreparedPlan, out io.Writer, v3 bool) error {
 	input, err := prepared.InitialContractInput(doc.TestCases)
 	if err != nil {
 		return err
@@ -43,6 +48,10 @@ func inspectRelativeV2(ctx context.Context, doc pathplan.Document, prepared *pat
 		ConditionVersion: input.ConditionFeatureVersion(), Scope: "explicit V2 source and all declared output/Boolean rows; no prediction, candidate execution or training",
 		Choices: make([]relativeV2Choice, 0, len(doc.Plan.Decisions)), Outputs: make([]inspectedOutput, 0, input.CaseCount()),
 		Conditions: make([]inspectedCondition, 0, input.ConditionCount())}
+	if v3 {
+		r.Schema, r.SourceVersion = "gooo/contract-input-inspection/v7", contractdecision.SourceRelativeV3FeatureVersion
+		r.Scope = "explicit V3 input with source/output relationships and all declared output/Boolean rows; no prediction, candidate execution or training"
+	}
 	for _, choice := range doc.Plan.Decisions {
 		if err = ctx.Err(); err != nil {
 			return err
@@ -56,9 +65,20 @@ func inspectRelativeV2(ctx context.Context, doc pathplan.Document, prepared *pat
 		if err != nil {
 			return err
 		}
-		if row.Source.Available && row.Relations.Available {
+		if v3 {
+			row.Outputs = new(pathplan.SourceRelativeOutputContext)
+			*row.Outputs, err = input.SourceRelativeOutputs(choice.ID)
+			if err != nil {
+				return err
+			}
+		}
+		if row.Source.Available && row.Relations.Available && (!v3 || row.Outputs.Available) {
 			row.Features = new([528]float32)
-			if err = input.SourceRelativeV2FeaturesInto(choice.ID, row.Features); err != nil {
+			features := input.SourceRelativeV2FeaturesInto
+			if v3 {
+				features = input.SourceRelativeV3FeaturesInto
+			}
+			if err = features(choice.ID, row.Features); err != nil {
 				return err
 			}
 		}

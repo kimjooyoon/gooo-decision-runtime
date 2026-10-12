@@ -18,6 +18,13 @@ func sourceContractSession(ctx context.Context, plan *pathplan.PreparedPlan, cas
 	if err := json.Unmarshal(raw, &header); err != nil {
 		return nil, err
 	}
+	if header.Schema == contractdecision.SourceRelativeV3Schema {
+		model, err := contractdecision.DecodeSourceRelativeV3(raw)
+		if err != nil {
+			return nil, err
+		}
+		return plan.NewSourceRelativeV3ContractSession(ctx, model, cases)
+	}
 	if header.Schema == contractdecision.SourceRelativeV2Schema {
 		model, err := contractdecision.DecodeSourceRelativeV2(raw)
 		if err != nil {
