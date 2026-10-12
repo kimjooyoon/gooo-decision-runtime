@@ -1,0 +1,12 @@
+../branch-owned-study: go1.27.2
+	path	github.com/kimjooyoon/meta-ontology-go/studies/branch-owned-study-20261012
+	mod	github.com/kimjooyoon/meta-ontology-go/studies/branch-owned-study-20261012	(devel)	
+	dep	github.com/kimjooyoon/gooo-decision-runtime	v0.2.46-experimental	h1:RLMPkKmrWXkn79hCF2edvoJkK2amCnBnW6aXgy/+Sas=
+	dep	github.com/kimjooyoon/meta-ontology-go	v0.6.34-dev	h1:TqR8e1KEbaYElhSSQP03ymsNQBogpl/GkCBd+QiXqUE=
+	build	-buildmode=exe
+	build	-compiler=gc
+	build	-trimpath=true
+	build	CGO_ENABLED=1
+	build	GOARCH=arm64
+	build	GOOS=darwin
+	build	GOARM64=v8.0

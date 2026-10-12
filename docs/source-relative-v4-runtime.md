@@ -1,6 +1,6 @@
 # V4: keep each return branch's output relationships
 
-V4 is an optional SDK model/input contract added after SDK 0.2.45. It gives the
+V4 is an optional SDK model/input contract published in SDK 0.2.46. It gives the
 small decision model a separate view of the literals owned by each return branch.
 The Gooo source still supplies the available choices and required behavior.
 
@@ -8,8 +8,11 @@ The [frozen-input diagnosis](../studies/factorized-input-diagnosis-20261012/READ
 found a layout-specific gap in the earlier neutral model: one required raw mask
 had 0/128 complete first choices. Exact raw inputs had no conflicting accepted
 masks, so that analysis did not establish an unavoidable input collision. V4
-makes one relationship more explicit for a future fit. Its decision quality has
-not yet been measured and no fitted V4 weights are published with this change.
+makes one relationship more explicit. A [fresh paired study](../studies/branch-owned-learning-20261012/README.md)
+now retains both fits: V4 first completion was60/384 versus112/384 for the paired
+neutral model, with more candidate checks. Checked finite completion was384/384
+for both. Those384 sibling rows represent24 held contracts in four families.
+The added input channel has not demonstrated a quality improvement in this cohort.
 
 ## A small example
 
@@ -74,7 +77,7 @@ The Go input API is `ContractInput.BranchOutputs` for the explained view and
 `FitSourceRelativeV4`. Training requires separately prepared V4 arrays and
 source-owned labels; existing V3 tensors are not converted to fitted V4 weights.
 
-Once a separately trained artifact is available, pass it to the ordinary SDK
+The retained study includes a separately trained V4 artifact. Pass it to the SDK
 `search -model <artifact> <document>` command or
 `PreparedPlan.NewSourceRelativeV4ContractSession`. The artifact schema is
 `gooo/source-relative-branch-output-model/v4`, with an explicit branch relation
