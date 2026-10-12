@@ -26,6 +26,7 @@ The models, training and runtime are implemented in Go.
 | Inspect output relationships or use V3 | [V3 source contract](docs/source-relative-v3-runtime.md) |
 | Make decisions from source and declared cases with prose excluded | [Explicit prose-neutral V3 profile](docs/source-relative-v3-prose-neutral.md) |
 | Inspect return-branch relationships and the retained V4 regression | [V4 branch-owned input contract](docs/source-relative-v4-runtime.md) |
+| Develop a small model with separate comparison and branch weights | [Experimental typed decision heads](docs/typed-source-relative-runtime.md) |
 | Compare a learned decision with a simple rule and partial results | [Source-relative study: 288 documents](studies/source-relative-learning-20261011) |
 | Find an older API or experiment | [Detailed research and release history](RESEARCH.md) |
 
@@ -128,12 +129,18 @@ records first-complete results of254/512 for V2-full,220/512 for V3-full and
 from four families. All three finish their supplied checks through finite search.
 
 The [explicit prose-neutral profile](docs/source-relative-v3-prose-neutral.md)
-is a checkout addition after SDK0.2.44. It clears only intent cells64..191 while
+is available in SDK0.2.46. It clears only intent cells64..191 while
 retaining the source, output relationships and every declared requirement.
 Korean/English wording then yields identical model arrays in that study; this
 agreement follows from the representation. Return-branch and layout decisions
 remain areas for improvement. The public0.6.34 binary does not load this new
 profile yet.
+
+The development [typed-head model](docs/typed-source-relative-runtime.md) uses the
+same V4 inputs with independent weights for comparison order and branch layout.
+Its18,364 parameters occupy73,456 raw FP32 tensor bytes. The runtime and synthetic
+implementation checks are available in this checkout; a fresh fitted comparison
+and compiler release integration are still needed.
 
 The canonical model input currently supports one root branch, comparison operand
 order and branch layout, with at most one operation in each predicate or return

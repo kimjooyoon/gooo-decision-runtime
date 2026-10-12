@@ -50,17 +50,32 @@ const (
 	relativeV3InteractionSource
 	relativeV3ProseNeutralInteractionSource
 	relativeV4InteractionSource
+	typedRelativeInteractionSource
 )
 
-type interactionRequirementModel interface {
+type interactionRequirementIdentity interface {
 	Fingerprint() string
 	SourceFeatureVersion() string
 	CaseFeatureVersion() string
 	ConditionFeatureVersion() string
+}
+
+type interactionRequirementModel interface {
+	interactionRequirementIdentity
 	PredictChoicesInto([][contractdecision.OrderedFeatureDim]float32, contractdecision.CaseSource, contractdecision.ConditionSource, *contractdecision.InteractionRequirementWorkspace, *contractdecision.ChoicePrediction) error
 }
 
 func (p *PreparedPlan) newInteractionRequirementSession(ctx context.Context, model interactionRequirementModel, cases []TestCase, sourceKind interactionSource) (*ContractSession, error) {
+	return p.newRequirementSession(ctx, model, cases, sourceKind, func(source [][contractdecision.OrderedFeatureDim]float32,
+		outputs contractdecision.CaseSource, conditions contractdecision.ConditionSource, prediction *contractdecision.ChoicePrediction) error {
+		var workspace contractdecision.InteractionRequirementWorkspace
+		return model.PredictChoicesInto(source, outputs, conditions, &workspace, prediction)
+	})
+}
+
+type interactionChoicePredictor func([][contractdecision.OrderedFeatureDim]float32, contractdecision.CaseSource, contractdecision.ConditionSource, *contractdecision.ChoicePrediction) error
+
+func (p *PreparedPlan) newRequirementSession(ctx context.Context, model interactionRequirementIdentity, cases []TestCase, sourceKind interactionSource, predict interactionChoicePredictor) (*ContractSession, error) {
 	s, err := p.newContractSession(ctx, cases, "", "", "", nil)
 	if err != nil {
 		return s, err
@@ -79,6 +94,8 @@ func (p *PreparedPlan) newInteractionRequirementSession(ctx context.Context, mod
 		r.Schema = "gooo/source-relative-v3-prose-neutral-path-ranking/v1"
 	} else if sourceKind == relativeV4InteractionSource {
 		r.Schema = "gooo/source-relative-branch-output-path-ranking/v4"
+	} else if sourceKind == typedRelativeInteractionSource {
+		r.Schema = "gooo/typed-source-relative-path-ranking/v1"
 	}
 	r.ModelFingerprint = model.Fingerprint()
 	r.SourceFeatures, r.CaseFeatures = model.SourceFeatureVersion(), model.CaseFeatureVersion()
@@ -107,7 +124,7 @@ func (p *PreparedPlan) newInteractionRequirementSession(ctx context.Context, mod
 			features = input.SourceRelativeV3FeaturesInto
 		} else if sourceKind == relativeV3ProseNeutralInteractionSource {
 			features = input.SourceRelativeV3ProseNeutralFeaturesInto
-		} else if sourceKind == relativeV4InteractionSource {
+		} else if sourceKind == relativeV4InteractionSource || sourceKind == typedRelativeInteractionSource {
 			features = input.SourceRelativeV4FeaturesInto
 		}
 		if err := features(choice.ID, &source[i]); err != nil {
@@ -120,10 +137,9 @@ func (p *PreparedPlan) newInteractionRequirementSession(ctx context.Context, mod
 		}
 		r.FeatureSHA[i] = hash(raw[:])
 	}
-	var workspace contractdecision.InteractionRequirementWorkspace
 	var prediction contractdecision.ChoicePrediction
 	start := time.Now()
-	err = model.PredictChoicesInto(source[:r.ChoiceCount], input, input, &workspace, &prediction)
+	err = predict(source[:r.ChoiceCount], input, input, &prediction)
 	r.Calls, r.PredictNS = 1, time.Since(start).Nanoseconds()
 	if err != nil {
 		return nil, err
@@ -144,6 +160,8 @@ func (p *PreparedPlan) newInteractionRequirementSession(ctx context.Context, mod
 		s.core.result.Selection.ModelVariant = "source_relative_v3_prose_neutral_contract_fp32"
 	} else if sourceKind == relativeV4InteractionSource {
 		s.core.result.Selection.ModelVariant = "source_relative_v4_branch_output_contract_fp32"
+	} else if sourceKind == typedRelativeInteractionSource {
+		s.core.result.Selection.ModelVariant = "typed_source_relative_contract_fp32"
 	}
 	return s.finish()
 }
