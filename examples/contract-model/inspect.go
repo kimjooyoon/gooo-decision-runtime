@@ -67,6 +67,7 @@ func inspectInput(ctx context.Context, args []string, out io.Writer) error {
 	relative := f.Bool("source-relative-source", false, "include the full source-relative model input and condition relations; no prediction or body execution")
 	relativeV2 := f.Bool("source-relative-v2-source", false, "inspect the explicit V2 source input, including integer division; no prediction or execution")
 	relativeV3 := f.Bool("source-relative-v3-source", false, "inspect explicit V3 input and declared output relations; no prediction or execution")
+	proseNeutral := f.Bool("source-relative-v3-prose-neutral-source", false, "inspect V3 with intent cells cleared and all declared requirements retained; no prediction or execution")
 	if err := f.Parse(args); err != nil {
 		return err
 	}
@@ -77,11 +78,17 @@ func inspectInput(ctx context.Context, args []string, out io.Writer) error {
 	if err != nil {
 		return err
 	}
+	if *proseNeutral {
+		if *ordered || *canonical || *relations || *relative || *relativeV2 || *relativeV3 {
+			return errors.New("source-relative-v3-prose-neutral-source selects its own input ABI; use this format alone")
+		}
+		return inspectRelativeSource(ctx, doc, prepared, out, true, true)
+	}
 	if *relativeV3 {
 		if *ordered || *canonical || *relations || *relative || *relativeV2 {
 			return errors.New("source-relative-v3-source selects its own input ABI; use this format alone")
 		}
-		return inspectRelativeSource(ctx, doc, prepared, out, true)
+		return inspectRelativeSource(ctx, doc, prepared, out, true, false)
 	}
 	if *relativeV2 {
 		if *ordered || *canonical || *relations || *relative {

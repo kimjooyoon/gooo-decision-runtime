@@ -14,7 +14,7 @@ The models, training and runtime are implemented in Go.
 
 | What you want to do | Start here |
 | --- | --- |
-| Write a `.gooo` rule and construct its body | [Compiler guide for public 0.6.32](https://github.com/kimjooyoon/meta-ontology-go/blob/83928fa4538245abe33b08549da47f8cbdc50ed2/docs/source-relative-contract-model.md) |
+| Write a `.gooo` rule and construct its body | [Compiler guide for public 0.6.34](https://github.com/kimjooyoon/meta-ontology-go/blob/1d3953acd92c3caf8416db5ceea0a35c3c8c739e/docs/source-relative-v3-contract-model.md) |
 | Read model inputs or load a research model | [Canonical branch input and model guide](docs/canonical-branch-input.md) |
 | Specify intermediate Boolean requirements | [Declared condition input](docs/declared-condition-input.md) |
 | Search finite condition and branch choices | [Condition search](docs/condition-search.md) |
@@ -23,20 +23,22 @@ The models, training and runtime are implemented in Go.
 | Inspect how Boolean goals relate to a source comparison | [Experimental relation input](docs/source-relative-conditions.md) |
 | Use the source-relative research weights in the SDK | [Loader, input inspection and construction](docs/source-relative-runtime.md) |
 | Use the new V2 return-layout model and integer division | [V2 source contract and recorded results](docs/source-relative-v2-runtime.md) |
+| Inspect output relationships or use V3 | [V3 source contract](docs/source-relative-v3-runtime.md) |
+| Make decisions from source and declared cases with prose excluded | [Explicit prose-neutral V3 profile](docs/source-relative-v3-prose-neutral.md) |
 | Compare a learned decision with a simple rule and partial results | [Source-relative study: 288 documents](studies/source-relative-learning-20261011) |
 | Find an older API or experiment | [Detailed research and release history](RESEARCH.md) |
 
 ## Versions and model files
 
-- **Published Go SDK:** [v0.2.42-experimental](https://github.com/kimjooyoon/gooo-decision-runtime/releases/tag/v0.2.42-experimental),
-  with the explicit V2 API and its model asset.
-  Earlier SDK0.2.41 loads the V1 relation artifact.
+- **Published Go SDK:** [v0.2.44-experimental](https://github.com/kimjooyoon/gooo-decision-runtime/releases/tag/v0.2.44-experimental),
+  with the explicit V3 API. Its source release contains no model assets.
+  SDK0.2.42's V2 model asset and earlier V1 files retain their own identities.
 - **V1 compiler release:** [0.6.32-dev](https://github.com/kimjooyoon/meta-ontology-go/releases/tag/v0.6.32-dev),
   including SDK0.2.41 and the V1 relation model loader.
-- **V2 compiler source:** [accepted 0.6.33 source](https://github.com/kimjooyoon/meta-ontology-go/commit/44118d5fa5130912493862d389c28dec67f8e034),
-  including SDK0.2.42. [PR1480](https://github.com/kimjooyoon/meta-ontology-go/pull/1480)
-  records its integration checks. Find available binaries and their exact source
-  in the [compiler releases](https://github.com/kimjooyoon/meta-ontology-go/releases).
+- **Current compiler release:** [0.6.34-dev](https://github.com/kimjooyoon/meta-ontology-go/releases/tag/v0.6.34-dev),
+  including SDK0.2.44 and the explicit V3 adapter. Published native binaries bind
+  source `b266c0e2cf6878385b59788945861a03e33f766b`; the release's zero-weight
+  native checks and the fitted-model library studies have separate records.
   The SDK and compiler releases are experimental.
 - **Toolchain:** Go1.27.2. Native construction needs it; reading a saved compiler
   report needs neither Go nor model weights.
@@ -48,7 +50,7 @@ The models, training and runtime are implemented in Go.
 Install the library in your Go application:
 
 ```sh
-go get github.com/kimjooyoon/gooo-decision-runtime@v0.2.42-experimental
+go get github.com/kimjooyoon/gooo-decision-runtime@v0.2.44-experimental
 ```
 
 The core packages are `bodyplan` for typed bodies, `pathplan` for source-owned
@@ -118,8 +120,19 @@ executing its program. Preserve full JSON stdout for this last command; individu
 between declared integer outputs, predicate operand ranges and resolved source
 constants. It reuses the 528-cell input and19,034-parameter numerical model with
 a distinct artifact identity. The Go example exposes zero-call inspection and
-one-call finite search. Its fresh zero-weight regressions establish API behavior;
-fitted V3 quality and the public compiler adapter remain pending.
+one-call finite search. Public compiler0.6.34 includes this adapter. The
+[factorized study](https://huggingface.co/asketeddy/gooo-canonical-decision-tiny-v1/tree/0aa1dd8c51e730632f0f4bc590b5498799178492/research/factorized-decision-20261012/result)
+records first-complete results of254/512 for V2-full,220/512 for V3-full and
+264/512 for V3 with prose excluded. These512 variants share16 held goal contracts
+from four families. All three finish their supplied checks through finite search.
+
+The [explicit prose-neutral profile](docs/source-relative-v3-prose-neutral.md)
+is a checkout addition after SDK0.2.44. It clears only intent cells64..191 while
+retaining the source, output relationships and every declared requirement.
+Korean/English wording then yields identical model arrays in that study; this
+agreement follows from the representation. Return-branch and layout decisions
+remain areas for improvement. The public0.6.34 binary does not load this new
+profile yet.
 
 The canonical model input currently supports one root branch, comparison operand
 order and branch layout, with at most one operation in each predicate or return

@@ -326,7 +326,7 @@ func search(ctx context.Context, args []string, out io.Writer) error {
 
 func run(ctx context.Context, args []string, out io.Writer) error {
 	if len(args) == 0 {
-		return errors.New("use fit, search, explain or inspect")
+		return errors.New("use fit, search, explain, inspect or repackage-prose-neutral")
 	}
 	switch args[0] {
 	case "fit":
@@ -337,8 +337,10 @@ func run(ctx context.Context, args []string, out io.Writer) error {
 		return explainChoice(ctx, args[1:], out)
 	case "inspect":
 		return inspectInput(ctx, args[1:], out)
+	case "repackage-prose-neutral":
+		return repackageProseNeutral(ctx, args[1:], out)
 	}
-	return errors.New("unknown command; use fit, search, explain or inspect")
+	return errors.New("unknown command; use fit, search, explain, inspect or repackage-prose-neutral")
 }
 
 func main() {
