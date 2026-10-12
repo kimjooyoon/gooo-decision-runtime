@@ -1,0 +1,4 @@
+package decision
+
+const SourceRelativeOutputFeatureVersion = "canonical_predicate_integer_output_relations_v1"
+const SourceRelativeOutputFeatureDim = 48

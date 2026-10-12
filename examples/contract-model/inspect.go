@@ -66,6 +66,7 @@ func inspectInput(ctx context.Context, args []string, out io.Writer) error {
 	relations := f.Bool("condition-relations", false, "include source-relative declared condition counts; no model or candidate execution")
 	relative := f.Bool("source-relative-source", false, "include the full source-relative model input and condition relations; no prediction or body execution")
 	relativeV2 := f.Bool("source-relative-v2-source", false, "inspect the explicit V2 source input, including integer division; no prediction or execution")
+	relativeV3 := f.Bool("source-relative-v3-source", false, "inspect explicit V3 input and declared output relations; no prediction or execution")
 	if err := f.Parse(args); err != nil {
 		return err
 	}
@@ -75,6 +76,12 @@ func inspectInput(ctx context.Context, args []string, out io.Writer) error {
 	doc, prepared, err := document(f.Arg(0))
 	if err != nil {
 		return err
+	}
+	if *relativeV3 {
+		if *ordered || *canonical || *relations || *relative || *relativeV2 {
+			return errors.New("source-relative-v3-source selects its own input ABI; use this format alone")
+		}
+		return inspectRelativeSource(ctx, doc, prepared, out, true)
 	}
 	if *relativeV2 {
 		if *ordered || *canonical || *relations || *relative {
