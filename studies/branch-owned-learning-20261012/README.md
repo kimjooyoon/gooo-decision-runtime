@@ -69,3 +69,7 @@ in this checkout. Run `bash studies/branch-owned-learning-20261012/check-retaine
 to parse the prepared fixtures and audit frozen outcomes without fitting,
 prediction or candidate execution. It uses a temporary directory and downloads
 only the compressed corpus and two observation files, about4MiB total.
+
+The subsequent [per-choice diagnosis](../branch-owned-choice-diagnosis-20261012)
+reads these same frozen outcomes. It separates comparison-order and branch-layout
+errors and describes the saved ranking distribution without another prediction.

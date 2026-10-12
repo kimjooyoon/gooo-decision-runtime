@@ -1,0 +1,327 @@
+{
+  "schema": "gooo/retained-choice-diagnosis/v1",
+  "fits": 0,
+  "model_calls": 0,
+  "candidate_executions": 0,
+  "choice_order": [
+    "operand_order",
+    "branch_layout"
+  ],
+  "retained_sha256": {
+    "corpus.json.gz": "8daf73f5cdd96411fe5ef8d14b852a5b8b2732267df31c8bad400445bc89847c",
+    "v3-prose-neutral/observations.json": "eccbd50ab41a2dd668dd9bf4c6953e7d487c5921e80554b79f71ea1327f9f01b",
+    "v4-branch-owned/observations.json": "466f49569d01fa79c0fb6749ad99781cf937549b0258bd8820c38f8077721671"
+  },
+  "profiles": {
+    "v3-prose-neutral": {
+      "evaluation": {
+        "rows": 384,
+        "first_complete": 112,
+        "choice_correct": [
+          216,
+          168
+        ],
+        "choice_confusion": [
+          [
+            [
+              104,
+              88
+            ],
+            [
+              80,
+              112
+            ]
+          ],
+          [
+            [
+              96,
+              96
+            ],
+            [
+              120,
+              72
+            ]
+          ]
+        ],
+        "error_bits_histogram": [
+          112,
+          56,
+          104,
+          112
+        ],
+        "selected_masks": [
+          132,
+          84,
+          52,
+          116
+        ],
+        "acceptable_masks": [
+          96,
+          96,
+          96,
+          96
+        ],
+        "mean_max_probability": 0.269655,
+        "mean_entropy_bits": 1.99682,
+        "max_probability_factorization_residual": 9.122e-9
+      },
+      "train": {
+        "rows": 768,
+        "first_complete": 240,
+        "choice_correct": [
+          476,
+          384
+        ],
+        "choice_confusion": [
+          [
+            [
+              224,
+              160
+            ],
+            [
+              132,
+              252
+            ]
+          ],
+          [
+            [
+              232,
+              152
+            ],
+            [
+              232,
+              152
+            ]
+          ]
+        ],
+        "error_bits_histogram": [
+          240,
+          144,
+          236,
+          148
+        ],
+        "selected_masks": [
+          260,
+          204,
+          96,
+          208
+        ],
+        "acceptable_masks": [
+          192,
+          192,
+          192,
+          192
+        ],
+        "mean_max_probability": 0.270801,
+        "mean_entropy_bits": 1.996354,
+        "max_probability_factorization_residual": 9.554e-9
+      },
+      "validation": {
+        "rows": 384,
+        "first_complete": 104,
+        "choice_correct": [
+          232,
+          180
+        ],
+        "choice_confusion": [
+          [
+            [
+              132,
+              60
+            ],
+            [
+              92,
+              100
+            ]
+          ],
+          [
+            [
+              108,
+              84
+            ],
+            [
+              120,
+              72
+            ]
+          ]
+        ],
+        "error_bits_histogram": [
+          104,
+          76,
+          128,
+          76
+        ],
+        "selected_masks": [
+          160,
+          68,
+          64,
+          92
+        ],
+        "acceptable_masks": [
+          96,
+          96,
+          96,
+          96
+        ],
+        "mean_max_probability": 0.273152,
+        "mean_entropy_bits": 1.995597,
+        "max_probability_factorization_residual": 1.1147e-8
+      }
+    },
+    "v4-branch-owned": {
+      "evaluation": {
+        "rows": 384,
+        "first_complete": 60,
+        "choice_correct": [
+          164,
+          192
+        ],
+        "choice_confusion": [
+          [
+            [
+              84,
+              108
+            ],
+            [
+              112,
+              80
+            ]
+          ],
+          [
+            [
+              128,
+              64
+            ],
+            [
+              128,
+              64
+            ]
+          ]
+        ],
+        "error_bits_histogram": [
+          60,
+          132,
+          104,
+          88
+        ],
+        "selected_masks": [
+          140,
+          116,
+          56,
+          72
+        ],
+        "acceptable_masks": [
+          96,
+          96,
+          96,
+          96
+        ],
+        "mean_max_probability": 0.271315,
+        "mean_entropy_bits": 1.995816,
+        "max_probability_factorization_residual": 1.0423e-8
+      },
+      "train": {
+        "rows": 768,
+        "first_complete": 196,
+        "choice_correct": [
+          408,
+          412
+        ],
+        "choice_confusion": [
+          [
+            [
+              220,
+              164
+            ],
+            [
+              196,
+              188
+            ]
+          ],
+          [
+            [
+              276,
+              108
+            ],
+            [
+              248,
+              136
+            ]
+          ]
+        ],
+        "error_bits_histogram": [
+          196,
+          216,
+          212,
+          144
+        ],
+        "selected_masks": [
+          344,
+          180,
+          72,
+          172
+        ],
+        "acceptable_masks": [
+          192,
+          192,
+          192,
+          192
+        ],
+        "mean_max_probability": 0.272843,
+        "mean_entropy_bits": 1.995458,
+        "max_probability_factorization_residual": 9.353e-9
+      },
+      "validation": {
+        "rows": 384,
+        "first_complete": 104,
+        "choice_correct": [
+          224,
+          184
+        ],
+        "choice_confusion": [
+          [
+            [
+              116,
+              76
+            ],
+            [
+              84,
+              108
+            ]
+          ],
+          [
+            [
+              104,
+              88
+            ],
+            [
+              112,
+              80
+            ]
+          ]
+        ],
+        "error_bits_histogram": [
+          104,
+          80,
+          120,
+          80
+        ],
+        "selected_masks": [
+          128,
+          88,
+          72,
+          96
+        ],
+        "acceptable_masks": [
+          96,
+          96,
+          96,
+          96
+        ],
+        "mean_max_probability": 0.270093,
+        "mean_entropy_bits": 1.996413,
+        "max_probability_factorization_residual": 1.1141e-8
+      }
+    }
+  }
+}
