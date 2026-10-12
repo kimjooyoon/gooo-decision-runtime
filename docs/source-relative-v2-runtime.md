@@ -5,9 +5,12 @@ ordered expression representation. Source-owned comparison/branch choices,
 declared output cases and Boolean conditions enter one initial prediction.
 Finite checks decide acceptance. The session retains no model for later steps.
 
-This is the SDK0.2.42 release source. Earlier SDK0.2.41 and compiler
-0.6.32 load the V1 model. The V2 compiler connection was checked locally
-with the new division example and is being integrated into a public release.
+SDK0.2.42 publishes the V2 library API and model asset. The example command
+adapter below is a source addition after that tag. Earlier SDK0.2.41 and compiler
+0.6.32 load the V1 model. The V2 connection is in
+[accepted compiler0.6.33 source](https://github.com/kimjooyoon/meta-ontology-go/commit/44118d5fa5130912493862d389c28dec67f8e034).
+The [compiler releases](https://github.com/kimjooyoon/meta-ontology-go/releases)
+identify available binaries and their source-bound platform evidence.
 
 ## Identity and arrays
 
@@ -30,6 +33,32 @@ toward zero according to Go Integer arithmetic; zero divisors return an interpre
 error, while generated Go retains its ordinary runtime fault behavior.
 
 ## Go APIs
+
+Download [model-source-relative-v2.json from SDK0.2.42](https://github.com/kimjooyoon/gooo-decision-runtime/releases/download/v0.2.42-experimental/model-source-relative-v2.json)
+and compare its SHA256 with the value below before supplying it to search.
+The deterministic command needs no model file.
+
+The development `contract-model` example now offers a V2 route. From a checkout
+including this CLI change, inspect a Gooo-derived typed path document and search:
+
+```sh
+GOWORK=off GOTOOLCHAIN=go1.27.2 go run ./examples/contract-model inspect \
+  -source-relative-v2-source examples/contract-model/testdata/source-relative-v2-division.json
+GOWORK=off GOTOOLCHAIN=go1.27.2 go run ./examples/contract-model search \
+  -model model-source-relative-v2.json examples/contract-model/testdata/source-relative-v2-division.json
+GOWORK=off GOTOOLCHAIN=go1.27.2 go run ./examples/contract-model search \
+  examples/contract-model/testdata/source-relative-v2-division.json
+```
+
+Inspection exports only the explicit V2 input, source explanations and all declared
+requirements, with zero model/candidate/training calls. An unavailable context
+retains its reason and omits the model array. V1/V2 inspection flags cannot be
+mixed. The model artifact chooses the search input ABI; an incompatible supplied
+artifact returns an error. Omitting it keeps deterministic search.
+Declared requirement lists remain JSON arrays when empty. Unsupported nested
+source expressions keep their declared requirements and reasons without prediction.
+An already cancelled or absent context emits no inspection result.
+This example adapter is a source development addition after the SDK0.2.42 tag.
 
 Given a source-bound `prepared *pathplan.PreparedPlan`, declared cases and model bytes:
 

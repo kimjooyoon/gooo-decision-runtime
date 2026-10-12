@@ -1,0 +1,8 @@
+package divisiondemo
+namespace divisiondemo
+entity Integer id "division-demo://integer"
+activity Choose(Integer) -> Integer id "division-demo://choose" computes `if input < 13 {
+    return input / 13
+} else {
+    return 13 + input
+}`

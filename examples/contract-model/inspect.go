@@ -65,6 +65,7 @@ func inspectInput(ctx context.Context, args []string, out io.Writer) error {
 	canonical := f.Bool("canonical-source", false, "include the complete canonical source input; no prediction or body execution")
 	relations := f.Bool("condition-relations", false, "include source-relative declared condition counts; no model or candidate execution")
 	relative := f.Bool("source-relative-source", false, "include the full source-relative model input and condition relations; no prediction or body execution")
+	relativeV2 := f.Bool("source-relative-v2-source", false, "inspect the explicit V2 source input, including integer division; no prediction or execution")
 	if err := f.Parse(args); err != nil {
 		return err
 	}
@@ -74,6 +75,12 @@ func inspectInput(ctx context.Context, args []string, out io.Writer) error {
 	doc, prepared, err := document(f.Arg(0))
 	if err != nil {
 		return err
+	}
+	if *relativeV2 {
+		if *ordered || *canonical || *relations || *relative {
+			return errors.New("source-relative-v2-source selects its own input ABI; use this format alone")
+		}
+		return inspectRelativeV2(ctx, doc, prepared, out)
 	}
 	input, err := prepared.InitialContractInput(doc.TestCases)
 	if err != nil {
