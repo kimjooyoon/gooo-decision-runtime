@@ -464,7 +464,8 @@ func preflightPlan(plan Plan) error {
 		return errors.New("expanded Go source exceeds the 128 KiB compilation budget")
 	}
 	// Gooo embeds the body as a quoted string. Rendered expression tokens and
-	// identifiers are ASCII without quote or backslash bytes; only renderer
+	// identifiers contain no quote or backslash bytes; UTF-8 name lengths are
+	// already charged above. Only renderer
 	// indentation tabs and line breaks need escaping. A statement tree of at
 	// most 128 nodes and depth 16 can emit at most three lines per node.
 	maxQuotedBodyEscapeBytes := uint64(maxStmts * 3 * (maxDepth + 2))
@@ -794,22 +795,7 @@ func validLocalName(name string) bool {
 }
 
 func validIdentifier(name string) bool {
-	if !token.IsIdentifier(name) || name == "_" {
-		return false
-	}
-	for index := 0; index < len(name); index++ {
-		value := name[index]
-		if index == 0 {
-			if !((value >= 'a' && value <= 'z') || (value >= 'A' && value <= 'Z') || value == '_') {
-				return false
-			}
-			continue
-		}
-		if !((value >= 'a' && value <= 'z') || (value >= 'A' && value <= 'Z') || (value >= '0' && value <= '9') || value == '_') {
-			return false
-		}
-	}
-	return true
+	return token.IsIdentifier(name) && name != "_"
 }
 
 func validHoleID(id string) bool {
