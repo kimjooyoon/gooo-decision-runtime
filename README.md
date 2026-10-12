@@ -25,13 +25,14 @@ The models, training and runtime are implemented in Go.
 | Use the new V2 return-layout model and integer division | [V2 source contract and recorded results](docs/source-relative-v2-runtime.md) |
 | Inspect output relationships or use V3 | [V3 source contract](docs/source-relative-v3-runtime.md) |
 | Make decisions from source and declared cases with prose excluded | [Explicit prose-neutral V3 profile](docs/source-relative-v3-prose-neutral.md) |
+| Inspect separate return-branch relationships for a future model fit | [V4 branch-owned input contract](docs/source-relative-v4-runtime.md) |
 | Compare a learned decision with a simple rule and partial results | [Source-relative study: 288 documents](studies/source-relative-learning-20261011) |
 | Find an older API or experiment | [Detailed research and release history](RESEARCH.md) |
 
 ## Versions and model files
 
-- **Published Go SDK:** [v0.2.44-experimental](https://github.com/kimjooyoon/gooo-decision-runtime/releases/tag/v0.2.44-experimental),
-  with the explicit V3 API. Its source release contains no model assets.
+- **Published Go SDK:** [v0.2.45-experimental](https://github.com/kimjooyoon/gooo-decision-runtime/releases/tag/v0.2.45-experimental),
+  with the explicit prose-neutral V3 API. Its source release contains no model assets.
   SDK0.2.42's V2 model asset and earlier V1 files retain their own identities.
 - **V1 compiler release:** [0.6.32-dev](https://github.com/kimjooyoon/meta-ontology-go/releases/tag/v0.6.32-dev),
   including SDK0.2.41 and the V1 relation model loader.
@@ -50,7 +51,7 @@ The models, training and runtime are implemented in Go.
 Install the library in your Go application:
 
 ```sh
-go get github.com/kimjooyoon/gooo-decision-runtime@v0.2.44-experimental
+go get github.com/kimjooyoon/gooo-decision-runtime@v0.2.45-experimental
 ```
 
 The core packages are `bodyplan` for typed bodies, `pathplan` for source-owned

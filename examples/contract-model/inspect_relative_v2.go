@@ -17,6 +17,7 @@ type relativeV2Choice struct {
 	Source    pathplan.CanonicalOrderedBranchContext  `json:"canonical_context"`
 	Relations pathplan.SourceRelativeConditionContext `json:"condition_relations"`
 	Outputs   *pathplan.SourceRelativeOutputContext   `json:"output_relations,omitempty"`
+	Branches  *pathplan.BranchOutputContext           `json:"branch_output_relations,omitempty"`
 }
 type relativeV2Inspection struct {
 	Schema              string               `json:"schema"`
@@ -37,10 +38,10 @@ type relativeV2Inspection struct {
 }
 
 func inspectRelativeV2(ctx context.Context, doc pathplan.Document, prepared *pathplan.PreparedPlan, out io.Writer) error {
-	return inspectRelativeSource(ctx, doc, prepared, out, false, false)
+	return inspectRelativeSource(ctx, doc, prepared, out, false, false, false)
 }
 
-func inspectRelativeSource(ctx context.Context, doc pathplan.Document, prepared *pathplan.PreparedPlan, out io.Writer, v3, proseNeutral bool) error {
+func inspectRelativeSource(ctx context.Context, doc pathplan.Document, prepared *pathplan.PreparedPlan, out io.Writer, v3, proseNeutral, v4 bool) error {
 	input, err := prepared.InitialContractInput(doc.TestCases)
 	if err != nil {
 		return err
@@ -59,6 +60,10 @@ func inspectRelativeSource(ctx context.Context, doc pathplan.Document, prepared 
 		r.IntentPolicy = contractdecision.SourceRelativeV3ProseNeutralIntentPolicy
 		r.ClearedIntentCells = &[2]int{contractdecision.SourceRelativeV3ProseNeutralIntentStart, contractdecision.SourceRelativeV3ProseNeutralIntentEnd}
 		r.Scope = "explicit prose-neutral V3 input; original source context and every declared requirement retained; intent channel cleared; no prediction, candidate execution or training"
+	}
+	if v4 {
+		r.Schema, r.SourceVersion = "gooo/contract-input-inspection/v9", contractdecision.SourceRelativeV4FeatureVersion
+		r.Scope = "explicit neutral V4 input with branch-owned literal relationships and every declared requirement; no prediction, candidate execution or training"
 	}
 	for _, choice := range doc.Plan.Decisions {
 		if err = ctx.Err(); err != nil {
@@ -80,7 +85,14 @@ func inspectRelativeSource(ctx context.Context, doc pathplan.Document, prepared 
 				return err
 			}
 		}
-		if row.Source.Available && row.Relations.Available && (!v3 || row.Outputs.Available) {
+		if v4 {
+			row.Branches = new(pathplan.BranchOutputContext)
+			*row.Branches, err = input.BranchOutputs(choice.ID)
+			if err != nil {
+				return err
+			}
+		}
+		if row.Source.Available && row.Relations.Available && (!v3 || row.Outputs.Available) && (!v4 || row.Branches.Available) {
 			row.Features = new([528]float32)
 			features := input.SourceRelativeV2FeaturesInto
 			if v3 {
@@ -88,6 +100,9 @@ func inspectRelativeSource(ctx context.Context, doc pathplan.Document, prepared 
 			}
 			if proseNeutral {
 				features = input.SourceRelativeV3ProseNeutralFeaturesInto
+			}
+			if v4 {
+				features = input.SourceRelativeV4FeaturesInto
 			}
 			if err = features(choice.ID, row.Features); err != nil {
 				return err
