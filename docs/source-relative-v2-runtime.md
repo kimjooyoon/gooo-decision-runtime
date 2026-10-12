@@ -32,6 +32,10 @@ error, while generated Go retains its ordinary runtime fault behavior.
 
 ## Go APIs
 
+Download [model-source-relative-v2.json from SDK0.2.42](https://github.com/kimjooyoon/gooo-decision-runtime/releases/download/v0.2.42-experimental/model-source-relative-v2.json)
+and compare its SHA256 with the value below before supplying it to search.
+The deterministic command needs no model file.
+
 The development `contract-model` example now offers a V2 route. From a checkout
 including this CLI change, inspect a Gooo-derived typed path document and search:
 
