@@ -40,6 +40,12 @@ jobs:
           cmp "$RUNNER_TEMP/relative-audit.json" "$root/audit.json"
       - name: Race tests
         run: go test -race ./...
+      - name: Diagnose frozen factorized inputs without model execution
+        run: |
+          study=studies/factorized-input-diagnosis-20261012
+          bash "$study/fetch.sh" "$RUNNER_TEMP/factorized-inputs"
+          go run "./$study/audit" "$RUNNER_TEMP/factorized-inputs" > "$RUNNER_TEMP/factorized-diagnosis.json"
+          cmp "$RUNNER_TEMP/factorized-diagnosis.json" "$study/diagnosis.json"
       - name: Audit retained V2 return-layout observations without model execution
         run: |
           root=studies/return-layout-learning-20261012/result

@@ -89,3 +89,11 @@ remaining gap is concrete:248 first bodies fail some outputs, although all1536
 Boolean requirements match. Return-branch association and layout stability need
 further work. First-choice quality and completion after checks remain separate
 metrics; the existing defaults remain unchanged.
+
+The [frozen-input diagnosis](../studies/factorized-input-diagnosis-20261012/README.md)
+locates a stronger layout-specific gap: the neutral model completes 0/128 first
+choices when raw mask 1 is required and 128/128 when mask 3 is required. No held
+contract completes every sibling variant on the first choice. Exact raw inputs
+have no conflicting accepted-mask groups; internal representation loss remains
+unmeasured. The Go reader uses saved arrays and outcomes with zero new model or
+candidate calls.
