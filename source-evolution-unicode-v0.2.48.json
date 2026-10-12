@@ -1,0 +1,17 @@
+{
+  "schema": "gooo/decision-runtime-source-evolution/v1",
+  "base_revision": "d3fd55094d75d43ae143457244ddf6b07a5cfe4a",
+  "previous_manifest": "source-provenance-v0.2.47.json",
+  "previous_manifest_sha256": "abcb4d27d07caccf1735500f207ea4032bcd51e1ad4669409ebb7b37da68943a",
+  "updated_manifest_sha256": "678f9b42909c9a652dc400334a4ef592832932ca26aed87b99eb7c6b628ac481",
+  "changed_extracted_files": [
+    {
+      "path": "bodyplan/bodyplan.go",
+      "before_sha256": "96965bab7e4307c5813db3d551cdcf0920e72692969d9f78244ac07c5896f44a",
+      "before_bytes": 41816,
+      "after_sha256": "ac8a919a6bfb1a12dca37a7373e48430f65af430f04bbffa8e397d843d0eee4f",
+      "after_bytes": 41464
+    }
+  ],
+  "reason": "Use Go Unicode identifier rules for SDK-owned activity and local spellings; preserve source IDs, upstream hashes and all byte/node bounds."
+}

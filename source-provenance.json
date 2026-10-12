@@ -13,14 +13,14 @@
       "origin_path": "internal/bodyplan/bodyplan.go",
       "copied_path": "bodyplan/bodyplan.go",
       "origin_sha256": "562374bc20db45063db1b934564aedfb234c3b819617eb999948ca822385be5e",
-      "sha256": "96965bab7e4307c5813db3d551cdcf0920e72692969d9f78244ac07c5896f44a",
+      "sha256": "ac8a919a6bfb1a12dca37a7373e48430f65af430f04bbffa8e397d843d0eee4f",
       "origin_bytes": 41423,
-      "bytes": 41816,
-      "transformation": "fixed_module_import_relocation_and_gofmt_then_sdk_unread_local_rendering_then_fixed_integer_division",
+      "bytes": 41464,
+      "transformation": "fixed_module_import_relocation_and_gofmt_then_sdk_unread_local_rendering_then_fixed_integer_division_then_go_unicode_identifier_rules",
       "extracted_sha256": "2392d116147ad978c455c0029b0ce5bb5664b6012314b8c654c72e30a8e1f80b",
       "extracted_bytes": 41394,
-      "previous_sdk_sha256": "a586c4776dd5dc2017ad938d1dd8b237294ddedd08f62f3bfe0c04c5d919a10e",
-      "previous_sdk_bytes": 41620
+      "previous_sdk_sha256": "96965bab7e4307c5813db3d551cdcf0920e72692969d9f78244ac07c5896f44a",
+      "previous_sdk_bytes": 41816
     },
     {
       "origin_path": "internal/bodyplan/bodyplan_test.go",
@@ -642,5 +642,5 @@
   "origin_repository": "github.com/kimjooyoon/gooo-neural-decision-experiments",
   "origin_revision": "ddcd1002b14996f4e6b5577a227e065441a407c5",
   "schema": "gooo/decision-runtime-source-provenance/v2",
-  "scope": "Source extraction with original byte identities retained. bodyplan/bodyplan.go additionally records the extracted baseline and SDK-local unread-local rendering. Other listed copied files retain their original extraction identity. New SDK-local helpers and tests are tracked by Git; no weights or raw experiment directories are copied."
+  "scope": "Source extraction with original byte identities retained. bodyplan/bodyplan.go records its extracted baseline and SDK-owned rendering, integer division and Unicode identifier evolution. Other listed copied files retain their original extraction identity. Historical manifests and source evolution records preserve the prior byte identities."
 }
