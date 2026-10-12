@@ -59,20 +59,46 @@ Inspection emits schema`gooo/contract-input-inspection/v7`, all original output
 and Boolean rows, and the new output relationship view. Its model, candidate and
 training counters remain zero. Select one inspection ABI at a time.
 
-This SDK route uses an authored/source-derived JSON plan. The installed public
-Gooo0.6.33 compiler consumes SDK0.2.42 and its V2 adapter. V3 compiler integration
-and fitted public V3 weights require subsequent source and publication work.
+This SDK route uses an authored/source-derived JSON plan. Public
+[Gooo0.6.34](https://github.com/kimjooyoon/meta-ontology-go/releases/tag/v0.6.34-dev)
+consumes SDK0.2.44 and provides a V3 adapter for `.gooo` source. The release's
+native check uses synthetic zero weights; the learned results below use the
+compiler library and interpreter. Their evidence remains separate.
 
-## Current evidence and next fit
+## Current evidence and next representation
 
 Fresh synthetic zero-weight tests cover inspection, strict artifact/version
 separation, one initial prediction, finite original-body checks, deterministic
 omission, exact large Integer handling, zero division, wrapping and caller-owned
 immutable/concurrent reads. The original fitted studies and weights are retained.
-V3 learned quality and speed have not been measured.
+Learned first-choice quality is recorded separately below. This study collected
+no speed or whole-process resource measurements.
 
 The [new V2 bilingual observation](https://huggingface.co/asketeddy/gooo-canonical-decision-tiny-v1/tree/168ea144404ef2719be1b529e877f606ecd2025d/research/bilingual-public033-20261012/result)
 has5/8 first-mask pair agreement,5/16 first complete model documents and41/16
 candidate checks versus18/8 fixed checks. All routes reach their finite checks.
-Those eight evaluated contracts inform the next design; a future learned V3
-study must predeclare fresh training/evaluation groups and retain first failures.
+Those eight evaluated contracts informed a new, preregistered study with separate
+groups and retained first failures.
+
+The [factorized study and complete records](https://huggingface.co/asketeddy/gooo-canonical-decision-tiny-v1/tree/0aa1dd8c51e730632f0f4bc590b5498799178492/research/factorized-decision-20261012/result)
+crossed opposing goals, parameter settings, source layouts, return forms and
+Korean/English wording. Each model fitted once. Evaluation contains512 documents
+sharing16 goal contracts from four held operator-pair families:
+
+| Profile | First body meets all requirements | Candidate checks | Checked completion |
+| --- | ---: | ---: | ---: |
+| V2 full prose | 254/512 | 822 | 512/512 |
+| V3 full prose | 220/512 | 928 | 512/512 |
+| V3 prose-neutral | 264/512 | 776 | 512/512 |
+
+Fixed first ordering meets128/512. The variants are related; these counts do not
+establish independent512-task accuracy. In the neutral profile,248 first bodies
+fail output requirements despite matching all Boolean cases. Source-layout
+changes also remain unstable after parity compensation. The next representation
+should connect an original return expression to its branch and goal more
+directly; new contracts and a protocol are needed before another fit.
+
+The neutral experiment originally saved ordinary V3 tensors alongside its
+preprocessing metadata. The [explicit prose-neutral SDK route](source-relative-v3-prose-neutral.md)
+now encodes that policy in its own artifact schema. Existing V3 artifacts keep
+their full-prose meaning, and the new route is optional.
