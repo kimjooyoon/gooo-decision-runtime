@@ -60,6 +60,11 @@ choices and finite search, and `contractdecision` for models that read source an
 requirements. Earlier specialized model packages remain available. The compiler
 owns the binding between `.gooo` declarations, semantic IDs and a prepared plan.
 
+Development typed plans accept Go's Unicode identifier rules for activity and
+local names, including Korean names. Plan identity and source spelling remain
+separate fields. Existing input and generated-source byte limits count UTF-8
+bytes; a longer spelling does not increase those limits.
+
 ## Try the bundled V2 example
 
 The following example adapter is a checkout addition after the SDK0.2.42 tag.

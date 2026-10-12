@@ -18,9 +18,12 @@ func TestConditionEvolutionRetainsExactPreviousExtractionManifest(t *testing.T) 
 		{"condition-feedback", "source-provenance-v0.2.27.json", "source-provenance-v0.2.41.json",
 			"source-evolution-condition-feedback.json", "c1eec1d5688076eb216f8d7612b11aa4c55cec9f",
 			"b50eceb5755896f3a5b4f81f71f97e49fd31d26f4acd83e224465ca166eae084"},
-		{"fixed-integer-division", "source-provenance-v0.2.41.json", "source-provenance.json",
+		{"fixed-integer-division", "source-provenance-v0.2.41.json", "source-provenance-v0.2.47.json",
 			"source-evolution-division-v0.2.42.json", "84410b0a3d4ef0632f4a522732f72d8eeaa1834a",
 			"a2a96fa9e1c763971599a2e2ec06e1b81710fb8a24b0bcc9a4f3c984dc6357c5"},
+		{"unicode-identifiers", "source-provenance-v0.2.47.json", "source-provenance.json",
+			"source-evolution-unicode-v0.2.48.json", "d3fd55094d75d43ae143457244ddf6b07a5cfe4a",
+			"abcb4d27d07caccf1735500f207ea4032bcd51e1ad4669409ebb7b37da68943a"},
 	} {
 		t.Run(edge.name, func(t *testing.T) {
 			checkSourceEvolution(t, edge.before, edge.after, edge.evolution, edge.base, edge.beforeSHA, 69)
