@@ -1,0 +1,34 @@
+{
+  "both_complete": 20,
+  "candidate_executions": 0,
+  "candidate_histories": 6144,
+  "corpus_sha256": "8daf73f5cdd96411fe5ef8d14b852a5b8b2732267df31c8bad400445bc89847c",
+  "documents": 1536,
+  "evaluation_contracts": 24,
+  "evaluation_families": 4,
+  "evaluation_rows": 384,
+  "fits": 0,
+  "model_calls": 0,
+  "neither_complete": 232,
+  "neutral_only_complete": 92,
+  "observation_sha256": {
+    "v3-prose-neutral": "eccbd50ab41a2dd668dd9bf4c6953e7d487c5921e80554b79f71ea1327f9f01b",
+    "v4-branch-owned": "466f49569d01fa79c0fb6749ad99781cf937549b0258bd8820c38f8077721671"
+  },
+  "raw_input_float32_count": 1408,
+  "raw_input_identity": {
+    "v3-prose-neutral": {
+      "conflicting_accepted_mask_groups": 0,
+      "cross_split_groups": 0,
+      "distinct_raw_inputs": 384
+    },
+    "v4-branch-owned": {
+      "conflicting_accepted_mask_groups": 0,
+      "cross_split_groups": 0,
+      "distinct_raw_inputs": 384
+    }
+  },
+  "schema": "gooo/branch-owned-retained-audit/v1",
+  "scope": "same retained paired rows and exact raw inputs; sibling row rates are descriptive, representation equality does not establish learnability",
+  "v4_only_complete": 40
+}

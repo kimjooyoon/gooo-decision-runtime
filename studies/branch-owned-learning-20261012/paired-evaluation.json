@@ -1,0 +1,3074 @@
+[
+  {
+    "id": "owned-04-0-0-ko-0-0-0",
+    "contract": "branch-owned-20261012://f04-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 2,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-04-0-0-ko-0-0-1",
+    "contract": "branch-owned-20261012://f04-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 2,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-04-0-0-ko-0-1-0",
+    "contract": "branch-owned-20261012://f04-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-04-0-0-ko-0-1-1",
+    "contract": "branch-owned-20261012://f04-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-04-0-0-ko-0-2-0",
+    "contract": "branch-owned-20261012://f04-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-04-0-0-ko-0-2-1",
+    "contract": "branch-owned-20261012://f04-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-04-0-0-ko-0-3-0",
+    "contract": "branch-owned-20261012://f04-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-04-0-0-ko-0-3-1",
+    "contract": "branch-owned-20261012://f04-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-04-0-0-en-0-0-0",
+    "contract": "branch-owned-20261012://f04-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 2,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-04-0-0-en-0-0-1",
+    "contract": "branch-owned-20261012://f04-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 2,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-04-0-0-en-0-1-0",
+    "contract": "branch-owned-20261012://f04-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-04-0-0-en-0-1-1",
+    "contract": "branch-owned-20261012://f04-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-04-0-0-en-0-2-0",
+    "contract": "branch-owned-20261012://f04-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-04-0-0-en-0-2-1",
+    "contract": "branch-owned-20261012://f04-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-04-0-0-en-0-3-0",
+    "contract": "branch-owned-20261012://f04-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-04-0-0-en-0-3-1",
+    "contract": "branch-owned-20261012://f04-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-04-0-1-ko-0-0-0",
+    "contract": "branch-owned-20261012://f04-p0-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-04-0-1-ko-0-0-1",
+    "contract": "branch-owned-20261012://f04-p0-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-04-0-1-ko-0-1-0",
+    "contract": "branch-owned-20261012://f04-p0-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-04-0-1-ko-0-1-1",
+    "contract": "branch-owned-20261012://f04-p0-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-04-0-1-ko-0-2-0",
+    "contract": "branch-owned-20261012://f04-p0-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": true,
+    "neutral_mask": 3,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-04-0-1-ko-0-2-1",
+    "contract": "branch-owned-20261012://f04-p0-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": true,
+    "neutral_mask": 3,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-04-0-1-ko-0-3-0",
+    "contract": "branch-owned-20261012://f04-p0-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-04-0-1-ko-0-3-1",
+    "contract": "branch-owned-20261012://f04-p0-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-04-0-1-en-0-0-0",
+    "contract": "branch-owned-20261012://f04-p0-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-04-0-1-en-0-0-1",
+    "contract": "branch-owned-20261012://f04-p0-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-04-0-1-en-0-1-0",
+    "contract": "branch-owned-20261012://f04-p0-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-04-0-1-en-0-1-1",
+    "contract": "branch-owned-20261012://f04-p0-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-04-0-1-en-0-2-0",
+    "contract": "branch-owned-20261012://f04-p0-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": true,
+    "neutral_mask": 3,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-04-0-1-en-0-2-1",
+    "contract": "branch-owned-20261012://f04-p0-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": true,
+    "neutral_mask": 3,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-04-0-1-en-0-3-0",
+    "contract": "branch-owned-20261012://f04-p0-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-04-0-1-en-0-3-1",
+    "contract": "branch-owned-20261012://f04-p0-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-04-1-0-ko-0-0-0",
+    "contract": "branch-owned-20261012://f04-p1-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-04-1-0-ko-0-0-1",
+    "contract": "branch-owned-20261012://f04-p1-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-04-1-0-ko-0-1-0",
+    "contract": "branch-owned-20261012://f04-p1-g0",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-04-1-0-ko-0-1-1",
+    "contract": "branch-owned-20261012://f04-p1-g0",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-04-1-0-ko-0-2-0",
+    "contract": "branch-owned-20261012://f04-p1-g0",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-04-1-0-ko-0-2-1",
+    "contract": "branch-owned-20261012://f04-p1-g0",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-04-1-0-ko-0-3-0",
+    "contract": "branch-owned-20261012://f04-p1-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-04-1-0-ko-0-3-1",
+    "contract": "branch-owned-20261012://f04-p1-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-04-1-0-en-0-0-0",
+    "contract": "branch-owned-20261012://f04-p1-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-04-1-0-en-0-0-1",
+    "contract": "branch-owned-20261012://f04-p1-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-04-1-0-en-0-1-0",
+    "contract": "branch-owned-20261012://f04-p1-g0",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-04-1-0-en-0-1-1",
+    "contract": "branch-owned-20261012://f04-p1-g0",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-04-1-0-en-0-2-0",
+    "contract": "branch-owned-20261012://f04-p1-g0",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-04-1-0-en-0-2-1",
+    "contract": "branch-owned-20261012://f04-p1-g0",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-04-1-0-en-0-3-0",
+    "contract": "branch-owned-20261012://f04-p1-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-04-1-0-en-0-3-1",
+    "contract": "branch-owned-20261012://f04-p1-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-04-1-1-ko-0-0-0",
+    "contract": "branch-owned-20261012://f04-p1-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-04-1-1-ko-0-0-1",
+    "contract": "branch-owned-20261012://f04-p1-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-04-1-1-ko-0-1-0",
+    "contract": "branch-owned-20261012://f04-p1-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-04-1-1-ko-0-1-1",
+    "contract": "branch-owned-20261012://f04-p1-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-04-1-1-ko-0-2-0",
+    "contract": "branch-owned-20261012://f04-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-04-1-1-ko-0-2-1",
+    "contract": "branch-owned-20261012://f04-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-04-1-1-ko-0-3-0",
+    "contract": "branch-owned-20261012://f04-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": true,
+    "neutral_mask": 1,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-04-1-1-ko-0-3-1",
+    "contract": "branch-owned-20261012://f04-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": true,
+    "neutral_mask": 1,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-04-1-1-en-0-0-0",
+    "contract": "branch-owned-20261012://f04-p1-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-04-1-1-en-0-0-1",
+    "contract": "branch-owned-20261012://f04-p1-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-04-1-1-en-0-1-0",
+    "contract": "branch-owned-20261012://f04-p1-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-04-1-1-en-0-1-1",
+    "contract": "branch-owned-20261012://f04-p1-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-04-1-1-en-0-2-0",
+    "contract": "branch-owned-20261012://f04-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-04-1-1-en-0-2-1",
+    "contract": "branch-owned-20261012://f04-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-04-1-1-en-0-3-0",
+    "contract": "branch-owned-20261012://f04-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": true,
+    "neutral_mask": 1,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-04-1-1-en-0-3-1",
+    "contract": "branch-owned-20261012://f04-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": true,
+    "neutral_mask": 1,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-04-2-0-ko-0-0-0",
+    "contract": "branch-owned-20261012://f04-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 2,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-04-2-0-ko-0-0-1",
+    "contract": "branch-owned-20261012://f04-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 2,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-04-2-0-ko-0-1-0",
+    "contract": "branch-owned-20261012://f04-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-04-2-0-ko-0-1-1",
+    "contract": "branch-owned-20261012://f04-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-04-2-0-ko-0-2-0",
+    "contract": "branch-owned-20261012://f04-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-04-2-0-ko-0-2-1",
+    "contract": "branch-owned-20261012://f04-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-04-2-0-ko-0-3-0",
+    "contract": "branch-owned-20261012://f04-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-04-2-0-ko-0-3-1",
+    "contract": "branch-owned-20261012://f04-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-04-2-0-en-0-0-0",
+    "contract": "branch-owned-20261012://f04-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 2,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-04-2-0-en-0-0-1",
+    "contract": "branch-owned-20261012://f04-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 2,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-04-2-0-en-0-1-0",
+    "contract": "branch-owned-20261012://f04-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-04-2-0-en-0-1-1",
+    "contract": "branch-owned-20261012://f04-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-04-2-0-en-0-2-0",
+    "contract": "branch-owned-20261012://f04-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-04-2-0-en-0-2-1",
+    "contract": "branch-owned-20261012://f04-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-04-2-0-en-0-3-0",
+    "contract": "branch-owned-20261012://f04-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-04-2-0-en-0-3-1",
+    "contract": "branch-owned-20261012://f04-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-04-2-1-ko-0-0-0",
+    "contract": "branch-owned-20261012://f04-p2-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-04-2-1-ko-0-0-1",
+    "contract": "branch-owned-20261012://f04-p2-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-04-2-1-ko-0-1-0",
+    "contract": "branch-owned-20261012://f04-p2-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-04-2-1-ko-0-1-1",
+    "contract": "branch-owned-20261012://f04-p2-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-04-2-1-ko-0-2-0",
+    "contract": "branch-owned-20261012://f04-p2-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": true,
+    "neutral_mask": 3,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-04-2-1-ko-0-2-1",
+    "contract": "branch-owned-20261012://f04-p2-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": true,
+    "neutral_mask": 3,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-04-2-1-ko-0-3-0",
+    "contract": "branch-owned-20261012://f04-p2-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-04-2-1-ko-0-3-1",
+    "contract": "branch-owned-20261012://f04-p2-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-04-2-1-en-0-0-0",
+    "contract": "branch-owned-20261012://f04-p2-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-04-2-1-en-0-0-1",
+    "contract": "branch-owned-20261012://f04-p2-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-04-2-1-en-0-1-0",
+    "contract": "branch-owned-20261012://f04-p2-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-04-2-1-en-0-1-1",
+    "contract": "branch-owned-20261012://f04-p2-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-04-2-1-en-0-2-0",
+    "contract": "branch-owned-20261012://f04-p2-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": true,
+    "neutral_mask": 3,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-04-2-1-en-0-2-1",
+    "contract": "branch-owned-20261012://f04-p2-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": true,
+    "neutral_mask": 3,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-04-2-1-en-0-3-0",
+    "contract": "branch-owned-20261012://f04-p2-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-04-2-1-en-0-3-1",
+    "contract": "branch-owned-20261012://f04-p2-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-06-0-0-ko-0-0-0",
+    "contract": "branch-owned-20261012://f06-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-06-0-0-ko-0-0-1",
+    "contract": "branch-owned-20261012://f06-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-06-0-0-ko-0-1-0",
+    "contract": "branch-owned-20261012://f06-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-06-0-0-ko-0-1-1",
+    "contract": "branch-owned-20261012://f06-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-06-0-0-ko-0-2-0",
+    "contract": "branch-owned-20261012://f06-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-06-0-0-ko-0-2-1",
+    "contract": "branch-owned-20261012://f06-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-06-0-0-ko-0-3-0",
+    "contract": "branch-owned-20261012://f06-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-06-0-0-ko-0-3-1",
+    "contract": "branch-owned-20261012://f06-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-06-0-0-en-0-0-0",
+    "contract": "branch-owned-20261012://f06-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-06-0-0-en-0-0-1",
+    "contract": "branch-owned-20261012://f06-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-06-0-0-en-0-1-0",
+    "contract": "branch-owned-20261012://f06-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-06-0-0-en-0-1-1",
+    "contract": "branch-owned-20261012://f06-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-06-0-0-en-0-2-0",
+    "contract": "branch-owned-20261012://f06-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-06-0-0-en-0-2-1",
+    "contract": "branch-owned-20261012://f06-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-06-0-0-en-0-3-0",
+    "contract": "branch-owned-20261012://f06-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-06-0-0-en-0-3-1",
+    "contract": "branch-owned-20261012://f06-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-06-0-1-ko-0-0-0",
+    "contract": "branch-owned-20261012://f06-p0-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-06-0-1-ko-0-0-1",
+    "contract": "branch-owned-20261012://f06-p0-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-06-0-1-ko-0-1-0",
+    "contract": "branch-owned-20261012://f06-p0-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-06-0-1-ko-0-1-1",
+    "contract": "branch-owned-20261012://f06-p0-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-06-0-1-ko-0-2-0",
+    "contract": "branch-owned-20261012://f06-p0-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-06-0-1-ko-0-2-1",
+    "contract": "branch-owned-20261012://f06-p0-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-06-0-1-ko-0-3-0",
+    "contract": "branch-owned-20261012://f06-p0-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": true,
+    "neutral_mask": 1,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-06-0-1-ko-0-3-1",
+    "contract": "branch-owned-20261012://f06-p0-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": true,
+    "neutral_mask": 1,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-06-0-1-en-0-0-0",
+    "contract": "branch-owned-20261012://f06-p0-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-06-0-1-en-0-0-1",
+    "contract": "branch-owned-20261012://f06-p0-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-06-0-1-en-0-1-0",
+    "contract": "branch-owned-20261012://f06-p0-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-06-0-1-en-0-1-1",
+    "contract": "branch-owned-20261012://f06-p0-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-06-0-1-en-0-2-0",
+    "contract": "branch-owned-20261012://f06-p0-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-06-0-1-en-0-2-1",
+    "contract": "branch-owned-20261012://f06-p0-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-06-0-1-en-0-3-0",
+    "contract": "branch-owned-20261012://f06-p0-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": true,
+    "neutral_mask": 1,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-06-0-1-en-0-3-1",
+    "contract": "branch-owned-20261012://f06-p0-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": true,
+    "neutral_mask": 1,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-06-1-0-ko-0-0-0",
+    "contract": "branch-owned-20261012://f06-p1-g0",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-06-1-0-ko-0-0-1",
+    "contract": "branch-owned-20261012://f06-p1-g0",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-06-1-0-ko-0-1-0",
+    "contract": "branch-owned-20261012://f06-p1-g0",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-06-1-0-ko-0-1-1",
+    "contract": "branch-owned-20261012://f06-p1-g0",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-06-1-0-ko-0-2-0",
+    "contract": "branch-owned-20261012://f06-p1-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-06-1-0-ko-0-2-1",
+    "contract": "branch-owned-20261012://f06-p1-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-06-1-0-ko-0-3-0",
+    "contract": "branch-owned-20261012://f06-p1-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-06-1-0-ko-0-3-1",
+    "contract": "branch-owned-20261012://f06-p1-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-06-1-0-en-0-0-0",
+    "contract": "branch-owned-20261012://f06-p1-g0",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-06-1-0-en-0-0-1",
+    "contract": "branch-owned-20261012://f06-p1-g0",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-06-1-0-en-0-1-0",
+    "contract": "branch-owned-20261012://f06-p1-g0",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-06-1-0-en-0-1-1",
+    "contract": "branch-owned-20261012://f06-p1-g0",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-06-1-0-en-0-2-0",
+    "contract": "branch-owned-20261012://f06-p1-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-06-1-0-en-0-2-1",
+    "contract": "branch-owned-20261012://f06-p1-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-06-1-0-en-0-3-0",
+    "contract": "branch-owned-20261012://f06-p1-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-06-1-0-en-0-3-1",
+    "contract": "branch-owned-20261012://f06-p1-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-06-1-1-ko-0-0-0",
+    "contract": "branch-owned-20261012://f06-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": true,
+    "neutral_mask": 2,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-06-1-1-ko-0-0-1",
+    "contract": "branch-owned-20261012://f06-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": true,
+    "neutral_mask": 2,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-06-1-1-ko-0-1-0",
+    "contract": "branch-owned-20261012://f06-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-06-1-1-ko-0-1-1",
+    "contract": "branch-owned-20261012://f06-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-06-1-1-ko-0-2-0",
+    "contract": "branch-owned-20261012://f06-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-06-1-1-ko-0-2-1",
+    "contract": "branch-owned-20261012://f06-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-06-1-1-ko-0-3-0",
+    "contract": "branch-owned-20261012://f06-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-06-1-1-ko-0-3-1",
+    "contract": "branch-owned-20261012://f06-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-06-1-1-en-0-0-0",
+    "contract": "branch-owned-20261012://f06-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": true,
+    "neutral_mask": 2,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-06-1-1-en-0-0-1",
+    "contract": "branch-owned-20261012://f06-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": true,
+    "neutral_mask": 2,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-06-1-1-en-0-1-0",
+    "contract": "branch-owned-20261012://f06-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-06-1-1-en-0-1-1",
+    "contract": "branch-owned-20261012://f06-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-06-1-1-en-0-2-0",
+    "contract": "branch-owned-20261012://f06-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-06-1-1-en-0-2-1",
+    "contract": "branch-owned-20261012://f06-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-06-1-1-en-0-3-0",
+    "contract": "branch-owned-20261012://f06-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-06-1-1-en-0-3-1",
+    "contract": "branch-owned-20261012://f06-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-06-2-0-ko-0-0-0",
+    "contract": "branch-owned-20261012://f06-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 2,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-06-2-0-ko-0-0-1",
+    "contract": "branch-owned-20261012://f06-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 2,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-06-2-0-ko-0-1-0",
+    "contract": "branch-owned-20261012://f06-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-06-2-0-ko-0-1-1",
+    "contract": "branch-owned-20261012://f06-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-06-2-0-ko-0-2-0",
+    "contract": "branch-owned-20261012://f06-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-06-2-0-ko-0-2-1",
+    "contract": "branch-owned-20261012://f06-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-06-2-0-ko-0-3-0",
+    "contract": "branch-owned-20261012://f06-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-06-2-0-ko-0-3-1",
+    "contract": "branch-owned-20261012://f06-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-06-2-0-en-0-0-0",
+    "contract": "branch-owned-20261012://f06-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 2,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-06-2-0-en-0-0-1",
+    "contract": "branch-owned-20261012://f06-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 2,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-06-2-0-en-0-1-0",
+    "contract": "branch-owned-20261012://f06-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-06-2-0-en-0-1-1",
+    "contract": "branch-owned-20261012://f06-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-06-2-0-en-0-2-0",
+    "contract": "branch-owned-20261012://f06-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-06-2-0-en-0-2-1",
+    "contract": "branch-owned-20261012://f06-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-06-2-0-en-0-3-0",
+    "contract": "branch-owned-20261012://f06-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-06-2-0-en-0-3-1",
+    "contract": "branch-owned-20261012://f06-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-06-2-1-ko-0-0-0",
+    "contract": "branch-owned-20261012://f06-p2-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-06-2-1-ko-0-0-1",
+    "contract": "branch-owned-20261012://f06-p2-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-06-2-1-ko-0-1-0",
+    "contract": "branch-owned-20261012://f06-p2-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-06-2-1-ko-0-1-1",
+    "contract": "branch-owned-20261012://f06-p2-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-06-2-1-ko-0-2-0",
+    "contract": "branch-owned-20261012://f06-p2-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-06-2-1-ko-0-2-1",
+    "contract": "branch-owned-20261012://f06-p2-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-06-2-1-ko-0-3-0",
+    "contract": "branch-owned-20261012://f06-p2-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": true,
+    "neutral_mask": 1,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-06-2-1-ko-0-3-1",
+    "contract": "branch-owned-20261012://f06-p2-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": true,
+    "neutral_mask": 1,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-06-2-1-en-0-0-0",
+    "contract": "branch-owned-20261012://f06-p2-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-06-2-1-en-0-0-1",
+    "contract": "branch-owned-20261012://f06-p2-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-06-2-1-en-0-1-0",
+    "contract": "branch-owned-20261012://f06-p2-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-06-2-1-en-0-1-1",
+    "contract": "branch-owned-20261012://f06-p2-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-06-2-1-en-0-2-0",
+    "contract": "branch-owned-20261012://f06-p2-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-06-2-1-en-0-2-1",
+    "contract": "branch-owned-20261012://f06-p2-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-06-2-1-en-0-3-0",
+    "contract": "branch-owned-20261012://f06-p2-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": true,
+    "neutral_mask": 1,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-06-2-1-en-0-3-1",
+    "contract": "branch-owned-20261012://f06-p2-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": true,
+    "neutral_mask": 1,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-13-0-0-ko-0-0-0",
+    "contract": "branch-owned-20261012://f13-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-13-0-0-ko-0-0-1",
+    "contract": "branch-owned-20261012://f13-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-13-0-0-ko-0-1-0",
+    "contract": "branch-owned-20261012://f13-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-13-0-0-ko-0-1-1",
+    "contract": "branch-owned-20261012://f13-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-13-0-0-ko-0-2-0",
+    "contract": "branch-owned-20261012://f13-p0-g0",
+    "neutral_first_complete": true,
+    "owned_first_complete": true,
+    "neutral_mask": 3,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-13-0-0-ko-0-2-1",
+    "contract": "branch-owned-20261012://f13-p0-g0",
+    "neutral_first_complete": true,
+    "owned_first_complete": true,
+    "neutral_mask": 3,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-13-0-0-ko-0-3-0",
+    "contract": "branch-owned-20261012://f13-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-13-0-0-ko-0-3-1",
+    "contract": "branch-owned-20261012://f13-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-13-0-0-en-0-0-0",
+    "contract": "branch-owned-20261012://f13-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-13-0-0-en-0-0-1",
+    "contract": "branch-owned-20261012://f13-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-13-0-0-en-0-1-0",
+    "contract": "branch-owned-20261012://f13-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-13-0-0-en-0-1-1",
+    "contract": "branch-owned-20261012://f13-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-13-0-0-en-0-2-0",
+    "contract": "branch-owned-20261012://f13-p0-g0",
+    "neutral_first_complete": true,
+    "owned_first_complete": true,
+    "neutral_mask": 3,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-13-0-0-en-0-2-1",
+    "contract": "branch-owned-20261012://f13-p0-g0",
+    "neutral_first_complete": true,
+    "owned_first_complete": true,
+    "neutral_mask": 3,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-13-0-0-en-0-3-0",
+    "contract": "branch-owned-20261012://f13-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-13-0-0-en-0-3-1",
+    "contract": "branch-owned-20261012://f13-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-13-0-1-ko-0-0-0",
+    "contract": "branch-owned-20261012://f13-p0-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-13-0-1-ko-0-0-1",
+    "contract": "branch-owned-20261012://f13-p0-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-13-0-1-ko-0-1-0",
+    "contract": "branch-owned-20261012://f13-p0-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": true,
+    "neutral_mask": 1,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-13-0-1-ko-0-1-1",
+    "contract": "branch-owned-20261012://f13-p0-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": true,
+    "neutral_mask": 1,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-13-0-1-ko-0-2-0",
+    "contract": "branch-owned-20261012://f13-p0-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 2,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-13-0-1-ko-0-2-1",
+    "contract": "branch-owned-20261012://f13-p0-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 2,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-13-0-1-ko-0-3-0",
+    "contract": "branch-owned-20261012://f13-p0-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-13-0-1-ko-0-3-1",
+    "contract": "branch-owned-20261012://f13-p0-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-13-0-1-en-0-0-0",
+    "contract": "branch-owned-20261012://f13-p0-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-13-0-1-en-0-0-1",
+    "contract": "branch-owned-20261012://f13-p0-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-13-0-1-en-0-1-0",
+    "contract": "branch-owned-20261012://f13-p0-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": true,
+    "neutral_mask": 1,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-13-0-1-en-0-1-1",
+    "contract": "branch-owned-20261012://f13-p0-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": true,
+    "neutral_mask": 1,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-13-0-1-en-0-2-0",
+    "contract": "branch-owned-20261012://f13-p0-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 2,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-13-0-1-en-0-2-1",
+    "contract": "branch-owned-20261012://f13-p0-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 2,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-13-0-1-en-0-3-0",
+    "contract": "branch-owned-20261012://f13-p0-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-13-0-1-en-0-3-1",
+    "contract": "branch-owned-20261012://f13-p0-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-13-1-0-ko-0-0-0",
+    "contract": "branch-owned-20261012://f13-p1-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 2,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-13-1-0-ko-0-0-1",
+    "contract": "branch-owned-20261012://f13-p1-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 2,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-13-1-0-ko-0-1-0",
+    "contract": "branch-owned-20261012://f13-p1-g0",
+    "neutral_first_complete": true,
+    "owned_first_complete": true,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-13-1-0-ko-0-1-1",
+    "contract": "branch-owned-20261012://f13-p1-g0",
+    "neutral_first_complete": true,
+    "owned_first_complete": true,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-13-1-0-ko-0-2-0",
+    "contract": "branch-owned-20261012://f13-p1-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-13-1-0-ko-0-2-1",
+    "contract": "branch-owned-20261012://f13-p1-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-13-1-0-ko-0-3-0",
+    "contract": "branch-owned-20261012://f13-p1-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-13-1-0-ko-0-3-1",
+    "contract": "branch-owned-20261012://f13-p1-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-13-1-0-en-0-0-0",
+    "contract": "branch-owned-20261012://f13-p1-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 2,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-13-1-0-en-0-0-1",
+    "contract": "branch-owned-20261012://f13-p1-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 2,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-13-1-0-en-0-1-0",
+    "contract": "branch-owned-20261012://f13-p1-g0",
+    "neutral_first_complete": true,
+    "owned_first_complete": true,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-13-1-0-en-0-1-1",
+    "contract": "branch-owned-20261012://f13-p1-g0",
+    "neutral_first_complete": true,
+    "owned_first_complete": true,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-13-1-0-en-0-2-0",
+    "contract": "branch-owned-20261012://f13-p1-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-13-1-0-en-0-2-1",
+    "contract": "branch-owned-20261012://f13-p1-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-13-1-0-en-0-3-0",
+    "contract": "branch-owned-20261012://f13-p1-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-13-1-0-en-0-3-1",
+    "contract": "branch-owned-20261012://f13-p1-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-13-1-1-ko-0-0-0",
+    "contract": "branch-owned-20261012://f13-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-13-1-1-ko-0-0-1",
+    "contract": "branch-owned-20261012://f13-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-13-1-1-ko-0-1-0",
+    "contract": "branch-owned-20261012://f13-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-13-1-1-ko-0-1-1",
+    "contract": "branch-owned-20261012://f13-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-13-1-1-ko-0-2-0",
+    "contract": "branch-owned-20261012://f13-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-13-1-1-ko-0-2-1",
+    "contract": "branch-owned-20261012://f13-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-13-1-1-ko-0-3-0",
+    "contract": "branch-owned-20261012://f13-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-13-1-1-ko-0-3-1",
+    "contract": "branch-owned-20261012://f13-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-13-1-1-en-0-0-0",
+    "contract": "branch-owned-20261012://f13-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-13-1-1-en-0-0-1",
+    "contract": "branch-owned-20261012://f13-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-13-1-1-en-0-1-0",
+    "contract": "branch-owned-20261012://f13-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-13-1-1-en-0-1-1",
+    "contract": "branch-owned-20261012://f13-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-13-1-1-en-0-2-0",
+    "contract": "branch-owned-20261012://f13-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-13-1-1-en-0-2-1",
+    "contract": "branch-owned-20261012://f13-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-13-1-1-en-0-3-0",
+    "contract": "branch-owned-20261012://f13-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-13-1-1-en-0-3-1",
+    "contract": "branch-owned-20261012://f13-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-13-2-0-ko-0-0-0",
+    "contract": "branch-owned-20261012://f13-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-13-2-0-ko-0-0-1",
+    "contract": "branch-owned-20261012://f13-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-13-2-0-ko-0-1-0",
+    "contract": "branch-owned-20261012://f13-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-13-2-0-ko-0-1-1",
+    "contract": "branch-owned-20261012://f13-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-13-2-0-ko-0-2-0",
+    "contract": "branch-owned-20261012://f13-p2-g0",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-13-2-0-ko-0-2-1",
+    "contract": "branch-owned-20261012://f13-p2-g0",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-13-2-0-ko-0-3-0",
+    "contract": "branch-owned-20261012://f13-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": true,
+    "neutral_mask": 3,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-13-2-0-ko-0-3-1",
+    "contract": "branch-owned-20261012://f13-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": true,
+    "neutral_mask": 3,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-13-2-0-en-0-0-0",
+    "contract": "branch-owned-20261012://f13-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-13-2-0-en-0-0-1",
+    "contract": "branch-owned-20261012://f13-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-13-2-0-en-0-1-0",
+    "contract": "branch-owned-20261012://f13-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-13-2-0-en-0-1-1",
+    "contract": "branch-owned-20261012://f13-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-13-2-0-en-0-2-0",
+    "contract": "branch-owned-20261012://f13-p2-g0",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-13-2-0-en-0-2-1",
+    "contract": "branch-owned-20261012://f13-p2-g0",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-13-2-0-en-0-3-0",
+    "contract": "branch-owned-20261012://f13-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": true,
+    "neutral_mask": 3,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-13-2-0-en-0-3-1",
+    "contract": "branch-owned-20261012://f13-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": true,
+    "neutral_mask": 3,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-13-2-1-ko-0-0-0",
+    "contract": "branch-owned-20261012://f13-p2-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-13-2-1-ko-0-0-1",
+    "contract": "branch-owned-20261012://f13-p2-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-13-2-1-ko-0-1-0",
+    "contract": "branch-owned-20261012://f13-p2-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": true,
+    "neutral_mask": 1,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-13-2-1-ko-0-1-1",
+    "contract": "branch-owned-20261012://f13-p2-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": true,
+    "neutral_mask": 1,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-13-2-1-ko-0-2-0",
+    "contract": "branch-owned-20261012://f13-p2-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 2,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-13-2-1-ko-0-2-1",
+    "contract": "branch-owned-20261012://f13-p2-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 2,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-13-2-1-ko-0-3-0",
+    "contract": "branch-owned-20261012://f13-p2-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-13-2-1-ko-0-3-1",
+    "contract": "branch-owned-20261012://f13-p2-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-13-2-1-en-0-0-0",
+    "contract": "branch-owned-20261012://f13-p2-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-13-2-1-en-0-0-1",
+    "contract": "branch-owned-20261012://f13-p2-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-13-2-1-en-0-1-0",
+    "contract": "branch-owned-20261012://f13-p2-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": true,
+    "neutral_mask": 1,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-13-2-1-en-0-1-1",
+    "contract": "branch-owned-20261012://f13-p2-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": true,
+    "neutral_mask": 1,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-13-2-1-en-0-2-0",
+    "contract": "branch-owned-20261012://f13-p2-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 2,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-13-2-1-en-0-2-1",
+    "contract": "branch-owned-20261012://f13-p2-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 2,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-13-2-1-en-0-3-0",
+    "contract": "branch-owned-20261012://f13-p2-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-13-2-1-en-0-3-1",
+    "contract": "branch-owned-20261012://f13-p2-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-15-0-0-ko-0-0-0",
+    "contract": "branch-owned-20261012://f15-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-15-0-0-ko-0-0-1",
+    "contract": "branch-owned-20261012://f15-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-15-0-0-ko-0-1-0",
+    "contract": "branch-owned-20261012://f15-p0-g0",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-15-0-0-ko-0-1-1",
+    "contract": "branch-owned-20261012://f15-p0-g0",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-15-0-0-ko-0-2-0",
+    "contract": "branch-owned-20261012://f15-p0-g0",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-15-0-0-ko-0-2-1",
+    "contract": "branch-owned-20261012://f15-p0-g0",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-15-0-0-ko-0-3-0",
+    "contract": "branch-owned-20261012://f15-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-15-0-0-ko-0-3-1",
+    "contract": "branch-owned-20261012://f15-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-15-0-0-en-0-0-0",
+    "contract": "branch-owned-20261012://f15-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-15-0-0-en-0-0-1",
+    "contract": "branch-owned-20261012://f15-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-15-0-0-en-0-1-0",
+    "contract": "branch-owned-20261012://f15-p0-g0",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-15-0-0-en-0-1-1",
+    "contract": "branch-owned-20261012://f15-p0-g0",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-15-0-0-en-0-2-0",
+    "contract": "branch-owned-20261012://f15-p0-g0",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-15-0-0-en-0-2-1",
+    "contract": "branch-owned-20261012://f15-p0-g0",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-15-0-0-en-0-3-0",
+    "contract": "branch-owned-20261012://f15-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-15-0-0-en-0-3-1",
+    "contract": "branch-owned-20261012://f15-p0-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-15-0-1-ko-0-0-0",
+    "contract": "branch-owned-20261012://f15-p0-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-15-0-1-ko-0-0-1",
+    "contract": "branch-owned-20261012://f15-p0-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-15-0-1-ko-0-1-0",
+    "contract": "branch-owned-20261012://f15-p0-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": true,
+    "neutral_mask": 1,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-15-0-1-ko-0-1-1",
+    "contract": "branch-owned-20261012://f15-p0-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": true,
+    "neutral_mask": 1,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-15-0-1-ko-0-2-0",
+    "contract": "branch-owned-20261012://f15-p0-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-15-0-1-ko-0-2-1",
+    "contract": "branch-owned-20261012://f15-p0-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-15-0-1-ko-0-3-0",
+    "contract": "branch-owned-20261012://f15-p0-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-15-0-1-ko-0-3-1",
+    "contract": "branch-owned-20261012://f15-p0-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-15-0-1-en-0-0-0",
+    "contract": "branch-owned-20261012://f15-p0-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-15-0-1-en-0-0-1",
+    "contract": "branch-owned-20261012://f15-p0-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-15-0-1-en-0-1-0",
+    "contract": "branch-owned-20261012://f15-p0-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": true,
+    "neutral_mask": 1,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-15-0-1-en-0-1-1",
+    "contract": "branch-owned-20261012://f15-p0-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": true,
+    "neutral_mask": 1,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-15-0-1-en-0-2-0",
+    "contract": "branch-owned-20261012://f15-p0-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-15-0-1-en-0-2-1",
+    "contract": "branch-owned-20261012://f15-p0-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-15-0-1-en-0-3-0",
+    "contract": "branch-owned-20261012://f15-p0-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-15-0-1-en-0-3-1",
+    "contract": "branch-owned-20261012://f15-p0-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 1,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-15-1-0-ko-0-0-0",
+    "contract": "branch-owned-20261012://f15-p1-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 2,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-15-1-0-ko-0-0-1",
+    "contract": "branch-owned-20261012://f15-p1-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 2,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-15-1-0-ko-0-1-0",
+    "contract": "branch-owned-20261012://f15-p1-g0",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-15-1-0-ko-0-1-1",
+    "contract": "branch-owned-20261012://f15-p1-g0",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-15-1-0-ko-0-2-0",
+    "contract": "branch-owned-20261012://f15-p1-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 2,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-15-1-0-ko-0-2-1",
+    "contract": "branch-owned-20261012://f15-p1-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 2,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-15-1-0-ko-0-3-0",
+    "contract": "branch-owned-20261012://f15-p1-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-15-1-0-ko-0-3-1",
+    "contract": "branch-owned-20261012://f15-p1-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-15-1-0-en-0-0-0",
+    "contract": "branch-owned-20261012://f15-p1-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 2,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-15-1-0-en-0-0-1",
+    "contract": "branch-owned-20261012://f15-p1-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 2,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-15-1-0-en-0-1-0",
+    "contract": "branch-owned-20261012://f15-p1-g0",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-15-1-0-en-0-1-1",
+    "contract": "branch-owned-20261012://f15-p1-g0",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-15-1-0-en-0-2-0",
+    "contract": "branch-owned-20261012://f15-p1-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 2,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-15-1-0-en-0-2-1",
+    "contract": "branch-owned-20261012://f15-p1-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 2,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-15-1-0-en-0-3-0",
+    "contract": "branch-owned-20261012://f15-p1-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-15-1-0-en-0-3-1",
+    "contract": "branch-owned-20261012://f15-p1-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-15-1-1-ko-0-0-0",
+    "contract": "branch-owned-20261012://f15-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": true,
+    "neutral_mask": 2,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-15-1-1-ko-0-0-1",
+    "contract": "branch-owned-20261012://f15-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": true,
+    "neutral_mask": 2,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-15-1-1-ko-0-1-0",
+    "contract": "branch-owned-20261012://f15-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-15-1-1-ko-0-1-1",
+    "contract": "branch-owned-20261012://f15-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-15-1-1-ko-0-2-0",
+    "contract": "branch-owned-20261012://f15-p1-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 2,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-15-1-1-ko-0-2-1",
+    "contract": "branch-owned-20261012://f15-p1-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 2,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-15-1-1-ko-0-3-0",
+    "contract": "branch-owned-20261012://f15-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": true,
+    "neutral_mask": 0,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-15-1-1-ko-0-3-1",
+    "contract": "branch-owned-20261012://f15-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": true,
+    "neutral_mask": 0,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-15-1-1-en-0-0-0",
+    "contract": "branch-owned-20261012://f15-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": true,
+    "neutral_mask": 2,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-15-1-1-en-0-0-1",
+    "contract": "branch-owned-20261012://f15-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": true,
+    "neutral_mask": 2,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-15-1-1-en-0-1-0",
+    "contract": "branch-owned-20261012://f15-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-15-1-1-en-0-1-1",
+    "contract": "branch-owned-20261012://f15-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 0,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-15-1-1-en-0-2-0",
+    "contract": "branch-owned-20261012://f15-p1-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 2,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-15-1-1-en-0-2-1",
+    "contract": "branch-owned-20261012://f15-p1-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 2,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-15-1-1-en-0-3-0",
+    "contract": "branch-owned-20261012://f15-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": true,
+    "neutral_mask": 0,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-15-1-1-en-0-3-1",
+    "contract": "branch-owned-20261012://f15-p1-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": true,
+    "neutral_mask": 0,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-15-2-0-ko-0-0-0",
+    "contract": "branch-owned-20261012://f15-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-15-2-0-ko-0-0-1",
+    "contract": "branch-owned-20261012://f15-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-15-2-0-ko-0-1-0",
+    "contract": "branch-owned-20261012://f15-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-15-2-0-ko-0-1-1",
+    "contract": "branch-owned-20261012://f15-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-15-2-0-ko-0-2-0",
+    "contract": "branch-owned-20261012://f15-p2-g0",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-15-2-0-ko-0-2-1",
+    "contract": "branch-owned-20261012://f15-p2-g0",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-15-2-0-ko-0-3-0",
+    "contract": "branch-owned-20261012://f15-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-15-2-0-ko-0-3-1",
+    "contract": "branch-owned-20261012://f15-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-15-2-0-en-0-0-0",
+    "contract": "branch-owned-20261012://f15-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-15-2-0-en-0-0-1",
+    "contract": "branch-owned-20261012://f15-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-15-2-0-en-0-1-0",
+    "contract": "branch-owned-20261012://f15-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-15-2-0-en-0-1-1",
+    "contract": "branch-owned-20261012://f15-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 1
+  },
+  {
+    "id": "owned-15-2-0-en-0-2-0",
+    "contract": "branch-owned-20261012://f15-p2-g0",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-15-2-0-en-0-2-1",
+    "contract": "branch-owned-20261012://f15-p2-g0",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-15-2-0-en-0-3-0",
+    "contract": "branch-owned-20261012://f15-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-15-2-0-en-0-3-1",
+    "contract": "branch-owned-20261012://f15-p2-g0",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 3
+  },
+  {
+    "id": "owned-15-2-1-ko-0-0-0",
+    "contract": "branch-owned-20261012://f15-p2-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": true,
+    "neutral_mask": 2,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-15-2-1-ko-0-0-1",
+    "contract": "branch-owned-20261012://f15-p2-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": true,
+    "neutral_mask": 2,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-15-2-1-ko-0-1-0",
+    "contract": "branch-owned-20261012://f15-p2-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-15-2-1-ko-0-1-1",
+    "contract": "branch-owned-20261012://f15-p2-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-15-2-1-ko-0-2-0",
+    "contract": "branch-owned-20261012://f15-p2-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 2,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-15-2-1-ko-0-2-1",
+    "contract": "branch-owned-20261012://f15-p2-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 2,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-15-2-1-ko-0-3-0",
+    "contract": "branch-owned-20261012://f15-p2-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-15-2-1-ko-0-3-1",
+    "contract": "branch-owned-20261012://f15-p2-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-15-2-1-en-0-0-0",
+    "contract": "branch-owned-20261012://f15-p2-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": true,
+    "neutral_mask": 2,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-15-2-1-en-0-0-1",
+    "contract": "branch-owned-20261012://f15-p2-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": true,
+    "neutral_mask": 2,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-15-2-1-en-0-1-0",
+    "contract": "branch-owned-20261012://f15-p2-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-15-2-1-en-0-1-1",
+    "contract": "branch-owned-20261012://f15-p2-g1",
+    "neutral_first_complete": false,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 2
+  },
+  {
+    "id": "owned-15-2-1-en-0-2-0",
+    "contract": "branch-owned-20261012://f15-p2-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 2,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-15-2-1-en-0-2-1",
+    "contract": "branch-owned-20261012://f15-p2-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 2,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-15-2-1-en-0-3-0",
+    "contract": "branch-owned-20261012://f15-p2-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 0
+  },
+  {
+    "id": "owned-15-2-1-en-0-3-1",
+    "contract": "branch-owned-20261012://f15-p2-g1",
+    "neutral_first_complete": true,
+    "owned_first_complete": false,
+    "neutral_mask": 3,
+    "owned_mask": 0
+  }
+]

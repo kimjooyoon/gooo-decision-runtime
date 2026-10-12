@@ -46,6 +46,8 @@ jobs:
           bash "$study/fetch.sh" "$RUNNER_TEMP/factorized-inputs"
           go run "./$study/audit" "$RUNNER_TEMP/factorized-inputs" > "$RUNNER_TEMP/factorized-diagnosis.json"
           cmp "$RUNNER_TEMP/factorized-diagnosis.json" "$study/diagnosis.json"
+      - name: Audit retained V4 paired outcomes without fitting or prediction
+        run: bash studies/branch-owned-learning-20261012/check-retained.sh
       - name: Audit retained V2 return-layout observations without model execution
         run: |
           root=studies/return-layout-learning-20261012/result

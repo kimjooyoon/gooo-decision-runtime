@@ -1,0 +1,169 @@
+{
+  "candidate_reexecutions": 0,
+  "complete_sibling_contracts": {
+    "evaluation": {
+      "contracts": 24,
+      "first_complete_across_all_siblings": 1,
+      "siblings_per_contract": 16
+    },
+    "train": {
+      "contracts": 48,
+      "first_complete_across_all_siblings": 1,
+      "siblings_per_contract": 16
+    },
+    "validation": {
+      "contracts": 24,
+      "first_complete_across_all_siblings": 0,
+      "siblings_per_contract": 16
+    }
+  },
+  "corpus_sha256": "8daf73f5cdd96411fe5ef8d14b852a5b8b2732267df31c8bad400445bc89847c",
+  "fits": 1,
+  "model": "v3-prose-neutral",
+  "model_fingerprint": "93660c9efeddc0a819a97484f5354f8a0a4182436f6b610f6ce7ff6eba95fdd8",
+  "native_executions": 0,
+  "overlapping_evaluation_groups": {
+    "family/13": {
+      "documents": 96,
+      "first_complete": 40,
+      "checked_complete": 96,
+      "candidate_checks": 212
+    },
+    "family/15": {
+      "documents": 96,
+      "first_complete": 32,
+      "checked_complete": 96,
+      "candidate_checks": 220
+    },
+    "family/4": {
+      "documents": 96,
+      "first_complete": 16,
+      "checked_complete": 96,
+      "candidate_checks": 280
+    },
+    "family/6": {
+      "documents": 96,
+      "first_complete": 24,
+      "checked_complete": 96,
+      "candidate_checks": 248
+    },
+    "form/0": {
+      "documents": 192,
+      "first_complete": 56,
+      "checked_complete": 192,
+      "candidate_checks": 480
+    },
+    "form/1": {
+      "documents": 192,
+      "first_complete": 56,
+      "checked_complete": 192,
+      "candidate_checks": 480
+    },
+    "goal/0": {
+      "documents": 192,
+      "first_complete": 44,
+      "checked_complete": 192,
+      "candidate_checks": 548
+    },
+    "goal/1": {
+      "documents": 192,
+      "first_complete": 68,
+      "checked_complete": 192,
+      "candidate_checks": 412
+    },
+    "layout/0": {
+      "documents": 96,
+      "first_complete": 24,
+      "checked_complete": 96,
+      "candidate_checks": 256
+    },
+    "layout/1": {
+      "documents": 96,
+      "first_complete": 44,
+      "checked_complete": 96,
+      "candidate_checks": 200
+    },
+    "layout/2": {
+      "documents": 96,
+      "first_complete": 36,
+      "checked_complete": 96,
+      "candidate_checks": 204
+    },
+    "layout/3": {
+      "documents": 96,
+      "first_complete": 8,
+      "checked_complete": 96,
+      "candidate_checks": 300
+    },
+    "literal_regime/0": {
+      "documents": 128,
+      "first_complete": 36,
+      "checked_complete": 128,
+      "candidate_checks": 332
+    },
+    "literal_regime/1": {
+      "documents": 128,
+      "first_complete": 36,
+      "checked_complete": 128,
+      "candidate_checks": 300
+    },
+    "literal_regime/2": {
+      "documents": 128,
+      "first_complete": 40,
+      "checked_complete": 128,
+      "candidate_checks": 328
+    }
+  },
+  "parameter_count": 19034,
+  "predictions": 1536,
+  "schema": "gooo/branch-owned-decision-learning/v1",
+  "scope": "fresh paired neutral/V4 inputs with operator-family split; first and retained finite completion separate; no general prose/native/speed claim",
+  "splits": {
+    "evaluation": {
+      "documents": 384,
+      "families": 4,
+      "contracts": 24,
+      "first_complete": 112,
+      "fixed_first_complete": 96,
+      "checked_complete": 384,
+      "first_outputs_passed": 1896,
+      "first_conditions_passed": 816,
+      "first_probes_passed": 944,
+      "checked_probes_passed": 1536,
+      "candidate_attempts": 960,
+      "language_pairs": 192,
+      "language_first_mask_agreement": 192
+    },
+    "train": {
+      "documents": 768,
+      "families": 8,
+      "contracts": 48,
+      "first_complete": 240,
+      "fixed_first_complete": 192,
+      "checked_complete": 768,
+      "first_outputs_passed": 3208,
+      "first_conditions_passed": 1720,
+      "first_probes_passed": 1552,
+      "checked_probes_passed": 3072,
+      "candidate_attempts": 1772,
+      "language_pairs": 384,
+      "language_first_mask_agreement": 384
+    },
+    "validation": {
+      "documents": 384,
+      "families": 4,
+      "contracts": 24,
+      "first_complete": 104,
+      "fixed_first_complete": 96,
+      "checked_complete": 384,
+      "first_outputs_passed": 1488,
+      "first_conditions_passed": 848,
+      "first_probes_passed": 720,
+      "checked_probes_passed": 1536,
+      "candidate_attempts": 904,
+      "language_pairs": 192,
+      "language_first_mask_agreement": 192
+    }
+  },
+  "tensor_bytes": 76136
+}
