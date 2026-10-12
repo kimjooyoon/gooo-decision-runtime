@@ -40,7 +40,9 @@ func inspectRelativeV2(ctx context.Context, doc pathplan.Document, prepared *pat
 	}
 	r := relativeV2Inspection{Schema: "gooo/contract-input-inspection/v6", PlanSHA: input.PlanSHA256(), CaseSHA: input.CaseSHA256(),
 		SourceVersion: contractdecision.SourceRelativeV2FeatureVersion, CaseVersion: decision.DeclaredCaseFeatureVersion,
-		ConditionVersion: input.ConditionFeatureVersion(), Scope: "explicit V2 source and all declared output/Boolean rows; no prediction, candidate execution or training"}
+		ConditionVersion: input.ConditionFeatureVersion(), Scope: "explicit V2 source and all declared output/Boolean rows; no prediction, candidate execution or training",
+		Choices: make([]relativeV2Choice, 0, len(doc.Plan.Decisions)), Outputs: make([]inspectedOutput, 0, input.CaseCount()),
+		Conditions: make([]inspectedCondition, 0, input.ConditionCount())}
 	for _, choice := range doc.Plan.Decisions {
 		if err = ctx.Err(); err != nil {
 			return err

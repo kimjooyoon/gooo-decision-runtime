@@ -53,6 +53,9 @@ requirements, with zero model/candidate/training calls. An unavailable context
 retains its reason and omits the model array. V1/V2 inspection flags cannot be
 mixed. The model artifact chooses the search input ABI; an incompatible supplied
 artifact returns an error. Omitting it keeps deterministic search.
+Declared requirement lists remain JSON arrays when empty. Unsupported nested
+source expressions keep their declared requirements and reasons without prediction.
+An already cancelled or absent context emits no inspection result.
 This example adapter is a source development addition after the SDK0.2.42 tag.
 
 Given a source-bound `prepared *pathplan.PreparedPlan`, declared cases and model bytes:
