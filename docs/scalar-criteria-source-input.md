@@ -11,6 +11,22 @@ first input is the original Integer and second input is the candidate Integer.
 Source/contract/graph digests and activity IDs bind the packet's metadata.
 They do not become numerical features or prove the compiler's source provenance.
 
+## Published SDK and compiler scope
+
+The source packet API and inspector are available in
+[SDK0.2.49-experimental](https://github.com/kimjooyoon/gooo-decision-runtime/releases/tag/v0.2.49-experimental).
+Install the Go library with:
+
+```sh
+go get github.com/kimjooyoon/gooo-decision-runtime@v0.2.49-experimental
+```
+
+The compiler's criteria source-flow export is development source. Its source
+[PR #1509](https://github.com/kimjooyoon/meta-ontology-go/pull/1509) was accepted
+on dev; inspect the compiler revision you use before expecting this export in a
+released CLI. The packet's release adds source preparation; numerical encoding,
+scalar-criteria weights and a compiler ranking adapter are separate next steps.
+
 ## Read a compiler export
 
 Use a development Gooo compiler containing the criteria source-flow export:

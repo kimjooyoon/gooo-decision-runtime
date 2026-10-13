@@ -13,7 +13,13 @@ storage figures exclude Go, parsed JSON and compiled candidate storage.
 This reads a saved compiler JSON carrier and validates/compiles the source plan.
 It makes zero model calls, candidate/predicate evaluations or training runs.
 It replays no compiler source experiment. The saved producer is the actual
-SDK head and new source overlays, before their future publication. Numerical
+SDK head and new source overlays, before SDK0.2.49 publication. Numerical
 features and prediction weights remain unavailable.
 
 See the [input contract](../../docs/scalar-criteria-source-input.md).
+
+The source packet API is now available in
+[SDK0.2.49-experimental](https://github.com/kimjooyoon/gooo-decision-runtime/releases/tag/v0.2.49-experimental).
+The saved observation retains its actual earlier producer and source-export
+identity. Publishing the API does not change that observation into a new model
+or compiler-release result.

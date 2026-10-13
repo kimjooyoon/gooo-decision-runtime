@@ -28,12 +28,12 @@ The models, training and runtime are implemented in Go.
 | Inspect return-branch relationships and the retained V4 regression | [V4 branch-owned input contract](docs/source-relative-v4-runtime.md) |
 | Develop a small model with separate comparison and branch weights | [Experimental typed decision heads](docs/typed-source-relative-runtime.md) |
 | Compare a learned decision with a simple rule and partial results | [Source-relative study: 288 documents](studies/source-relative-learning-20261011) |
-| Prepare fixed scalar requirements for a future local model | [Source-only scalar packet in development source](docs/scalar-criteria-source-input.md) |
+| Prepare fixed scalar requirements for a future local model | [Source-only scalar packet in SDK0.2.49](docs/scalar-criteria-source-input.md) |
 | Find an older API or experiment | [Detailed research and release history](RESEARCH.md) |
 
 ## Versions and model files
 
-- **Published Go SDK:** [v0.2.48-experimental](https://github.com/kimjooyoon/gooo-decision-runtime/releases/tag/v0.2.48-experimental),
+- **Published Go SDK:** [v0.2.49-experimental](https://github.com/kimjooyoon/gooo-decision-runtime/releases/tag/v0.2.49-experimental),
   with prose-neutral V3, branch-owned V4, typed heads and Unicode typed-body lineage.
   Its source release contains no model assets.
   SDK0.2.42's V2 model asset and earlier V1 files retain their own identities.
@@ -54,7 +54,7 @@ The models, training and runtime are implemented in Go.
 Install the library in your Go application:
 
 ```sh
-go get github.com/kimjooyoon/gooo-decision-runtime@v0.2.48-experimental
+go get github.com/kimjooyoon/gooo-decision-runtime@v0.2.49-experimental
 ```
 
 The core packages are `bodyplan` for typed bodies, `pathplan` for source-owned
@@ -62,7 +62,7 @@ choices and finite search, and `contractdecision` for models that read source an
 requirements. Earlier specialized model packages remain available. The compiler
 owns the binding between `.gooo` declarations, semantic IDs and a prepared plan.
 
-Development typed plans accept Go's Unicode identifier rules for activity and
+SDK0.2.48 introduced Go's Unicode identifier rules for typed activity and
 local names, including Korean names. Plan identity and source spelling remain
 separate fields. Existing input and generated-source byte limits count UTF-8
 bytes; a longer spelling does not increase those limits.
