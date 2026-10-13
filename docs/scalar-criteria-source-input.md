@@ -78,11 +78,12 @@ not describe process memory or prediction latency.
 
 ## Next model work
 
-The packet is implemented source preparation. Development source adds
+The packet is implemented source preparation. SDK0.2.50 adds
 `Prepared.FeaturesInto`, which reads the prepared source into bounded numerical
 rows on request. `Summary.NumericalEncoder` reports API availability, rather than
 asserting that a packet has been encoded or that a choice target can be represented.
-Weights, prediction API and compiler ranking adapter remain future work. Existing
+Development source adds a [source-only prediction runtime](scalar-criteria-model.md).
+Fitted weights and the compiler ranking adapter remain subsequent work. Existing
 three-field record and case-conditioned V4 weights keep their own input contracts.
 The compiler's scalar-criteria path continues deterministic selection today.
 
