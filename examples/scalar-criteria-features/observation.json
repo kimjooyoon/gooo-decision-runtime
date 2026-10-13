@@ -1,0 +1,63 @@
+{
+  "schema": "gooo/scalar-criteria-features-source-observation/v1",
+  "producer": {
+    "sdk_base": "8323191cb4c8aa1ebd917a327ae54489fa6c025a",
+    "sdk_source_changes": [
+      {
+        "path": "criteriainput/prepare.go",
+        "sha256": "f68b37ca32bbd2a35514fcb974997a4ae2877f7c0425a1ed7d5861e3c3013aa7"
+      },
+      {
+        "path": "criteriainput/graph.go",
+        "sha256": "951449d8ebfe19733df15916a0300325eb7b28e623137ac3d713ae91a4d2254d"
+      },
+      {
+        "path": "criteriainput/features.go",
+        "sha256": "5f809fc2453c2f05d48e0ca0137f42250eed385dbc5d535576cb932e9ba71f9a"
+      },
+      {
+        "path": "criteriainput/feature_hash.go",
+        "sha256": "6d4b3aa81252a9c101787f780d5a377f313b971ac5b52868eeacd3676f4bfe46"
+      },
+      {
+        "path": "criteriainput/graph_features.go",
+        "sha256": "5934986dd6175706c567ab0b2f5e17e28b21e57785e6561ed6281a8a1ea9edc3"
+      },
+      {
+        "path": "examples/scalar-criteria-features/main.go",
+        "sha256": "86bc29d258fe5f527c2c94be02fe45fc3d76daeb163888c7c7fb6b33177f3f35"
+      }
+    ],
+    "compiler_head": "74dc01aa1f9842dfbb4530f90f1261cf925e564c",
+    "compiler_source_changes": [],
+    "binary_sha256": {
+      "gooo-source-export": "23eaf1f8d6dacbb5c9b6837cd95b0a57a0bc2c80515c17bee59e7e82e911d7ae",
+      "scalar-criteria-features": "cf9ac56f09909d57a16f4736321165c62f6cd4f3228bd0ec875217402c1f5796"
+    },
+    "toolchain": "go1.27.2"
+  },
+  "source_sha256": "sha256:5c5aa0aabc233fe8e1a27fba40d71024b9bff4c4bc4e4f612136cc4e82529afa",
+  "source_unchanged": true,
+  "source_exports": 1,
+  "feature_preparations": 1,
+  "choice_rows": 1,
+  "predicate_rows": 1,
+  "predicate_nodes": 17,
+  "canonical_packet_bytes": 2187,
+  "numeric_float32_reserved_bytes": 14336,
+  "active_numeric_slots": 512,
+  "nonzero_choice_cells": [
+    112
+  ],
+  "nonzero_predicate_cells": [
+    41
+  ],
+  "packet_sha256": "sha256:99d3008476a21141d16b27d1f5508f1fd1bbb472713aa5d689728bfb7ce93b4b",
+  "feature_output_sha256": "sha256:76bd2f6d6039215fe964f2455553ed7c9a7e40e0a3db4ee2b09b30bd6b0a00c5",
+  "candidate_executions": 0,
+  "predicate_executions": 0,
+  "model_predictions": 0,
+  "training_runs": 0,
+  "local_unit_tests": 0,
+  "scope": "one fresh source export and numerical source encoding; no requirement satisfaction, accuracy, runtime equivalence, prediction latency or process RAM claim"
+}

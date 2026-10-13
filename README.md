@@ -29,6 +29,7 @@ The models, training and runtime are implemented in Go.
 | Develop a small model with separate comparison and branch weights | [Experimental typed decision heads](docs/typed-source-relative-runtime.md) |
 | Compare a learned decision with a simple rule and partial results | [Source-relative study: 288 documents](studies/source-relative-learning-20261011) |
 | Prepare fixed scalar requirements for a future local model | [Source-only scalar packet in SDK0.2.49](docs/scalar-criteria-source-input.md) |
+| Encode scalar choices, Korean/English intent and fixed predicate graphs | [Development numerical source features](docs/scalar-criteria-features.md) |
 | Find an older API or experiment | [Detailed research and release history](RESEARCH.md) |
 
 ## Versions and model files

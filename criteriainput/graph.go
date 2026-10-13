@@ -69,6 +69,7 @@ func (p *Prepared) appendGraph(predicate Predicate) error {
 		return errors.New("both source input roles must be present in the graph")
 	}
 	p.graphs[p.graphCount] = Graph{Start: start, Count: p.nodeCount - start}
+	p.predicateIDs[p.graphCount] = predicate.ID
 	p.graphCount++
 	return nil
 }
