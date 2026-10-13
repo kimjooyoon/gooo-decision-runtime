@@ -27,6 +27,14 @@ type Prepared struct {
 	graphCount   uint8
 	literalCount uint32
 	choiceCount  uint8
+	choices      [MaxChoices]sourceChoice
+	predicateIDs [MaxPredicates]string
+}
+
+type sourceChoice struct {
+	id, intent string
+	options    [2]string
+	fallback   string
 }
 
 type Summary struct {
@@ -71,6 +79,10 @@ func Prepare(input Input) (*Prepared, error) {
 		return nil, errors.New("candidate plan digest differs from complete typed source")
 	}
 	p := &Prepared{canonical: raw, paths: paths, digest: digest(raw), choiceCount: uint8(len(input.Candidate.Decisions))}
+	for i, choice := range input.Candidate.Decisions {
+		p.choices[i] = sourceChoice{choice.ID, choice.Intent,
+			[2]string{choice.Options[0].Label, choice.Options[1].Label}, choice.Fallback}
+	}
 	seen := map[string]bool{}
 	for _, predicate := range input.Predicates {
 		if !validText(predicate.ID) || !validText(predicate.ActivityID) || seen[predicate.ID] {
@@ -90,7 +102,7 @@ func (p *Prepared) Summary() Summary {
 	}
 	return Summary{Schema: Schema, InputSHA256: p.digest, CandidatePlanSHA256: p.paths.PlanSHA256(),
 		Choices: int(p.choiceCount), Predicates: int(p.graphCount), Nodes: int(p.nodeCount),
-		LiteralBytes: int(p.literalCount), CanonicalBytes: len(p.canonical), NumericalEncoder: "UNAVAILABLE",
+		LiteralBytes: int(p.literalCount), CanonicalBytes: len(p.canonical), NumericalEncoder: "AVAILABLE_ON_REQUEST",
 		PreparationScope: "source validation and candidate compilation; no prediction or requirement evaluation"}
 }
 

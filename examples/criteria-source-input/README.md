@@ -14,7 +14,7 @@ This reads a saved compiler JSON carrier and validates/compiles the source plan.
 It makes zero model calls, candidate/predicate evaluations or training runs.
 It replays no compiler source experiment. The saved producer is the actual
 SDK head and new source overlays, before SDK0.2.49 publication. Numerical
-features and prediction weights remain unavailable.
+features and prediction weights were unavailable in that observed producer.
 
 See the [input contract](../../docs/scalar-criteria-source-input.md).
 
@@ -23,3 +23,6 @@ The source packet API is now available in
 The saved observation retains its actual earlier producer and source-export
 identity. Publishing the API does not change that observation into a new model
 or compiler-release result.
+
+Subsequent development adds [numerical source features](../../docs/scalar-criteria-features.md).
+That change retains this earlier observation and uses a separate fresh source example.

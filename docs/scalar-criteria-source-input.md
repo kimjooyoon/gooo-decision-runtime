@@ -24,8 +24,10 @@ go get github.com/kimjooyoon/gooo-decision-runtime@v0.2.49-experimental
 The compiler's criteria source-flow export is development source. Its source
 [PR #1509](https://github.com/kimjooyoon/meta-ontology-go/pull/1509) was accepted
 on dev; inspect the compiler revision you use before expecting this export in a
-released CLI. The packet's release adds source preparation; numerical encoding,
-scalar-criteria weights and a compiler ranking adapter are separate next steps.
+released CLI. The packet's release adds source preparation. A subsequent
+development [numerical encoder](scalar-criteria-features.md) prepares separate
+choice, intent and predicate rows; scalar-criteria weights and a compiler ranking
+adapter remain next steps.
 
 ## Read a compiler export
 
@@ -76,8 +78,11 @@ not describe process memory or prediction latency.
 
 ## Next model work
 
-The packet is implemented source preparation. The numerical feature encoder,
-weights, prediction API and compiler ranking adapter remain future work. Existing
+The packet is implemented source preparation. Development source adds
+`Prepared.FeaturesInto`, which reads the prepared source into bounded numerical
+rows on request. `Summary.NumericalEncoder` reports API availability, rather than
+asserting that a packet has been encoded or that a choice target can be represented.
+Weights, prediction API and compiler ranking adapter remain future work. Existing
 three-field record and case-conditioned V4 weights keep their own input contracts.
 The compiler's scalar-criteria path continues deterministic selection today.
 

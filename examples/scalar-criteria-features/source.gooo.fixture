@@ -1,0 +1,14 @@
+package fees
+namespace scalar_features
+entity Integer id "scalar-features://integer"
+entity Boolean id "scalar-features://boolean"
+activity Quote(Integer) -> Integer id "scalar-features://quote" computes "return input - 7" assembling {
+ choice "direction" operand_order at "0" intent "입력에서 7을 빼서 기본 요금을 계산한다. Subtract seven from the input."
+ criteria {
+  predicate "accepted" activity "Accepted"
+  input "[12]"
+  holdout_input "[28]"
+ }
+ attempts "2"
+}
+activity Accepted(Integer,Integer) -> Boolean id "scalar-features://accepted" computes "if input0 < 20 { return input1 == input0 - 7 }; return input1 <= input0"
