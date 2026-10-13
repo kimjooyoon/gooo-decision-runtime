@@ -1,0 +1,71 @@
+{
+  "schema": "gooo/scalar-source-packet-observation/v1",
+  "producer": {
+    "schema": "gooo/scalar-source-packet-producer/v1",
+    "sdk_head": "8ec6c5a83638aa6248abed29cd0d39bdebeffba8",
+    "binary_sha256": "f5f50176c5eb66f39fe7e1adae32f09edf2be86850075f46b2687f81564d7dff",
+    "go_mod_sha256": "409c068a3636194dab59ed22facea57e0d0b95badbc0ca1c145e1fe97b0655df",
+    "source_overlays": [
+      {
+        "path": "criteriainput/bounds.go",
+        "sha256": "1c7be124eabf3c071f1fafee717da61a0cad42ebc0abd0242b8ab9a85d63e201"
+      },
+      {
+        "path": "criteriainput/compiler_export.go",
+        "sha256": "f69a49ba1d0e36c120ec866d42a0c9524a8bbed5c219da45193b834ede225c66"
+      },
+      {
+        "path": "criteriainput/graph.go",
+        "sha256": "becbb00daf26f00a9f2e10f7e9fb8d39e3bd16e691f8c4ad0d2cabb0404e7109"
+      },
+      {
+        "path": "criteriainput/input.go",
+        "sha256": "034d39fd2042f169bcc8d50485fca9b6570abeece36ea29627d8b28fc53a323c"
+      },
+      {
+        "path": "criteriainput/prepare.go",
+        "sha256": "873b255b815ae8ea14529e32b837c4cbeca945af2106822205793dfcb30f8e50"
+      },
+      {
+        "path": "examples/criteria-source-input/main.go",
+        "sha256": "ba8eeff99e3135957519eb9afff6b13332c7d58fe4e637e258f6927dc530e4ee"
+      },
+      {
+        "path": "jointdecision/source_graph_validation.go",
+        "sha256": "ab02c43a94730c0158a04ad33a4b453e40eb13b92b5799e3d0eb7877b8a65f6c"
+      }
+    ],
+    "model_predictions": 0,
+    "training_runs": 0,
+    "scope": "Actual Go SDK source plus saved new source-only overlays; no rebinding to accepted commit"
+  },
+  "source_export_sha256": "c4be50ab94b99445ec3b16b48525478b44c125525f69029c6b720f91871a7ae4",
+  "input_unchanged": true,
+  "packet_inspections": 1,
+  "exit_code": 0,
+  "model_predictions": 0,
+  "training_runs": 0,
+  "candidate_executions": 0,
+  "compiler_source_experiments_replayed": 0,
+  "scope": "One new SDK source-packet projection of retained compiler JSON; no Gooo source rerun, model or native program invocation",
+  "summary": {
+    "schema": "gooo/scalar-criteria-source-input/v1",
+    "input_sha256": "sha256:4cf9f55facbda4c8bc8d4e195f3ff1b31b47fcb2e4c36cf004626959f58afb84",
+    "candidate_plan_sha256": "64d9c7d10fe119bc1b9a67a50b8714be3cfb034b290ac53b03cf4a11a4b11a7b",
+    "choices": 1,
+    "predicates": 1,
+    "nodes": 14,
+    "literal_bytes": 2,
+    "canonical_bytes": 1838,
+    "numerical_encoder": "UNAVAILABLE",
+    "model_predictions": 0,
+    "candidate_executions": 0,
+    "preparation_scope": "source validation and candidate compilation; no prediction or requirement evaluation"
+  },
+  "node_storage_bytes": 20,
+  "reserved_node_arena_bytes": 81920,
+  "reserved_literal_pool_bytes": 65536,
+  "packet_sha256": "sha256:4cf9f55facbda4c8bc8d4e195f3ff1b31b47fcb2e4c36cf004626959f58afb84",
+  "source_export_reference": "https://github.com/kimjooyoon/meta-ontology-go/blob/e72320ca50d50568e6ea5437d8ca611dc00ebb67/examples/criteria-source-flow/context.json",
+  "binary_file": "development SDK inspector; binary not included"
+}
