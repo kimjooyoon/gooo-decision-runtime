@@ -29,13 +29,15 @@ The models, training and runtime are implemented in Go.
 | Develop a small model with separate comparison and branch weights | [Experimental typed decision heads](docs/typed-source-relative-runtime.md) |
 | Compare a learned decision with a simple rule and partial results | [Source-relative study: 288 documents](studies/source-relative-learning-20261011) |
 | Prepare fixed scalar requirements for a future local model | [Source-only scalar packet in SDK0.2.49](docs/scalar-criteria-source-input.md) |
-| Encode scalar choices, Korean/English intent and fixed predicate graphs | [Development numerical source features](docs/scalar-criteria-features.md) |
+| Encode scalar choices, Korean/English intent and fixed predicate graphs | [Numerical source features in SDK0.2.50](docs/scalar-criteria-features.md) |
+| Develop a source-only scalar model with interactions between choices | [Development ranking runtime and model contract](docs/scalar-criteria-model.md) |
 | Find an older API or experiment | [Detailed research and release history](RESEARCH.md) |
 
 ## Versions and model files
 
-- **Published Go SDK:** [v0.2.49-experimental](https://github.com/kimjooyoon/gooo-decision-runtime/releases/tag/v0.2.49-experimental),
-  with prose-neutral V3, branch-owned V4, typed heads and Unicode typed-body lineage.
+- **Published Go SDK:** [v0.2.50-experimental](https://github.com/kimjooyoon/gooo-decision-runtime/releases/tag/v0.2.50-experimental),
+  with prose-neutral V3, branch-owned V4, typed heads, Unicode typed-body lineage
+  and source-only scalar numerical features.
   Its source release contains no model assets.
   SDK0.2.42's V2 model asset and earlier V1 files retain their own identities.
 - **V1 compiler release:** [0.6.32-dev](https://github.com/kimjooyoon/meta-ontology-go/releases/tag/v0.6.32-dev),

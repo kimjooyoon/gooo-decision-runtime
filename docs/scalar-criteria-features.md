@@ -1,14 +1,19 @@
 # Read scalar choices and requirements as numerical source features
 
 `Prepared.FeaturesInto` converts the scalar criteria packet into
-`gooo/scalar-criteria-features/v1`. This development API prepares inputs for a
+`gooo/scalar-criteria-features/v1`. This API prepares inputs for a
 small local decision model that selects Gooo's declared structural paths.
 It makes no prediction and evaluates no source requirement.
 
-The input packet is published in SDK0.2.49-experimental. The encoder described
-here is a subsequent development change; check the SDK revision before using it.
-It needs its own fitted weights and compiler ranking adapter. Existing record
-and case-conditioned weights retain their existing feature contracts.
+The input packet is published in SDK0.2.49-experimental and the numerical encoder
+in [SDK0.2.50-experimental](https://github.com/kimjooyoon/gooo-decision-runtime/releases/tag/v0.2.50-experimental).
+Development source adds a [small ranking runtime](scalar-criteria-model.md).
+Fitted scalar-criteria weights and a compiler ranking adapter remain subsequent
+work. Existing record and case-conditioned weights retain their input contracts.
+
+```sh
+go get github.com/kimjooyoon/gooo-decision-runtime@v0.2.50-experimental
+```
 
 ## Bounded rows with separate meanings
 
@@ -77,8 +82,9 @@ if err := prepared.FeaturesInto(&features); err != nil {
 The [source example](../examples/scalar-criteria-features/README.md) exports one
 fresh Gooo source and prepares its features. It runs no candidates or predicates.
 
-A subsequent model can share small weights across choice and predicate rows,
-then rank the finite declared candidate masks. Its architecture, fitting and
-source-family split need their own evidence. First-choice requirement
-satisfaction and eventual finite completion must retain separate denominators.
-The presence of numerical features establishes neither result.
+The development ranking runtime shares small weights across choice and predicate
+rows and scores every declared candidate mask with unary and pair terms. Its
+package has compiled; fitting, source-family evaluation and the compiler adapter
+remain subsequent work. First-choice requirement satisfaction and eventual finite
+completion must retain separate denominators. Numerical features and runtime
+compilation establish neither result.
