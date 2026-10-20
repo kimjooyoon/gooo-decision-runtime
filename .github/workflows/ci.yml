@@ -66,8 +66,10 @@ jobs:
           cd studies/source-relative-learning-20261011/producer
           cp go.mod "$RUNNER_TEMP/source-relative.mod"
           go mod edit -modfile="$RUNNER_TEMP/source-relative.mod" \
+            -go=1.27.3 \
             -replace="github.com/kimjooyoon/meta-ontology-go=$GITHUB_WORKSPACE/.source-relative-compiler" \
             -replace="github.com/kimjooyoon/gooo-decision-runtime=$GITHUB_WORKSPACE"
+          go mod tidy -modfile="$RUNNER_TEMP/source-relative.mod"
           go vet -modfile="$RUNNER_TEMP/source-relative.mod" ./...
           go test -race -modfile="$RUNNER_TEMP/source-relative.mod" ./...
       - name: Retrieve the immutable complete arithmetic observations
