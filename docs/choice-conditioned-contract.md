@@ -116,7 +116,7 @@ The local example command accepts an existing choice-conditioned artifact and a
 Gooo-derived document:
 
 ```sh
-GOWORK=off GOTOOLCHAIN=go1.27.2 go run ./examples/contract-model explain \
+GOWORK=off GOTOOLCHAIN=go1.27.3 go run ./examples/contract-model explain \
   -model studies/choice-context-learning-20261010/result/model-choice.json \
   studies/choice-context-learning-20261010/examples/fresh-bound-k9-r1-w0-alias-g0.json
 ```

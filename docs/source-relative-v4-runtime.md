@@ -63,7 +63,7 @@ been collected.
 From this checkout, inspect the bundled authored SDK fixture without a model:
 
 ```sh
-GOWORK=off GOTOOLCHAIN=go1.27.2 go run ./examples/contract-model inspect \
+GOWORK=off GOTOOLCHAIN=go1.27.3 go run ./examples/contract-model inspect \
   -source-relative-v4-source examples/contract-model/testdata/source-relative-v2-division.json
 ```
 

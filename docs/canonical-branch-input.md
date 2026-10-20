@@ -78,10 +78,10 @@ for later release availability.
 
 ## Inspect, fit and use
 
-From this repository checkout with Go 1.27.2, inspect a Gooo-derived typed plan:
+From this repository checkout with Go 1.27.3, inspect a Gooo-derived typed plan:
 
 ```sh
-GOWORK=off GOTOOLCHAIN=go1.27.2 go run ./examples/contract-model inspect \
+GOWORK=off GOTOOLCHAIN=go1.27.3 go run ./examples/contract-model inspect \
   -canonical-source path-to-your-plan.json
 ```
 
@@ -95,14 +95,14 @@ view of the earlier ordered-expression adjunct.
 To create a new local model from explicitly selected training documents:
 
 ```sh
-GOWORK=off GOTOOLCHAIN=go1.27.2 go run ./examples/contract-model fit \
+GOWORK=off GOTOOLCHAIN=go1.27.3 go run ./examples/contract-model fit \
   -canonical-interactions -epochs 2000 -out my-canonical-model.json \
   path-to-training-plan-a.json path-to-training-plan-b.json
 
-GOWORK=off GOTOOLCHAIN=go1.27.2 go run ./examples/contract-model search \
+GOWORK=off GOTOOLCHAIN=go1.27.3 go run ./examples/contract-model search \
   -model my-canonical-model.json path-to-evaluation-plan.json
 
-GOWORK=off GOTOOLCHAIN=go1.27.2 go run ./examples/contract-model search \
+GOWORK=off GOTOOLCHAIN=go1.27.3 go run ./examples/contract-model search \
   path-to-evaluation-plan.json
 ```
 
