@@ -9,7 +9,7 @@ it does not carry a compiler-produced source-binding receipt.
 This example can be inspected without a model:
 
 ```sh
-GOWORK=off GOTOOLCHAIN=go1.27.2 go run ./examples/contract-model inspect \
+GOWORK=off GOTOOLCHAIN=go1.27.3 go run ./examples/contract-model inspect \
   -source-relative-v2-source examples/contract-model/testdata/source-relative-v2-division.json
 ```
 

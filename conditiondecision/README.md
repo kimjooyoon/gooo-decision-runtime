@@ -56,7 +56,7 @@ separates initial judgments, observations, new wording and local-variable bodies
 From this SDK checkout, choose a fresh output directory:
 
 ```sh
-GOWORK=off GOTOOLCHAIN=go1.27.2 go run ./examples/condition-fit \
+GOWORK=off GOTOOLCHAIN=go1.27.3 go run ./examples/condition-fit \
   studies/condition-candidate-20261010/dataset.json /tmp/my-condition-model-run
 ```
 

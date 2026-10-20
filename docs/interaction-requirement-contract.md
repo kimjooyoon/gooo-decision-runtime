@@ -12,7 +12,7 @@ small source/output/condition interaction terms to investigate that question.
 
 ## Run it locally
 
-From this SDK checkout with Go 1.27.2:
+From this SDK checkout with Go 1.27.3:
 
 ```sh
 GOWORK=off go run ./examples/contract-model fit -interactions \

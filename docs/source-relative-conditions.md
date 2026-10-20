@@ -18,10 +18,10 @@ formats retain their own inputs and ordering.
 
 ## Inspect a Gooo-derived plan
 
-From this SDK checkout with Go 1.27.2:
+From this SDK checkout with Go 1.27.3:
 
 ```sh
-GOWORK=off GOTOOLCHAIN=go1.27.2 go run ./examples/contract-model inspect \
+GOWORK=off GOTOOLCHAIN=go1.27.3 go run ./examples/contract-model inspect \
   -canonical-source -condition-relations path-to-your-plan.json
 ```
 

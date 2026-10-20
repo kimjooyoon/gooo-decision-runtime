@@ -42,11 +42,11 @@ The development `contract-model` example now offers a V2 route. From a checkout
 including this CLI change, inspect a Gooo-derived typed path document and search:
 
 ```sh
-GOWORK=off GOTOOLCHAIN=go1.27.2 go run ./examples/contract-model inspect \
+GOWORK=off GOTOOLCHAIN=go1.27.3 go run ./examples/contract-model inspect \
   -source-relative-v2-source examples/contract-model/testdata/source-relative-v2-division.json
-GOWORK=off GOTOOLCHAIN=go1.27.2 go run ./examples/contract-model search \
+GOWORK=off GOTOOLCHAIN=go1.27.3 go run ./examples/contract-model search \
   -model model-source-relative-v2.json examples/contract-model/testdata/source-relative-v2-division.json
-GOWORK=off GOTOOLCHAIN=go1.27.2 go run ./examples/contract-model search \
+GOWORK=off GOTOOLCHAIN=go1.27.3 go run ./examples/contract-model search \
   examples/contract-model/testdata/source-relative-v2-division.json
 ```
 

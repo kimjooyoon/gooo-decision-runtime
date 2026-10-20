@@ -42,13 +42,13 @@ The models, training and runtime are implemented in Go.
   SDK0.2.42's V2 model asset and earlier V1 files retain their own identities.
 - **V1 compiler release:** [0.6.32-dev](https://github.com/kimjooyoon/meta-ontology-go/releases/tag/v0.6.32-dev),
   including SDK0.2.41 and the V1 relation model loader.
-- **Current compiler release:** [0.6.34-dev](https://github.com/kimjooyoon/meta-ontology-go/releases/tag/v0.6.34-dev),
+- **Pinned compiler example:** [0.6.34-dev](https://github.com/kimjooyoon/meta-ontology-go/releases/tag/v0.6.34-dev),
   including SDK0.2.44 and the explicit V3 adapter. Published native binaries bind
   source `b266c0e2cf6878385b59788945861a03e33f766b`; the release's zero-weight
   native checks and the fitted-model library studies have separate records.
   The SDK and compiler releases are experimental.
-- **Toolchain:** Go1.27.2. Native construction needs it; reading a saved compiler
-  report needs neither Go nor model weights.
+- **Toolchain:** This SDK checkout uses Go1.27.3. The pinned compiler release above
+  used Go1.27.2. Reading a saved compiler report needs neither Go nor model weights.
 - **Research weights:** [Gooo Canonical Decision Tiny v1 on Hugging Face](https://huggingface.co/asketeddy/gooo-canonical-decision-tiny-v1).
   The [download guide](docs/canonical-branch-input.md#download-an-existing-model)
   pins a revision and checksums. The Hub pooling fits and the SDK release's paired
@@ -78,10 +78,10 @@ output examples, one Boolean requirement and two possible return placements.
 It is an authored SDK fixture; the compiler source guide covers `.gooo` binding.
 
 ```sh
-GOWORK=off GOTOOLCHAIN=go1.27.2 go run ./examples/contract-model inspect \
+GOWORK=off GOTOOLCHAIN=go1.27.3 go run ./examples/contract-model inspect \
   -source-relative-v2-source examples/contract-model/testdata/source-relative-v2-division.json
 
-GOWORK=off GOTOOLCHAIN=go1.27.2 go run ./examples/contract-model search \
+GOWORK=off GOTOOLCHAIN=go1.27.3 go run ./examples/contract-model search \
   examples/contract-model/testdata/source-relative-v2-division.json
 ```
 
@@ -98,13 +98,13 @@ Start by inspecting a prepared Gooo plan or an existing artifact. From this
 repository checkout:
 
 ```sh
-GOWORK=off GOTOOLCHAIN=go1.27.2 go run ./examples/contract-model inspect \
+GOWORK=off GOTOOLCHAIN=go1.27.3 go run ./examples/contract-model inspect \
   -canonical-source path-to-your-plan.json
 
-GOWORK=off GOTOOLCHAIN=go1.27.2 go run ./examples/contract-model search \
+GOWORK=off GOTOOLCHAIN=go1.27.3 go run ./examples/contract-model search \
   -model path-to-model.json path-to-your-plan.json
 
-GOWORK=off GOTOOLCHAIN=go1.27.2 go run ./examples/contract-model search \
+GOWORK=off GOTOOLCHAIN=go1.27.3 go run ./examples/contract-model search \
   path-to-your-plan.json
 ```
 

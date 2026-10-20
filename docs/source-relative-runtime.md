@@ -12,18 +12,18 @@ SDK example against an already prepared typed plan.
 
 ## Inspect and construct
 
-Use Go 1.27.2 from the SDK repository root. Replace `your-plan.json` with a typed
+Use Go 1.27.3 from the SDK repository root. Replace `your-plan.json` with a typed
 path document bound to your Gooo source:
 
 ```sh
-GOWORK=off GOTOOLCHAIN=go1.27.2 go run ./examples/contract-model inspect \
+GOWORK=off GOTOOLCHAIN=go1.27.3 go run ./examples/contract-model inspect \
   -source-relative-source your-plan.json
 
-GOWORK=off GOTOOLCHAIN=go1.27.2 go run ./examples/contract-model search \
+GOWORK=off GOTOOLCHAIN=go1.27.3 go run ./examples/contract-model search \
   -model studies/source-relative-learning-20261011/result/model-relative.json \
   your-plan.json
 
-GOWORK=off GOTOOLCHAIN=go1.27.2 go run ./examples/contract-model search \
+GOWORK=off GOTOOLCHAIN=go1.27.3 go run ./examples/contract-model search \
   your-plan.json
 ```
 

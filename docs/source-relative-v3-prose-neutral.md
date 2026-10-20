@@ -35,16 +35,16 @@ differs. Weight bytes alone do not describe total process memory.
 ## Inspect, convert and assemble
 
 ```sh
-GOWORK=off GOTOOLCHAIN=go1.27.2 go run ./examples/contract-model inspect \
+GOWORK=off GOTOOLCHAIN=go1.27.3 go run ./examples/contract-model inspect \
   -source-relative-v3-prose-neutral-source document.json
 
-GOWORK=off GOTOOLCHAIN=go1.27.2 go run ./examples/contract-model repackage-prose-neutral \
+GOWORK=off GOTOOLCHAIN=go1.27.3 go run ./examples/contract-model repackage-prose-neutral \
   -input original-neutral-v3.json -out explicit-neutral.json
 
-GOWORK=off GOTOOLCHAIN=go1.27.2 go run ./examples/contract-model search \
+GOWORK=off GOTOOLCHAIN=go1.27.3 go run ./examples/contract-model search \
   -model explicit-neutral.json document.json
 
-GOWORK=off GOTOOLCHAIN=go1.27.2 go run ./examples/contract-model search document.json
+GOWORK=off GOTOOLCHAIN=go1.27.3 go run ./examples/contract-model search document.json
 ```
 
 Inspection uses schema`gooo/contract-input-inspection/v8`, reports the policy and

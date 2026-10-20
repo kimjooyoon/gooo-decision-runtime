@@ -65,7 +65,7 @@ an error. Omitting the model uses the ordinary deterministic traversal.
 From this checkout, a separately fitted typed artifact can be selected with:
 
 ```sh
-GOWORK=off GOTOOLCHAIN=go1.27.2 go run ./examples/contract-model search \
+GOWORK=off GOTOOLCHAIN=go1.27.3 go run ./examples/contract-model search \
   -model /path/to/typed-model.json /path/to/source-owned-path-document.json
 ```
 

@@ -35,5 +35,5 @@ SUMS
 cmp "$task_root/audit.json" "$task_study/audit.json"
 cmp "$task_root/paired-evaluation.json" "$task_study/paired-evaluation.json"
 task_diagnosis="$task_study/../branch-owned-choice-diagnosis-20261012"
-GOWORK=off GOTOOLCHAIN=go1.27.2 go run "$task_diagnosis/audit/main.go" "$task_root" > "$task_root/choice-diagnosis.json"
+GOWORK=off GOTOOLCHAIN=go1.27.3 go run "$task_diagnosis/audit/main.go" "$task_root" > "$task_root/choice-diagnosis.json"
 cmp "$task_root/choice-diagnosis.json" "$task_diagnosis/diagnosis.json"
